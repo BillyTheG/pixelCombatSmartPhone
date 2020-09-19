@@ -27,6 +27,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     public GamePanel(Context context){
         super(context);
 
+
         getHolder().addCallback(this);
 
         ScreenProperty.CURRENT_CONTEXT = context;
