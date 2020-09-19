@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 
 import com.example.pixelcombat.GameObject;
+import com.example.pixelcombat.enums.ScreenProperty;
 
 public class Animation {
     private Bitmap[] frames;
@@ -44,14 +45,15 @@ public class Animation {
         int width = frames[frameIndex].getWidth();
         int height = frames[frameIndex].getHeight();
 
-        Rect rect = new Rect((int)(object.getPos().x-width/2),
-                (int)object.getPos().y-height/2,(int)object.getPos().x+width/2,
-                (int)object.getPos().y+height/2);
+        Rect sourceRect = new Rect((int)(object.getPos().x-width/2),
+                (int)(object.getPos().y-height/2),(int)(object.getPos().x+width/2),
+                (int)(object.getPos().y+height/2));
 
+        Rect desRect = new Rect(sourceRect.left+ ScreenProperty.OFFSET_X,sourceRect.top-ScreenProperty.OFFSET_y,(int)(sourceRect.right)+ScreenProperty.OFFSET_X,
+                sourceRect.bottom-ScreenProperty.OFFSET_y);
 
-
-        canvas.drawBitmap(frames[frameIndex], ((int) object.getPos().x-width/2),
-                (int)object.getPos().y-height/2, null);
+        canvas.drawBitmap(frames[frameIndex],null,desRect,null);
+      //  canvas.drawBitmap(frames[frameIndex], ((int) object.getPos().x-width/2), (int)object.getPos().y-height/2, null);
     }
 
     private void scaleRect(Rect rect) {

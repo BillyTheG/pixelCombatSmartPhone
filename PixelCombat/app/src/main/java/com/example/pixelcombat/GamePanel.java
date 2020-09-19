@@ -9,16 +9,20 @@ import android.graphics.Rect;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
+import android.widget.RelativeLayout.LayoutParams;
 
 import com.example.pixelcombat.character.Ruffy;
 import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.math.Vector2d;
 
-
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     private MainThread thread;
     private Bitmap bg;
-    private Rect rect;
+    private Rect sourceRect;
+    private Rect gameRect;
     private Paint paint;
     private Ruffy ruffy;
     private Ruffy ruffy2;
@@ -27,7 +31,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     public GamePanel(Context context){
         super(context);
 
-
         getHolder().addCallback(this);
 
         ScreenProperty.CURRENT_CONTEXT = context;
@@ -35,6 +38,10 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         thread = new MainThread(getHolder(),this);
 
         setFocusable(true);
+
+        sourceRect = new Rect(0,0,((int)(ScreenProperty.SCREEN_WIDTH)),ScreenProperty.SCREEN_HEIGHT);
+
+        gameRect = new Rect(ScreenProperty.OFFSET_X,0,ScreenProperty.SCREEN_WIDTH-ScreenProperty.OFFSET_X,ScreenProperty.SCREEN_HEIGHT-ScreenProperty.OFFSET_y);
 
         init();
     }
@@ -52,9 +59,10 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
 
 
-            ruffy = new Ruffy(new Vector2d(400,ScreenProperty.SCREEN_HEIGHT-350));
+        ruffy = new Ruffy(new Vector2d(400,ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE));
 
-        ruffy2 = new Ruffy(new Vector2d(700,ScreenProperty.SCREEN_HEIGHT-350));
+        ruffy2 = new Ruffy(new Vector2d(700,ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE));
+
 
 
     }
@@ -93,12 +101,13 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
     public void update(){
         ruffy.update();
-       ruffy2.update();
+        ruffy2.update();
     }
 
     public void draw(Canvas canvas){
         super.draw(canvas);
-        canvas.drawBitmap(bg,0,0,null);
+        canvas.drawBitmap(bg,sourceRect,gameRect,null);
+      //  canvas.drawBitmap(bg,0,0,null);
         ruffy.draw(canvas);
 
         ruffy2.draw(canvas);
