@@ -2,6 +2,7 @@ package com.example.pixelcombat.animation;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
@@ -51,8 +52,10 @@ public class Animation {
 
         Rect desRect = new Rect(sourceRect.left+ ScreenProperty.OFFSET_X,sourceRect.top-ScreenProperty.OFFSET_y,(int)(sourceRect.right)+ScreenProperty.OFFSET_X,
                 sourceRect.bottom-ScreenProperty.OFFSET_y);
-
-        canvas.drawBitmap(frames[frameIndex],null,desRect,null);
+        if(!object.isRight())
+            canvas.drawBitmap(createFlippedBitmap(frames[frameIndex],true,false),null,desRect,null);
+        else
+            canvas.drawBitmap(frames[frameIndex],null,desRect,null);
       //  canvas.drawBitmap(frames[frameIndex], ((int) object.getPos().x-width/2), (int)object.getPos().y-height/2, null);
     }
 
@@ -73,5 +76,12 @@ public class Animation {
             frameIndex = frameIndex >= frames.length ? 0 : frameIndex;
             lastFrame = System.currentTimeMillis();
         }
+    }
+
+
+    public static Bitmap createFlippedBitmap(Bitmap source, boolean xFlip, boolean yFlip) {
+        Matrix matrix = new Matrix();
+        matrix.postScale(xFlip ? -1 : 1, yFlip ? -1 : 1, source.getWidth() / 2f, source.getHeight() / 2f);
+        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
     }
 }

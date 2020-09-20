@@ -31,4 +31,9 @@ public class PXMap implements GameObject {
     public Vector2d getPos() {
         return null;
     }
+
+    @Override
+    public boolean isRight() {
+        return true;
+    }
 }

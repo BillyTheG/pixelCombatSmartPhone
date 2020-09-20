@@ -9,12 +9,8 @@ import android.graphics.Rect;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
-import android.widget.RelativeLayout.LayoutParams;
 
-import com.example.pixelcombat.character.Ruffy;
+import com.example.pixelcombat.character.ruffy.Ruffy;
 import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.math.Vector2d;
 
@@ -107,9 +103,12 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     public void draw(Canvas canvas){
         super.draw(canvas);
         canvas.drawBitmap(bg,sourceRect,gameRect,null);
-      //  canvas.drawBitmap(bg,0,0,null);
         ruffy.draw(canvas);
 
         ruffy2.draw(canvas);
+    }
+
+    public Ruffy getRuffy() {
+        return ruffy;
     }
 }
