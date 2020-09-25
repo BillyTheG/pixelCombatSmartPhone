@@ -13,8 +13,10 @@ import android.view.SurfaceView;
 import com.example.pixelcombat.character.ruffy.Ruffy;
 import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.math.Vector2d;
+import com.example.pixelcombat.xml.CharacterParser;
 
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
+    private Context context;
     private MainThread thread;
     private Bitmap bg;
     private Rect sourceRect;
@@ -24,9 +26,9 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     private Ruffy ruffy2;
 
 
-    public GamePanel(Context context){
+    public GamePanel(Context context) throws Exception {
         super(context);
-
+        this.context = context;
         getHolder().addCallback(this);
 
         ScreenProperty.CURRENT_CONTEXT = context;
@@ -42,7 +44,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         init();
     }
 
-    private void init() {
+    private void init() throws Exception {
 
         BitmapFactory bf = new BitmapFactory();
 
@@ -55,11 +57,16 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
 
 
-        ruffy = new Ruffy(new Vector2d(400,ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE));
+        ruffy = new Ruffy(new Vector2d(400,ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE), context);
 
-        ruffy2 = new Ruffy(new Vector2d(700,ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE));
+        ruffy2 = new Ruffy(new Vector2d(700,ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE), context);
 
+        try {
+            ruffy.getViewManager().setCharacterParser(new CharacterParser(getContext(),"Ruffy.xml"));
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 

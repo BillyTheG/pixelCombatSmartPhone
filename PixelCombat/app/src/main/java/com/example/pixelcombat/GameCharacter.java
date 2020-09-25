@@ -1,5 +1,7 @@
 package com.example.pixelcombat;
 
+import android.content.Context;
+
 import com.example.pixelcombat.GameObject;
 import com.example.pixelcombat.character.status.ActionStatus;
 import com.example.pixelcombat.character.status.AttackStatus;
@@ -12,6 +14,6 @@ public interface GameCharacter extends GameObject {
     public float getDirection();
     public boolean isRight();
     public StatusManager getStatus();
-
+    public Context getContext();
     public ViewManager getViewManager();
 }

@@ -1,6 +1,7 @@
 package com.example.pixelcombat.character.ruffy;
 
 
+import android.content.Context;
 import android.graphics.Canvas;
 
 import com.example.pixelcombat.GameCharacter;
@@ -18,14 +19,15 @@ public class Ruffy implements GameCharacter {
     private RuffyViewManager viewManager;
     private PlayerPhysics physics;
     private CharacterController controller;
+    private Context context;
 
-
-    public Ruffy(Vector2d pos) {
+    public Ruffy(Vector2d pos,Context context) throws Exception {
+        this.context = context;
         this.pos = pos;
         init();
     }
 
-    private void init() {
+    private void init() throws Exception {
         physics = new PlayerPhysics(this);
         statusManager = new StatusManager(this);
         viewManager = new RuffyViewManager(this);
@@ -36,12 +38,13 @@ public class Ruffy implements GameCharacter {
     @Override
     public void draw(Canvas canvas) {
         viewManager.draw(canvas);
-        physics.update();
+
     }
 
     @Override
     public void update() {
         viewManager.update();
+        physics.update();
     }
 
     @Override
@@ -57,6 +60,11 @@ public class Ruffy implements GameCharacter {
     @Override
     public StatusManager getStatus() {
         return statusManager;
+    }
+
+    @Override
+    public Context getContext() {
+        return context;
     }
 
     @Override

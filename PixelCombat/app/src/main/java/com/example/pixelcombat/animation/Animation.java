@@ -9,11 +9,19 @@ import android.graphics.Rect;
 import com.example.pixelcombat.GameObject;
 import com.example.pixelcombat.enums.ScreenProperty;
 
+import java.util.ArrayList;
+
 public class Animation {
-    private Bitmap[] frames;
+    private boolean once;
+    private int loopPoint;
+    private ArrayList<Bitmap> images;
+    protected ArrayList<AnimFrame> frames;
+    private ArrayList<Float> times;
     private int frameIndex;
     private Paint paint = new Paint();
     private boolean isPlaying = false;
+    private float totalDuration;
+
     public boolean isPlaying() {
         return isPlaying;
     }
@@ -30,21 +38,57 @@ public class Animation {
 
     private long lastFrame;
 
-    public Animation(Bitmap[] frames, float animTime) {
-        this.frames = frames;
+
+    public Animation(ArrayList<Bitmap> images, ArrayList<Float> times, boolean once, int loopPoint) {
+        this.images = images;
+        this.times = times;
+        this.once = once;
+        this.loopPoint = loopPoint;
         frameIndex = 0;
-
-        frameTime = animTime/frames.length;
-
+        frames = new ArrayList<>();
         lastFrame = System.currentTimeMillis();
+        loadFrames(images,times);
+
+    }
+
+
+    protected void loadFrames(ArrayList<Bitmap> images, ArrayList<Float> times) {
+
+        for(int i = 0; i< images.size();i++){
+            addFrame(images.get(i),times.get(i));
+        }
+
+    }
+    public void addFrame(Bitmap image, float duration)
+    {
+
+        totalDuration += duration;
+        frames.add(new AnimFrame(image,duration));
+
+    }
+
+
+    protected class AnimFrame
+    {
+        Bitmap image;
+        float endTime;
+
+        public AnimFrame(Bitmap image, float endTime){
+            this.image = image;
+            this.endTime = endTime;
+        }
+
+        public float getEndTime() {
+            return endTime;
+        }
     }
 
     public void draw(Canvas canvas, GameObject object) {
         if(!isPlaying)
             return;
 
-        int width = frames[frameIndex].getWidth();
-        int height = frames[frameIndex].getHeight();
+        int width = images.get(frameIndex).getWidth();
+        int height = images.get(frameIndex).getHeight();
 
         Rect sourceRect = new Rect((int)(object.getPos().x-width/2),
                 (int)(object.getPos().y-height/2),(int)(object.getPos().x+width/2),
@@ -53,14 +97,14 @@ public class Animation {
         Rect desRect = new Rect(sourceRect.left+ ScreenProperty.OFFSET_X,sourceRect.top-ScreenProperty.OFFSET_y,(int)(sourceRect.right)+ScreenProperty.OFFSET_X,
                 sourceRect.bottom-ScreenProperty.OFFSET_y);
         if(!object.isRight())
-            canvas.drawBitmap(createFlippedBitmap(frames[frameIndex],true,false),null,desRect,null);
+            canvas.drawBitmap(createFlippedBitmap(images.get(frameIndex),true,false),null,desRect,null);
         else
-            canvas.drawBitmap(frames[frameIndex],null,desRect,null);
+            canvas.drawBitmap(images.get(frameIndex),null,desRect,null);
       //  canvas.drawBitmap(frames[frameIndex], ((int) object.getPos().x-width/2), (int)object.getPos().y-height/2, null);
     }
 
     private void scaleRect(Rect rect) {
-        float whRatio = (float)(frames[frameIndex].getWidth())/frames[frameIndex].getHeight();
+        float whRatio = (float)(images.get(frameIndex).getWidth())/images.get(frameIndex).getHeight();
         if(rect.width() > rect.height())
             rect.left = rect.right - (int)(rect.height() * whRatio);
         else
@@ -71,10 +115,14 @@ public class Animation {
         if(!isPlaying)
             return;
 
-        if(System.currentTimeMillis() - lastFrame > frameTime*1000) {
+        if(System.currentTimeMillis() - lastFrame > frames.get(frameIndex).getEndTime()) {
             frameIndex++;
-            frameIndex = frameIndex >= frames.length ? 0 : frameIndex;
-            lastFrame = System.currentTimeMillis();
+            if (once) {
+                isPlaying = false;
+            } else {
+                frameIndex = frameIndex >= frames.size() ? loopPoint : frameIndex;
+                lastFrame = System.currentTimeMillis();
+            }
         }
     }
 

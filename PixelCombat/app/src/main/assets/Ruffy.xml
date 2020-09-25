@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<character>
+<!-- 		1000 ~ 0.54s -->
+	<type>Ruffy</type>
+	<sprites>
+		<stand airBool="false" airIndex="0" loopIndex="0" loops="true">
+			<img duration="150" key="0">ruffy_stand_1.png</img>
+			<img duration="150" key="1">ruffy_stand_2.png</img>
+			<img duration="150" key="2">ruffy_stand_3.png</img>
+		</stand>
+		<move airBool="false" airIndex="0" loopIndex="0" loops="true">
+			<img duration="50" key="0">ruffy_move_1.png</img>
+			<img duration="50" key="1">ruffy_move_2.png</img>
+			<img duration="50" key="2">ruffy_move_3.png</img>
+			<img duration="50" key="3">ruffy_move_4.png</img>
+			<img duration="50" key="4">ruffy_move_5.png</img>
+			<img duration="50" key="5">ruffy_move_6.png</img>
+			<img duration="50" key="6">ruffy_move_8.png</img>
+			<img duration="50" key="7">ruffy_move_9.png</img>
+		</move>
+	</sprites>
+</character>

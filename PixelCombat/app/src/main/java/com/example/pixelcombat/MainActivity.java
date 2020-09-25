@@ -15,6 +15,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.manager.GameButtonManager;
 
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.IOException;
+
 public class MainActivity extends AppCompatActivity {
 
     private RelativeLayout GameButtons ;
@@ -35,7 +39,15 @@ public class MainActivity extends AppCompatActivity {
             ScreenProperty.SCREEN_WIDTH = dm.widthPixels;
             GameButtons = new RelativeLayout(this);
             game = new FrameLayout(this);
-            gamePanel  = new GamePanel(this);
+            try {
+                gamePanel  = new GamePanel(this);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (XmlPullParserException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             buttonManager = new GameButtonManager(this,gamePanel);
 
             RelativeLayout.LayoutParams b1 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);

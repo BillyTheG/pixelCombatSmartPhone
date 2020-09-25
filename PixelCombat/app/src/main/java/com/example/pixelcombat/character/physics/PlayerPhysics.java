@@ -15,7 +15,7 @@ public class PlayerPhysics {
 
     public void update(){
         if(character.getStatus().isMoving()) {
-            this.character.getPos().x += character.getDirection() * 7.5f;
+            this.character.getPos().x += character.getDirection() * HORIZONTAL_SPEED;
         }
     }
 

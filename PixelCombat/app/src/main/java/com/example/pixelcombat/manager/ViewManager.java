@@ -1,9 +1,19 @@
 package com.example.pixelcombat.manager;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
 import com.example.pixelcombat.GameCharacter;
+import com.example.pixelcombat.animation.Animation;
 import com.example.pixelcombat.animation.AnimationManager;
+import com.example.pixelcombat.exception.parser.XmlParseErrorException;
+import com.example.pixelcombat.xml.CharacterParser;
+
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Map;
 
 public abstract class ViewManager {
 
@@ -11,7 +21,7 @@ public abstract class ViewManager {
     public final int STAND = 0;
     public final int MOVE = 1;
     public final int JUMPING = 2;
-    public final int BASICATTACK = 3;
+    public final int BASICATTACK1 = 3;
     public final int SPECIALATTACK1 = 4;
     public final int SPECIALATTACK2 = 5;
     public final int SPECIALATTACK3 = 6;
@@ -19,19 +29,40 @@ public abstract class ViewManager {
     public final int KNOCKBACK = 8;
     public final int KNOCKEDOUT = 9;
     public final int AVATAR = 10;
-    public final int BASICATTACK1 = 11;
+    public final int BASICATTACK2 = 11;
 
 
     protected final GameCharacter character;
     protected AnimationManager animManager;
+    private CharacterParser characterParser;
 
-    public ViewManager(GameCharacter character){
+    public ViewManager(GameCharacter character) throws Exception {
 
         this.character = character;
         init();
     }
 
-    protected abstract void init();
+    public void loadParsedImages() throws XmlParseErrorException, XmlPullParserException, IOException {
+        characterParser.parseXMLData();
+        ArrayList<Animation> animations = new ArrayList<>();
+
+        Map<String, ArrayList<Bitmap>> images = characterParser.getCharacter();
+        ArrayList<ArrayList<Float>> times = characterParser.getTimes();
+        ArrayList<Boolean> loop = characterParser.getLoop();
+        ArrayList<Integer> loopIndices = characterParser.getLoopIndizes();
+
+        animations.add(new Animation(images.get("stand"),times.get(STAND), loop.get(STAND),loopIndices.get(STAND)));
+        animations.add(new Animation(images.get("move"),times.get(MOVE), loop.get(MOVE),loopIndices.get(MOVE)));
+
+        Animation[] array = new Animation[animations.size()];
+        animations.toArray(array); // fill the array
+
+        animManager = new AnimationManager(this, array,character);
+
+
+    }
+
+    protected abstract void init() throws Exception;
 
     public void update(){
         animManager.update();
@@ -79,4 +110,11 @@ public abstract class ViewManager {
         this.animManager.playAnim();
     }
 
+    public void setCharacterParser(CharacterParser characterParser) {
+        this.characterParser = characterParser;
+    }
+
+    public CharacterParser getCharacterParser() {
+        return characterParser;
+    }
 }
