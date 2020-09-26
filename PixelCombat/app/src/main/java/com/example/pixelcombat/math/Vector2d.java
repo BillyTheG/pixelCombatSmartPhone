@@ -161,7 +161,7 @@ public class Vector2d implements Comparable<Vector2d> {
      */
     @Override
     public String toString() {
-        return "(" + x + ")(" + y + ")";
+        return "(" + (x) + ")(" + (y) + ")";
     }
 
     /**

@@ -11,12 +11,16 @@ import com.example.pixelcombat.enums.ScreenProperty;
 
 import java.util.ArrayList;
 
+import lombok.Getter;
+
 public class Animation {
-    private boolean once;
+    private boolean loops;
     private int loopPoint;
     private ArrayList<Bitmap> images;
     protected ArrayList<AnimFrame> frames;
     private ArrayList<Float> times;
+
+    @Getter
     private int frameIndex;
     private Paint paint = new Paint();
     private boolean isPlaying = false;
@@ -25,6 +29,7 @@ public class Animation {
     public boolean isPlaying() {
         return isPlaying;
     }
+
     public void play() {
         isPlaying = true;
         frameIndex = 0;
@@ -39,15 +44,15 @@ public class Animation {
     private long lastFrame;
 
 
-    public Animation(ArrayList<Bitmap> images, ArrayList<Float> times, boolean once, int loopPoint) {
+    public Animation(ArrayList<Bitmap> images, ArrayList<Float> times, boolean loops, int loopPoint) {
         this.images = images;
         this.times = times;
-        this.once = once;
+        this.loops = loops;
         this.loopPoint = loopPoint;
         frameIndex = 0;
         frames = new ArrayList<>();
         lastFrame = System.currentTimeMillis();
-        loadFrames(images,times);
+        loadFrames(images, times);
 
     }
 
@@ -112,18 +117,20 @@ public class Animation {
     }
 
     public void update() {
-        if(!isPlaying)
+        if (!isPlaying)
             return;
 
-        if(System.currentTimeMillis() - lastFrame > frames.get(frameIndex).getEndTime()) {
+        if (System.currentTimeMillis() - lastFrame > frames.get(frameIndex).getEndTime()) {
             frameIndex++;
-            if (once) {
+            if (!loops && frameIndex == frames.size()) {
                 isPlaying = false;
-            } else {
-                frameIndex = frameIndex >= frames.size() ? loopPoint : frameIndex;
-                lastFrame = System.currentTimeMillis();
+                return;
             }
+            frameIndex = frameIndex >= frames.size() ? loopPoint : frameIndex;
+            lastFrame = System.currentTimeMillis();
         }
+
+
     }
 
 

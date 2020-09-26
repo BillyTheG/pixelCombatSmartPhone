@@ -4,10 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Build;
 import android.util.Log;
-
-import androidx.annotation.RequiresApi;
 
 import com.example.pixelcombat.enums.ExceptionGroup;
 import com.example.pixelcombat.enums.ScreenProperty;
@@ -23,7 +20,6 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class CharacterParser {
 
@@ -57,7 +53,6 @@ public class CharacterParser {
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void parseXMLData() throws XmlPullParserException, IOException, XmlParseErrorException {
         int eventType = parser.getEventType();
         while(eventType != XmlPullParser.END_DOCUMENT){
@@ -77,9 +72,9 @@ public class CharacterParser {
                             animation = eltName;
 
                             int loopIndex = Integer.parseInt(parser.getAttributeValue(null, "loopIndex"));
-                            boolean loops = Boolean.getBoolean(parser.getAttributeValue(null, "loops"));
+                            boolean loops = Boolean.parseBoolean(parser.getAttributeValue(null, "loops"));
                             int airIndex = Integer.parseInt(parser.getAttributeValue(null, "airIndex"));
-                            boolean airBool = Boolean.getBoolean(parser.getAttributeValue(null, "airBool"));
+                            boolean airBool = Boolean.parseBoolean(parser.getAttributeValue(null, "airBool"));
 
                             Log.i("Info","Created image animation: " + eltName);
                             Log.i("Info","loopIndex "+ loopIndex);
@@ -107,8 +102,8 @@ public class CharacterParser {
 
                                     Bitmap bitmap = BitmapFactory.decodeResourceStream(ScreenProperty.CURRENT_CONTEXT.getResources(), null, is, null, options);
 
-                                    Objects.requireNonNull(character.get(animation)).add(key,bitmap);
-                                    Log.i("Info", "Loaded image " + fileName + " at position " + key + " with duration: " + duration + " in "+ animation);
+                                    character.get(animation).add(key, bitmap);
+                                    Log.i("Info", "Loaded image " + fileName + " at position " + key + " with duration: " + duration + " in " + animation);
                                     time.add(duration);
                                 }
                                 catch(Exception e){

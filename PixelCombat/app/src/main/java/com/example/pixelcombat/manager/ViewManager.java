@@ -15,26 +15,25 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
+import lombok.Getter;
+import lombok.SneakyThrows;
+
 public abstract class ViewManager {
 
     // Bildsequenzen als Stütze
     public final int STAND = 0;
     public final int MOVE = 1;
-    public final int JUMPING = 2;
-    public final int BASICATTACK1 = 3;
-    public final int SPECIALATTACK1 = 4;
-    public final int SPECIALATTACK2 = 5;
-    public final int SPECIALATTACK3 = 6;
-    public final int ISHIT = 7;
-    public final int KNOCKBACK = 8;
-    public final int KNOCKEDOUT = 9;
-    public final int AVATAR = 10;
-    public final int BASICATTACK2 = 11;
+    public final int JUMP = 2;
+    public final int JUMPFALL = 3;
+    public final int JUMPRECOVER = 4;
 
-
-    protected final GameCharacter character;
+    @Getter
     protected AnimationManager animManager;
+    protected final GameCharacter character;
     private CharacterParser characterParser;
+
+    private Runnable imageLoaderRunnable;
+    private Thread imageLoaderThread;
 
     public ViewManager(GameCharacter character) throws Exception {
 
@@ -51,16 +50,32 @@ public abstract class ViewManager {
         ArrayList<Boolean> loop = characterParser.getLoop();
         ArrayList<Integer> loopIndices = characterParser.getLoopIndizes();
 
-        animations.add(new Animation(images.get("stand"),times.get(STAND), loop.get(STAND),loopIndices.get(STAND)));
-        animations.add(new Animation(images.get("move"),times.get(MOVE), loop.get(MOVE),loopIndices.get(MOVE)));
+        animations.add(new Animation(images.get("stand"), times.get(STAND), loop.get(STAND), loopIndices.get(STAND)));
+        animations.add(new Animation(images.get("move"), times.get(MOVE), loop.get(MOVE), loopIndices.get(MOVE)));
+        animations.add(new Animation(images.get("jump"), times.get(JUMP), loop.get(JUMP), loopIndices.get(JUMP)));
+        animations.add(new Animation(images.get("jumpFall"), times.get(JUMPFALL), loop.get(JUMPFALL), loopIndices.get(JUMPFALL)));
+        animations.add(new Animation(images.get("jumpRecover"), times.get(JUMPRECOVER), loop.get(JUMPRECOVER), loopIndices.get(JUMPRECOVER)));
 
         Animation[] array = new Animation[animations.size()];
         animations.toArray(array); // fill the array
 
-        animManager = new AnimationManager(this, array,character);
-
-
+        animManager = new AnimationManager(this, array, character);
     }
+
+    public void setUpLoaderThread() {
+
+        imageLoaderRunnable = new Runnable() {
+
+            @SneakyThrows
+            @Override
+            public void run() {
+                loadParsedImages();
+            }
+        };
+        imageLoaderThread = new Thread(imageLoaderRunnable);
+        imageLoaderThread.start();
+    }
+
 
     protected abstract void init() throws Exception;
 
@@ -74,12 +89,12 @@ public abstract class ViewManager {
 
 
     public int getAnimation() {
-        if (character.getStatus().isActive() || character.getStatus().isBlinking()) {
+        if (character.getStatusManager().isActive() || character.getStatusManager().isBlinking()) {
 
 
-            if (character.getStatus().isAttacking()) {
+            if (character.getStatusManager().isAttacking()) {
 
-                switch (character.getStatus().getAttackStatus()) {
+                switch (character.getStatusManager().getAttackStatus()) {
                     case BASIC_ATTACK1:
                         //  character.picManager.change(BASICATTACK);
                         break;
@@ -94,20 +109,27 @@ public abstract class ViewManager {
                 return 0;
             } else {
 
-                switch (character.getStatus().getActionStatus()) {
+                switch (character.getStatusManager().getActionStatus()) {
                     case MOVE:
-                        return 1;
+                        return MOVE;
                     case STAND:
-                        return 0;
+                        return STAND;
+                    case JUMP:
+                        return JUMP;
+                    case JUMPFALL:
+                        return JUMPFALL;
+                    case JUMP_RECOVER:
+                        return JUMPRECOVER;
                 }
 
             }
 
         }
-        return 0;
+        return STAND;
     }
-    public synchronized void updateAnimation(){
-        this.animManager.playAnim();
+    public synchronized void updateAnimation() {
+        animManager.playAnim();
+        character.getBoxManager().update();
     }
 
     public void setCharacterParser(CharacterParser characterParser) {
@@ -116,5 +138,9 @@ public abstract class ViewManager {
 
     public CharacterParser getCharacterParser() {
         return characterParser;
+    }
+
+    public int getFrameIndex() {
+        return getAnimManager().getFrameIndex();
     }
 }

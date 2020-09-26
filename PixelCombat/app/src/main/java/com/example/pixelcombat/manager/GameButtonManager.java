@@ -11,7 +11,6 @@ import android.widget.RelativeLayout;
 import com.example.pixelcombat.GamePanel;
 import com.example.pixelcombat.R;
 
-import static android.view.MotionEvent.ACTION_DOWN;
 import static android.view.MotionEvent.ACTION_UP;
 
 
@@ -125,6 +124,7 @@ public class GameButtonManager implements View.OnClickListener, View.OnTouchList
         right.setOnTouchListener(this);
         left.setOnClickListener(this);
         right.setOnClickListener(this);
+        up.setOnClickListener(this);
         GameButtons.addView(up);
         GameButtons.addView(down);
         GameButtons.addView(left);
@@ -142,10 +142,16 @@ public class GameButtonManager implements View.OnClickListener, View.OnTouchList
 
     @Override
     public void onClick(View view) {
-        switch(view.getId()){
-
-            case 2: gamePanel.getRuffy().getController().move(false,false); break;
-            case 3: gamePanel.getRuffy().getController().move(false,true); break;
+        switch(view.getId()) {
+            case 0:
+                gamePanel.getRuffy().getController().jump(false, false);
+                break;
+            case 2:
+                gamePanel.getRuffy().getController().move(false, false);
+                break;
+            case 3:
+                gamePanel.getRuffy().getController().move(false, true);
+                break;
 
 
             default:

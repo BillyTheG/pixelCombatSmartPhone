@@ -1,10 +1,8 @@
 package com.example.pixelcombat.animation;
 
 import android.graphics.Canvas;
-import android.graphics.Rect;
 
 import com.example.pixelcombat.GameObject;
-import com.example.pixelcombat.character.ruffy.RuffyViewManager;
 import com.example.pixelcombat.manager.ViewManager;
 
 public class AnimationManager implements  Runnable{
@@ -20,13 +18,15 @@ public class AnimationManager implements  Runnable{
         this.gameObject = gameObject;
     }
 
-    public void playAnim() {
+    public synchronized void playAnim() {
 
         int index = viewManager.getAnimation();
 
-        for(int i = 0; i < animations.length; i++) {
-            if(i == index) {
-                if(!animations[index].isPlaying())
+        if (index == animationIndex && animations[index].isPlaying()) return;
+
+        for (int i = 0; i < animations.length; i++) {
+            if (i == index) {
+                if (!animations[index].isPlaying())
                     animations[i].play();
             } else
                 animations[i].stop();
@@ -39,8 +39,8 @@ public class AnimationManager implements  Runnable{
             animations[animationIndex].draw(canvas, gameObject);
     }
 
-    public void update() {
-        if(animations[animationIndex].isPlaying())
+    public synchronized void update() {
+        if (animations[animationIndex].isPlaying())
             animations[animationIndex].update();
     }
 
@@ -48,4 +48,13 @@ public class AnimationManager implements  Runnable{
     public void run() {
         update();
     }
+
+    public synchronized int getFrameIndex() {
+        return animations[animationIndex].getFrameIndex();
+    }
+
+    public synchronized boolean isPlaying() {
+        return animations[animationIndex].isPlaying();
+    }
+
 }

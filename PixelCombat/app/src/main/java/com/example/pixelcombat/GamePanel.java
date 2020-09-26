@@ -10,10 +10,13 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import com.example.pixelcombat.character.ruffy.Ruffy;
+import com.example.pixelcombat.character.chars.ruffy.Ruffy;
 import com.example.pixelcombat.enums.ScreenProperty;
+import com.example.pixelcombat.environment.interactor.CollisionDetection;
 import com.example.pixelcombat.math.Vector2d;
-import com.example.pixelcombat.xml.CharacterParser;
+
+import lombok.Getter;
+
 
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     private Context context;
@@ -22,9 +25,10 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     private Rect sourceRect;
     private Rect gameRect;
     private Paint paint;
+    @Getter
     private Ruffy ruffy;
     private Ruffy ruffy2;
-
+    private CollisionDetection collisionDetection;
 
     public GamePanel(Context context) throws Exception {
         super(context);
@@ -51,23 +55,15 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inPreferredConfig = Bitmap.Config.RGB_565;
 
-        bg = bf.decodeResource(ScreenProperty.CURRENT_CONTEXT.getResources(), R.drawable.cold_winter_1,options);
+        bg = bf.decodeResource(ScreenProperty.CURRENT_CONTEXT.getResources(), R.drawable.cold_winter_1, options);
+        bg = Bitmap.createScaledBitmap(bg, ((int) (ScreenProperty.SCREEN_WIDTH * 1.5f)), ((int) (ScreenProperty.SCREEN_HEIGHT)), false);
 
-        bg = Bitmap.createScaledBitmap(bg, ((int)(ScreenProperty.SCREEN_WIDTH*1.5f)), ScreenProperty.SCREEN_HEIGHT, false);
+        ruffy = new Ruffy(new Vector2d(500, ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE), context);
+        ruffy2 = new Ruffy(new Vector2d(700, ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE), context);
+        ruffy.getBoxManager().loadParsedBoxes();
+        ruffy2.getBoxManager().loadParsedBoxes();
 
-
-
-        ruffy = new Ruffy(new Vector2d(400,ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE), context);
-
-        ruffy2 = new Ruffy(new Vector2d(700,ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE), context);
-
-        try {
-            ruffy.getViewManager().setCharacterParser(new CharacterParser(getContext(),"Ruffy.xml"));
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+        collisionDetection = new CollisionDetection(ruffy, ruffy2);
     }
 
     @Override
@@ -105,17 +101,15 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     public void update(){
         ruffy.update();
         ruffy2.update();
+        collisionDetection.interact();
     }
 
     public void draw(Canvas canvas){
         super.draw(canvas);
         canvas.drawBitmap(bg,sourceRect,gameRect,null);
         ruffy.draw(canvas);
-
         ruffy2.draw(canvas);
+
     }
 
-    public Ruffy getRuffy() {
-        return ruffy;
-    }
 }

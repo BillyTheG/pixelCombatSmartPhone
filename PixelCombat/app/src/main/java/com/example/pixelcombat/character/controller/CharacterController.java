@@ -20,35 +20,49 @@ public class CharacterController {
                 return move(hold, true);
             case P1LEFT:
                 return move(hold, false);
-
-
-            default:return true;
+            case P1JUMP:
+                return jump(hold, false);
+            default:
+                return true;
         }
 
     }
 
-
-    public boolean move(boolean hold, boolean right)
-    {
-        int factor = 1;
-        MovementStatus movementState = MovementStatus.RIGHT;
-        if(!right)
-        {
-            factor *=-1;
-            movementState =  MovementStatus.LEFT;
-            character.getStatus().setMovementStatus(MovementStatus.LEFT);
-        }else
-        {
-            character.getStatus().setMovementStatus(MovementStatus.RIGHT);
+    public boolean jump(boolean hold, boolean b) {
+        if (!character.getStatusManager().canNotJump()) {
+            character.getPhysics().VY = (-20f);
+            character.getStatusManager().setActionStatus(ActionStatus.JUMP);
+            // sound(player.getJumpSound());
         }
+        return true;
 
-        if(hold){
-            this.character.getStatus().setActionStatus(ActionStatus.MOVE);
-        }else{
-            this.character.getStatus().setActionStatus(ActionStatus.STAND);
+    }
+
+
+    public boolean move(boolean hold, boolean right) {
+        if (character.getStatusManager().canNotMove())
+            return false;
+
+        if (!right) {
+            character.getStatusManager().setMovementStatus(MovementStatus.LEFT);
+        } else {
+            character.getStatusManager().setMovementStatus(MovementStatus.RIGHT);
         }
+        float airFactor = 0.9f;
+        if (hold) {
+            if (!character.getStatusManager().isOnAir()) {
+                character.getStatusManager().setActionStatus(ActionStatus.MOVE);
+                airFactor = 1f;
+            }
+            this.character.getPhysics().VX = character.getDirection() * 10f * airFactor;
+        } else {
+            if (character.getStatusManager().isOnAir()) {
+                this.character.getStatusManager().setActionStatus(ActionStatus.JUMPFALL);
+            } else {
+                character.getStatusManager().setActionStatus(ActionStatus.STAND);
+            }
 
-
+        }
         return true;
     }
 
