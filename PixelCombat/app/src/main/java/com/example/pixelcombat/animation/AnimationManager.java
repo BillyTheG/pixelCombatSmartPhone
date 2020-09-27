@@ -1,6 +1,7 @@
 package com.example.pixelcombat.animation;
 
 import android.graphics.Canvas;
+import android.graphics.Rect;
 
 import com.example.pixelcombat.GameObject;
 import com.example.pixelcombat.manager.ViewManager;
@@ -34,9 +35,9 @@ public class AnimationManager implements  Runnable{
         animationIndex = index;
     }
 
-    public synchronized void draw(Canvas canvas) {
-        if(animations[animationIndex].isPlaying())
-            animations[animationIndex].draw(canvas, gameObject);
+    public synchronized void draw(Canvas canvas, int screenX, int screenY, Rect gameRect) {
+        if (animations[animationIndex].isPlaying())
+            animations[animationIndex].draw(canvas, gameObject, screenX, screenY, gameRect);
     }
 
     public synchronized void update() {

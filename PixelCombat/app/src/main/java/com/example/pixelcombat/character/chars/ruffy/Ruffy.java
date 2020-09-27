@@ -3,6 +3,7 @@ package com.example.pixelcombat.character.chars.ruffy;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Rect;
 
 import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.character.controller.CharacterController;
@@ -44,10 +45,10 @@ public class Ruffy implements GameCharacter {
     }
 
     @Override
-    public void draw(Canvas canvas) {
-        viewManager.draw(canvas);
+    public void draw(Canvas canvas, int screenX, int screenY, Rect gameRect) {
+        viewManager.draw(canvas, screenX, screenY, gameRect);
         for (BoundingRectangle box : getBoxManager().getCurrentBox().get(viewManager.getFrameIndex())) {
-            box.draw(this, canvas, 0, 0);
+            box.draw(this, canvas, screenX, screenY, gameRect);
         }
     }
 

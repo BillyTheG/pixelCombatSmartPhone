@@ -30,7 +30,7 @@ public class CharacterController {
 
     public boolean jump(boolean hold, boolean b) {
         if (!character.getStatusManager().canNotJump()) {
-            character.getPhysics().VY = (-20f);
+            character.getPhysics().VY = (-35f);
             character.getStatusManager().setActionStatus(ActionStatus.JUMP);
             // sound(player.getJumpSound());
         }

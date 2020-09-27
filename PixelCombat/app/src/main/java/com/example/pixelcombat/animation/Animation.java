@@ -59,26 +59,53 @@ public class Animation {
 
     protected void loadFrames(ArrayList<Bitmap> images, ArrayList<Float> times) {
 
-        for(int i = 0; i< images.size();i++){
-            addFrame(images.get(i),times.get(i));
+        for (int i = 0; i < images.size(); i++) {
+            addFrame(images.get(i), times.get(i));
         }
 
     }
-    public void addFrame(Bitmap image, float duration)
-    {
 
+    public void addFrame(Bitmap image, float duration) {
         totalDuration += duration;
-        frames.add(new AnimFrame(image,duration));
-
+        frames.add(new AnimFrame(image, duration));
     }
 
+    public void draw(Canvas canvas, GameObject object, int screenX, int screenY, Rect gameRect) {
+        if (!isPlaying)
+            return;
 
-    protected class AnimFrame
-    {
+        int width = images.get(frameIndex).getWidth();
+        int height = images.get(frameIndex).getHeight();
+
+        int x = (int) (object.getPos().x - screenX);
+        int y = (int) (object.getPos().y - screenY);
+
+        Rect sourceRect = new Rect((int) (x - width / 2),
+                (int) (y - height / 2), (int) (x + width / 2),
+                (int) (y + height / 2));
+
+        Rect desRect = new Rect(sourceRect.left + ScreenProperty.OFFSET_X, sourceRect.top - ScreenProperty.OFFSET_Y, (int) (sourceRect.right) + ScreenProperty.OFFSET_X,
+                sourceRect.bottom - ScreenProperty.OFFSET_Y);
+
+        Bitmap bitmap = null;
+        if (!desRect.intersect(gameRect))
+            return;
+        else {
+            bitmap = Bitmap.createBitmap(images.get(frameIndex), 0, 0, images.get(frameIndex).getWidth(), Math.abs(desRect.top - desRect.bottom));
+        }
+
+        if (!object.isRight())
+            canvas.drawBitmap(createFlippedBitmap(bitmap, true, false), null, desRect, null);
+        else
+            canvas.drawBitmap(bitmap, null, desRect, null);
+        //  canvas.drawBitmap(frames[frameIndex], ((int) object.getPos().x-width/2), (int)object.getPos().y-height/2, null);
+    }
+
+    protected class AnimFrame {
         Bitmap image;
         float endTime;
 
-        public AnimFrame(Bitmap image, float endTime){
+        public AnimFrame(Bitmap image, float endTime) {
             this.image = image;
             this.endTime = endTime;
         }
@@ -88,32 +115,12 @@ public class Animation {
         }
     }
 
-    public void draw(Canvas canvas, GameObject object) {
-        if(!isPlaying)
-            return;
-
-        int width = images.get(frameIndex).getWidth();
-        int height = images.get(frameIndex).getHeight();
-
-        Rect sourceRect = new Rect((int)(object.getPos().x-width/2),
-                (int)(object.getPos().y-height/2),(int)(object.getPos().x+width/2),
-                (int)(object.getPos().y+height/2));
-
-        Rect desRect = new Rect(sourceRect.left+ ScreenProperty.OFFSET_X,sourceRect.top-ScreenProperty.OFFSET_y,(int)(sourceRect.right)+ScreenProperty.OFFSET_X,
-                sourceRect.bottom-ScreenProperty.OFFSET_y);
-        if(!object.isRight())
-            canvas.drawBitmap(createFlippedBitmap(images.get(frameIndex),true,false),null,desRect,null);
-        else
-            canvas.drawBitmap(images.get(frameIndex),null,desRect,null);
-      //  canvas.drawBitmap(frames[frameIndex], ((int) object.getPos().x-width/2), (int)object.getPos().y-height/2, null);
-    }
-
     private void scaleRect(Rect rect) {
-        float whRatio = (float)(images.get(frameIndex).getWidth())/images.get(frameIndex).getHeight();
-        if(rect.width() > rect.height())
-            rect.left = rect.right - (int)(rect.height() * whRatio);
+        float whRatio = (float) (images.get(frameIndex).getWidth()) / images.get(frameIndex).getHeight();
+        if (rect.width() > rect.height())
+            rect.left = rect.right - (int) (rect.height() * whRatio);
         else
-            rect.top = rect.bottom - (int)(rect.width() * (1/whRatio));
+            rect.top = rect.bottom - (int) (rect.width() * (1 / whRatio));
     }
 
     public void update() {
