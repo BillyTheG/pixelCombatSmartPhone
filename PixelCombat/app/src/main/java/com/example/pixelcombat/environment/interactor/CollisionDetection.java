@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.character.status.ActionStatus;
+import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.environment.EnvironmentInteract;
 import com.example.pixelcombat.math.BoundingRectangle;
 import com.example.pixelcombat.math.GeometryUtils;
@@ -241,7 +242,7 @@ public class CollisionDetection implements EnvironmentInteract {
                                     float out_height = ymax - ymin;
                                     player1.getBoxManager().currentColBox = ownBox;
                                     player2.getBoxManager().currentColBox = enemyBox;
-                                    return new BoundingRectangle(out_height, new Vector2d(out_x, out_y), out_width);
+                                    return new BoundingRectangle(out_height / ScreenProperty.SCALE, new Vector2d(out_x, out_y), out_width / ScreenProperty.SCALE);
                                 }
                             }
                         }

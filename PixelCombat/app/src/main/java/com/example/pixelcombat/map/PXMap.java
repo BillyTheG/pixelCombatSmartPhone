@@ -65,6 +65,7 @@ public class PXMap implements GameObject {
     public void draw(Canvas canvas, int screenX, int screenY, Rect gameRect) {
         sourceRect.offsetTo(0 + screenScrollManager.getScreenX() - screenScrollManager.getCX(),
                 deltaY + screenScrollManager.getScreenY() - screenScrollManager.getCY());
+
         canvas.drawBitmap(bg, sourceRect, this.gameRect, null);
         character1.draw(canvas, screenScrollManager.getScreenX() - screenScrollManager.getCX(), screenScrollManager.getScreenY() - screenScrollManager.getCY(), this.gameRect);
         character2.draw(canvas, screenScrollManager.getScreenX() - screenScrollManager.getCX(), screenScrollManager.getScreenY() - screenScrollManager.getCY(), this.gameRect);

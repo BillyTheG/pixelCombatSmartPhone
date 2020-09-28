@@ -33,8 +33,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         this.context = context;
         getHolder().addCallback(this);
         ScreenProperty.CURRENT_CONTEXT = context;
-        ScreenProperty.OFFSET_X *= ScreenProperty.SCALE;
-        ScreenProperty.OFFSET_Y *= ScreenProperty.SCALE;
         thread = new MainThread(getHolder(), this);
         setFocusable(true);
 
@@ -60,6 +58,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         testMap = new PXMap("Blue Winter", bg, context, ruffy, ruffy2);
 
         collisionDetection = new CollisionDetection(ruffy, ruffy2);
+
     }
 
     @Override
@@ -102,10 +101,10 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void draw(Canvas canvas){
-        canvas.scale(ScreenProperty.SCALE, ScreenProperty.SCALE);
+
         super.draw(canvas);
         testMap.draw(canvas, 0, 0, null);
-
+        canvas.restore();
     }
 
 }

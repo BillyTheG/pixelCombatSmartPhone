@@ -6,6 +6,7 @@ import com.example.pixelcombat.math.Vector2d;
 
 import lombok.Getter;
 
+import static com.example.pixelcombat.enums.ScreenProperty.GROUND_LINE;
 import static com.example.pixelcombat.enums.ScreenProperty.OFFSET_X;
 import static com.example.pixelcombat.enums.ScreenProperty.OFFSET_Y;
 import static com.example.pixelcombat.enums.ScreenProperty.SCREEN_HEIGHT;
@@ -49,7 +50,7 @@ public class ScreenScrollerManager {
         Vector2d pos2 = player2.getPos();
 
         float x = (pos1.x + pos2.x) / 2f + OFFSET_X;
-        float y = (pos1.y + pos2.y) / 2f - OFFSET_Y;
+        float y = (pos1.y + pos2.y) / 2f - OFFSET_Y + GROUND_LINE;
 
         if (target.x == 0f) {
             target.x = x;

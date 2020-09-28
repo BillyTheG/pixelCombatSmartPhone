@@ -67,8 +67,8 @@ public class Animation {
         if (!isPlaying)
             return;
 
-        int width = images.get(frameIndex).getWidth();
-        int height = images.get(frameIndex).getHeight();
+        int width = (int) (images.get(frameIndex).getWidth() * ScreenProperty.SCALE);
+        int height = (int) (images.get(frameIndex).getHeight() * ScreenProperty.SCALE);
 
         int x = (int) (object.getPos().x - screenX);
         int y = (int) (object.getPos().y - screenY);
@@ -80,28 +80,50 @@ public class Animation {
         Rect desRect = new Rect(sourceRect.left + ScreenProperty.OFFSET_X, sourceRect.top - ScreenProperty.OFFSET_Y, (int) (sourceRect.right) + ScreenProperty.OFFSET_X,
                 sourceRect.bottom - ScreenProperty.OFFSET_Y);
 
-        Bitmap bitmap = cropBitmap(desRect, gameRect);
+        Bitmap bitmap = cropBitmap(desRect, gameRect, screenX, object.isRight());
         if (bitmap == null) return;
 
-        if (!object.isRight())
-            canvas.drawBitmap(createFlippedBitmap(bitmap, true, false), null, desRect, null);
-        else
-            canvas.drawBitmap(bitmap, null, desRect, null);
+        canvas.drawBitmap(bitmap, null, desRect, null);
     }
 
-    private Bitmap cropBitmap(Rect desRect, Rect gameRect) {
+    private Bitmap cropBitmap(Rect desRect, Rect gameRect, int screenX, boolean objectIsRight) {
 
         int top_old = desRect.top;
         int bottom_old = desRect.bottom;
 
+        int left_old = desRect.left;
+        int right_old = desRect.right;
+
         if (!desRect.intersect(gameRect))
             return null;
         else {
-            if (desRect.bottom < bottom_old)
-                return Bitmap.createBitmap(images.get(frameIndex), 0, 0, images.get(frameIndex).getWidth(), Math.abs(desRect.top - desRect.bottom));
-            else {
+            Bitmap bitmap = getScaledBitmap(images.get(frameIndex));
+            if (!objectIsRight)
+                bitmap = createFlippedBitmap(bitmap, true, false);
+
+            int new_right = (right_old - (ScreenProperty.SCREEN_WIDTH - ScreenProperty.OFFSET_X));
+            int new_left = ScreenProperty.OFFSET_X - left_old;
+
+            if (desRect.bottom < bottom_old) {
+
+                if (new_left > 0)
+                    return Bitmap.createBitmap(bitmap, new_left, 0, bitmap.getWidth() - new_left, Math.abs(desRect.top - desRect.bottom));
+                else if (new_right > 0)
+                    return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth() - new_right, Math.abs(desRect.top - desRect.bottom));
+                else
+                    return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), Math.abs(desRect.top - desRect.bottom));
+
+            } else {
                 int new_height = desRect.top - desRect.bottom;
-                return Bitmap.createBitmap(images.get(frameIndex), 0, desRect.top - top_old, images.get(frameIndex).getWidth(), Math.abs(new_height));
+                if (new_left > 0)
+                    return Bitmap.createBitmap(bitmap, new_left, desRect.top - top_old, bitmap.getWidth() - new_left, Math.abs(new_height));
+                else if (new_right > 0)
+                    return Bitmap.createBitmap(bitmap, 0, desRect.top - top_old, bitmap.getWidth() - new_right, Math.abs(new_height));
+                else
+                    return Bitmap.createBitmap(bitmap, 0, desRect.top - top_old, bitmap.getWidth(), Math.abs(new_height));
+
+
+                //return Bitmap.createBitmap(bitmap, 0, desRect.top - top_old, bitmap.getWidth(), Math.abs(new_height));
             }
         }
 
@@ -152,4 +174,9 @@ public class Animation {
         matrix.postScale(xFlip ? -1 : 1, yFlip ? -1 : 1, source.getWidth() / 2f, source.getHeight() / 2f);
         return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
     }
+
+    private Bitmap getScaledBitmap(Bitmap bitmap) {
+        return Bitmap.createScaledBitmap(bitmap, ((int) (bitmap.getWidth() * ScreenProperty.SCALE)), ((int) (bitmap.getHeight() * ScreenProperty.SCALE)), false);
+    }
+
 }

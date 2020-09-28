@@ -7,6 +7,7 @@ import com.example.pixelcombat.enums.KeyCommand;
 
 public class CharacterController {
 
+    public static final float SPEED_BONUS = 15f;
     private final GameCharacter character;
 
     public CharacterController(GameCharacter character){
@@ -54,7 +55,7 @@ public class CharacterController {
                 character.getStatusManager().setActionStatus(ActionStatus.MOVE);
                 airFactor = 1f;
             }
-            this.character.getPhysics().VX = character.getDirection() * 10f * airFactor;
+            this.character.getPhysics().VX = character.getDirection() * SPEED_BONUS * airFactor;
         } else {
             if (character.getStatusManager().isOnAir()) {
                 this.character.getStatusManager().setActionStatus(ActionStatus.JUMPFALL);

@@ -70,12 +70,14 @@ public class BoundingRectangle implements BoundingBoxInterface {
      * @param width,  width of the Rect
      */
     public BoundingRectangle(float height, Vector2d pos, float width) {
-        this.upperLeft = new Vector2d(pos.x - width / 2f, pos.y - height / 2f);
-        this.lowerRight = new Vector2d(pos.x + width / 2f, pos.y + height / 2f);
+
+        this.width = ScreenProperty.SCALE * width;
+        this.height = ScreenProperty.SCALE * height;
+
+        this.upperLeft = new Vector2d(pos.x - this.width / 2f, pos.y - this.height / 2f);
+        this.lowerRight = new Vector2d(pos.x + this.width / 2f, pos.y + this.height / 2f);
         this.pos = pos;
 
-        this.width = width;
-        this.height = height;
 
     }
 
