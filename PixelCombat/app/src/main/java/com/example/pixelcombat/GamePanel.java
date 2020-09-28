@@ -4,8 +4,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -13,6 +11,7 @@ import android.view.SurfaceView;
 import com.example.pixelcombat.character.chars.ruffy.Ruffy;
 import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.environment.interactor.CollisionDetection;
+import com.example.pixelcombat.map.PXMap;
 import com.example.pixelcombat.math.Vector2d;
 
 import lombok.Getter;
@@ -22,28 +21,22 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     private Context context;
     private MainThread thread;
     private Bitmap bg;
-    private Rect sourceRect;
-    private Rect gameRect;
-    private Paint paint;
+
     @Getter
     private Ruffy ruffy;
+    @Getter
     private Ruffy ruffy2;
     private CollisionDetection collisionDetection;
-
+    private PXMap testMap;
     public GamePanel(Context context) throws Exception {
         super(context);
         this.context = context;
         getHolder().addCallback(this);
-
         ScreenProperty.CURRENT_CONTEXT = context;
-
-        thread = new MainThread(getHolder(),this);
-
+        ScreenProperty.OFFSET_X *= ScreenProperty.SCALE;
+        ScreenProperty.OFFSET_Y *= ScreenProperty.SCALE;
+        thread = new MainThread(getHolder(), this);
         setFocusable(true);
-
-        sourceRect = new Rect(0,0,((int)(ScreenProperty.SCREEN_WIDTH)),ScreenProperty.SCREEN_HEIGHT);
-
-        gameRect = new Rect(ScreenProperty.OFFSET_X,0,ScreenProperty.SCREEN_WIDTH-ScreenProperty.OFFSET_X,ScreenProperty.SCREEN_HEIGHT-ScreenProperty.OFFSET_y);
 
         init();
     }
@@ -56,12 +49,15 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         options.inPreferredConfig = Bitmap.Config.RGB_565;
 
         bg = bf.decodeResource(ScreenProperty.CURRENT_CONTEXT.getResources(), R.drawable.cold_winter_1, options);
-        bg = Bitmap.createScaledBitmap(bg, ((int) (ScreenProperty.SCREEN_WIDTH * 1.5f)), ((int) (ScreenProperty.SCREEN_HEIGHT)), false);
+        bg = Bitmap.createScaledBitmap(bg, ((int) (ScreenProperty.SCREEN_WIDTH * 1.5f)), ((int) (ScreenProperty.SCREEN_HEIGHT * 1.4f)), false);
+
 
         ruffy = new Ruffy(new Vector2d(500, ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE), context);
         ruffy2 = new Ruffy(new Vector2d(700, ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE), context);
         ruffy.getBoxManager().loadParsedBoxes();
         ruffy2.getBoxManager().loadParsedBoxes();
+
+        testMap = new PXMap("Blue Winter", bg, context, ruffy, ruffy2);
 
         collisionDetection = new CollisionDetection(ruffy, ruffy2);
     }
@@ -101,14 +97,14 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     public void update(){
         ruffy.update();
         ruffy2.update();
+        testMap.update();
         collisionDetection.interact();
     }
 
     public void draw(Canvas canvas){
+        canvas.scale(ScreenProperty.SCALE, ScreenProperty.SCALE);
         super.draw(canvas);
-        canvas.drawBitmap(bg,sourceRect,gameRect,null);
-        ruffy.draw(canvas);
-        ruffy2.draw(canvas);
+        testMap.draw(canvas, 0, 0, null);
 
     }
 

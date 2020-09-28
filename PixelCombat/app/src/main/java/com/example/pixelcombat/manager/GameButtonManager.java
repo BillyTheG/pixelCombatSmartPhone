@@ -130,11 +130,16 @@ public class GameButtonManager implements View.OnClickListener, View.OnTouchList
         GameButtons.addView(left);
         GameButtons.addView(right);
 
+        attack1.setOnClickListener(this);
         GameButtons.addView(attack1);
         GameButtons.addView(attack2);
         GameButtons.addView(dash);
         GameButtons.addView(defend);
 
+        start.setOnTouchListener(this);
+        select.setOnTouchListener(this);
+        start.setOnClickListener(this);
+        select.setOnClickListener(this);
         GameButtons.addView(start);
         GameButtons.addView(select);
     }
@@ -152,7 +157,15 @@ public class GameButtonManager implements View.OnClickListener, View.OnTouchList
             case 3:
                 gamePanel.getRuffy().getController().move(false, true);
                 break;
-
+            case 4:
+                gamePanel.getRuffy2().getController().jump(false, true);
+                break;
+            case 8:
+                gamePanel.getRuffy2().getController().move(false, false);
+                break;
+            case 9:
+                gamePanel.getRuffy2().getController().move(false, true);
+                break;
 
             default:
                 break;
@@ -168,10 +181,20 @@ public class GameButtonManager implements View.OnClickListener, View.OnTouchList
             return false;
         }
 
-        switch(view.getId()){
+        switch(view.getId()) {
 
-            case 2: gamePanel.getRuffy().getController().move(true,false); break;
-            case 3: gamePanel.getRuffy().getController().move(true,true); break;
+            case 2:
+                gamePanel.getRuffy().getController().move(true, false);
+                break;
+            case 3:
+                gamePanel.getRuffy().getController().move(true, true);
+                break;
+            case 8:
+                gamePanel.getRuffy2().getController().move(true, false);
+                break;
+            case 9:
+                gamePanel.getRuffy2().getController().move(true, true);
+                break;
 
 
             default:

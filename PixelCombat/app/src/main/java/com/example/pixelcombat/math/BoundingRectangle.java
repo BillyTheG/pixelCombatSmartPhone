@@ -4,6 +4,7 @@ package com.example.pixelcombat.math;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 
 import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.enums.ScreenProperty;
@@ -92,12 +93,12 @@ public class BoundingRectangle implements BoundingBoxInterface {
         return false;
     }
 
-    public void draw(GameCharacter character, Canvas canvas, float CX, float screenX) {
+    public void draw(GameCharacter character, Canvas canvas, float screenX, float screenY, Rect gameRect) {
 
         float x1 = character.getDirection() * (pos.x - width / 2f) + character.getPos().x + ScreenProperty.OFFSET_X;
-        float y1 = (pos.y - height / 2f) + character.getPos().y - ScreenProperty.OFFSET_y;
+        float y1 = (pos.y - height / 2f) + character.getPos().y - ScreenProperty.OFFSET_Y;
         float x2 = character.getDirection() * (pos.x + width / 2f) + character.getPos().x + ScreenProperty.OFFSET_X;
-        float y2 = (pos.y + height / 2f) + character.getPos().y - ScreenProperty.OFFSET_y;
+        float y2 = (pos.y + height / 2f) + character.getPos().y - ScreenProperty.OFFSET_Y;
 
         Paint paint = new Paint();
         if (hurts)
@@ -107,11 +108,11 @@ public class BoundingRectangle implements BoundingBoxInterface {
 
         paint.setStrokeWidth(5);
         //horizontal
-        canvas.drawLine(x1 - screenX + CX, y1, x2 - screenX + CX, y1, paint);
-        canvas.drawLine(x1 - screenX + CX, y2, x2 - screenX + CX, y2, paint);
+        canvas.drawLine(x1 - screenX, y1 - screenY, x2 - screenX, y1 - screenY, paint);
+        canvas.drawLine(x1 - screenX, y2 - screenY, x2 - screenX, y2 - screenY, paint);
         //vertical
-        canvas.drawLine(x1 - screenX + CX, y1, x1 - screenX + CX, y2, paint);
-        canvas.drawLine(x2 - screenX + CX, y1, x2 - screenX + CX, y2, paint);
+        canvas.drawLine(x1 - screenX, y1 - screenY, x1 - screenX, y2 - screenY, paint);
+        canvas.drawLine(x2 - screenX, y1 - screenY, x2 - screenX, y2 - screenY, paint);
     }
 
 

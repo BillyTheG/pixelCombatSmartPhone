@@ -2,6 +2,7 @@ package com.example.pixelcombat.manager;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Rect;
 
 import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.animation.Animation;
@@ -79,12 +80,12 @@ public abstract class ViewManager {
 
     protected abstract void init() throws Exception;
 
-    public void update(){
+    public void update() {
         animManager.update();
     }
 
-    public void draw(Canvas canvas) {
-        animManager.draw(canvas);
+    public void draw(Canvas canvas, int screenX, int screenY, Rect gameRect) {
+        animManager.draw(canvas, screenX, screenY, gameRect);
     }
 
 
