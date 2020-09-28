@@ -96,7 +96,7 @@ public class PXMap implements GameObject {
         }
 
         if (character.getPos().x >= (length - 2 * OFFSET_X - BORDER_WIDTH)) {
-            character.getPos().x = (length - 2 * OFFSET_X - BORDER_WIDTH);
+            character.getPos().x = (length - 2 * OFFSET_X - BORDER_WIDTH) - 5;
             return true;
         } else {
             aFloat = (-BORDER_WIDTH + screenScrollManager.getTarget().x + screenScrollManager.getCX() - OFFSET_X);

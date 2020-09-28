@@ -3,7 +3,6 @@ package com.example.pixelcombat.animation;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
-import android.graphics.Paint;
 import android.graphics.Rect;
 
 import com.example.pixelcombat.GameObject;
@@ -18,13 +17,10 @@ public class Animation {
     private int loopPoint;
     private ArrayList<Bitmap> images;
     protected ArrayList<AnimFrame> frames;
-    private ArrayList<Float> times;
 
     @Getter
     private int frameIndex;
-    private Paint paint = new Paint();
     private boolean isPlaying = false;
-    private float totalDuration;
 
     public boolean isPlaying() {
         return isPlaying;
@@ -39,14 +35,12 @@ public class Animation {
         isPlaying = false;
     }
 
-    private float frameTime;
 
     private long lastFrame;
 
 
     public Animation(ArrayList<Bitmap> images, ArrayList<Float> times, boolean loops, int loopPoint) {
         this.images = images;
-        this.times = times;
         this.loops = loops;
         this.loopPoint = loopPoint;
         frameIndex = 0;
@@ -66,7 +60,6 @@ public class Animation {
     }
 
     public void addFrame(Bitmap image, float duration) {
-        totalDuration += duration;
         frames.add(new AnimFrame(image, duration));
     }
 
@@ -87,18 +80,31 @@ public class Animation {
         Rect desRect = new Rect(sourceRect.left + ScreenProperty.OFFSET_X, sourceRect.top - ScreenProperty.OFFSET_Y, (int) (sourceRect.right) + ScreenProperty.OFFSET_X,
                 sourceRect.bottom - ScreenProperty.OFFSET_Y);
 
-        Bitmap bitmap = null;
-        if (!desRect.intersect(gameRect))
-            return;
-        else {
-            bitmap = Bitmap.createBitmap(images.get(frameIndex), 0, 0, images.get(frameIndex).getWidth(), Math.abs(desRect.top - desRect.bottom));
-        }
+        Bitmap bitmap = cropBitmap(desRect, gameRect);
+        if (bitmap == null) return;
 
         if (!object.isRight())
             canvas.drawBitmap(createFlippedBitmap(bitmap, true, false), null, desRect, null);
         else
             canvas.drawBitmap(bitmap, null, desRect, null);
-        //  canvas.drawBitmap(frames[frameIndex], ((int) object.getPos().x-width/2), (int)object.getPos().y-height/2, null);
+    }
+
+    private Bitmap cropBitmap(Rect desRect, Rect gameRect) {
+
+        int top_old = desRect.top;
+        int bottom_old = desRect.bottom;
+
+        if (!desRect.intersect(gameRect))
+            return null;
+        else {
+            if (desRect.bottom < bottom_old)
+                return Bitmap.createBitmap(images.get(frameIndex), 0, 0, images.get(frameIndex).getWidth(), Math.abs(desRect.top - desRect.bottom));
+            else {
+                int new_height = desRect.top - desRect.bottom;
+                return Bitmap.createBitmap(images.get(frameIndex), 0, desRect.top - top_old, images.get(frameIndex).getWidth(), Math.abs(new_height));
+            }
+        }
+
     }
 
     protected class AnimFrame {
@@ -115,7 +121,7 @@ public class Animation {
         }
     }
 
-    private void scaleRect(Rect rect) {
+    public void scaleRect(Rect rect) {
         float whRatio = (float) (images.get(frameIndex).getWidth()) / images.get(frameIndex).getHeight();
         if (rect.width() > rect.height())
             rect.left = rect.right - (int) (rect.height() * whRatio);
