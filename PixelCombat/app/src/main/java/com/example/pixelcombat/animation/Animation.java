@@ -121,9 +121,6 @@ public class Animation {
                     return Bitmap.createBitmap(bitmap, 0, desRect.top - top_old, bitmap.getWidth() - new_right, Math.abs(new_height));
                 else
                     return Bitmap.createBitmap(bitmap, 0, desRect.top - top_old, bitmap.getWidth(), Math.abs(new_height));
-
-
-                //return Bitmap.createBitmap(bitmap, 0, desRect.top - top_old, bitmap.getWidth(), Math.abs(new_height));
             }
         }
 
