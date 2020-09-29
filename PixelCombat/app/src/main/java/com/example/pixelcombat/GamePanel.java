@@ -4,14 +4,19 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.os.Build;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import androidx.annotation.RequiresApi;
+
 import com.example.pixelcombat.character.chars.ruffy.Ruffy;
+import com.example.pixelcombat.core.Game;
 import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.environment.interactor.CollisionDetection;
 import com.example.pixelcombat.map.PXMap;
+import com.example.pixelcombat.map.weather.Weather;
 import com.example.pixelcombat.math.Vector2d;
 
 import lombok.Getter;
@@ -28,6 +33,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     private Ruffy ruffy2;
     private CollisionDetection collisionDetection;
     private PXMap testMap;
+    private Game game;
+
     public GamePanel(Context context) throws Exception {
         super(context);
         this.context = context;
@@ -58,6 +65,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         testMap = new PXMap("Blue Winter", bg, context, ruffy, ruffy2);
 
         collisionDetection = new CollisionDetection(ruffy, ruffy2);
+        game = new Game(testMap, new Weather());
 
     }
 
@@ -93,17 +101,16 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         return super.onTouchEvent(event);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void update(){
-        ruffy.update();
-        ruffy2.update();
-        testMap.update();
+        game.update();
         collisionDetection.interact();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void draw(Canvas canvas){
-
         super.draw(canvas);
-        testMap.draw(canvas, 0, 0, null);
+        game.draw(canvas);
         canvas.restore();
     }
 

@@ -7,8 +7,9 @@ import com.example.pixelcombat.manager.BoxManager;
 import com.example.pixelcombat.manager.StatusManager;
 import com.example.pixelcombat.manager.ViewManager;
 import com.example.pixelcombat.manager.actionManager.JumpManager;
+import com.example.pixelcombat.observer.Observable;
 
-public interface GameCharacter extends GameObject {
+public interface GameCharacter extends GameObject, Observable {
 
     float getDirection();
 

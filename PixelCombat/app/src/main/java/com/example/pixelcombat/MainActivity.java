@@ -21,24 +21,25 @@ import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RelativeLayout GameButtons ;
-    private FrameLayout game;
+    private RelativeLayout GameButtons;
+    private FrameLayout gameFrameLayout;
     private GameButtonManager buttonManager;
     private GamePanel gamePanel;
-        @SuppressLint("ResourceType")
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-           super.onCreate(savedInstanceState);
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-            this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+    @SuppressLint("ResourceType")
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
             DisplayMetrics dm = new DisplayMetrics();
             getWindowManager().getDefaultDisplay().getMetrics(dm);
             ScreenProperty.SCREEN_HEIGHT = dm.heightPixels;
             ScreenProperty.SCREEN_WIDTH = dm.widthPixels;
-            GameButtons = new RelativeLayout(this);
-            game = new FrameLayout(this);
+        GameButtons = new RelativeLayout(this);
+        gameFrameLayout = new FrameLayout(this);
             try {
                 gamePanel  = new GamePanel(this);
             } catch (IOException e) {
@@ -51,20 +52,20 @@ public class MainActivity extends AppCompatActivity {
             buttonManager = new GameButtonManager(this,gamePanel);
 
             RelativeLayout.LayoutParams b1 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-            RelativeLayout.LayoutParams b2 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+        RelativeLayout.LayoutParams b2 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
 
-            GameButtons.setLayoutParams(b2);
+        GameButtons.setLayoutParams(b2);
 
 
-            b1.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
-            b1.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
+        b1.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
+        b1.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
 
-            buttonManager.addButtonsToView(GameButtons);
+        buttonManager.addButtonsToView(GameButtons);
 
-            game.addView(gamePanel);
-            game.addView(GameButtons);
-            setContentView(game);
-        }
+        gameFrameLayout.addView(gamePanel);
+        gameFrameLayout.addView(GameButtons);
+        setContentView(gameFrameLayout);
+    }
 
     @Override
     protected void onPause() {

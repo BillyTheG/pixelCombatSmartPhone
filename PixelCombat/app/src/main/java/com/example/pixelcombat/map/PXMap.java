@@ -75,6 +75,9 @@ public class PXMap implements GameObject {
     @Override
     public void update() {
 
+        character1.update();
+        character2.update();
+
         boolean borders1 = checkHorizontalBorders(character1) || checkVerticalBorders(character1, character2);
         boolean borders2 = checkHorizontalBorders(character2) || checkVerticalBorders(character2, character1);
 
@@ -117,7 +120,6 @@ public class PXMap implements GameObject {
             character1.getPos().y = -deltaY + BORDER_HEIGHT;
             return true;
         } else {
-
             float y_char = character1.getPos().y - screenScrollManager.getScreenY() + screenScrollManager.getCY();
             float v = character2.getPos().y - screenScrollManager.getScreenY() + screenScrollManager.getCY();
 
@@ -128,9 +130,7 @@ public class PXMap implements GameObject {
                 return true;
             }
         }
-
         return false;
-
     }
 
 

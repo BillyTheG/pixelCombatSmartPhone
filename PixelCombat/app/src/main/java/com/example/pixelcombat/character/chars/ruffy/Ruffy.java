@@ -13,6 +13,9 @@ import com.example.pixelcombat.manager.StatusManager;
 import com.example.pixelcombat.manager.actionManager.JumpManager;
 import com.example.pixelcombat.math.BoundingRectangle;
 import com.example.pixelcombat.math.Vector2d;
+import com.example.pixelcombat.observer.Observer;
+
+import java.util.ArrayList;
 
 import lombok.Getter;
 
@@ -28,6 +31,7 @@ public class Ruffy implements GameCharacter {
     private CharacterController controller;
     private Context context;
     private JumpManager jumpManager;
+    private ArrayList<Observer> observer;
 
     public Ruffy(Vector2d pos, Context context) throws Exception {
         this.context = context;
@@ -42,6 +46,7 @@ public class Ruffy implements GameCharacter {
         controller = new CharacterController(this);
         boxManager = new RuffyBoxManager(this);
         jumpManager = new JumpManager(this);
+        observer = new ArrayList<>();
     }
 
     @Override
@@ -75,4 +80,18 @@ public class Ruffy implements GameCharacter {
         return getStatusManager().isMovingRight();
     }
 
+    @Override
+    public void addObserver(Observer o) {
+        observer.add(o);
+    }
+
+    @Override
+    public void removeObserver(Observer o) {
+        observer.remove(o);
+    }
+
+    @Override
+    public void notifyObservers() {
+        //TODO
+    }
 }
