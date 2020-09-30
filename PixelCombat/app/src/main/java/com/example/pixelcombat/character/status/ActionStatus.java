@@ -1,16 +1,16 @@
 package com.example.pixelcombat.character.status;
 
 public enum ActionStatus {
+    AIR_DEFENDING,
+    DASHING,
+    DEFENDING,
     INTRO,
-    WIN,
-    STAND,
     JUMP,
-    MOVE,
     JUMPFALL,
     JUMP_RECOVER,
-    DEFENDING,
+    MOVE,
     RETREATING,
-    DASHING,
-    AIR_DEFENDING;
+    STAND,
+    WIN
 
 }

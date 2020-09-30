@@ -1,6 +1,5 @@
 package com.example.pixelcombat.manager;
 
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
@@ -8,6 +7,7 @@ import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.animation.Animation;
 import com.example.pixelcombat.animation.AnimationManager;
 import com.example.pixelcombat.exception.parser.XmlParseErrorException;
+import com.example.pixelcombat.utils.LocatedBitmap;
 import com.example.pixelcombat.xml.CharacterParser;
 
 import org.xmlpull.v1.XmlPullParserException;
@@ -46,7 +46,7 @@ public abstract class ViewManager {
         characterParser.parseXMLData();
         ArrayList<Animation> animations = new ArrayList<>();
 
-        Map<String, ArrayList<Bitmap>> images = characterParser.getCharacter();
+        Map<String, ArrayList<LocatedBitmap>> images = characterParser.getCharacter();
         ArrayList<ArrayList<Float>> times = characterParser.getTimes();
         ArrayList<Boolean> loop = characterParser.getLoop();
         ArrayList<Integer> loopIndices = characterParser.getLoopIndizes();

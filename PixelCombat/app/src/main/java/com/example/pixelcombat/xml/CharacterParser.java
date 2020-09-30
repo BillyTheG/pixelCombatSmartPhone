@@ -9,6 +9,8 @@ import android.util.Log;
 import com.example.pixelcombat.enums.ExceptionGroup;
 import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.exception.parser.XmlParseErrorException;
+import com.example.pixelcombat.math.Vector2d;
+import com.example.pixelcombat.utils.LocatedBitmap;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -21,9 +23,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.example.pixelcombat.enums.GamePlayView.FIELD_SIZE;
+
 public class CharacterParser {
 
-    private Map<String, ArrayList<Bitmap>> character = new HashMap<>();
+    private Map<String, ArrayList<LocatedBitmap>> character = new HashMap<>();
     private ArrayList<ArrayList<Float>> times = new ArrayList<>();
     private ArrayList<Float> time = new ArrayList<>();
     private ArrayList<Boolean> loop = new ArrayList<>();
@@ -68,7 +72,7 @@ public class CharacterParser {
                             readingAnimation = true;
 
                             time = new ArrayList<>();
-                            character.put(eltName, new ArrayList<Bitmap>());
+                            character.put(eltName, new ArrayList<LocatedBitmap>());
                             animation = eltName;
 
                             int loopIndex = Integer.parseInt(parser.getAttributeValue(null, "loopIndex"));
@@ -94,6 +98,8 @@ public class CharacterParser {
                                 try {
                                     int key = Integer.parseInt(parser.getAttributeValue(null, "key"));
                                     float duration = Float.parseFloat(parser.getAttributeValue(null, "duration"));
+                                    float x = Float.parseFloat(parser.getAttributeValue(null, "x"));
+                                    float y = Float.parseFloat(parser.getAttributeValue(null, "y"));
                                     fileName = parser.nextText();
                                     Uri file = Uri.parse("android.resource://com.example.pixelcombat/raw/" + fileName.replace(".png", ""));
                                     InputStream is = context.getContentResolver().openInputStream(file);
@@ -101,9 +107,11 @@ public class CharacterParser {
                                     options.inPreferredConfig = Bitmap.Config.RGB_565;
 
                                     Bitmap bitmap = BitmapFactory.decodeResourceStream(ScreenProperty.CURRENT_CONTEXT.getResources(), null, is, null, options);
+                                    Vector2d pos = new Vector2d(x * FIELD_SIZE, y * FIELD_SIZE);
 
-                                    character.get(animation).add(key, bitmap);
-                                    Log.i("Info", "Loaded image " + fileName + " at position " + key + " with duration: " + duration + " in " + animation);
+                                    LocatedBitmap locatedBitmap = new LocatedBitmap(bitmap, pos);
+                                    character.get(animation).add(key, locatedBitmap);
+                                    Log.i("Info", "Loaded image " + fileName + " at position " + key + " with duration: " + duration + " in " + animation + " in position: " + pos);
                                     time.add(duration);
                                 }
                                 catch(Exception e){
@@ -134,7 +142,7 @@ public class CharacterParser {
         }
     }
 
-    public Map<String, ArrayList<Bitmap>> getCharacter() {
+    public Map<String, ArrayList<LocatedBitmap>> getCharacter() {
         return character;
     }
 

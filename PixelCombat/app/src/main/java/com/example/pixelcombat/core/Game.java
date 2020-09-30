@@ -30,7 +30,6 @@ public class Game implements Observer {
     private ArrayList<Projectile> projectiles;
     private ArrayList<Spark> sparks;
     private ArrayList<Dust> dusts;
-    private ArrayList<Observer> observers;
     private DustFactory dustFactory;
     private ProjectileFactory projectileFactory;
     private SparkFactory sparkFactory;
@@ -43,7 +42,6 @@ public class Game implements Observer {
         this.sparks = new ArrayList<>();
         this.dusts = new ArrayList<>();
         this.weather = weather;
-        this.observers = new ArrayList<>();
         this.dustFactory = new DustFactory();
         this.projectileFactory = new ProjectileFactory();
         this.sparkFactory = new SparkFactory();

@@ -7,6 +7,7 @@ import android.graphics.Rect;
 
 import com.example.pixelcombat.GameObject;
 import com.example.pixelcombat.enums.ScreenProperty;
+import com.example.pixelcombat.utils.LocatedBitmap;
 
 import java.util.ArrayList;
 
@@ -15,7 +16,7 @@ import lombok.Getter;
 public class Animation {
     private boolean loops;
     private int loopPoint;
-    private ArrayList<Bitmap> images;
+    private ArrayList<LocatedBitmap> images;
     protected ArrayList<AnimFrame> frames;
 
     @Getter
@@ -39,7 +40,7 @@ public class Animation {
     private long lastFrame;
 
 
-    public Animation(ArrayList<Bitmap> images, ArrayList<Float> times, boolean loops, int loopPoint) {
+    public Animation(ArrayList<LocatedBitmap> images, ArrayList<Float> times, boolean loops, int loopPoint) {
         this.images = images;
         this.loops = loops;
         this.loopPoint = loopPoint;
@@ -51,10 +52,10 @@ public class Animation {
     }
 
 
-    protected void loadFrames(ArrayList<Bitmap> images, ArrayList<Float> times) {
+    protected void loadFrames(ArrayList<LocatedBitmap> images, ArrayList<Float> times) {
 
         for (int i = 0; i < images.size(); i++) {
-            addFrame(images.get(i), times.get(i));
+            addFrame(images.get(i).image, times.get(i));
         }
 
     }
@@ -67,11 +68,11 @@ public class Animation {
         if (!isPlaying)
             return;
 
-        int width = (int) (images.get(frameIndex).getWidth() * ScreenProperty.SCALE);
-        int height = (int) (images.get(frameIndex).getHeight() * ScreenProperty.SCALE);
+        int width = (int) (images.get(frameIndex).image.getWidth() * ScreenProperty.SCALE);
+        int height = (int) (images.get(frameIndex).image.getHeight() * ScreenProperty.SCALE);
 
-        int x = (int) (object.getPos().x - screenX);
-        int y = (int) (object.getPos().y - screenY);
+        int x = (int) (object.getPos().x + images.get(frameIndex).pos.x - screenX);
+        int y = (int) (object.getPos().y + images.get(frameIndex).pos.y - screenY);
 
         Rect sourceRect = new Rect((int) (x - width / 2),
                 (int) (y - height / 2), (int) (x + width / 2),
@@ -80,13 +81,13 @@ public class Animation {
         Rect desRect = new Rect(sourceRect.left + ScreenProperty.OFFSET_X, sourceRect.top - ScreenProperty.OFFSET_Y, (int) (sourceRect.right) + ScreenProperty.OFFSET_X,
                 sourceRect.bottom - ScreenProperty.OFFSET_Y);
 
-        Bitmap bitmap = cropBitmap(desRect, gameRect, screenX, object.isRight());
+        Bitmap bitmap = cropBitmap(desRect, gameRect, object.isRight());
         if (bitmap == null) return;
 
         canvas.drawBitmap(bitmap, null, desRect, null);
     }
 
-    private Bitmap cropBitmap(Rect desRect, Rect gameRect, int screenX, boolean objectIsRight) {
+    private Bitmap cropBitmap(Rect desRect, Rect gameRect, boolean objectIsRight) {
 
         int top_old = desRect.top;
         int bottom_old = desRect.bottom;
@@ -97,7 +98,7 @@ public class Animation {
         if (!desRect.intersect(gameRect))
             return null;
         else {
-            Bitmap bitmap = getScaledBitmap(images.get(frameIndex));
+            Bitmap bitmap = getScaledBitmap(images.get(frameIndex).image);
             if (!objectIsRight)
                 bitmap = createFlippedBitmap(bitmap, true, false);
 
@@ -105,7 +106,6 @@ public class Animation {
             int new_left = ScreenProperty.OFFSET_X - left_old;
 
             if (desRect.bottom < bottom_old) {
-
                 if (new_left > 0)
                     return Bitmap.createBitmap(bitmap, new_left, 0, bitmap.getWidth() - new_left, Math.abs(desRect.top - desRect.bottom));
                 else if (new_right > 0)
@@ -126,7 +126,7 @@ public class Animation {
 
     }
 
-    protected class AnimFrame {
+    protected static class AnimFrame {
         Bitmap image;
         float endTime;
 
@@ -140,13 +140,6 @@ public class Animation {
         }
     }
 
-    public void scaleRect(Rect rect) {
-        float whRatio = (float) (images.get(frameIndex).getWidth()) / images.get(frameIndex).getHeight();
-        if (rect.width() > rect.height())
-            rect.left = rect.right - (int) (rect.height() * whRatio);
-        else
-            rect.top = rect.bottom - (int) (rect.width() * (1 / whRatio));
-    }
 
     public void update() {
         if (!isPlaying)

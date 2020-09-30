@@ -87,7 +87,7 @@ public class StatusManager {
     }
 
     public boolean isOnAir() {
-        return isJumping() || isJumpFalling() || character.getPos().y < ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE;
+        return isJumping() || isJumpFalling() || isJumpRecovering() || character.getPos().y < ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE;
     }
 
     public void update() {
