@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Rect;
+import android.util.Log;
 
 import com.example.pixelcombat.GameObject;
 import com.example.pixelcombat.enums.ScreenProperty;
@@ -68,17 +69,22 @@ public class Animation {
         if (!isPlaying)
             return;
 
+        if (images.get(frameIndex) == null) {
+            Log.e("Error", "the image for the animation in " + frameIndex + " cannot be drawn, It is a null.");
+            return;
+        }
+
         int width = (int) (images.get(frameIndex).image.getWidth() * ScreenProperty.SCALE);
         int height = (int) (images.get(frameIndex).image.getHeight() * ScreenProperty.SCALE);
 
-        int x = (int) (object.getPos().x + images.get(frameIndex).pos.x - screenX);
-        int y = (int) (object.getPos().y + images.get(frameIndex).pos.y - screenY);
+        int x = (int) (object.getPos().x + object.getDirection() * images.get(frameIndex).pos.x * ScreenProperty.SCALE - screenX);
+        int y = (int) (object.getPos().y + images.get(frameIndex).pos.y * ScreenProperty.SCALE - screenY);
 
         Rect sourceRect = new Rect((int) (x - width / 2),
-                (int) (y - height / 2), (int) (x + width / 2),
+                (int) (y - height / 2), x + width / 2,
                 (int) (y + height / 2));
 
-        Rect desRect = new Rect(sourceRect.left + ScreenProperty.OFFSET_X, sourceRect.top - ScreenProperty.OFFSET_Y, (int) (sourceRect.right) + ScreenProperty.OFFSET_X,
+        Rect desRect = new Rect(sourceRect.left + ScreenProperty.OFFSET_X, sourceRect.top - ScreenProperty.OFFSET_Y, sourceRect.right + ScreenProperty.OFFSET_X,
                 sourceRect.bottom - ScreenProperty.OFFSET_Y);
 
         Bitmap bitmap = cropBitmap(desRect, gameRect, object.isRight());
@@ -149,6 +155,7 @@ public class Animation {
             frameIndex++;
             if (!loops && frameIndex == frames.size()) {
                 isPlaying = false;
+                frameIndex--;
                 return;
             }
             frameIndex = frameIndex >= frames.size() ? loopPoint : frameIndex;
@@ -168,5 +175,17 @@ public class Animation {
     private Bitmap getScaledBitmap(Bitmap bitmap) {
         return Bitmap.createScaledBitmap(bitmap, ((int) (bitmap.getWidth() * ScreenProperty.SCALE)), ((int) (bitmap.getHeight() * ScreenProperty.SCALE)), false);
     }
+
+    public synchronized void resetFrameIndexTo(int newFrameIndex) {
+        if (newFrameIndex < 0 || newFrameIndex >= frames.size()) {
+            Log.e("Error", "the new Index: " + newFrameIndex + " is out of Range.");
+            return;
+        }
+
+        frameIndex = newFrameIndex;
+        lastFrame = System.currentTimeMillis();
+
+    }
+
 
 }

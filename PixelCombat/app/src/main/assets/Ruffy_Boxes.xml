@@ -82,5 +82,49 @@
                     y="-1.8000002" />
             </box_list>
         </jumpRecover>
+        <crouch>
+            <box_list picture="0">
+                <box height="3.3999996" hurts="false" id="0" width="2.2799988" x="0.13999939"
+                    y="-1.8000002" />
+            </box_list>
+            <box_list picture="1">
+                <box height="1.9500008" hurts="false" id="0" width="1.6599998" x="0.09000015"
+                    y="-1.1999998" />
+            </box_list>
+        </crouch>
+        <decrouch>
+            <box_list picture="0">
+                <box height="1.9500008" hurts="false" id="0" width="1.6599998" x="0.09000015"
+                    y="-1.1999998" />
+            </box_list>
+            <box_list picture="1">
+                <box height="3.3999996" hurts="false" id="0" width="2.2799988" x="0.13999939"
+                    y="-1.8000002" />
+            </box_list>
+        </decrouch>
+        <attack1>
+            <box_list picture="0">
+                <box height="3.2199993" hurts="false" id="0" width="1.1199989" x="0.3599987"
+                    y="-2.1000004" />
+            </box_list>
+            <box_list picture="1">
+                <box height="3.08" hurts="false" id="0" width="1.4599991" x="0.30999947"
+                    y="-1.6199999" />
+            </box_list>
+            <box_list picture="2">
+                <box height="2.9899998" hurts="false" id="0" width="1.3400002" x="0.37999916"
+                    y="-1.6800003" />
+                <box height="1.0" hurts="true" id="1" width="2.540001" x="1.8299999"
+                    y="-2.2600002" />
+            </box_list>
+            <box_list picture="3">
+                <box height="3.2199993" hurts="false" id="0" width="1.1199989" x="0.69999886"
+                    y="-1.7600002" />
+            </box_list>
+            <box_list picture="4">
+                <box height="3.2199993" hurts="false" id="0" width="1.1199989" x="0.07999992"
+                    y="-1.8400002" />
+            </box_list>
+        </attack1>
     </boxes>
 </character>

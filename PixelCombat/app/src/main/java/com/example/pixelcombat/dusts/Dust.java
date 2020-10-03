@@ -26,4 +26,14 @@ public class Dust implements GameObject {
     public boolean isRight() {
         return false;
     }
+
+    @Override
+    public float getDirection() {
+        return 0;
+    }
+
+    @Override
+    public int getRank() {
+        return 0;
+    }
 }

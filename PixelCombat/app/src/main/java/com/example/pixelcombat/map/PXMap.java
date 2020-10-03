@@ -3,11 +3,15 @@ package com.example.pixelcombat.map;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.Log;
 
 import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.GameObject;
+import com.example.pixelcombat.core.config.ViewConfig;
+import com.example.pixelcombat.enums.DrawLevel;
 import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.manager.ScreenScrollerManager;
 import com.example.pixelcombat.math.Vector2d;
@@ -47,6 +51,12 @@ public class PXMap implements GameObject {
         this.character1 = character1;
         this.character2 = character2;
 
+        character1.setEnemy(character2);
+        character2.setEnemy(character1);
+
+        character1.initAttacks();
+        character2.initAttacks();
+
         if (height > ScreenProperty.SCREEN_HEIGHT) {
             deltaY = height - ScreenProperty.SCREEN_HEIGHT;
         }
@@ -70,6 +80,16 @@ public class PXMap implements GameObject {
         character1.draw(canvas, screenScrollManager.getScreenX() - screenScrollManager.getCX(), screenScrollManager.getScreenY() - screenScrollManager.getCY(), this.gameRect);
         character2.draw(canvas, screenScrollManager.getScreenX() - screenScrollManager.getCX(), screenScrollManager.getScreenY() - screenScrollManager.getCY(), this.gameRect);
 
+        Paint paint = new Paint();
+        paint.setColor(Color.RED);
+
+        if (ViewConfig.DRAW_DEPTH == DrawLevel.DEBUG) {
+            canvas.drawRect(character1.getPos().x - 5 - screenScrollManager.getScreenX() + screenScrollManager.getCX() + OFFSET_X,
+                    character1.getPos().y - 5 - screenScrollManager.getScreenY() + screenScrollManager.getCY() - OFFSET_Y,
+                    character1.getPos().x + 5 - screenScrollManager.getScreenX() + screenScrollManager.getCX() + OFFSET_X,
+                    character1.getPos().y + 5 - screenScrollManager.getScreenY() + screenScrollManager.getCY() - OFFSET_Y,
+                    paint);
+        }
     }
 
     @Override
@@ -142,6 +162,16 @@ public class PXMap implements GameObject {
     @Override
     public boolean isRight() {
         return true;
+    }
+
+    @Override
+    public float getDirection() {
+        return 0;
+    }
+
+    @Override
+    public int getRank() {
+        return 0;
     }
 
     @NotNull

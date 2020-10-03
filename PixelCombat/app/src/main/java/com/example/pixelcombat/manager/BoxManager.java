@@ -4,6 +4,8 @@ import android.util.Log;
 
 import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.math.BoundingRectangle;
+import com.example.pixelcombat.math.GeometryUtils;
+import com.example.pixelcombat.math.Vector2d;
 import com.example.pixelcombat.xml.BoxParser;
 
 import java.util.ArrayList;
@@ -22,11 +24,9 @@ public abstract class BoxManager {
     public final int JUMPING = 2;
     public final int JUMPFALL = 3;
     public final int JUMPRECOVER = 4;
-    public final int BASICATTACK = 35;
-    public final int SPECIALATTACK1 = 45;
-    public final int SPECIALATTACK2 = 55;
-    public final int SPECIALATTACK3 = 6;
-    public final int ISHIT = 7;
+    public final int CROUCH = 5;
+    public final int DECROUCH = 6;
+    public final int ATTACK1 = 7;
     public final int KNOCKBACK = 8;
     public final int KNOCKEDOUT = 9;
     public final int AVATAR = 10;
@@ -121,17 +121,14 @@ public abstract class BoxManager {
             case JUMPRECOVER:
                 updateBoxSeq(JUMPRECOVER, "jumpRecover");
                 break;
-            case BASICATTACK:
-                updateBoxSeq(BASICATTACK, "basicAttack");
+            case CROUCH:
+                updateBoxSeq(CROUCH, "crouch");
                 break;
-            case SPECIALATTACK1:
-                updateBoxSeq(SPECIALATTACK1, "specialAttack1");
+            case DECROUCH:
+                updateBoxSeq(DECROUCH, "decrouch");
                 break;
-            case SPECIALATTACK2:
-                updateBoxSeq(SPECIALATTACK2, "specialAttack2");
-                break;
-            case SPECIALATTACK3:
-                updateBoxSeq(SPECIALATTACK3, "specialAttack3");
+            case ATTACK1:
+                updateBoxSeq(ATTACK1, "attack1");
                 break;
             case SPECIALATTACK4:
                 updateBoxSeq(SPECIALATTACK4, "specialAttack4");
@@ -147,9 +144,6 @@ public abstract class BoxManager {
                 break;
             case AIR_SPECIALATTACK1:
                 updateBoxSeq(AIR_SPECIALATTACK1, "airSpecialAttack1");
-                break;
-            case ISHIT:
-                updateBoxSeq(ISHIT, "isHit");
                 break;
             case KNOCKBACK:
                 updateBoxSeq(KNOCKBACK, "knockBack");
@@ -218,4 +212,47 @@ public abstract class BoxManager {
             Log.i("info", "Die currentBox fuer: " + currentAnimation + " ist nicht vorhanden.");
         }
     }
+
+    /**
+     * Checks if a hurtable rect of this player hits the enemy player
+     *
+     * @param defender Enemy Character
+     * @return do rectangles collide
+     */
+    public boolean hits(GameCharacter defender) {
+
+        List<ArrayList<BoundingRectangle>> enemyBoxes = defender.getBoxManager().currentBox;
+        List<ArrayList<BoundingRectangle>> ownBoxes = character.getBoxManager().currentBox;
+        int currentOwnAnimation = character.getViewManager().getFrameIndex();
+        int currentDefenderAnimation = defender.getViewManager().getFrameIndex();
+
+        for (int i = 0; i < ownBoxes.get(currentOwnAnimation).size(); i++) {
+            float x1 = character.getPos().x + character.getDirection() * ownBoxes.get(currentOwnAnimation).get(i).getPos().x;
+            float y1 = character.getPos().y + ownBoxes.get(currentOwnAnimation).get(i).getPos().y;
+            float width1 = ownBoxes.get(currentOwnAnimation).get(i).getWidth();
+            float height1 = ownBoxes.get(currentOwnAnimation).get(i).getHeight();
+            boolean hurts1 = ownBoxes.get(currentOwnAnimation).get(i).isHurts();
+
+            BoundingRectangle ownBox = new BoundingRectangle(height1, new Vector2d(x1, y1), width1);
+            ownBox.setHurts(hurts1);
+
+            for (int j = 0; j < enemyBoxes.get(currentDefenderAnimation).size(); j++) {
+                float x2 = defender.getPos().x + defender.getDirection() * enemyBoxes.get(currentDefenderAnimation).get(j).getPos().x;
+                float y2 = defender.getPos().y + enemyBoxes.get(currentDefenderAnimation).get(j).getPos().y;
+                float width2 = enemyBoxes.get(currentDefenderAnimation).get(j).getWidth();
+                float height2 = enemyBoxes.get(currentDefenderAnimation).get(j).getHeight();
+                boolean hurts2 = enemyBoxes.get(currentDefenderAnimation).get(j).isHurts();
+
+                BoundingRectangle enemyBox = new BoundingRectangle(height2, new Vector2d(x2, y2), width2);
+                enemyBox.setHurts(hurts2);
+
+                if (GeometryUtils.isCollision(ownBox, enemyBox) && ownBox.isHurts() && !enemyBox.isHurts())
+                    return true;
+            }
+
+        }
+
+        return false;
+    }
+
 }

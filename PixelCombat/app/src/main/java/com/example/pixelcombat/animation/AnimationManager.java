@@ -58,4 +58,8 @@ public class AnimationManager implements  Runnable{
         return animations[animationIndex].isPlaying();
     }
 
+    public synchronized void resetFrameIndexTo(int newFrameIndex) {
+        animations[animationIndex].resetFrameIndexTo(newFrameIndex);
+    }
+
 }

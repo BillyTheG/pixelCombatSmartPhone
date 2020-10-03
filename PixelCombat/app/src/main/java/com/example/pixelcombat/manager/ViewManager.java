@@ -27,7 +27,9 @@ public abstract class ViewManager {
     public final int JUMP = 2;
     public final int JUMPFALL = 3;
     public final int JUMPRECOVER = 4;
-
+    public final int CROUCH = 5;
+    public final int DECROUCH = 6;
+    public final int ATTACK1 = 7;
     @Getter
     protected AnimationManager animManager;
     protected final GameCharacter character;
@@ -56,6 +58,9 @@ public abstract class ViewManager {
         animations.add(new Animation(images.get("jump"), times.get(JUMP), loop.get(JUMP), loopIndices.get(JUMP)));
         animations.add(new Animation(images.get("jumpFall"), times.get(JUMPFALL), loop.get(JUMPFALL), loopIndices.get(JUMPFALL)));
         animations.add(new Animation(images.get("jumpRecover"), times.get(JUMPRECOVER), loop.get(JUMPRECOVER), loopIndices.get(JUMPRECOVER)));
+        animations.add(new Animation(images.get("crouch"), times.get(CROUCH), loop.get(CROUCH), loopIndices.get(CROUCH)));
+        animations.add(new Animation(images.get("decrouch"), times.get(DECROUCH), loop.get(DECROUCH), loopIndices.get(DECROUCH)));
+        animations.add(new Animation(images.get("attack1"), times.get(ATTACK1), loop.get(ATTACK1), loopIndices.get(ATTACK1)));
 
         Animation[] array = new Animation[animations.size()];
         animations.toArray(array); // fill the array
@@ -93,13 +98,12 @@ public abstract class ViewManager {
         if (character.getStatusManager().isActive() || character.getStatusManager().isBlinking()) {
 
 
-            if (character.getStatusManager().isAttacking()) {
+            if (character.getAttackManager().isAttacking()) {
 
-                switch (character.getStatusManager().getAttackStatus()) {
-                    case BASIC_ATTACK1:
-                        //  character.picManager.change(BASICATTACK);
-                        break;
-                    case BASIC_ATTACK2:
+                switch (character.getAttackManager().getAttackStatus()) {
+                    case ATTACK1:
+                        return ATTACK1;
+                    case ATTACK2:
                         // character.picManager.change(BASICATTACK1);
                         break;
                     default:
@@ -121,6 +125,10 @@ public abstract class ViewManager {
                         return JUMPFALL;
                     case JUMP_RECOVER:
                         return JUMPRECOVER;
+                    case CROUCHING:
+                        return CROUCH;
+                    case DECROUCHING:
+                        return DECROUCH;
                 }
 
             }
@@ -143,5 +151,13 @@ public abstract class ViewManager {
 
     public int getFrameIndex() {
         return getAnimManager().getFrameIndex();
+    }
+
+    public synchronized void resetFrameIndexTo(int newFrameIndex) {
+        getAnimManager().resetFrameIndexTo(newFrameIndex);
+    }
+
+    public boolean isPlaying() {
+        return getAnimManager().isPlaying();
     }
 }

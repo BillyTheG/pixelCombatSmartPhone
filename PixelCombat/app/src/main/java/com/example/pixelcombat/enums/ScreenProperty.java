@@ -8,7 +8,7 @@ public class ScreenProperty {
     public static Context CURRENT_CONTEXT;
     public static int OFFSET_X = 350;
     public static int OFFSET_Y = 350;
-    public static int GROUND_LINE = 150;
+    public static int GROUND_LINE = 50;
 
     public static float SCALE = 1.5f;
 }

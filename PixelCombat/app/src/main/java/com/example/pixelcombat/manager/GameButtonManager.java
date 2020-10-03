@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 
 import com.example.pixelcombat.GamePanel;
 import com.example.pixelcombat.R;
+import com.example.pixelcombat.character.status.AttackStatus;
 
 import static android.view.MotionEvent.ACTION_UP;
 
@@ -121,8 +122,11 @@ public class GameButtonManager implements View.OnClickListener, View.OnTouchList
      //   right.setLayoutParams(b1);
 
         left.setOnTouchListener(this);
+        down.setOnTouchListener(this);
         right.setOnTouchListener(this);
+
         left.setOnClickListener(this);
+        down.setOnClickListener(this);
         right.setOnClickListener(this);
         up.setOnClickListener(this);
         GameButtons.addView(up);
@@ -151,6 +155,9 @@ public class GameButtonManager implements View.OnClickListener, View.OnTouchList
             case 0:
                 gamePanel.getRuffy().getController().jump(false, false);
                 break;
+            case 1:
+                gamePanel.getRuffy().getController().crouch(false, false);
+                break;
             case 2:
                 gamePanel.getRuffy().getController().move(false, false);
                 break;
@@ -158,7 +165,7 @@ public class GameButtonManager implements View.OnClickListener, View.OnTouchList
                 gamePanel.getRuffy().getController().move(false, true);
                 break;
             case 4:
-                gamePanel.getRuffy2().getController().jump(false, true);
+                gamePanel.getRuffy().getController().attack(AttackStatus.ATTACK1);
                 break;
             case 8:
                 gamePanel.getRuffy2().getController().move(false, false);
@@ -183,6 +190,9 @@ public class GameButtonManager implements View.OnClickListener, View.OnTouchList
 
         switch(view.getId()) {
 
+            case 1:
+                gamePanel.getRuffy().getController().crouch(true, false);
+                break;
             case 2:
                 gamePanel.getRuffy().getController().move(true, false);
                 break;

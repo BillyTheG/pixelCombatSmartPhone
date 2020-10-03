@@ -2,7 +2,6 @@ package com.example.pixelcombat.manager;
 
 import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.character.status.ActionStatus;
-import com.example.pixelcombat.character.status.AttackStatus;
 import com.example.pixelcombat.character.status.GlobalStatus;
 import com.example.pixelcombat.character.status.MovementStatus;
 import com.example.pixelcombat.enums.ScreenProperty;
@@ -13,7 +12,6 @@ public class StatusManager {
     private GlobalStatus globalStatus = GlobalStatus.ACTIVE;
     private MovementStatus movementStatus = MovementStatus.RIGHT;
     private ActionStatus actionStatus = ActionStatus.STAND;
-    private AttackStatus attackStatus = AttackStatus.NOT_ATTACKING;
     private final GameCharacter character;
 
     public StatusManager(GameCharacter character) {
@@ -45,6 +43,15 @@ public class StatusManager {
     public boolean isDefending() {
         return actionStatus == ActionStatus.DEFENDING;
     }
+
+    public boolean isCrouching() {
+        return actionStatus == ActionStatus.CROUCHING;
+    }
+
+    public boolean isDeCrouching() {
+        return actionStatus == ActionStatus.DECROUCHING;
+    }
+
 
     public boolean isAirDefending() {
         return actionStatus == ActionStatus.AIR_DEFENDING;
@@ -101,6 +108,12 @@ public class StatusManager {
             case JUMP_RECOVER:
                 character.getJumpManager().updateJumpRecover();
                 break;
+            case CROUCHING:
+                character.getCrouchManager().crouch();
+                break;
+            case DECROUCHING:
+                character.getCrouchManager().decrouch();
+                break;
             default:
                 break;
         }
@@ -114,6 +127,11 @@ public class StatusManager {
 
     }
 
+    public boolean canNotCrouch() {
+        return isOnAir() ||
+                notCombatReady();
+    }
+
     public boolean canNotMove() {
         return notCombatReady();
         //   || isJumping()
@@ -124,7 +142,7 @@ public class StatusManager {
     }
 
     public boolean notCombatReady() {
-        return isAttacking()
+        return character.getAttackManager().isAttacking()
                 || isKnockbacked()
                 || isKnockBackRecovering()
                 || isInvincible()
@@ -132,7 +150,8 @@ public class StatusManager {
                 || isJumpRecovering()
                 || isDisabled()
                 || isDashing()
-                || isDefending();
+                || isDefending()
+                || isDeCrouching();
 
     }
 
@@ -164,20 +183,12 @@ public class StatusManager {
         return movementStatus;
     }
 
-    public AttackStatus getAttackStatus() {
-        return attackStatus;
-    }
-
     public boolean isActive() {
         return globalStatus == GlobalStatus.ACTIVE;
     }
 
     public boolean isBlinking() {
         return globalStatus == GlobalStatus.BLINK;
-    }
-
-    public boolean isAttacking() {
-        return attackStatus != AttackStatus.NOT_ATTACKING;
     }
 
     public boolean isMovingRight() {

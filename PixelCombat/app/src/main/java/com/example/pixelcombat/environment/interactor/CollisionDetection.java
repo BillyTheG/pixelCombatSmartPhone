@@ -142,48 +142,7 @@ public class CollisionDetection implements EnvironmentInteract {
                 player2.getStatusManager().isInvincible());
     }
 
-    /**
-     * Checks if two rectangles overlap
-     *
-     * @param player1 rectangle c1
-     * @param player2 rectangle c2
-     * @return do rectangles collide
-     */
-    public boolean isCollision(GameCharacter player1, GameCharacter player2) {
 
-        List<ArrayList<BoundingRectangle>> enemyBoxes = player2.getBoxManager().currentBox;
-        List<ArrayList<BoundingRectangle>> ownBoxes = player1.getBoxManager().currentBox;
-        int currentOwnAnimation = player1.getViewManager().getFrameIndex();
-        int currentDefenderAnimation = player2.getViewManager().getFrameIndex();
-
-        for (int i = 0; i < ownBoxes.get(currentOwnAnimation).size(); i++) {
-            float x1 = player1.getPos().x + player1.getDirection() * ownBoxes.get(currentOwnAnimation).get(i).getPos().x;
-            float y1 = player1.getPos().y + ownBoxes.get(currentOwnAnimation).get(i).getPos().y;
-            float width1 = ownBoxes.get(currentOwnAnimation).get(i).getWidth();
-            float height1 = ownBoxes.get(currentOwnAnimation).get(i).getHeight();
-            boolean hurts1 = ownBoxes.get(currentOwnAnimation).get(i).isHurts();
-
-            BoundingRectangle ownBox = new BoundingRectangle(height1, new Vector2d(x1, y1), width1);
-            ownBox.setHurts(hurts1);
-
-            for (int j = 0; j < enemyBoxes.get(currentDefenderAnimation).size(); j++) {
-                float x2 = player2.getPos().x + player2.getDirection() * enemyBoxes.get(currentDefenderAnimation).get(j).getPos().x;
-                float y2 = player2.getPos().y + enemyBoxes.get(currentDefenderAnimation).get(j).getPos().y;
-                float width2 = enemyBoxes.get(currentDefenderAnimation).get(j).getWidth();
-                float height2 = enemyBoxes.get(currentDefenderAnimation).get(j).getHeight();
-                boolean hurts2 = enemyBoxes.get(currentDefenderAnimation).get(j).isHurts();
-
-                BoundingRectangle enemyBox = new BoundingRectangle(height2, new Vector2d(x2, y2), width2);
-                enemyBox.setHurts(hurts2);
-
-                if (GeometryUtils.isCollision(ownBox, enemyBox) && ownBox.isHurts() && !enemyBox.isHurts())
-                    return true;
-            }
-
-        }
-
-        return false;
-    }
 
 
     public BoundingRectangle intersection(GameCharacter player1, GameCharacter player2) {

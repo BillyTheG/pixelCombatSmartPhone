@@ -2,6 +2,7 @@ package com.example.pixelcombat.character.controller;
 
 import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.character.status.ActionStatus;
+import com.example.pixelcombat.character.status.AttackStatus;
 import com.example.pixelcombat.character.status.MovementStatus;
 import com.example.pixelcombat.enums.KeyCommand;
 
@@ -23,6 +24,8 @@ public class CharacterController {
                 return move(hold, false);
             case P1JUMP:
                 return jump(hold, false);
+            case P1DOWN:
+                return crouch(hold, false);
             default:
                 return true;
         }
@@ -35,6 +38,21 @@ public class CharacterController {
             character.getStatusManager().setActionStatus(ActionStatus.JUMP);
             // sound(player.getJumpSound());
         }
+        return true;
+
+    }
+
+    public boolean crouch(boolean hold, boolean b) {
+
+        if (character.getStatusManager().canNotCrouch())
+            return false;
+
+        if (!hold) {
+            character.getStatusManager().setActionStatus(ActionStatus.DECROUCHING);
+        } else {
+            character.getStatusManager().setActionStatus(ActionStatus.CROUCHING);
+        }
+
         return true;
 
     }
@@ -66,5 +84,25 @@ public class CharacterController {
         }
         return true;
     }
+
+
+    public boolean attack(AttackStatus attackStates) {
+        if (character.getStatusManager().isOnAir()) {
+            //check jumpAttacks
+            return true;
+        }
+        if (character.getStatusManager().notCombatReady()) {
+            return true;
+        }
+
+        if (character.getStatusManager().isMoving()) {   //&& Math.abs(player.physics.VX) == player.physics.maximumSpeed)
+            return true;
+        }
+
+        character.getStatusManager().setActionStatus(ActionStatus.STAND);
+        character.getAttackManager().setAttackStatus(attackStates);
+        return true;
+    }
+
 
 }

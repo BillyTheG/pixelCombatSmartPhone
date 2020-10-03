@@ -22,6 +22,8 @@ import lombok.Setter;
 @Setter
 public class BoundingRectangle implements BoundingBoxInterface {
 
+    private float delta_pos_y;
+    private float delta_pos_x;
     private Vector2d upperLeft;
     private Vector2d lowerRight;
 
@@ -78,6 +80,8 @@ public class BoundingRectangle implements BoundingBoxInterface {
         this.lowerRight = new Vector2d(pos.x + this.width / 2f, pos.y + this.height / 2f);
         this.pos = pos;
 
+        this.delta_pos_x = Math.abs(pos.x - pos.x * ScreenProperty.SCALE);
+        this.delta_pos_y = Math.abs(pos.y - pos.y * ScreenProperty.SCALE);
 
     }
 
@@ -97,10 +101,10 @@ public class BoundingRectangle implements BoundingBoxInterface {
 
     public void draw(GameCharacter character, Canvas canvas, float screenX, float screenY, Rect gameRect) {
 
-        float x1 = character.getDirection() * (pos.x - width / 2f) + character.getPos().x + ScreenProperty.OFFSET_X;
-        float y1 = (pos.y - height / 2f) + character.getPos().y - ScreenProperty.OFFSET_Y;
-        float x2 = character.getDirection() * (pos.x + width / 2f) + character.getPos().x + ScreenProperty.OFFSET_X;
-        float y2 = (pos.y + height / 2f) + character.getPos().y - ScreenProperty.OFFSET_Y;
+        float x1 = character.getDirection() * (delta_pos_x + pos.x - width / 2f) + character.getPos().x + ScreenProperty.OFFSET_X;
+        float y1 = (-delta_pos_y + pos.y - height / 2f) + character.getPos().y - ScreenProperty.OFFSET_Y;
+        float x2 = character.getDirection() * (delta_pos_x + pos.x + width / 2f) + character.getPos().x + ScreenProperty.OFFSET_X;
+        float y2 = (-delta_pos_y + pos.y + height / 2f) + character.getPos().y - ScreenProperty.OFFSET_Y;
 
         Paint paint = new Paint();
         if (hurts)

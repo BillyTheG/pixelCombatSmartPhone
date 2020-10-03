@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
@@ -34,20 +35,23 @@ public class MainActivity extends AppCompatActivity {
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-            DisplayMetrics dm = new DisplayMetrics();
-            getWindowManager().getDefaultDisplay().getMetrics(dm);
-            ScreenProperty.SCREEN_HEIGHT = dm.heightPixels;
-            ScreenProperty.SCREEN_WIDTH = dm.widthPixels;
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        ScreenProperty.SCREEN_HEIGHT = dm.heightPixels;
+        ScreenProperty.SCREEN_WIDTH = dm.widthPixels;
         GameButtons = new RelativeLayout(this);
         gameFrameLayout = new FrameLayout(this);
-            try {
-                gamePanel  = new GamePanel(this);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (XmlPullParserException e) {
-                e.printStackTrace();
-            } catch (Exception e) {
-                e.printStackTrace();
+        try {
+            gamePanel = new GamePanel(this);
+        } catch (IOException e) {
+            Log.e("Error", e.getMessage());
+            e.printStackTrace();
+        } catch (XmlPullParserException e) {
+            Log.e("Error", e.getMessage());
+            e.printStackTrace();
+        } catch (Exception e) {
+            Log.e("Error", e.getMessage());
+            e.printStackTrace();
             }
             buttonManager = new GameButtonManager(this,gamePanel);
 

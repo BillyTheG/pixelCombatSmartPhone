@@ -11,6 +11,8 @@ public enum ActionStatus {
     MOVE,
     RETREATING,
     STAND,
-    WIN
+    WIN,
+    CROUCHING,
+    DECROUCHING
 
 }

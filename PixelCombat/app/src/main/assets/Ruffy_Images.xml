@@ -31,5 +31,20 @@
             <img duration="350" key="0" x="0.020000458" y="-2.54">ruffy_jump_recover_1.png</img>
             <img duration="100" key="1" x="0.15999985" y="-2.5599995">ruffy_jump_recover_2.png</img>
         </jumpRecover>
+        <crouch airBool="false" airIndex="0" loopIndex="1" loops="true">
+            <img duration="100" key="0" x="0.15999985" y="-2.5599995">ruffy_jump_recover_2.png</img>
+            <img duration="100" key="1" x="0.020000458" y="-2.54">ruffy_jump_recover_1.png</img>
+        </crouch>
+        <decrouch airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="100" key="0" x="0.020000458" y="-2.54">ruffy_jump_recover_1.png</img>
+            <img duration="100" key="1" x="0.15999985" y="-2.5599995">ruffy_jump_recover_2.png</img>
+        </decrouch>
+        <attack1 airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="30" key="0" x="0.059999466" y="-2.4799995">ruffy_attack_1.png</img>
+            <img duration="30" key="1" x="0.13999939" y="-2.4799995">ruffy_attack_2.png</img>
+            <img duration="50" key="2" x="0.1800003" y="-2.4799995">ruffy_attack_3.png</img>
+            <img duration="80" key="3" x="0.26000023" y="-2.4799995">ruffy_attack_4.png</img>
+            <img duration="50" key="4" x="0.29999924" y="-2.4799995">ruffy_attack_5.png</img>
+        </attack1>
     </sprites>
 </character>

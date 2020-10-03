@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.os.Build;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -12,6 +13,7 @@ import android.view.SurfaceView;
 import androidx.annotation.RequiresApi;
 
 import com.example.pixelcombat.character.chars.ruffy.Ruffy;
+import com.example.pixelcombat.character.status.MovementStatus;
 import com.example.pixelcombat.core.Game;
 import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.environment.interactor.CollisionDetection;
@@ -58,15 +60,16 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
 
         ruffy = new Ruffy(new Vector2d(500, ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE), context);
-        ruffy2 = new Ruffy(new Vector2d(700, ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE), context);
+        ruffy2 = new Ruffy(new Vector2d(1000, ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE), context);
         ruffy.getBoxManager().loadParsedBoxes();
         ruffy2.getBoxManager().loadParsedBoxes();
+        ruffy2.getStatusManager().setMovementStatus(MovementStatus.LEFT);
 
         testMap = new PXMap("Blue Winter", bg, context, ruffy, ruffy2);
-
         collisionDetection = new CollisionDetection(ruffy, ruffy2);
         game = new Game(testMap, new Weather());
 
+        Log.i("Info", "Game was created successfully");
     }
 
     @Override

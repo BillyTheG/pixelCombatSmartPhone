@@ -15,4 +15,8 @@ public interface GameObject {
 
     boolean isRight();
 
+    float getDirection();
+
+    int getRank();
+
 }

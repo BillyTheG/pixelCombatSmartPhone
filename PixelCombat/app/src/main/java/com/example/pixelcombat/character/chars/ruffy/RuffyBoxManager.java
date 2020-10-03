@@ -19,4 +19,6 @@ public class RuffyBoxManager extends BoxManager {
     public void loadFurtherBoxes(int currentAnimation2) {
 
     }
+
+
 }
