@@ -10,4 +10,18 @@ public class KnockBackManager {
         this.character = character;
     }
 
+    public void knockBack() {
+
+    }
+
+    public void knockBackFall() {
+
+    }
+
+
+    public void knockBackRecover() {
+
+    }
+
+
 }

@@ -153,25 +153,25 @@ public class GameButtonManager implements View.OnClickListener, View.OnTouchList
     public void onClick(View view) {
         switch(view.getId()) {
             case 0:
-                gamePanel.getRuffy().getController().jump(false, false);
+                gamePanel.getPlayer1().getController().jump(false, false);
                 break;
             case 1:
-                gamePanel.getRuffy().getController().crouch(false, false);
+                gamePanel.getPlayer1().getController().crouch(false, false);
                 break;
             case 2:
-                gamePanel.getRuffy().getController().move(false, false);
+                gamePanel.getPlayer1().getController().move(false, false);
                 break;
             case 3:
-                gamePanel.getRuffy().getController().move(false, true);
+                gamePanel.getPlayer1().getController().move(false, true);
                 break;
             case 4:
-                gamePanel.getRuffy().getController().attack(AttackStatus.ATTACK1);
+                gamePanel.getPlayer1().getController().attack(AttackStatus.ATTACK1);
                 break;
             case 8:
-                gamePanel.getRuffy2().getController().move(false, false);
+                gamePanel.getPlayer2().getController().move(false, false);
                 break;
             case 9:
-                gamePanel.getRuffy2().getController().move(false, true);
+                gamePanel.getPlayer2().getController().move(false, true);
                 break;
 
             default:
@@ -191,19 +191,19 @@ public class GameButtonManager implements View.OnClickListener, View.OnTouchList
         switch(view.getId()) {
 
             case 1:
-                gamePanel.getRuffy().getController().crouch(true, false);
+                gamePanel.getPlayer1().getController().crouch(true, false);
                 break;
             case 2:
-                gamePanel.getRuffy().getController().move(true, false);
+                gamePanel.getPlayer1().getController().move(true, false);
                 break;
             case 3:
-                gamePanel.getRuffy().getController().move(true, true);
+                gamePanel.getPlayer1().getController().move(true, true);
                 break;
             case 8:
-                gamePanel.getRuffy2().getController().move(true, false);
+                gamePanel.getPlayer2().getController().move(true, false);
                 break;
             case 9:
-                gamePanel.getRuffy2().getController().move(true, true);
+                gamePanel.getPlayer2().getController().move(true, true);
                 break;
 
 

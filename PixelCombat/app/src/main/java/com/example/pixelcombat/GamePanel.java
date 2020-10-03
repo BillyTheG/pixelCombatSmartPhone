@@ -12,6 +12,7 @@ import android.view.SurfaceView;
 
 import androidx.annotation.RequiresApi;
 
+import com.example.pixelcombat.character.chars.kohaku.Kohaku;
 import com.example.pixelcombat.character.chars.ruffy.Ruffy;
 import com.example.pixelcombat.character.status.MovementStatus;
 import com.example.pixelcombat.core.Game;
@@ -29,13 +30,17 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     private MainThread thread;
     private Bitmap bg;
 
-    @Getter
+
     private Ruffy ruffy;
-    @Getter
-    private Ruffy ruffy2;
+
+    private Kohaku kohaku;
     private CollisionDetection collisionDetection;
     private PXMap testMap;
     private Game game;
+    @Getter
+    private GameCharacter player1;
+    @Getter
+    private GameCharacter player2;
 
     public GamePanel(Context context) throws Exception {
         super(context);
@@ -60,13 +65,16 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
 
         ruffy = new Ruffy(new Vector2d(500, ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE), context);
-        ruffy2 = new Ruffy(new Vector2d(1000, ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE), context);
+        kohaku = new Kohaku(new Vector2d(1000, ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE), context);
         ruffy.getBoxManager().loadParsedBoxes();
-        ruffy2.getBoxManager().loadParsedBoxes();
-        ruffy2.getStatusManager().setMovementStatus(MovementStatus.LEFT);
+        kohaku.getBoxManager().loadParsedBoxes();
+        kohaku.getStatusManager().setMovementStatus(MovementStatus.LEFT);
 
-        testMap = new PXMap("Blue Winter", bg, context, ruffy, ruffy2);
-        collisionDetection = new CollisionDetection(ruffy, ruffy2);
+        player1 = kohaku;
+        player2 = ruffy;
+
+        testMap = new PXMap("Blue Winter", bg, context, player1, player2);
+        collisionDetection = new CollisionDetection(ruffy, kohaku);
         game = new Game(testMap, new Weather());
 
         Log.i("Info", "Game was created successfully");

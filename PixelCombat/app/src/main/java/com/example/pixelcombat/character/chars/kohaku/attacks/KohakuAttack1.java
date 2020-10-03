@@ -1,12 +1,12 @@
-package com.example.pixelcombat.character.chars.ruffy.attacks;
+package com.example.pixelcombat.character.chars.kohaku.attacks;
 
 import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.character.attack.Attack;
 
-public class RuffyAttack1 extends Attack {
+public class KohakuAttack1 extends Attack {
 
 
-    public RuffyAttack1(GameCharacter character, int id) {
+    public KohakuAttack1(GameCharacter character, int id) {
         super(character, id);
     }
 
@@ -28,19 +28,6 @@ public class RuffyAttack1 extends Attack {
      */
     @Override
     public void checkContent() {
-        // getUser().sound("/audio/punches.wav");
-        // getUser().enemy.damage(getUser().getStrength() * 2);
-        // getUser().sound(getUser().enemy.cry());
-        getEnemy().getHitManager().setHitDelay(true);
-
-        if (!getEnemy().getStatusManager().isKnockbacked()) {
-            // getUser().enemy.timeManager.getDisableTime().setY(Float.valueOf(0.0F));
-            getEnemy().getHitManager().setKnockBackHeight(-7.0F);
-            getEnemy().getHitManager().setKnockBackRange(10.0F);
-            getEnemy().getHitManager().checkOnAir();
-        } else {
-            getEnemy().getHitManager().comboTouch(-4.0F, 1.0F);
-        }
 
     }
 

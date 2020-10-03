@@ -47,20 +47,20 @@ public class HitManager {
         return (canTouch(defender)) && (!defender.getHitManager().canDefend(character)) && (!hitDelay);
     }
 
-    public void comboTouch(GameCharacter defender, float jumpSpeed, float movementSpeed) {
-        if (defender.getPhysics().VY >= 0.0F) {
-            defender.getPhysics().VY = jumpSpeed;
+    public void comboTouch(float jumpSpeed, float movementSpeed) {
+        if (character.getPhysics().VY >= 0.0F) {
+            character.getPhysics().VY = jumpSpeed;
         } else {
-            defender.getPhysics().VY += jumpSpeed;
+            character.getPhysics().VY += jumpSpeed;
         }
-        if (Math.signum(defender.getPhysics().VX) == Math.signum(-defender.getDirection() * movementSpeed)) {
-            defender.getPhysics().VX += -defender.getDirection() * movementSpeed;
+        if (Math.signum(character.getPhysics().VX) == Math.signum(-character.getDirection() * movementSpeed)) {
+            character.getPhysics().VX += -character.getDirection() * movementSpeed;
         } else {
-            defender.getPhysics().VX = (-defender.getDirection() * movementSpeed);
+            character.getPhysics().VX = (-character.getDirection() * movementSpeed);
         }
-        defender.getStatusManager().setActionStatus(ActionStatus.STAND);
-        defender.getStatusManager().setGlobalStatus(GlobalStatus.KNOCKBACK);
-        defender.getViewManager().resetFrameIndexTo(0);
+        character.getStatusManager().setActionStatus(ActionStatus.STAND);
+        character.getStatusManager().setGlobalStatus(GlobalStatus.KNOCKBACK);
+        character.getViewManager().resetFrameIndexTo(0);
     }
 
     public boolean canTouch(GameCharacter defender) {
@@ -139,6 +139,8 @@ public class HitManager {
         }
         character.getStatusManager().setActionStatus(ActionStatus.STAND);
         character.getStatusManager().setGlobalStatus(GlobalStatus.DISABLED);
+        character.getViewManager().resetFrameIndexTo(0);
+        character.getDisabledManager().damageEnergy();
     }
 
 

@@ -98,6 +98,32 @@ public class StatusManager {
     }
 
     public void update() {
+
+        switch (getGlobalStatus()) {
+            case DEAD:
+            case INVINCIBLE:
+            case ACTIVE:
+            case BLINK:
+                break;
+            case KNOCKBACK:
+                character.getKnockBackManager().knockBack();
+                return;
+            case KNOCKBACKRECOVER:
+                character.getKnockBackManager().knockBackRecover();
+                return;
+            case KNOCKBACKFALL:
+                character.getKnockBackManager().knockBackFall();
+                return;
+            case DISABLED:
+                character.getDisabledManager().disabled();
+                return;
+            case DISABLEDRECOVER:
+                character.getDisabledManager().disabledRecover();
+                return;
+
+        }
+
+
         switch (getActionStatus()) {
             case JUMP:
                 character.getJumpManager().updateJump();
@@ -144,16 +170,19 @@ public class StatusManager {
     public boolean notCombatReady() {
         return character.getAttackManager().isAttacking()
                 || isKnockbacked()
+                || isKnockBackFalling()
                 || isKnockBackRecovering()
                 || isInvincible()
                 || isDead()
                 || isJumpRecovering()
                 || isDisabled()
+                || isDisabledRecovering()
                 || isDashing()
                 || isDefending()
                 || isDeCrouching();
 
     }
+
 
 
     public void setActionStatus(ActionStatus actionStatus) {
@@ -190,6 +219,15 @@ public class StatusManager {
     public boolean isBlinking() {
         return globalStatus == GlobalStatus.BLINK;
     }
+
+    public boolean isDisabledRecovering() {
+        return this.globalStatus == GlobalStatus.DISABLEDRECOVER;
+    }
+
+    public boolean isKnockBackFalling() {
+        return this.globalStatus == GlobalStatus.KNOCKBACKFALL;
+    }
+
 
     public boolean isMovingRight() {
         return getMovementStatus() == MovementStatus.RIGHT;

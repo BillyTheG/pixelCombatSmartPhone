@@ -7,7 +7,9 @@ public enum GlobalStatus {
     INVINCIBLE,
     KNOCKBACK,
     KNOCKBACKRECOVER,
+    KNOCKBACKFALL,
     DISABLED,
+    DISABLEDRECOVER,
     DEAD;
 
 }

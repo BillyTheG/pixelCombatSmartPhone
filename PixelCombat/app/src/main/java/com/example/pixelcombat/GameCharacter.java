@@ -2,6 +2,7 @@ package com.example.pixelcombat;
 
 import android.content.Context;
 
+import com.example.pixelcombat.character.controller.CharacterController;
 import com.example.pixelcombat.character.physics.PlayerPhysics;
 import com.example.pixelcombat.manager.BoxManager;
 import com.example.pixelcombat.manager.StatusManager;
@@ -36,6 +37,8 @@ public interface GameCharacter extends GameObject, Observable {
     DisabledManager getDisabledManager();
 
     KnockBackManager getKnockBackManager();
+
+    CharacterController getController();
 
     PlayerPhysics getPhysics();
 
