@@ -10,6 +10,7 @@ public class CharacterController {
 
     public static final float SPEED_BONUS = 15f;
     private final GameCharacter character;
+    private float VERTICAL_LEAP = -45f;
 
     public CharacterController(GameCharacter character){
         this.character = character;
@@ -34,7 +35,7 @@ public class CharacterController {
 
     public boolean jump(boolean hold, boolean b) {
         if (!character.getStatusManager().canNotJump()) {
-            character.getPhysics().VY = (-35f);
+            character.getPhysics().VY = VERTICAL_LEAP;
             character.getStatusManager().setActionStatus(ActionStatus.JUMP);
             // sound(player.getJumpSound());
         }

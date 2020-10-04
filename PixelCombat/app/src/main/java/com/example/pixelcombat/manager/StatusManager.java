@@ -16,7 +16,6 @@ public class StatusManager {
 
     public StatusManager(GameCharacter character) {
         this.character = character;
-
     }
 
 
@@ -100,8 +99,10 @@ public class StatusManager {
     public void update() {
 
         switch (getGlobalStatus()) {
-            case DEAD:
             case INVINCIBLE:
+                invincible();
+                return;
+            case DEAD:
             case ACTIVE:
             case BLINK:
                 break;
@@ -142,6 +143,13 @@ public class StatusManager {
                 break;
             default:
                 break;
+        }
+    }
+
+    private void invincible() {
+        if (!character.getViewManager().isPlaying()) {
+            setGlobalStatus(GlobalStatus.ACTIVE);
+            setActionStatus(ActionStatus.STAND);
         }
     }
 

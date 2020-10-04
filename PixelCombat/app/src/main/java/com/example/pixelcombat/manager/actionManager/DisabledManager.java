@@ -21,6 +21,9 @@ public class DisabledManager {
         currentEnergy--;
         if (currentEnergy <= 0) {
             character.getStatusManager().setGlobalStatus(GlobalStatus.KNOCKBACK);
+            character.getPhysics().VY += character.getHitManager().getKnockBackHeight_df() * 1.5f;
+            character.getPhysics().VX += (-character.getDirection() * character.getHitManager().getKnockBackRange_df()) * 20f;
+            character.getPhysics().update();
             reset();
         }
     }
@@ -34,6 +37,8 @@ public class DisabledManager {
     public void disabledRecover() {
         if (!character.getViewManager().getAnimManager().isPlaying()) {
             character.getStatusManager().setGlobalStatus(GlobalStatus.ACTIVE);
+            character.getHitManager().resetCharStats();
+            reset();
         }
     }
 }

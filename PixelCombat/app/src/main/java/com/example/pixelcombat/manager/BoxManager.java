@@ -27,12 +27,16 @@ public abstract class BoxManager {
     public final int CROUCH = 5;
     public final int DECROUCH = 6;
     public final int ATTACK1 = 7;
-    public final int KNOCKBACK = 8;
-    public final int KNOCKEDOUT = 9;
-    public final int AVATAR = 10;
-    public final int BASICATTACK1 = 11;
-    public final int JUMPATTACK = 12;
-    public final int RETREATING = 13;
+    public final int DISABLE = 8;
+    public final int DISABLERECOVER = 9;
+    public final int KNOCKBACK = 10;
+    public final int KNOCKBACKFALL = 11;
+    public final int KNOCKBACKRECOVER = 12;
+    public final int ONGROUND = 13;
+    public final int AVATAR = 110;
+    public final int BASICATTACK1 = 111;
+    public final int JUMPATTACK = 112;
+    public final int RETREATING = 113;
     public final int DASHING = 14;
     public final int DEFENDING = 15;
     public final int SPECIALATTACK4 = 16;
@@ -49,7 +53,6 @@ public abstract class BoxManager {
     public final int RUNATTACK2 = 27;
     public final int AIRDEFENDING = 29;
     public final int AIR_SPECIALATTACK1 = 30;
-    public final int KNOCKBACKRECOVER = 31;
     public final int MAX_STANDARD_SPRITES = JUMPFALL;
     public int currentAnimation;
     public BoundingRectangle currentColBox;
@@ -102,8 +105,8 @@ public abstract class BoxManager {
     protected abstract String getFileName();
 
     public void update() {
-        if (character.getViewManager().getAnimation() == currentAnimation)
-            return;
+        //   if (character.getViewManager().getAnimation() == currentAnimation)
+        //       return;
 
         switch (character.getViewManager().getAnimation()) {
             case STAND:
@@ -145,14 +148,23 @@ public abstract class BoxManager {
             case AIR_SPECIALATTACK1:
                 updateBoxSeq(AIR_SPECIALATTACK1, "airSpecialAttack1");
                 break;
+            case DISABLE:
+                updateBoxSeq(KNOCKBACK, "disabled");
+                break;
+            case DISABLERECOVER:
+                updateBoxSeq(KNOCKBACK, "disabledRecover");
+                break;
             case KNOCKBACK:
                 updateBoxSeq(KNOCKBACK, "knockBack");
+                break;
+            case KNOCKBACKFALL:
+                updateBoxSeq(KNOCKBACK, "knockBackFall");
                 break;
             case KNOCKBACKRECOVER:
                 updateBoxSeq(KNOCKBACKRECOVER, "knockBackRecover");
                 break;
-            case KNOCKEDOUT:
-                updateBoxSeq(KNOCKEDOUT, "knockedOut");
+            case ONGROUND:
+                updateBoxSeq(ONGROUND, "onGround");
                 break;
             case AVATAR:
                 updateBoxSeq(AVATAR, "avatar");
@@ -227,23 +239,27 @@ public abstract class BoxManager {
         int currentDefenderAnimation = defender.getViewManager().getFrameIndex();
 
         for (int i = 0; i < ownBoxes.get(currentOwnAnimation).size(); i++) {
-            float x1 = character.getPos().x + character.getDirection() * ownBoxes.get(currentOwnAnimation).get(i).getPos().x;
+            float x1 = character.getPos().x + character.getDirection() * (ownBoxes.get(currentOwnAnimation).get(i).getPos().x);
             float y1 = character.getPos().y + ownBoxes.get(currentOwnAnimation).get(i).getPos().y;
-            float width1 = ownBoxes.get(currentOwnAnimation).get(i).getWidth();
-            float height1 = ownBoxes.get(currentOwnAnimation).get(i).getHeight();
+            float delta_x1 = ownBoxes.get(currentOwnAnimation).get(i).getDelta_pos_x();
+            float delta_y1 = ownBoxes.get(currentOwnAnimation).get(i).getDelta_pos_y();
+            float width1 = (delta_x1 * 2 + ownBoxes.get(currentOwnAnimation).get(i).getWidth());
+            float height1 = (delta_y1 * 2 + ownBoxes.get(currentOwnAnimation).get(i).getHeight());
             boolean hurts1 = ownBoxes.get(currentOwnAnimation).get(i).isHurts();
 
-            BoundingRectangle ownBox = new BoundingRectangle(height1, new Vector2d(x1, y1), width1);
+            BoundingRectangle ownBox = new BoundingRectangle(height1, new Vector2d(x1, y1), width1, delta_x1, delta_y1);
             ownBox.setHurts(hurts1);
 
             for (int j = 0; j < enemyBoxes.get(currentDefenderAnimation).size(); j++) {
                 float x2 = defender.getPos().x + defender.getDirection() * enemyBoxes.get(currentDefenderAnimation).get(j).getPos().x;
                 float y2 = defender.getPos().y + enemyBoxes.get(currentDefenderAnimation).get(j).getPos().y;
-                float width2 = enemyBoxes.get(currentDefenderAnimation).get(j).getWidth();
-                float height2 = enemyBoxes.get(currentDefenderAnimation).get(j).getHeight();
                 boolean hurts2 = enemyBoxes.get(currentDefenderAnimation).get(j).isHurts();
+                float delta_x2 = enemyBoxes.get(currentDefenderAnimation).get(j).getDelta_pos_x();
+                float delta_y2 = enemyBoxes.get(currentDefenderAnimation).get(j).getDelta_pos_y();
+                float width2 = (delta_x1 * 2 + enemyBoxes.get(currentDefenderAnimation).get(j).getWidth());
+                float height2 = (delta_y1 * 2 + enemyBoxes.get(currentDefenderAnimation).get(j).getHeight());
 
-                BoundingRectangle enemyBox = new BoundingRectangle(height2, new Vector2d(x2, y2), width2);
+                BoundingRectangle enemyBox = new BoundingRectangle(height2, new Vector2d(x2, y2), width2, delta_x2, delta_y2);
                 enemyBox.setHurts(hurts2);
 
                 if (GeometryUtils.isCollision(ownBox, enemyBox) && ownBox.isHurts() && !enemyBox.isHurts())

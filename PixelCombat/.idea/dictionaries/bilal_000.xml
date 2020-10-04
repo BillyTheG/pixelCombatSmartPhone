@@ -3,8 +3,15 @@
     <words>
       <w>decrouch</w>
       <w>decrouching</w>
+      <w>disabledrecover</w>
       <w>jumpfall</w>
+      <w>jumprecover</w>
+      <w>knockback</w>
+      <w>knockbacked</w>
+      <w>knockbackfall</w>
+      <w>knockbackrecover</w>
       <w>kohaku</w>
+      <w>onground</w>
       <w>ruffy</w>
     </words>
   </dictionary>

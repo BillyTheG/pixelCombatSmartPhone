@@ -10,7 +10,7 @@ public class PlayerPhysics {
     public float VY = 0;
     public float VX = 0;
     public float VX_EPSILON = 0.01f;
-    public float GRAVITATION = 1.0F;
+    public float GRAVITATION = 1.5F;
     public float ACCELERATION = 1.35F;
     public float FRICTION = 0.65F;
 
@@ -57,6 +57,8 @@ public class PlayerPhysics {
     }
 
     public void friction() {
+        if (character.getStatusManager().isKnockbacked())
+            return;
         this.VX *= FRICTION;
         if (Math.abs(VX) <= VX_EPSILON) VX = 0f;
     }

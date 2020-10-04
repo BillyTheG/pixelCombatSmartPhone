@@ -73,16 +73,34 @@ public class BoundingRectangle implements BoundingBoxInterface {
      */
     public BoundingRectangle(float height, Vector2d pos, float width) {
 
+        this.pos = new Vector2d(pos.x * ScreenProperty.SCALE, pos.y * ScreenProperty.SCALE);
         this.width = ScreenProperty.SCALE * width;
         this.height = ScreenProperty.SCALE * height;
 
         this.upperLeft = new Vector2d(pos.x - this.width / 2f, pos.y - this.height / 2f);
         this.lowerRight = new Vector2d(pos.x + this.width / 2f, pos.y + this.height / 2f);
+
+
+    }
+
+    /**
+     * Constructor of BoundingRectangle
+     *
+     * @param height, height of the Rect
+     * @param pos,    the middle point of the whole Rectangle Volume
+     * @param width,  width of the Rect
+     */
+    public BoundingRectangle(float height, Vector2d pos, float width, float delta_pos_x, float delta_pos_y) {
+
+        this.width = width;
+        this.height = height;
+
+        this.upperLeft = new Vector2d(pos.x - this.width / 2f, pos.y - this.height / 2f);
+        this.lowerRight = new Vector2d(pos.x + this.width / 2f, pos.y + this.height / 2f);
         this.pos = pos;
 
-        this.delta_pos_x = Math.abs(pos.x - pos.x * ScreenProperty.SCALE);
-        this.delta_pos_y = Math.abs(pos.y - pos.y * ScreenProperty.SCALE);
-
+        this.delta_pos_x = delta_pos_x;
+        this.delta_pos_y = delta_pos_y;
     }
 
     /**
@@ -101,10 +119,10 @@ public class BoundingRectangle implements BoundingBoxInterface {
 
     public void draw(GameCharacter character, Canvas canvas, float screenX, float screenY, Rect gameRect) {
 
-        float x1 = character.getDirection() * (delta_pos_x + pos.x - width / 2f) + character.getPos().x + ScreenProperty.OFFSET_X;
-        float y1 = (-delta_pos_y + pos.y - height / 2f) + character.getPos().y - ScreenProperty.OFFSET_Y;
-        float x2 = character.getDirection() * (delta_pos_x + pos.x + width / 2f) + character.getPos().x + ScreenProperty.OFFSET_X;
-        float y2 = (-delta_pos_y + pos.y + height / 2f) + character.getPos().y - ScreenProperty.OFFSET_Y;
+        float x1 = character.getDirection() * (pos.x - width / 2f) + character.getPos().x + ScreenProperty.OFFSET_X;
+        float y1 = (pos.y - height / 2f) + character.getPos().y - ScreenProperty.OFFSET_Y;
+        float x2 = character.getDirection() * (pos.x + width / 2f) + character.getPos().x + ScreenProperty.OFFSET_X;
+        float y2 = (pos.y + height / 2f) + character.getPos().y - ScreenProperty.OFFSET_Y;
 
         Paint paint = new Paint();
         if (hurts)

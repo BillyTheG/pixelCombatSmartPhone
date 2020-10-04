@@ -23,8 +23,8 @@ public class HitManager {
     private boolean freezeLoop;
     private float knockBackRange = 1.0F;
     private float knockBackHeight = -15.0F;
-    private float knockBackRange_df = 1.0F;
-    private float knockBackHeight_df = -15.0F;
+    private final float knockBackRange_df = 1.0F;
+    private final float knockBackHeight_df = -15.0F;
 
     public HitManager(GameCharacter character) {
         this.character = character;
@@ -35,6 +35,8 @@ public class HitManager {
 
         this.hitDelay = false;
         this.freezeLoop = false;
+        this.knockBackHeight = knockBackHeight_df;
+        this.knockBackRange = knockBackRange_df;
 
         for (String attack : attacks.keySet()) {
             if (this.attacks.get(attack) == null)
@@ -128,10 +130,12 @@ public class HitManager {
     }
 
     public void checkOnAir() {
+
+        character.getPhysics().VY = this.knockBackHeight;
+        character.getPhysics().VX = (-character.getDirection() * this.knockBackRange);
+
         if ((character.getStatusManager().isOnAir())) {
             // sound(cry());
-            character.getPhysics().VY = this.knockBackHeight;
-            character.getPhysics().VX = (-character.getDirection() * this.knockBackRange);
             character.getPhysics().update();
             character.getStatusManager().setActionStatus(ActionStatus.STAND);
             character.getStatusManager().setGlobalStatus(GlobalStatus.KNOCKBACK);

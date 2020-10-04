@@ -31,7 +31,7 @@ public class RuffyAttack1 extends Attack {
         // getUser().sound("/audio/punches.wav");
         // getUser().enemy.damage(getUser().getStrength() * 2);
         // getUser().sound(getUser().enemy.cry());
-        getEnemy().getHitManager().setHitDelay(true);
+       getCharacter().getHitManager().setHitDelay(true);
 
         if (!getEnemy().getStatusManager().isKnockbacked()) {
             // getUser().enemy.timeManager.getDisableTime().setY(Float.valueOf(0.0F));

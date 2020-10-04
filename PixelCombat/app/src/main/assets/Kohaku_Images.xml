@@ -84,5 +84,70 @@
             <img duration="50" key="3" x="0.1800003" y="-2.12">kohaku_attack1_3.png</img>
             <img duration="50" key="4" x="0.12000084" y="-2.0">kohaku_attack1_4.png</img>
         </attack1>
+        <disabled airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="50" key="0" x="0.1800003" y="-2.3000002">kohaku_disabled_0.png</img>
+            <img duration="50" key="1" x="-0.059999466" y="-2.0">kohaku_disabled_1.png</img>
+            <img duration="50" key="2" x="-0.29999924" y="-1.8999996">kohaku_disabled_2.png</img>
+            <img duration="50" key="3" x="0.07999992" y="-1.8599997">kohaku_disabled_3.png</img>
+        </disabled>
+        <disabledRecover airBool="false" airIndex="0" loopIndex="9" loops="false">
+            <img duration="50" key="0" x="-0.2800007" y="-2.2799997">kohaku_disabled_recover_0.png
+            </img>
+            <img duration="50" key="1" x="-0.20000076" y="-2.2399998">
+                kohaku_disabled_recover_1.png
+            </img>
+            <img duration="50" key="2" x="-0.39999962" y="-2.08">kohaku_disabled_recover_2.png</img>
+            <img duration="50" key="3" x="-0.10000038" y="-2.3599997">
+                kohaku_disabled_recover_3.png
+            </img>
+        </disabledRecover>
+        <knockBack airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="50" key="0" x="0.0" y="-1.9400005">kohaku_knockback_0.png</img>
+            <img duration="50" key="1" x="-0.5400009" y="-2.3999996">kohaku_knockback_1.png</img>
+            <img duration="50" key="2" x="-0.39999962" y="-2.38">kohaku_knockback_2.png</img>
+            <img duration="50" key="3" x="0.10000038" y="-1.7799997">kohaku_knockback_3.png</img>
+        </knockBack>
+        <knockBackFall airBool="false" airIndex="0" loopIndex="0" loops="true">
+            <img duration="50" key="0" x="0.1800003" y="-1.8800001">kohaku_knockback_fall_0.png
+            </img>
+            <img duration="50" key="1" x="0.26000023" y="-2.1800003">kohaku_knockback_fall_1.png
+            </img>
+        </knockBackFall>
+        <knockBackRecover airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="50" key="0" x="0.020000458" y="-1.54">kohaku_knockback_recover_0.png
+            </img>
+            <img duration="50" key="1" x="-0.42000008" y="-2.1999998">
+                kohaku_knockback_recover_1.png
+            </img>
+            <img duration="50" key="2" x="0.23999977" y="-2.92">kohaku_knockback_recover_2.png</img>
+            <img duration="50" key="3" x="0.45999908" y="-3.2200003">
+                kohaku_knockback_recover_3.png
+            </img>
+            <img duration="50" key="4" x="-0.07999992" y="-3.2200003">
+                kohaku_knockback_recover_4.png
+            </img>
+            <img duration="50" key="5" x="0.020000458" y="-3.38">kohaku_knockback_recover_5.png
+            </img>
+            <img duration="50" key="6" x="-0.040000916" y="-3.42">kohaku_knockback_recover_6.png
+            </img>
+            <img duration="50" key="7" x="-0.020000458" y="-2.08">kohaku_knockback_recover_7.png
+            </img>
+            <img duration="50" key="8" x="0.5400009" y="-2.2200003">kohaku_knockback_recover_8.png
+            </img>
+        </knockBackRecover>
+        <onGround airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="50" key="0" x="0.39999962" y="-1.5599995">kohaku_invincible_0.png</img>
+            <img duration="50" key="1" x="0.3199997" y="-1.7200003">kohaku_invincible_1.png</img>
+            <img duration="350" key="2" x="0.1800003" y="-1.7200003">kohaku_invincible_2.png</img>
+            <img duration="50" key="3" x="0.020000458" y="-1.6999998">kohaku_invincible_3.png</img>
+            <img duration="50" key="4" x="0.37999916" y="-1.2799997">kohaku_invincible_4.png</img>
+            <img duration="50" key="5" x="1.1399994" y="-1.54">kohaku_invincible_5.png</img>
+            <img duration="50" key="6" x="0.52000046" y="-1.3800001">kohaku_invincible_6.png</img>
+            <img duration="50" key="7" x="0.6000004" y="-1.8800001">kohaku_invincible_7.png</img>
+            <img duration="50" key="8" x="1.0200005" y="-2.0">kohaku_invincible_8.png</img>
+            <img duration="50" key="9" x="1.2800007" y="-2.0200005">kohaku_invincible_9.png</img>
+            <img duration="50" key="10" x="0.12000084" y="-2.46">kohaku_invincible_10.png</img>
+            <img duration="50" key="11" x="0.37999916" y="-2.3999996">kohaku_invincible_11.png</img>
+        </onGround>
     </sprites>
 </character>

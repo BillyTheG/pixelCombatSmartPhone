@@ -30,6 +30,13 @@ public abstract class ViewManager {
     public final int CROUCH = 5;
     public final int DECROUCH = 6;
     public final int ATTACK1 = 7;
+    public final int DISABLED = 8;
+    public final int DISABLEDRECOVER = 9;
+    public final int KNOCKBACK = 10;
+    public final int KNOCKBACKFALL = 11;
+    public final int KNOCKBACKRECOVER = 12;
+    public final int ONGROUND = 13;
+    public final int DEAD = 99;
     @Getter
     protected AnimationManager animManager;
     protected final GameCharacter character;
@@ -61,6 +68,13 @@ public abstract class ViewManager {
         animations.add(new Animation(images.get("crouch"), times.get(CROUCH), loop.get(CROUCH), loopIndices.get(CROUCH)));
         animations.add(new Animation(images.get("decrouch"), times.get(DECROUCH), loop.get(DECROUCH), loopIndices.get(DECROUCH)));
         animations.add(new Animation(images.get("attack1"), times.get(ATTACK1), loop.get(ATTACK1), loopIndices.get(ATTACK1)));
+        animations.add(new Animation(images.get("disabled"), times.get(DISABLED), loop.get(DISABLED), loopIndices.get(DISABLED)));
+        animations.add(new Animation(images.get("disabledRecover"), times.get(DISABLEDRECOVER), loop.get(DISABLEDRECOVER), loopIndices.get(DISABLEDRECOVER)));
+        animations.add(new Animation(images.get("knockBack"), times.get(KNOCKBACK), loop.get(KNOCKBACK), loopIndices.get(KNOCKBACK)));
+        animations.add(new Animation(images.get("knockBackFall"), times.get(KNOCKBACKFALL), loop.get(KNOCKBACKFALL), loopIndices.get(KNOCKBACKFALL)));
+        animations.add(new Animation(images.get("knockBackRecover"), times.get(KNOCKBACKRECOVER), loop.get(KNOCKBACKRECOVER), loopIndices.get(KNOCKBACKRECOVER)));
+        animations.add(new Animation(images.get("onGround"), times.get(ONGROUND), loop.get(ONGROUND), loopIndices.get(ONGROUND)));
+
 
         Animation[] array = new Animation[animations.size()];
         animations.toArray(array); // fill the array
@@ -133,6 +147,27 @@ public abstract class ViewManager {
 
             }
 
+        } else {
+
+            switch (character.getStatusManager().getGlobalStatus()) {
+                case INVINCIBLE:
+                    return ONGROUND;
+                case KNOCKBACK:
+                    return KNOCKBACK;
+                case KNOCKBACKRECOVER:
+                    return KNOCKBACKRECOVER;
+                case KNOCKBACKFALL:
+                    return KNOCKBACKFALL;
+                case DISABLED:
+                    return DISABLED;
+                case DISABLEDRECOVER:
+                    return DISABLEDRECOVER;
+                case DEAD:
+                    return DEAD;
+                default:
+                    break;
+
+            }
         }
         return STAND;
     }
