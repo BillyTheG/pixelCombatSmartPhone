@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <character>
-<!-- 		1000 ~ 0.54s -->
-	<type>Ruffy</type>
-	<sprites>
-		<stand airBool="false" airIndex="0" loopIndex="0" loops="true">
+    <!-- 		1000 ~ 0.54s -->
+    <type>Ruffy</type>
+    <sprites>
+        <stand airBool="false" airIndex="0" loopIndex="0" loops="true">
             <img duration="80" key="0" x="0.12000084" y="-2.5599995">ruffy_stand_1.png</img>
             <img duration="80" key="1" x="0.07999992" y="-2.5599995">ruffy_stand_2.png</img>
             <img duration="80" key="2" x="0.10000038" y="-2.5599995">ruffy_stand_3.png</img>
@@ -67,10 +67,8 @@
             <img duration="50" key="0" x="-0.29999924" y="-3.0">ruffy_knockback_fall_0.png</img>
             <img duration="50" key="1" x="-0.34000015" y="-3.06">ruffy_knockback_fall_1.png</img>
             <img duration="50" key="2" x="-0.37999916" y="-3.1">ruffy_knockback_fall_2.png</img>
-            <img duration="50" key="3" x="-0.39999962" y="-3.1800003">ruffy_knockback_fall_3.png
-            </img>
-            <img duration="50" key="4" x="-0.37999916" y="-3.1999998">ruffy_knockback_fall_4.png
-            </img>
+            <img duration="50" key="3" x="-0.39999962" y="-3.1800003">ruffy_knockback_fall_3.png</img>
+            <img duration="50" key="4" x="-0.37999916" y="-3.1999998">ruffy_knockback_fall_4.png</img>
         </knockBackFall>
         <knockBackRecover airBool="false" airIndex="1" loopIndex="0" loops="false">
             <img duration="50" key="0" x="0.20000076" y="-2.3199997">ruffy_jump_3.png</img>

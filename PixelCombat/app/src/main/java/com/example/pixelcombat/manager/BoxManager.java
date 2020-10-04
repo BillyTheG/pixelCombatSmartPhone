@@ -71,6 +71,9 @@ public abstract class BoxManager {
     private boolean collidingBY = false;
     private Runnable boxLoaderRunnable;
     private Thread boxLoaderThread;
+    @Getter
+    @Setter
+    private BoundingRectangle intersectionBox;
 
     public BoxManager(GameCharacter character) {
         this.character = character;
@@ -262,13 +265,47 @@ public abstract class BoxManager {
                 BoundingRectangle enemyBox = new BoundingRectangle(height2, new Vector2d(x2, y2), width2, delta_x2, delta_y2);
                 enemyBox.setHurts(hurts2);
 
-                if (GeometryUtils.isCollision(ownBox, enemyBox) && ownBox.isHurts() && !enemyBox.isHurts())
+                if (GeometryUtils.isCollision(ownBox, enemyBox) && ownBox.isHurts() && !enemyBox.isHurts()) {
+                    intersectionBox = intersection(ownBox, enemyBox);
+                    defender.getBoxManager().setIntersectionBox(intersectionBox);
                     return true;
+                }
             }
 
         }
 
         return false;
+    }
+
+    public BoundingRectangle intersection(BoundingRectangle ownBox, BoundingRectangle box1) {
+        float x1 = ownBox.getUpperLeft().x;
+        float y1 = ownBox.getUpperLeft().y;
+        float x2 = box1.getUpperLeft().x;
+        float y2 = box1.getUpperLeft().y;
+
+        float x3 = (x1 + ownBox.getWidth());
+        float x4 = (x2 + box1.getWidth());
+        float y3 = (y1 + ownBox.getHeight());
+        float y4 = (y2 + box1.getHeight());
+
+        float xmin = Math.max(x1, x2);
+        float xmax1 = x3;
+        float xmax2 = x4;
+        float xmax = Math.min(xmax1, xmax2);
+        if (xmax > xmin) {
+            float ymin = Math.max(y1, y2);
+            float ymax1 = y3;
+            float ymax2 = y4;
+            float ymax = Math.min(ymax1, ymax2);
+            if (ymax > ymin) {
+                float out_x = xmin + (xmax - xmin) / 2f;
+                float out_y = ymin + (ymax - ymin) / 2f;
+                float out_width = xmax - xmin;
+                float out_height = ymax - ymin;
+                return new BoundingRectangle(out_height, new Vector2d(out_x, out_y), out_width, 0, 0);
+            }
+        }
+        return null;
     }
 
 }

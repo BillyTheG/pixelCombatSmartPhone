@@ -10,7 +10,9 @@ import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.character.controller.CharacterController;
 import com.example.pixelcombat.character.physics.PlayerPhysics;
 import com.example.pixelcombat.core.config.ViewConfig;
+import com.example.pixelcombat.core.message.GameMessage;
 import com.example.pixelcombat.enums.DrawLevel;
+import com.example.pixelcombat.exception.PixelCombatException;
 import com.example.pixelcombat.manager.StatusManager;
 import com.example.pixelcombat.manager.actionManager.CrouchManager;
 import com.example.pixelcombat.manager.actionManager.DisabledManager;
@@ -65,7 +67,7 @@ public class Kohaku implements GameCharacter {
         jumpManager = new JumpManager(this);
         crouchManager = new CrouchManager(this);
         hitManager = new HitManager(this);
-        disabledManager = new DisabledManager(this);
+        disabledManager = new KohakuDisabledManager(this);
         knockBackManager = new KnockBackManager(this);
         observer = new ArrayList<>();
     }
@@ -115,7 +117,9 @@ public class Kohaku implements GameCharacter {
     }
 
     @Override
-    public void notifyObservers() {
-        //TODO
+    public void notifyObservers(GameMessage message) throws PixelCombatException {
+        for (Observer obs : observer) {
+            obs.processMessage(message);
+        }
     }
 }

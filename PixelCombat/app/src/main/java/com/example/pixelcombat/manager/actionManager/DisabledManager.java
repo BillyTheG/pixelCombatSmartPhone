@@ -3,11 +3,12 @@ package com.example.pixelcombat.manager.actionManager;
 import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.character.status.GlobalStatus;
 
-public class DisabledManager {
+public abstract class DisabledManager {
 
-    private final int MaxEnergy = 3;
-    private int currentEnergy = 3;
-    private final GameCharacter character;
+    protected final GameCharacter character;
+    private final int MaxEnergy = 2;
+    private int currentEnergy = 2;
+    private boolean switcher = true;
 
     public DisabledManager(GameCharacter character) {
         this.character = character;
@@ -15,6 +16,7 @@ public class DisabledManager {
 
     public void reset() {
         currentEnergy = MaxEnergy;
+        switcher = true;
     }
 
     public void damageEnergy() {
@@ -29,10 +31,18 @@ public class DisabledManager {
     }
 
     public void disabled() {
+
+        if (switcher) {
+            cry();
+            switcher = false;
+        }
+
         if (!character.getViewManager().getAnimManager().isPlaying()) {
             character.getStatusManager().setGlobalStatus(GlobalStatus.DISABLEDRECOVER);
         }
     }
+
+    public abstract void cry();
 
     public void disabledRecover() {
         if (!character.getViewManager().getAnimManager().isPlaying()) {

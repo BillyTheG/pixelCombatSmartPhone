@@ -19,10 +19,10 @@ import lombok.Setter;
 @Setter
 public abstract class Attack {
 
-    private GameCharacter character;
+    protected GameCharacter character;
     private int id;
     private float requiredEnergy;
-    private GameCharacter enemy;
+    protected GameCharacter enemy;
     private boolean attackOnAir = false;
     private boolean switcher = true;
 

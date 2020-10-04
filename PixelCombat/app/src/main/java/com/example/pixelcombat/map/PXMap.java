@@ -10,7 +10,9 @@ import android.util.Log;
 
 import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.GameObject;
+import com.example.pixelcombat.core.Game;
 import com.example.pixelcombat.core.config.ViewConfig;
+import com.example.pixelcombat.core.sound.SoundManager;
 import com.example.pixelcombat.enums.DrawLevel;
 import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.manager.ScreenScrollerManager;
@@ -183,4 +185,16 @@ public class PXMap implements GameObject {
                 ", height=" + height +
                 '}';
     }
+
+    public void registerGame(Game game) {
+        character1.addObserver(game);
+        character2.addObserver(game);
+    }
+
+    public void registerSoundManager(SoundManager soundManager) {
+        character1.addObserver(soundManager);
+        character2.addObserver(soundManager);
+    }
+
+
 }

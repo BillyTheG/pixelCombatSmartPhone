@@ -4,6 +4,7 @@ public enum MessageType {
 
     PROJECTILE_CREATION,
     DUST_CREATION,
-    SPARK_CREATION;
+    SPARK_CREATION,
+    SOUND,
 
 }

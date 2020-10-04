@@ -48,24 +48,48 @@ public class CharacterParser {
         try {
             parserFactory =  XmlPullParserFactory.newInstance();
             parser = parserFactory.newPullParser();
-            InputStream is  = context.getAssets().open(fileName);
-            parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES,false);
-            parser.setInput(is,null);
-        } catch (XmlPullParserException  | IOException e) {
-            throw new XmlParseErrorException(MessageFormat.format(ExceptionGroup.PARSER.getDescription(),fileName)+e.getMessage());
+            InputStream is = context.getAssets().open(fileName);
+            parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+            parser.setInput(is, null);
+        } catch (XmlPullParserException | IOException e) {
+            throw new XmlParseErrorException(MessageFormat.format(ExceptionGroup.PARSER.getDescription(), fileName) + e.getMessage());
         }
 
     }
 
+    public CharacterParser(Context context) throws Exception {
+        this.context = context;
+        XmlPullParserFactory parserFactory;
+        try {
+            parserFactory = XmlPullParserFactory.newInstance();
+            parser = parserFactory.newPullParser();
+        } catch (XmlPullParserException e) {
+            throw e;
+        }
+
+    }
+
+    public void parse(String fileName) throws XmlParseErrorException {
+        try {
+            InputStream is = context.getAssets().open(fileName);
+            parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+            parser.setInput(is, null);
+            parseXMLData();
+        } catch (XmlPullParserException | IOException e) {
+            throw new XmlParseErrorException(MessageFormat.format(ExceptionGroup.PARSER.getDescription(), fileName) + e.getMessage());
+        }
+    }
+
+
     public void parseXMLData() throws XmlPullParserException, IOException, XmlParseErrorException {
         int eventType = parser.getEventType();
-        while(eventType != XmlPullParser.END_DOCUMENT){
+        while (eventType != XmlPullParser.END_DOCUMENT) {
             String eltName;
 
-            switch(eventType){
+            switch (eventType) {
                 case XmlPullParser.START_TAG:
                     eltName = parser.getName();
-                    if("sprites".equals(eltName) && !readingSprites){
+                    if ("sprites".equals(eltName) && !readingSprites) {
                         readingSprites = true;
                     }else if (readingSprites) {
                         if (!readingAnimation) {
