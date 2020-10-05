@@ -170,5 +170,9 @@
             <box_list picture="3" />
             <box_list picture="4" />
         </onGround>
+        <specialAttack1>
+            <box_list picture="0" />
+        </specialAttack1>
+        b
     </boxes>
 </character>

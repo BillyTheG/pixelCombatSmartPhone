@@ -33,13 +33,15 @@ public abstract class BoxManager {
     public final int KNOCKBACKFALL = 11;
     public final int KNOCKBACKRECOVER = 12;
     public final int ONGROUND = 13;
+    public final int SPECIALATTACK1 = 14;
+
+
     public final int AVATAR = 110;
     public final int BASICATTACK1 = 111;
     public final int JUMPATTACK = 112;
     public final int RETREATING = 113;
-    public final int DASHING = 14;
+    public final int DASHING = 114;
     public final int DEFENDING = 15;
-    public final int SPECIALATTACK4 = 16;
     public final int SPECIALATTACK5 = 17;
     public final int BASICATTACK21 = 18;
     public final int BASICATTACK22 = 19;
@@ -136,8 +138,8 @@ public abstract class BoxManager {
             case ATTACK1:
                 updateBoxSeq(ATTACK1, "attack1");
                 break;
-            case SPECIALATTACK4:
-                updateBoxSeq(SPECIALATTACK4, "specialAttack4");
+            case SPECIALATTACK1:
+                updateBoxSeq(SPECIALATTACK1, "specialAttack1");
                 break;
             case SPECIALATTACK5:
                 updateBoxSeq(SPECIALATTACK5, "specialAttack5");

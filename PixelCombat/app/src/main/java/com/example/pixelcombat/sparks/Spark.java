@@ -5,6 +5,7 @@ import android.graphics.Rect;
 
 import com.example.pixelcombat.GameObject;
 import com.example.pixelcombat.animation.Animation;
+import com.example.pixelcombat.core.IsFinishable;
 import com.example.pixelcombat.math.Vector2d;
 import com.example.pixelcombat.utils.LocatedBitmap;
 
@@ -13,15 +14,24 @@ import java.util.ArrayList;
 import lombok.Getter;
 
 @Getter
-public class Spark implements GameObject {
+public class Spark implements GameObject, IsFinishable {
 
     private Animation animation;
     private Vector2d pos;
+    private boolean isRight = true;
 
     public Spark(ArrayList<LocatedBitmap> images, ArrayList<Float> times, Vector2d pos) {
         this.animation = new Animation(images, times, false, 0);
         this.pos = pos;
         this.animation.play();
+
+    }
+
+    public Spark(ArrayList<LocatedBitmap> images, ArrayList<Float> times, Vector2d pos, boolean isRight) {
+        this.animation = new Animation(images, times, false, 0);
+        this.pos = pos;
+        this.animation.play();
+        this.isRight = isRight;
 
     }
 
@@ -42,12 +52,15 @@ public class Spark implements GameObject {
 
     @Override
     public boolean isRight() {
-        return true;
+        return isRight;
     }
 
     @Override
     public float getDirection() {
-        return 1f;
+        if (isRight())
+            return 1f;
+        else
+            return -1f;
     }
 
     @Override

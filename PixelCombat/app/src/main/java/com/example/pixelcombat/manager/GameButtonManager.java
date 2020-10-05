@@ -169,7 +169,7 @@ public class GameButtonManager implements View.OnClickListener, View.OnTouchList
                 gamePanel.getPlayer1().getController().attack(AttackStatus.ATTACK1);
                 break;
             case 5:
-                gamePanel.getPlayer2().getController().attack(AttackStatus.ATTACK1);
+                gamePanel.getPlayer1().getController().specialAttack(AttackStatus.SPECIALATTACK1);
                 break;
             case 8:
                 gamePanel.getPlayer2().getController().move(false, false);

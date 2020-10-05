@@ -32,13 +32,13 @@ public class KohakuAttack1 extends Attack {
                     if (isSwitcher()) {
 
                         int rand = new Random().nextInt(2) + 1;
-                        character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_attack" + rand, null));
+                        character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_attack" + rand, null, true));
                         setSwitcher(false);
                     }
                     break;
                 case 1:
                     if (!isSwitcher()) {
-                        character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_attack1_sonic", null));
+                        character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_attack1_sonic", null, true));
                         setSwitcher(false);
                     }
                     break;
@@ -65,10 +65,10 @@ public class KohakuAttack1 extends Attack {
         character.getHitManager().setHitDelay(true);
         try {
             BoundingRectangle box = character.getBoxManager().getIntersectionBox();
-            character.notifyObservers(new GameMessage(MessageType.SPARK_CREATION, SparkConfig.ATTACK_SPARK + ";true;test;",
-                    new Vector2d(box.getPos().x, box.getPos().y)));
+            character.notifyObservers(new GameMessage(MessageType.SPARK_CREATION, SparkConfig.ATTACK_SPARK + ";test;",
+                    new Vector2d(box.getPos().x, box.getPos().y), true));
 
-            character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_attack1_hit", null));
+            character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_attack1_hit", null, true));
 
         } catch (Exception e) {
             Log.e("Error", "The spark could not be created: " + e.getMessage());
