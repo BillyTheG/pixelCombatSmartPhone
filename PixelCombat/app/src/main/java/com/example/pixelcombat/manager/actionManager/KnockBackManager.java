@@ -44,6 +44,8 @@ public class KnockBackManager {
     public void knockBackFall() {
         if (character.getPos().y >= (ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE)) {
             character.getStatusManager().setGlobalStatus(GlobalStatus.INVINCIBLE);
+            character.getDisabledManager().reset();
+            character.getDashManager().reset();
             character.getHitManager().resetCharStats();
         }
     }

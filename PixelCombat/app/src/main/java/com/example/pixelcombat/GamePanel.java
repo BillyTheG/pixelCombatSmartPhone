@@ -16,6 +16,7 @@ import com.example.pixelcombat.character.chars.kohaku.Kohaku;
 import com.example.pixelcombat.character.chars.ruffy.Ruffy;
 import com.example.pixelcombat.character.status.MovementStatus;
 import com.example.pixelcombat.core.Game;
+import com.example.pixelcombat.core.sound.SoundManager;
 import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.environment.interactor.CollisionDetection;
 import com.example.pixelcombat.map.PXMap;
@@ -37,6 +38,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     private CollisionDetection collisionDetection;
     private PXMap testMap;
     private Game game;
+    private SoundManager soundManager;
     @Getter
     private GameCharacter player1;
     @Getter
@@ -75,7 +77,9 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
         testMap = new PXMap("Blue Winter", bg, context, player1, player2);
         collisionDetection = new CollisionDetection(ruffy, kohaku);
-        game = new Game(testMap, new Weather());
+        game = new Game(context, testMap, new Weather());
+        soundManager = new SoundManager(context);
+        testMap.registerSoundManager(soundManager);
 
         Log.i("Info", "Game was created successfully");
     }
@@ -99,6 +103,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
             try{
                 thread.setRunning(false);
                 thread.join();
+                soundManager.getSoundPool().release();
             }
             catch(Exception e){
                 e.printStackTrace();

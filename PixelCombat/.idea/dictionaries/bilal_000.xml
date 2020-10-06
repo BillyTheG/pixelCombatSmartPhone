@@ -4,6 +4,8 @@
       <w>decrouch</w>
       <w>decrouching</w>
       <w>disabledrecover</w>
+      <w>disablerecover</w>
+      <w>finishable</w>
       <w>jumpfall</w>
       <w>jumprecover</w>
       <w>knockback</w>
@@ -13,6 +15,7 @@
       <w>kohaku</w>
       <w>onground</w>
       <w>ruffy</w>
+      <w>specialattack</w>
     </words>
   </dictionary>
 </component>

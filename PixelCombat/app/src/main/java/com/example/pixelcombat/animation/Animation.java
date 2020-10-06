@@ -22,7 +22,8 @@ public class Animation {
 
     @Getter
     private int frameIndex;
-    private boolean isPlaying = false;
+    private boolean isPlaying;
+    private long lastFrame;
 
     public boolean isPlaying() {
         return isPlaying;
@@ -38,7 +39,7 @@ public class Animation {
     }
 
 
-    private long lastFrame;
+
 
 
     public Animation(ArrayList<LocatedBitmap> images, ArrayList<Float> times, boolean loops, int loopPoint) {
@@ -187,5 +188,12 @@ public class Animation {
 
     }
 
+    public synchronized void setLoops(boolean loops) {
+        this.loops = loops;
+    }
+
+    public synchronized boolean animationSequenceAlmostFinished(long restTime) {
+        return System.currentTimeMillis() - lastFrame > frames.get(frameIndex).getEndTime() - restTime;
+    }
 
 }

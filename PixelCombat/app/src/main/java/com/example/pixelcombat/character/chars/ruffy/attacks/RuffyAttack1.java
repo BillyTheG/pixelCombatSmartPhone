@@ -1,7 +1,16 @@
 package com.example.pixelcombat.character.chars.ruffy.attacks;
 
+import android.util.Log;
+
 import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.character.attack.Attack;
+import com.example.pixelcombat.core.config.SparkConfig;
+import com.example.pixelcombat.core.message.GameMessage;
+import com.example.pixelcombat.enums.MessageType;
+import com.example.pixelcombat.math.BoundingRectangle;
+import com.example.pixelcombat.math.Vector2d;
+
+import java.util.Random;
 
 public class RuffyAttack1 extends Attack {
 
@@ -17,6 +26,27 @@ public class RuffyAttack1 extends Attack {
      */
     @Override
     public void process() {
+        try {
+            switch (character.getViewManager().getFrameIndex()) {
+                case 0:
+                    if (isSwitcher()) {
+                        int rand = new Random().nextInt(2) + 1;
+                        character.notifyObservers(new GameMessage(MessageType.SOUND, "ruffy_attack" + rand, null, true));
+                        setSwitcher(false);
+                    }
+                    break;
+                case 2:
+                    if (!isSwitcher()) {
+                        character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_attack1_sonic", null, true));
+                        setSwitcher(false);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        } catch (Exception e) {
+            Log.e("Error", "In processing the attack, following excpetion was thrown: " + e.getMessage());
+        }
 
     }
 
@@ -31,7 +61,18 @@ public class RuffyAttack1 extends Attack {
         // getUser().sound("/audio/punches.wav");
         // getUser().enemy.damage(getUser().getStrength() * 2);
         // getUser().sound(getUser().enemy.cry());
-       getCharacter().getHitManager().setHitDelay(true);
+        getCharacter().getHitManager().setHitDelay(true);
+
+        try {
+            BoundingRectangle box = character.getBoxManager().getIntersectionBox();
+            character.notifyObservers(new GameMessage(MessageType.SPARK_CREATION, SparkConfig.ATTACK_SPARK + ";test;",
+                    new Vector2d(box.getPos().x, box.getPos().y), true));
+
+            character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_attack1_hit", null, true));
+
+        } catch (Exception e) {
+            Log.e("Error", "The spark could not be created: " + e.getMessage());
+        }
 
         if (!getEnemy().getStatusManager().isKnockbacked()) {
             // getUser().enemy.timeManager.getDisableTime().setY(Float.valueOf(0.0F));

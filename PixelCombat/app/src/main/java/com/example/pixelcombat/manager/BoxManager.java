@@ -33,26 +33,10 @@ public abstract class BoxManager {
     public final int KNOCKBACKFALL = 11;
     public final int KNOCKBACKRECOVER = 12;
     public final int ONGROUND = 13;
-    public final int AVATAR = 110;
-    public final int BASICATTACK1 = 111;
-    public final int JUMPATTACK = 112;
-    public final int RETREATING = 113;
-    public final int DASHING = 14;
-    public final int DEFENDING = 15;
-    public final int SPECIALATTACK4 = 16;
-    public final int SPECIALATTACK5 = 17;
-    public final int BASICATTACK21 = 18;
-    public final int BASICATTACK22 = 19;
-    public final int BASICATTACK23 = 20;
-    public final int SPECIALATTACK6 = 21;
-    public final int SPECIALATTACK7 = 22;
-    public final int INTRO = 23;
-    public final int WIN = 24;
-    public final int DEAD = 25;
-    public final int RUNATTACK1 = 26;
-    public final int RUNATTACK2 = 27;
-    public final int AIRDEFENDING = 29;
-    public final int AIR_SPECIALATTACK1 = 30;
+    public final int SPECIALATTACK1 = 14;
+    public final int DASH = 15;
+
+
     public final int MAX_STANDARD_SPRITES = JUMPFALL;
     public int currentAnimation;
     public BoundingRectangle currentColBox;
@@ -71,6 +55,9 @@ public abstract class BoxManager {
     private boolean collidingBY = false;
     private Runnable boxLoaderRunnable;
     private Thread boxLoaderThread;
+    @Getter
+    @Setter
+    private BoundingRectangle intersectionBox;
 
     public BoxManager(GameCharacter character) {
         this.character = character;
@@ -133,20 +120,8 @@ public abstract class BoxManager {
             case ATTACK1:
                 updateBoxSeq(ATTACK1, "attack1");
                 break;
-            case SPECIALATTACK4:
-                updateBoxSeq(SPECIALATTACK4, "specialAttack4");
-                break;
-            case SPECIALATTACK5:
-                updateBoxSeq(SPECIALATTACK5, "specialAttack5");
-                break;
-            case SPECIALATTACK6:
-                updateBoxSeq(SPECIALATTACK6, "specialAttack6");
-                break;
-            case SPECIALATTACK7:
-                updateBoxSeq(SPECIALATTACK7, "specialAttack7");
-                break;
-            case AIR_SPECIALATTACK1:
-                updateBoxSeq(AIR_SPECIALATTACK1, "airSpecialAttack1");
+            case SPECIALATTACK1:
+                updateBoxSeq(SPECIALATTACK1, "specialAttack1");
                 break;
             case DISABLE:
                 updateBoxSeq(KNOCKBACK, "disabled");
@@ -166,47 +141,8 @@ public abstract class BoxManager {
             case ONGROUND:
                 updateBoxSeq(ONGROUND, "onGround");
                 break;
-            case AVATAR:
-                updateBoxSeq(AVATAR, "avatar");
-                break;
-            case BASICATTACK1:
-                updateBoxSeq(BASICATTACK1, "basicAttack1");
-                break;
-            case BASICATTACK21:
-                updateBoxSeq(BASICATTACK21, "basicAttack21");
-                break;
-            case BASICATTACK22:
-                updateBoxSeq(BASICATTACK22, "basicAttack22");
-                break;
-            case BASICATTACK23:
-                updateBoxSeq(BASICATTACK23, "basicAttack23");
-                break;
-            case JUMPATTACK:
-                updateBoxSeq(JUMPATTACK, "jumpAttack");
-                break;
-            case DASHING:
-                updateBoxSeq(DASHING, "dashing");
-                break;
-            case DEFENDING:
-                updateBoxSeq(DEFENDING, "defend");
-                break;
-            case AIRDEFENDING:
-                updateBoxSeq(AIRDEFENDING, "airDefend");
-                break;
-            case INTRO:
-                updateBoxSeq(INTRO, "intro");
-                break;
-            case WIN:
-                updateBoxSeq(WIN, "win");
-                break;
-            case DEAD:
-                updateBoxSeq(DEAD, "dead");
-                break;
-            case RUNATTACK1:
-                updateBoxSeq(RUNATTACK1, "runAttack1");
-                break;
-            case RUNATTACK2:
-                updateBoxSeq(RUNATTACK2, "runAttack2");
+            case DASH:
+                updateBoxSeq(DASH, "dash");
                 break;
             default:
                 loadFurtherBoxes(character.getViewManager().getFrameIndex());
@@ -262,13 +198,47 @@ public abstract class BoxManager {
                 BoundingRectangle enemyBox = new BoundingRectangle(height2, new Vector2d(x2, y2), width2, delta_x2, delta_y2);
                 enemyBox.setHurts(hurts2);
 
-                if (GeometryUtils.isCollision(ownBox, enemyBox) && ownBox.isHurts() && !enemyBox.isHurts())
+                if (GeometryUtils.isCollision(ownBox, enemyBox) && ownBox.isHurts() && !enemyBox.isHurts()) {
+                    intersectionBox = intersection(ownBox, enemyBox);
+                    defender.getBoxManager().setIntersectionBox(intersectionBox);
                     return true;
+                }
             }
 
         }
 
         return false;
+    }
+
+    public BoundingRectangle intersection(BoundingRectangle ownBox, BoundingRectangle box1) {
+        float x1 = ownBox.getUpperLeft().x;
+        float y1 = ownBox.getUpperLeft().y;
+        float x2 = box1.getUpperLeft().x;
+        float y2 = box1.getUpperLeft().y;
+
+        float x3 = (x1 + ownBox.getWidth());
+        float x4 = (x2 + box1.getWidth());
+        float y3 = (y1 + ownBox.getHeight());
+        float y4 = (y2 + box1.getHeight());
+
+        float xmin = Math.max(x1, x2);
+        float xmax1 = x3;
+        float xmax2 = x4;
+        float xmax = Math.min(xmax1, xmax2);
+        if (xmax > xmin) {
+            float ymin = Math.max(y1, y2);
+            float ymax1 = y3;
+            float ymax2 = y4;
+            float ymax = Math.min(ymax1, ymax2);
+            if (ymax > ymin) {
+                float out_x = xmin + (xmax - xmin) / 2f;
+                float out_y = ymin + (ymax - ymin) / 2f;
+                float out_width = xmax - xmin;
+                float out_height = ymax - ymin;
+                return new BoundingRectangle(out_height, new Vector2d(out_x, out_y), out_width, 0, 0);
+            }
+        }
+        return null;
     }
 
 }

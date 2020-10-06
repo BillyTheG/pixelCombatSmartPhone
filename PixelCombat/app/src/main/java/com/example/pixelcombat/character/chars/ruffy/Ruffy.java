@@ -10,9 +10,12 @@ import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.character.controller.CharacterController;
 import com.example.pixelcombat.character.physics.PlayerPhysics;
 import com.example.pixelcombat.core.config.ViewConfig;
+import com.example.pixelcombat.core.message.GameMessage;
 import com.example.pixelcombat.enums.DrawLevel;
+import com.example.pixelcombat.exception.PixelCombatException;
 import com.example.pixelcombat.manager.StatusManager;
 import com.example.pixelcombat.manager.actionManager.CrouchManager;
+import com.example.pixelcombat.manager.actionManager.DashManager;
 import com.example.pixelcombat.manager.actionManager.DisabledManager;
 import com.example.pixelcombat.manager.actionManager.HitManager;
 import com.example.pixelcombat.manager.actionManager.JumpManager;
@@ -41,6 +44,7 @@ public class Ruffy implements GameCharacter {
     private DisabledManager disabledManager;
     private KnockBackManager knockBackManager;
     private RuffyAttackManager attackManager;
+    private DashManager dashManager;
     private PlayerPhysics physics;
     private CharacterController controller;
     private Context context;
@@ -65,8 +69,9 @@ public class Ruffy implements GameCharacter {
         jumpManager = new JumpManager(this);
         crouchManager = new CrouchManager(this);
         hitManager = new HitManager(this);
-        disabledManager = new DisabledManager(this);
+        disabledManager = new RuffyDisabledManager(this);
         knockBackManager = new KnockBackManager(this);
+        dashManager = new DashManager(this);
         observer = new ArrayList<>();
     }
 
@@ -115,7 +120,9 @@ public class Ruffy implements GameCharacter {
     }
 
     @Override
-    public void notifyObservers() {
-        //TODO
+    public void notifyObservers(GameMessage message) throws PixelCombatException {
+        for (Observer obs : observer) {
+            obs.processMessage(message);
+        }
     }
 }

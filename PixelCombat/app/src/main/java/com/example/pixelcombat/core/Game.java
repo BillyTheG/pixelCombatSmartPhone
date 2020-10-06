@@ -1,5 +1,6 @@
 package com.example.pixelcombat.core;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.os.Build;
 
@@ -22,6 +23,7 @@ import com.example.pixelcombat.projectile.Projectile;
 import com.example.pixelcombat.sparks.Spark;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Game implements Observer {
 
@@ -34,17 +36,23 @@ public class Game implements Observer {
     private ProjectileFactory projectileFactory;
     private SparkFactory sparkFactory;
     private Weather weather;
+    private Context context;
 
-    public Game(PXMap map, Weather weather) {
+    public Game(Context context, PXMap map, Weather weather) {
+        this.context = context;
         this.map = map;
         this.screenScrollManager = map.getScreenScrollManager();
         this.projectiles = new ArrayList<>();
         this.sparks = new ArrayList<>();
         this.dusts = new ArrayList<>();
         this.weather = weather;
-        this.dustFactory = new DustFactory();
+        this.dustFactory = new DustFactory(context);
         this.projectileFactory = new ProjectileFactory();
-        this.sparkFactory = new SparkFactory();
+        this.sparkFactory = new SparkFactory(context);
+
+        this.map.registerGame(this);
+        this.sparkFactory.init();
+        this.dustFactory.init();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -54,6 +62,35 @@ public class Game implements Observer {
         sparks.forEach(Spark::update);
         dusts.forEach(Dust::update);
         weather.update();
+
+
+        List<Spark> foundSparks = new ArrayList<>();
+        for (Spark spark : sparks) {
+            if (spark.isFinished()) {
+                foundSparks.add(spark);
+            }
+        }
+        sparks.removeAll(foundSparks);
+
+        List<Dust> foundDusts = new ArrayList<>();
+        for (Dust dust : dusts) {
+            if (dust.isFinished()) {
+                foundDusts.add(dust);
+            }
+        }
+        sparks.removeAll(foundDusts);
+
+    }
+
+
+    public void removeFinishedObjects(ArrayList<IsFinishable> objects) {
+        List<IsFinishable> foundObjects = new ArrayList<>();
+        for (IsFinishable gameObject : objects) {
+            if (gameObject.isFinished()) {
+                foundObjects.add(gameObject);
+            }
+        }
+        objects.removeAll(foundObjects);
     }
 
 
@@ -75,14 +112,19 @@ public class Game implements Observer {
     public void processMessage(GameMessage gameMessage) throws PixelCombatException {
 
         try {
+            MessageType type = gameMessage.getMessageType();
+            if (type == MessageType.SOUND)
+                return;
+
             String[] inputs = gameMessage.getGameObject().split(";");
             String gameObject = inputs[0];
-            boolean right = Boolean.parseBoolean(inputs[1]);
-            MessageType type = gameMessage.getMessageType();
+            boolean right = gameMessage.isRight();
+            String owner = inputs[1];
+
 
             switch (type) {
                 case PROJECTILE_CREATION:
-                    projectiles.add(projectileFactory.createProjectile(gameObject, gameMessage.getPos(), right, inputs[2]));
+                    projectiles.add(projectileFactory.createProjectile(gameObject, gameMessage.getPos(), right, owner));
                     break;
                 case DUST_CREATION:
                     dusts.add(dustFactory.createDust(gameObject, gameMessage.getPos(), right));
