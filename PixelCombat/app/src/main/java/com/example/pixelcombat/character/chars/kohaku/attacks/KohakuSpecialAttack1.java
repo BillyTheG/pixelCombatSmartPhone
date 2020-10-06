@@ -38,7 +38,6 @@ public class KohakuSpecialAttack1 extends Attack {
                 case 0:
                     if (isSwitcher()) {
                         character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_special_attack", null, true));
-
                         setSwitcher(false);
                     }
                     break;

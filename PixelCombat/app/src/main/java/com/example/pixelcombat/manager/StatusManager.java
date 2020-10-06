@@ -129,6 +129,9 @@ public class StatusManager {
             case JUMP:
                 character.getJumpManager().updateJump();
                 break;
+            case DASHING:
+                character.getDashManager().dash();
+                break;
             case JUMPFALL:
                 character.getJumpManager().updateJumpFall();
                 break;
@@ -162,6 +165,11 @@ public class StatusManager {
     }
 
     public boolean canNotCrouch() {
+        return isOnAir() ||
+                notCombatReady();
+    }
+
+    public boolean canNotDash() {
         return isOnAir() ||
                 notCombatReady();
     }
@@ -208,6 +216,13 @@ public class StatusManager {
         character.getViewManager().updateAnimation();
     }
 
+    public void swapDirections() {
+        if (movementStatus == MovementStatus.RIGHT)
+            setMovementStatus(MovementStatus.LEFT);
+        else
+            setMovementStatus(MovementStatus.RIGHT);
+    }
+
     public ActionStatus getActionStatus() {
         return actionStatus;
     }
@@ -239,5 +254,10 @@ public class StatusManager {
 
     public boolean isMovingRight() {
         return getMovementStatus() == MovementStatus.RIGHT;
+    }
+
+
+    public boolean shouldNotBeDecelerated() {
+        return isKnockbacked() || isDashing();
     }
 }

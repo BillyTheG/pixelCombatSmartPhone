@@ -173,6 +173,8 @@
         <specialAttack1>
             <box_list picture="0" />
         </specialAttack1>
-        b
+        <dash>
+            <box_list picture="0" />
+        </dash>
     </boxes>
 </character>

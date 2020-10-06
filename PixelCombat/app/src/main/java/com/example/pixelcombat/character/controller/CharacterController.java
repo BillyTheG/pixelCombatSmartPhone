@@ -123,5 +123,12 @@ public class CharacterController {
         return true;
     }
 
+    public boolean dash() {
+        if (character.getStatusManager().canNotDash())
+            return true;
+        character.getStatusManager().setActionStatus(ActionStatus.DASHING);
+        return true;
+    }
+
 
 }

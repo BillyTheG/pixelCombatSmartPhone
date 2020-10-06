@@ -3,14 +3,14 @@
     <type>Kohaku</type>
     <sprites>
         <stand airBool="false" airIndex="0" loopIndex="0" loops="true">
-            <img duration="50" key="0" x="-0.040000916" y="-2.5200005">kohaku_stand_0.png</img>
-            <img duration="50" key="1" x="0.020000458" y="-2.38">kohaku_stand_1.png</img>
-            <img duration="50" key="2" x="0.0" y="-2.3999996">kohaku_stand_2.png</img>
-            <img duration="50" key="3" x="0.07999992" y="-2.3599997">kohaku_stand_3.png</img>
-            <img duration="50" key="4" x="0.20000076" y="-2.3199997">kohaku_stand_4.png</img>
-            <img duration="50" key="5" x="0.10000038" y="-2.3199997">kohaku_stand_5.png</img>
-            <img duration="50" key="6" x="0.10000038" y="-2.38">kohaku_stand_6.png</img>
-            <img duration="50" key="7" x="0.10000038" y="-2.46">kohaku_stand_7.png</img>
+            <img duration="80" key="0" x="-0.040000916" y="-2.5200005">kohaku_stand_0.png</img>
+            <img duration="80" key="1" x="0.020000458" y="-2.38">kohaku_stand_1.png</img>
+            <img duration="80" key="2" x="0.0" y="-2.3999996">kohaku_stand_2.png</img>
+            <img duration="80" key="3" x="0.07999992" y="-2.3599997">kohaku_stand_3.png</img>
+            <img duration="80" key="4" x="0.20000076" y="-2.3199997">kohaku_stand_4.png</img>
+            <img duration="80" key="5" x="0.10000038" y="-2.3199997">kohaku_stand_5.png</img>
+            <img duration="80" key="6" x="0.10000038" y="-2.38">kohaku_stand_6.png</img>
+            <img duration="80" key="7" x="0.10000038" y="-2.46">kohaku_stand_7.png</img>
         </stand>
         <move airBool="false" airIndex="0" loopIndex="2" loops="true">
             <img duration="30" key="0" x="0.0" y="-2.3999996">kohaku_move_0.png</img>
@@ -160,5 +160,21 @@
             <img duration="85" key="26" x="0.12000084" y="-2.58">kohaku_special_attack_26.png</img>
             <img duration="145" key="27" x="-0.20000076" y="-2.5">kohaku_special_attack_27.png</img>
         </specialAttack1>
+        <dash airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="45" key="0" x="0.2800007" y="-2.54">kohaku_dash_0.png</img>
+            <img duration="35" key="1" x="-0.020000458" y="-2.0">kohaku_dash_1.png</img>
+            <img duration="25" key="2" x="-0.3600006" y="-2.2399998">kohaku_dash_2.png</img>
+            <img duration="25" key="3" x="1.2800007" y="-2.1999998">kohaku_dash_3.png</img>
+            <img duration="25" key="4" x="0.020000458" y="-1.8000002">kohaku_dash_4.png</img>
+            <img duration="25" key="5" x="-0.059999466" y="-2.38">kohaku_dash_5.png</img>
+            <img duration="25" key="6" x="0.15999985" y="-2.1000004">kohaku_dash_6.png</img>
+            <img duration="25" key="7" x="0.12000084" y="-1.96">kohaku_dash_7.png</img>
+            <img duration="25" key="8" x="0.8600006" y="-1.3599997">kohaku_dash_8.png</img>
+            <img duration="25" key="9" x="-0.21999931" y="-1.2799997">kohaku_dash_9.png</img>
+            <img duration="25" key="10" x="-0.3600006" y="-1.4400005">kohaku_dash_10.png</img>
+            <img duration="45" key="11" x="-0.87999916" y="-1.9200001">kohaku_dash_11.png</img>
+            <img duration="65" key="12" x="-0.26000023" y="-2.0599995">kohaku_dash_12.png</img>
+            <img duration="85" key="13" x="0.21999931" y="-2.12">kohaku_dash_13.png</img>
+        </dash>
     </sprites>
 </character>

@@ -9,6 +9,7 @@ import com.example.pixelcombat.manager.StatusManager;
 import com.example.pixelcombat.manager.ViewManager;
 import com.example.pixelcombat.manager.actionManager.AttackManager;
 import com.example.pixelcombat.manager.actionManager.CrouchManager;
+import com.example.pixelcombat.manager.actionManager.DashManager;
 import com.example.pixelcombat.manager.actionManager.DisabledManager;
 import com.example.pixelcombat.manager.actionManager.HitManager;
 import com.example.pixelcombat.manager.actionManager.JumpManager;
@@ -31,6 +32,8 @@ public interface GameCharacter extends GameObject, Observable {
     CrouchManager getCrouchManager();
 
     AttackManager getAttackManager();
+
+    DashManager getDashManager();
 
     HitManager getHitManager();
 

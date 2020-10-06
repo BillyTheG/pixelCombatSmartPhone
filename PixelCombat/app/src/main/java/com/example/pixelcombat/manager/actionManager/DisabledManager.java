@@ -48,6 +48,7 @@ public abstract class DisabledManager {
         if (!character.getViewManager().getAnimManager().isPlaying()) {
             character.getStatusManager().setGlobalStatus(GlobalStatus.ACTIVE);
             character.getHitManager().resetCharStats();
+            character.getDashManager().reset();
             reset();
         }
     }

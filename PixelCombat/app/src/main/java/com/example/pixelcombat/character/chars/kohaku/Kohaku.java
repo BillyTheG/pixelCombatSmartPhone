@@ -43,6 +43,7 @@ public class Kohaku implements GameCharacter {
     private DisabledManager disabledManager;
     private KnockBackManager knockBackManager;
     private KohakuAttackManager attackManager;
+    private KohakuDashManager dashManager;
     private PlayerPhysics physics;
     private CharacterController controller;
     private Context context;
@@ -69,6 +70,7 @@ public class Kohaku implements GameCharacter {
         hitManager = new HitManager(this);
         disabledManager = new KohakuDisabledManager(this);
         knockBackManager = new KnockBackManager(this);
+        dashManager = new KohakuDashManager(this);
         observer = new ArrayList<>();
     }
 
