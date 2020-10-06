@@ -17,7 +17,7 @@ public class RuffyDisabledManager extends DisabledManager {
     @Override
     public void cry() {
         try {
-            character.notifyObservers(new GameMessage(MessageType.SOUND, "ruffy_disabled", null));
+            character.notifyObservers(new GameMessage(MessageType.SOUND, "ruffy_disabled", null, true));
         } catch (PixelCombatException e) {
             Log.e("Error", "Der Sound konnte nicht abgespielt werden " + e.getMessage());
         }

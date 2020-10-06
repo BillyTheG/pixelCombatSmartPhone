@@ -46,12 +46,13 @@ public class Game implements Observer {
         this.sparks = new ArrayList<>();
         this.dusts = new ArrayList<>();
         this.weather = weather;
-        this.dustFactory = new DustFactory();
+        this.dustFactory = new DustFactory(context);
         this.projectileFactory = new ProjectileFactory();
         this.sparkFactory = new SparkFactory(context);
 
         this.map.registerGame(this);
         this.sparkFactory.init();
+        this.dustFactory.init();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -63,14 +64,33 @@ public class Game implements Observer {
         weather.update();
 
 
-        List<Spark> found = new ArrayList<Spark>();
+        List<Spark> foundSparks = new ArrayList<>();
         for (Spark spark : sparks) {
             if (spark.isFinished()) {
-                found.add(spark);
+                foundSparks.add(spark);
             }
         }
-        sparks.removeAll(found);
+        sparks.removeAll(foundSparks);
 
+        List<Dust> foundDusts = new ArrayList<>();
+        for (Dust dust : dusts) {
+            if (dust.isFinished()) {
+                foundDusts.add(dust);
+            }
+        }
+        sparks.removeAll(foundDusts);
+
+    }
+
+
+    public void removeFinishedObjects(ArrayList<IsFinishable> objects) {
+        List<IsFinishable> foundObjects = new ArrayList<>();
+        for (IsFinishable gameObject : objects) {
+            if (gameObject.isFinished()) {
+                foundObjects.add(gameObject);
+            }
+        }
+        objects.removeAll(foundObjects);
     }
 
 
@@ -98,8 +118,8 @@ public class Game implements Observer {
 
             String[] inputs = gameMessage.getGameObject().split(";");
             String gameObject = inputs[0];
-            boolean right = Boolean.parseBoolean(inputs[1]);
-            String owner = inputs[2];
+            boolean right = gameMessage.isRight();
+            String owner = inputs[1];
 
 
             switch (type) {

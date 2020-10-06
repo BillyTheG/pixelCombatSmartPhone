@@ -37,6 +37,11 @@ public class SparkFactory {
         switch (type) {
             case SparkConfig.ATTACK_SPARK:
                 return new Attack1Spark(pictures.get("Attack1_Spark"), times.get("Attack1_Spark"), pos);
+            case SparkConfig.KOHAKU_SPECIAL_ATTACK_SPARK:
+                return new Attack1Spark(pictures.get("Kohaku_Special_Attack1_Spark"), times.get("Kohaku_Special_Attack1_Spark"), pos, right);
+            case SparkConfig.BLOOD_SPLASH_SPARK:
+                return new Attack1Spark(pictures.get("Blood_Splash_Spark"), times.get("Blood_Splash_Spark"), pos, right);
+
             default:
                 break;
         }
@@ -47,6 +52,8 @@ public class SparkFactory {
         try {
             dustParser = new CharacterParser(context);
             sparkNames.add("Attack1_Spark.xml");
+            sparkNames.add("Kohaku_Special_Attack1_Spark.xml");
+            sparkNames.add("Blood_Splash_Spark.xml");
 
             for (String spark : sparkNames) {
                 dustParser.parse(spark);

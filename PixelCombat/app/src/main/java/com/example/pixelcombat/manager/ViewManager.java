@@ -36,6 +36,9 @@ public abstract class ViewManager {
     public final int KNOCKBACKFALL = 11;
     public final int KNOCKBACKRECOVER = 12;
     public final int ONGROUND = 13;
+    public final int SPECIALATTACK1 = 14;
+    public final int DASH = 15;
+
     public final int DEAD = 99;
     @Getter
     protected AnimationManager animManager;
@@ -74,6 +77,8 @@ public abstract class ViewManager {
         animations.add(new Animation(images.get("knockBackFall"), times.get(KNOCKBACKFALL), loop.get(KNOCKBACKFALL), loopIndices.get(KNOCKBACKFALL)));
         animations.add(new Animation(images.get("knockBackRecover"), times.get(KNOCKBACKRECOVER), loop.get(KNOCKBACKRECOVER), loopIndices.get(KNOCKBACKRECOVER)));
         animations.add(new Animation(images.get("onGround"), times.get(ONGROUND), loop.get(ONGROUND), loopIndices.get(ONGROUND)));
+        animations.add(new Animation(images.get("specialAttack1"), times.get(SPECIALATTACK1), loop.get(SPECIALATTACK1), loopIndices.get(SPECIALATTACK1)));
+        animations.add(new Animation(images.get("dash"), times.get(DASH), loop.get(DASH), loopIndices.get(DASH)));
 
 
         Animation[] array = new Animation[animations.size()];
@@ -117,6 +122,8 @@ public abstract class ViewManager {
                 switch (character.getAttackManager().getAttackStatus()) {
                     case ATTACK1:
                         return ATTACK1;
+                    case SPECIALATTACK1:
+                        return SPECIALATTACK1;
                     case ATTACK2:
                         // character.picManager.change(BASICATTACK1);
                         break;
@@ -131,6 +138,8 @@ public abstract class ViewManager {
                 switch (character.getStatusManager().getActionStatus()) {
                     case MOVE:
                         return MOVE;
+                    case DASHING:
+                        return DASH;
                     case STAND:
                         return STAND;
                     case JUMP:

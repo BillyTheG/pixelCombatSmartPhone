@@ -15,6 +15,7 @@ import com.example.pixelcombat.enums.DrawLevel;
 import com.example.pixelcombat.exception.PixelCombatException;
 import com.example.pixelcombat.manager.StatusManager;
 import com.example.pixelcombat.manager.actionManager.CrouchManager;
+import com.example.pixelcombat.manager.actionManager.DashManager;
 import com.example.pixelcombat.manager.actionManager.DisabledManager;
 import com.example.pixelcombat.manager.actionManager.HitManager;
 import com.example.pixelcombat.manager.actionManager.JumpManager;
@@ -43,6 +44,7 @@ public class Ruffy implements GameCharacter {
     private DisabledManager disabledManager;
     private KnockBackManager knockBackManager;
     private RuffyAttackManager attackManager;
+    private DashManager dashManager;
     private PlayerPhysics physics;
     private CharacterController controller;
     private Context context;
@@ -69,6 +71,7 @@ public class Ruffy implements GameCharacter {
         hitManager = new HitManager(this);
         disabledManager = new RuffyDisabledManager(this);
         knockBackManager = new KnockBackManager(this);
+        dashManager = new DashManager(this);
         observer = new ArrayList<>();
     }
 

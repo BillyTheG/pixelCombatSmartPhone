@@ -57,7 +57,7 @@ public class PlayerPhysics {
     }
 
     public void friction() {
-        if (character.getStatusManager().isKnockbacked())
+        if (character.getStatusManager().shouldNotBeDecelerated())
             return;
         this.VX *= FRICTION;
         if (Math.abs(VX) <= VX_EPSILON) VX = 0f;

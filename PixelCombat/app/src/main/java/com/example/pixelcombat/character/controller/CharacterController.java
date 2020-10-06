@@ -105,5 +105,30 @@ public class CharacterController {
         return true;
     }
 
+    public boolean specialAttack(AttackStatus attackStates) {
+        if (character.getStatusManager().isOnAir()) {
+            //check jumpAttacks
+            return true;
+        }
+        if (character.getStatusManager().notCombatReady()) {
+            return true;
+        }
+
+        if (character.getStatusManager().isMoving()) {   //&& Math.abs(player.physics.VX) == player.physics.maximumSpeed)
+            return true;
+        }
+
+        character.getStatusManager().setActionStatus(ActionStatus.STAND);
+        character.getAttackManager().setAttackStatus(attackStates);
+        return true;
+    }
+
+    public boolean dash() {
+        if (character.getStatusManager().canNotDash())
+            return true;
+        character.getStatusManager().setActionStatus(ActionStatus.DASHING);
+        return true;
+    }
+
 
 }
