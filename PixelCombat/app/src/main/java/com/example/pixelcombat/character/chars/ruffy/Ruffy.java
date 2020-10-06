@@ -7,6 +7,10 @@ import android.graphics.Rect;
 import android.util.Log;
 
 import com.example.pixelcombat.GameCharacter;
+import com.example.pixelcombat.character.chars.ruffy.manager.RuffyAttackManager;
+import com.example.pixelcombat.character.chars.ruffy.manager.RuffyBoxManager;
+import com.example.pixelcombat.character.chars.ruffy.manager.RuffyDisabledManager;
+import com.example.pixelcombat.character.chars.ruffy.manager.RuffyViewManager;
 import com.example.pixelcombat.character.controller.CharacterController;
 import com.example.pixelcombat.character.physics.PlayerPhysics;
 import com.example.pixelcombat.core.config.ViewConfig;

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+    <type>Kohaku_Projectile_Horizontal</type>
+    <sprites>
+        <creation airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="50" key="0" x="-0.020000458" y="-3.1">kohaku_projectile_horizontal_0.png</img>
+            <img duration="50" key="1" x="-0.34000015" y="-3.2799997">kohaku_projectile_horizontal_1.png</img>
+            <img duration="50" key="2" x="-0.70000076" y="-3.52">kohaku_projectile_horizontal_2.png</img>
+            <img duration="50" key="3" x="-0.9599991" y="-3.42">kohaku_projectile_horizontal_3.png</img>
+            <img duration="50" key="4" x="-0.45999908" y="-3.1599998">kohaku_projectile_horizontal_4.png</img>
+            <img duration="50" key="5" x="-0.13999939" y="-3.3199997">kohaku_projectile_horizontal_5.png</img>
+            <img duration="50" key="6" x="-0.07999992" y="-2.54">kohaku_projectile_horizontal_6.png</img>
+            <img duration="50" key="7" x="-0.15999985" y="-3.3199997">kohaku_projectile_horizontal_7.png</img>
+            <img duration="50" key="8" x="-0.7600002" y="-3.1999998">kohaku_projectile_horizontal_8.png</img>
+        </creation>
+        <move airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="50" key="0" x="-0.020000458" y="-3.1">kohaku_projectile_horizontal_0.png</img>
+            <img duration="50" key="1" x="-0.34000015" y="-3.2799997">kohaku_projectile_horizontal_1.png</img>
+            <img duration="50" key="2" x="-0.70000076" y="-3.52">kohaku_projectile_horizontal_2.png</img>
+            <img duration="50" key="3" x="-0.9599991" y="-3.42">kohaku_projectile_horizontal_3.png</img>
+            <img duration="50" key="4" x="-0.45999908" y="-3.1599998">kohaku_projectile_horizontal_4.png</img>
+            <img duration="50" key="5" x="-0.13999939" y="-3.3199997">kohaku_projectile_horizontal_5.png</img>
+            <img duration="50" key="6" x="-0.07999992" y="-2.54">kohaku_projectile_horizontal_6.png</img>
+            <img duration="50" key="7" x="-0.15999985" y="-3.3199997">kohaku_projectile_horizontal_7.png</img>
+            <img duration="50" key="8" x="-0.7600002" y="-3.1999998">kohaku_projectile_horizontal_8.png</img>
+        </move>
+        <explosion airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="50" key="0" x="-0.020000458" y="-3.1">kohaku_projectile_horizontal_0.png</img>
+            <img duration="50" key="1" x="-0.34000015" y="-3.2799997">kohaku_projectile_horizontal_1.png</img>
+            <img duration="50" key="2" x="-0.70000076" y="-3.52">kohaku_projectile_horizontal_2.png</img>
+            <img duration="50" key="3" x="-0.9599991" y="-3.42">kohaku_projectile_horizontal_3.png</img>
+            <img duration="50" key="4" x="-0.45999908" y="-3.1599998">kohaku_projectile_horizontal_4.png</img>
+            <img duration="50" key="5" x="-0.13999939" y="-3.3199997">kohaku_projectile_horizontal_5.png</img>
+            <img duration="50" key="6" x="-0.07999992" y="-2.54">kohaku_projectile_horizontal_6.png</img>
+            <img duration="50" key="7" x="-0.15999985" y="-3.3199997">kohaku_projectile_horizontal_7.png</img>
+            <img duration="50" key="8" x="-0.7600002" y="-3.1999998">kohaku_projectile_horizontal_8.png</img>
+        </explosion>
+    </sprites>
+</character>

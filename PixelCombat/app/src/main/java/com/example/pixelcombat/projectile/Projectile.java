@@ -5,6 +5,9 @@ import android.graphics.Rect;
 
 import com.example.pixelcombat.GameObject;
 import com.example.pixelcombat.math.Vector2d;
+import com.example.pixelcombat.projectile.manager.ProjectileBoxManager;
+import com.example.pixelcombat.projectile.manager.ProjectileStatusManager;
+import com.example.pixelcombat.projectile.manager.ProjectileViewManager;
 
 import lombok.Getter;
 
@@ -12,6 +15,10 @@ import lombok.Getter;
 public class Projectile implements GameObject {
 
     private int rank;
+    private Vector2d pos;
+    private ProjectileStatusManager statusManager;
+    private ProjectileViewManager viewManager;
+    private ProjectileBoxManager boxManager;
 
     @Override
     public void draw(Canvas canvas, int screenX, int screenY, Rect gameRect) {
@@ -23,15 +30,12 @@ public class Projectile implements GameObject {
 
     }
 
-    @Override
-    public Vector2d getPos() {
-        return null;
-    }
 
     @Override
     public boolean isRight() {
-        return false;
+        return statusManager.isRight();
     }
+
 
     public float getDirection() {
         if (isRight())

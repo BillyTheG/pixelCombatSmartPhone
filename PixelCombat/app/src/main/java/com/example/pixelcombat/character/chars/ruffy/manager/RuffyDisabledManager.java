@@ -1,4 +1,4 @@
-package com.example.pixelcombat.character.chars.ruffy;
+package com.example.pixelcombat.character.chars.ruffy.manager;
 
 import android.util.Log;
 

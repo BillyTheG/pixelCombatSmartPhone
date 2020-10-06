@@ -1,5 +1,6 @@
-package com.example.pixelcombat.character.chars.ruffy;
+package com.example.pixelcombat.character.chars.ruffy.manager;
 
+import com.example.pixelcombat.character.chars.ruffy.Ruffy;
 import com.example.pixelcombat.manager.BoxManager;
 
 public class RuffyBoxManager extends BoxManager {

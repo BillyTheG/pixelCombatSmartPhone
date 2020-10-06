@@ -1,4 +1,4 @@
-package com.example.pixelcombat.character.chars.kohaku;
+package com.example.pixelcombat.character.chars.kohaku.manager;
 
 import android.util.Log;
 

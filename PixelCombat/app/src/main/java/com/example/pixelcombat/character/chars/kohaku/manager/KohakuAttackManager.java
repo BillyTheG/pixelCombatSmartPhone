@@ -1,5 +1,6 @@
-package com.example.pixelcombat.character.chars.kohaku;
+package com.example.pixelcombat.character.chars.kohaku.manager;
 
+import com.example.pixelcombat.character.chars.kohaku.Kohaku;
 import com.example.pixelcombat.character.chars.kohaku.attacks.KohakuAttack1;
 import com.example.pixelcombat.character.chars.kohaku.attacks.KohakuSpecialAttack1;
 import com.example.pixelcombat.manager.actionManager.AttackManager;

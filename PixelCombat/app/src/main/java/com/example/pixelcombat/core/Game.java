@@ -47,12 +47,13 @@ public class Game implements Observer {
         this.dusts = new ArrayList<>();
         this.weather = weather;
         this.dustFactory = new DustFactory(context);
-        this.projectileFactory = new ProjectileFactory();
+        this.projectileFactory = new ProjectileFactory(context);
         this.sparkFactory = new SparkFactory(context);
 
         this.map.registerGame(this);
         this.sparkFactory.init();
         this.dustFactory.init();
+        this.projectileFactory.init();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)

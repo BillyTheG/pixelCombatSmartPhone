@@ -1,7 +1,8 @@
-package com.example.pixelcombat.character.chars.ruffy;
+package com.example.pixelcombat.character.chars.ruffy.manager;
 
 import android.graphics.Bitmap;
 
+import com.example.pixelcombat.character.chars.ruffy.Ruffy;
 import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.manager.ViewManager;
 import com.example.pixelcombat.xml.CharacterParser;

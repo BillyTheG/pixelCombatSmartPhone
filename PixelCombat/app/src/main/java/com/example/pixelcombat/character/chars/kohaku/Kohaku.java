@@ -7,6 +7,11 @@ import android.graphics.Rect;
 import android.util.Log;
 
 import com.example.pixelcombat.GameCharacter;
+import com.example.pixelcombat.character.chars.kohaku.manager.KohakuAttackManager;
+import com.example.pixelcombat.character.chars.kohaku.manager.KohakuBoxManager;
+import com.example.pixelcombat.character.chars.kohaku.manager.KohakuDashManager;
+import com.example.pixelcombat.character.chars.kohaku.manager.KohakuDisabledManager;
+import com.example.pixelcombat.character.chars.kohaku.manager.KohakuViewManager;
 import com.example.pixelcombat.character.controller.CharacterController;
 import com.example.pixelcombat.character.physics.PlayerPhysics;
 import com.example.pixelcombat.core.config.ViewConfig;

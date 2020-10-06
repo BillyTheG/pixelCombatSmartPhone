@@ -1,4 +1,4 @@
-package com.example.pixelcombat.character.chars.kohaku;
+package com.example.pixelcombat.character.chars.kohaku.manager;
 
 import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.character.status.ActionStatus;

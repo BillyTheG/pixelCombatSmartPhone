@@ -1,5 +1,6 @@
-package com.example.pixelcombat.character.chars.ruffy;
+package com.example.pixelcombat.character.chars.ruffy.manager;
 
+import com.example.pixelcombat.character.chars.ruffy.Ruffy;
 import com.example.pixelcombat.character.chars.ruffy.attacks.RuffyAttack1;
 import com.example.pixelcombat.manager.actionManager.AttackManager;
 
