@@ -9,6 +9,7 @@ import androidx.annotation.RequiresApi;
 import com.example.pixelcombat.core.message.GameMessage;
 import com.example.pixelcombat.dusts.Dust;
 import com.example.pixelcombat.enums.MessageType;
+import com.example.pixelcombat.environment.interactor.ProjectileHitDetecton;
 import com.example.pixelcombat.exception.PixelCombatException;
 import com.example.pixelcombat.exception.general.PxNullPointerException;
 import com.example.pixelcombat.exception.parser.GameMessageParseException;
@@ -36,6 +37,7 @@ public class Game implements Observer {
     private ProjectileFactory projectileFactory;
     private SparkFactory sparkFactory;
     private Weather weather;
+    private ProjectileHitDetecton projectileDetection;
     private Context context;
 
     public Game(Context context, PXMap map, Weather weather) {
@@ -49,7 +51,7 @@ public class Game implements Observer {
         this.dustFactory = new DustFactory(context);
         this.projectileFactory = new ProjectileFactory(context);
         this.sparkFactory = new SparkFactory(context);
-
+        this.projectileDetection = new ProjectileHitDetecton(map.getCharacter1(), map.getCharacter2());
         this.map.registerGame(this);
         this.sparkFactory.init();
         this.dustFactory.init();
@@ -64,6 +66,13 @@ public class Game implements Observer {
         dusts.forEach(Dust::update);
         weather.update();
 
+        List<Projectile> foundProjectiles = new ArrayList<>();
+        for (Projectile projectile : projectiles) {
+            if (projectile.getStatusManager().isDead()) {
+                foundProjectiles.add(projectile);
+            }
+        }
+        projectiles.removeAll(foundProjectiles);
 
         List<Spark> foundSparks = new ArrayList<>();
         for (Spark spark : sparks) {
@@ -81,6 +90,7 @@ public class Game implements Observer {
         }
         sparks.removeAll(foundDusts);
 
+        projectileDetection.interact(projectiles);
     }
 
 

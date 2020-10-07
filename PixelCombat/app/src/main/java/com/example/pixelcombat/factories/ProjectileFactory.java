@@ -3,6 +3,8 @@ package com.example.pixelcombat.factories;
 import android.content.Context;
 import android.util.Log;
 
+import com.example.pixelcombat.character.chars.kohaku.projectiles.HorizontalSlash;
+import com.example.pixelcombat.core.config.ProjectileConfig;
 import com.example.pixelcombat.math.BoundingRectangle;
 import com.example.pixelcombat.math.Vector2d;
 import com.example.pixelcombat.projectile.Projectile;
@@ -18,10 +20,10 @@ public class ProjectileFactory {
 
     private final Context context;
     //all pictures hold in map
-    public HashMap<String, ArrayList<ArrayList<LocatedBitmap>>> pictures;
+    public HashMap<String, Map<String, ArrayList<LocatedBitmap>>> pictures;
 
     //all boxes hold in map
-    public HashMap<String, ArrayList<ArrayList<ArrayList<BoundingRectangle>>>> boxes;
+    public HashMap<String, Map<String, ArrayList<ArrayList<BoundingRectangle>>>> boxes;
 
     //all additional variabels
     public HashMap<String, ArrayList<ArrayList<Float>>> times;
@@ -33,7 +35,20 @@ public class ProjectileFactory {
 
     public Projectile createProjectile(String type, Vector2d pos, boolean right, String owner) {
 
-        return null;
+        Map<String, ArrayList<LocatedBitmap>> imagesP = pictures.get(type);
+        Map<String, ArrayList<ArrayList<BoundingRectangle>>> boxesP = boxes.get(type);
+        ArrayList<ArrayList<Float>> timesP = times.get(type);
+        ArrayList<Integer> loopVariabelsP = loopVariabels.get(type);
+        ArrayList<Boolean> loopBoolsP = loopBools.get(type);
+
+        switch (type) {
+
+            case ProjectileConfig.KOHAKU_SPECIAL_ATTACK_PROJECTILE_HORIZONTAL:
+                return new Projectile(pos, right, boxesP, imagesP, timesP, loopVariabelsP, loopBoolsP, new HorizontalSlash(), owner);
+            default:
+                return null;
+        }
+
     }
 
     public ProjectileFactory(Context context) {
@@ -69,13 +84,8 @@ public class ProjectileFactory {
                 ArrayList<Integer> projectile_loopIndices = projectileParser.getLoopIndizes();
                 ArrayList<ArrayList<Float>> projectile_times = projectileParser.getTimes();
 
-                ArrayList<ArrayList<LocatedBitmap>> pictures_all = new ArrayList<ArrayList<LocatedBitmap>>();
-                pictures_all.add(0, picturest.get("creation"));
-                pictures_all.add(1, picturest.get("move"));
-                pictures_all.add(2, picturest.get("explosion"));
 
-
-                pictures.put(projectile, pictures_all);
+                pictures.put(projectile, picturest);
                 loopBools.put(projectile, projectile_loopBools);
                 loopVariabels.put(projectile, projectile_loopIndices);
                 times.put(projectile, projectile_times);
@@ -83,12 +93,7 @@ public class ProjectileFactory {
                 Log.i("Info", "The projectile's images " + projectile + " could be created");
 
                 Map<String, ArrayList<ArrayList<BoundingRectangle>>> boxes = boxParser.getBoxes();
-
-                ArrayList<ArrayList<ArrayList<BoundingRectangle>>> boxes_all = new ArrayList<ArrayList<ArrayList<BoundingRectangle>>>();
-                boxes_all.add(0, boxes.get("creation"));
-                boxes_all.add(1, boxes.get("move"));
-                boxes_all.add(2, boxes.get("explosion"));
-                this.boxes.put(projectile, boxes_all);
+                this.boxes.put(projectile, boxes);
 
                 Log.i("Info", "The projectile's boxes " + projectile + " could be created");
 

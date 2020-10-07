@@ -13,10 +13,10 @@ import com.example.pixelcombat.enums.MessageType;
 import com.example.pixelcombat.math.BoundingRectangle;
 import com.example.pixelcombat.math.Vector2d;
 
-public class KohakuSpecialAttack1 extends Attack {
+public class KohakuSpecialAttack2 extends Attack {
 
 
-    public KohakuSpecialAttack1(GameCharacter character, int id) {
+    public KohakuSpecialAttack2(GameCharacter character, int id) {
         super(character, id);
     }
 
@@ -43,9 +43,6 @@ public class KohakuSpecialAttack1 extends Attack {
                     break;
                 case 6:
                     if (isSwitcher()) {
-                        character.notifyObservers(new GameMessage(MessageType.SPARK_CREATION, SparkConfig.KOHAKU_SPECIAL_ATTACK_SPARK + ";test;",
-                                new Vector2d(character.getPos().x, character.getPos().y), character.isRight()));
-
                         character.notifyObservers(new GameMessage(MessageType.DUST_CREATION, DustConfig.KOHAKU_SPECIAL_ATTACK_SPARK + ";test;",
                                 new Vector2d(character.getPos().x, character.getPos().y), character.isRight()));
 
@@ -53,7 +50,7 @@ public class KohakuSpecialAttack1 extends Attack {
 
                         Vector2d pos = new Vector2d(getCharacter().getPos().x + getCharacter().getDirection() * 200, character.getPos().y);
 
-                        character.notifyObservers(new GameMessage(MessageType.PROJECTILE_CREATION, "Kohaku_Projectile_Horizontal" + ";test;",
+                        character.notifyObservers(new GameMessage(MessageType.PROJECTILE_CREATION, "Kohaku_Projectile_Horizontal;" + character.getPlayer() + ";",
                                 pos, character.isRight()));
 
                         setSwitcher(false);

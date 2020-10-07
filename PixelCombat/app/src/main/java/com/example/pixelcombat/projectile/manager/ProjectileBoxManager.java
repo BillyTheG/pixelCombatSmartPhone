@@ -15,7 +15,7 @@ import java.util.Map;
 import lombok.Getter;
 import lombok.Setter;
 
-public abstract class ProjectileBoxManager {
+public class ProjectileBoxManager {
 
     // Stütze für Bilder
     public final int CREATION = 0;
@@ -33,11 +33,13 @@ public abstract class ProjectileBoxManager {
     @Setter
     private BoundingRectangle intersectionBox;
 
-    public ProjectileBoxManager(Projectile character) {
+    public ProjectileBoxManager(Projectile character, Map<String, ArrayList<ArrayList<BoundingRectangle>>> boxes) {
         this.character = character;
+        init(boxes);
     }
 
-    public void init() {
+    public void init(Map<String, ArrayList<ArrayList<BoundingRectangle>>> boxes) {
+        this.boxes = boxes;
         currentAnimation = CREATION;
         currentBox = boxes.get("creation");
     }
@@ -56,13 +58,12 @@ public abstract class ProjectileBoxManager {
                 updateBoxSeq(EXPLOSION, "explosion");
                 break;
             default:
-                loadFurtherBoxes(character.getViewManager().getFrameIndex());
+
                 break;
         }
 
     }
 
-    public abstract void loadFurtherBoxes(int currentAnimation2);
 
     public void updateBoxSeq(int animationIndex, String animation_string) {
         currentAnimation = animationIndex;

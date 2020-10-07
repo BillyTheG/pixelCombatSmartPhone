@@ -4,16 +4,16 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 
 import com.example.pixelcombat.GameObject;
-import com.example.pixelcombat.manager.ViewManager;
+import com.example.pixelcombat.manager.ObjectViewManager;
 
-public class AnimationManager implements  Runnable{
+public class AnimationManager<T extends GameObject> implements Runnable {
     private final GameObject gameObject;
-    private final ViewManager viewManager;
+    private final ObjectViewManager<T> viewManager;
     private Animation[] animations;
     private int animationIndex = 0;
 
 
-    public AnimationManager(ViewManager viewManager, Animation[] animations, GameObject gameObject) {
+    public AnimationManager(ObjectViewManager<T> viewManager, Animation[] animations, GameObject gameObject) {
         this.viewManager = viewManager;
         this.animations = animations;
         this.gameObject = gameObject;

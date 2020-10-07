@@ -19,7 +19,7 @@ import java.util.Map;
 import lombok.Getter;
 import lombok.SneakyThrows;
 
-public abstract class ViewManager {
+public abstract class GameCharacterViewManager extends ObjectViewManager<GameCharacter> {
 
     // Bildsequenzen als Stütze
     public final int STAND = 0;
@@ -48,8 +48,8 @@ public abstract class ViewManager {
     private Runnable imageLoaderRunnable;
     private Thread imageLoaderThread;
 
-    public ViewManager(GameCharacter character) throws Exception {
-
+    public GameCharacterViewManager(GameCharacter character) throws Exception {
+        super(character);
         this.character = character;
         init();
     }

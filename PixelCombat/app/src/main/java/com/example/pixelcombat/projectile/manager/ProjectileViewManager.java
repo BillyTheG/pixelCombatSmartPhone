@@ -3,13 +3,18 @@ package com.example.pixelcombat.projectile.manager;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
+import com.example.pixelcombat.animation.Animation;
 import com.example.pixelcombat.animation.AnimationManager;
+import com.example.pixelcombat.manager.ObjectViewManager;
 import com.example.pixelcombat.projectile.Projectile;
-import com.example.pixelcombat.xml.CharacterParser;
+import com.example.pixelcombat.utils.LocatedBitmap;
+
+import java.util.ArrayList;
+import java.util.Map;
 
 import lombok.Getter;
 
-public abstract class ProjectileViewManager {
+public class ProjectileViewManager extends ObjectViewManager<Projectile> {
 
     // Bildsequenzen als Stütze
     public final int CREATION = 0;
@@ -21,18 +26,39 @@ public abstract class ProjectileViewManager {
     protected final Projectile character;
     @Getter
     protected AnimationManager animManager;
-    private CharacterParser characterParser;
 
     private Runnable imageLoaderRunnable;
     private Thread imageLoaderThread;
 
-    public ProjectileViewManager(Projectile character) throws Exception {
-
+    public ProjectileViewManager(Projectile character) {
+        super(character);
         this.character = character;
         init();
     }
 
-    protected abstract void init() throws Exception;
+    public void init() {
+
+        ArrayList<Animation> animations = new ArrayList<>();
+
+        Map<String, ArrayList<LocatedBitmap>> images = character.getImages();
+        ArrayList<ArrayList<Float>> times = character.getTimes();
+        ArrayList<Boolean> loop = character.getLoopBools();
+        ArrayList<Integer> loopIndices = character.getLoopIndizes();
+
+        animations.add(new Animation(images.get("creation"), times.get(CREATION), loop.get(CREATION), loopIndices.get(CREATION)));
+        animations.add(new Animation(images.get("move"), times.get(MOVE), loop.get(MOVE), loopIndices.get(MOVE)));
+        animations.add(new Animation(images.get("explosion"), times.get(EXPLOSION), loop.get(EXPLOSION), loopIndices.get(EXPLOSION)));
+
+        Animation[] array = new Animation[animations.size()];
+        animations.toArray(array);
+
+        this.animManager = new AnimationManager(this, array, character);
+
+        animManager.playAnim();
+        animManager.update();
+
+    }
+
 
     public void update() {
         animManager.update();

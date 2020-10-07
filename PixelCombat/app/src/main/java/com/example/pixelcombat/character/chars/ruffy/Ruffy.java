@@ -55,8 +55,10 @@ public class Ruffy implements GameCharacter {
     private JumpManager jumpManager;
     private ArrayList<Observer> observer;
     private GameCharacter enemy;
+    private String player;
 
-    public Ruffy(Vector2d pos, Context context) throws Exception {
+    public Ruffy(String player, Vector2d pos, Context context) throws Exception {
+        this.player = player;
         this.context = context;
         this.pos = pos;
         init();

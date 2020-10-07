@@ -37,6 +37,7 @@ import lombok.Setter;
 @Setter
 public class Kohaku implements GameCharacter {
 
+    private String player;
     private Vector2d pos;
     private boolean faceRight = true;
     private int rank;
@@ -56,8 +57,9 @@ public class Kohaku implements GameCharacter {
     private ArrayList<Observer> observer;
     private GameCharacter enemy;
 
-    public Kohaku(Vector2d pos, Context context) throws Exception {
+    public Kohaku(String player, Vector2d pos, Context context) throws Exception {
         this.context = context;
+        this.player = player;
         this.pos = pos;
         init();
         Log.i("Info", "Ruffy was created successfully");

@@ -66,8 +66,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         bg = Bitmap.createScaledBitmap(bg, ((int) (ScreenProperty.SCREEN_WIDTH * 1.5f)), ((int) (ScreenProperty.SCREEN_HEIGHT * 1.4f)), false);
 
 
-        ruffy = new Ruffy(new Vector2d(500, ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE), context);
-        kohaku = new Kohaku(new Vector2d(1000, ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE), context);
+        ruffy = new Ruffy("player2", new Vector2d(500, ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE), context);
+        kohaku = new Kohaku("player1", new Vector2d(1000, ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE), context);
         ruffy.getBoxManager().loadParsedBoxes();
         kohaku.getBoxManager().loadParsedBoxes();
         kohaku.getStatusManager().setMovementStatus(MovementStatus.LEFT);
@@ -76,7 +76,9 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         player2 = ruffy;
 
         testMap = new PXMap("Blue Winter", bg, context, player1, player2);
-        collisionDetection = new CollisionDetection(ruffy, kohaku);
+        collisionDetection = new CollisionDetection(player1, player2);
+
+
         game = new Game(context, testMap, new Weather());
         soundManager = new SoundManager(context);
         testMap.registerSoundManager(soundManager);
