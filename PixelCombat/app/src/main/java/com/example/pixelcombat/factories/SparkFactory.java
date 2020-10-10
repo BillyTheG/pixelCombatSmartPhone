@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.example.pixelcombat.core.config.SparkConfig;
+import com.example.pixelcombat.core.sound.SoundManager;
 import com.example.pixelcombat.math.Vector2d;
 import com.example.pixelcombat.sparks.Spark;
 import com.example.pixelcombat.sparks.attack.Attack1Spark;
@@ -16,6 +17,7 @@ import java.util.HashMap;
 public class SparkFactory {
 
     private final Context context;
+    private final SoundManager soundManager;
     //all pictures hold in map
     public HashMap<String, ArrayList<LocatedBitmap>> pictures;
     //all additional variabels
@@ -25,7 +27,8 @@ public class SparkFactory {
     private ArrayList<String> sparkNames;
 
 
-    public SparkFactory(Context context) {
+    public SparkFactory(Context context, SoundManager soundManager) {
+        this.soundManager = soundManager;
         this.context = context;
         this.sparkNames = new ArrayList<>();
         this.pictures = new HashMap<>();
@@ -36,12 +39,13 @@ public class SparkFactory {
     public Spark createSpark(String type, Vector2d pos, boolean right) {
         switch (type) {
             case SparkConfig.ATTACK_SPARK:
-                return new Attack1Spark(pictures.get("Attack1_Spark"), times.get("Attack1_Spark"), pos);
+                return new Attack1Spark(pictures.get("Attack1_Spark"), times.get("Attack1_Spark"), pos).register(soundManager);
             case SparkConfig.KOHAKU_SPECIAL_ATTACK_SPARK:
-                return new Attack1Spark(pictures.get("Kohaku_Special_Attack1_Spark"), times.get("Kohaku_Special_Attack1_Spark"), pos, right);
+                return new Attack1Spark(pictures.get("Kohaku_Special_Attack1_Spark"), times.get("Kohaku_Special_Attack1_Spark"), pos, right).register(soundManager);
             case SparkConfig.BLOOD_SPLASH_SPARK:
-                return new Attack1Spark(pictures.get("Blood_Splash_Spark"), times.get("Blood_Splash_Spark"), pos, right);
-
+                return new Attack1Spark(pictures.get("Blood_Splash_Spark"), times.get("Blood_Splash_Spark"), pos, right).register(soundManager);
+            case SparkConfig.KOHAKU_SPECIAL_ATTACK2_SPARK:
+                return new Attack1Spark(pictures.get("Kohaku_Special2_Attack_Spark"), times.get("Kohaku_Special2_Attack_Spark"), pos, right).register(soundManager);
             default:
                 break;
         }
@@ -53,6 +57,7 @@ public class SparkFactory {
             dustParser = new CharacterParser(context);
             sparkNames.add("Attack1_Spark.xml");
             sparkNames.add("Kohaku_Special_Attack1_Spark.xml");
+            sparkNames.add("Kohaku_Special2_Attack_Spark.xml");
             sparkNames.add("Blood_Splash_Spark.xml");
 
             for (String spark : sparkNames) {

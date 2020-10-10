@@ -3,14 +3,14 @@
     <type>BloodSplashSpark</type>
     <sprites>
         <sequence airBool="false" airIndex="0" loopIndex="0" loops="false">
-            <img duration="75" key="0" x="-0.6399994" y="-1.1800003">spark_blood_splash_0.png</img>
-            <img duration="65" key="1" x="-0.6800003" y="-1.1599998">spark_blood_splash_1.png</img>
-            <img duration="65" key="2" x="-0.45999908" y="-0.46000004">spark_blood_splash_2.png</img>
-            <img duration="45" key="3" x="-0.45999908" y="-0.15999985">spark_blood_splash_3.png</img>
-            <img duration="30" key="4" x="-0.97999954" y="-0.27999973">spark_blood_splash_4.png</img>
-            <img duration="30" key="5" x="-1.5" y="-0.47999954">spark_blood_splash_5.png</img>
-            <img duration="30" key="6" x="-1.4200001" y="-0.35999966">spark_blood_splash_6.png</img>
-            <img duration="30" key="7" x="-1.5799999" y="-0.46000004">spark_blood_splash_7.png</img>
+            <img duration="75" key="0" x="-0.20999908" y="-0.27000046">spark_blood_splash_0.png</img>
+            <img duration="65" key="1" x="-0.40999985" y="-0.40999985">spark_blood_splash_1.png</img>
+            <img duration="65" key="2" x="-0.45000076" y="-0.4499998">spark_blood_splash_2.png</img>
+            <img duration="45" key="3" x="-0.5" y="-0.4300003">spark_blood_splash_3.png</img>
+            <img duration="30" key="4" x="-0.5400009" y="-0.4499998">spark_blood_splash_4.png</img>
+            <img duration="30" key="5" x="-0.5400009" y="-0.43999958">spark_blood_splash_5.png</img>
+            <img duration="30" key="6" x="-0.5300007" y="-0.4499998">spark_blood_splash_6.png</img>
+            <img duration="30" key="7" x="-0.55999947" y="-0.46000004">spark_blood_splash_7.png</img>
         </sequence>
     </sprites>
 </character>

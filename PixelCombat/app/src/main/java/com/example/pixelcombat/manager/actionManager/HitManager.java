@@ -37,6 +37,7 @@ public class HitManager {
         this.freezeLoop = false;
         this.knockBackHeight = knockBackHeight_df;
         this.knockBackRange = knockBackRange_df;
+        character.getMoveManager().resetStats();
 
         for (String attack : attacks.keySet()) {
             if (this.attacks.get(attack) == null)

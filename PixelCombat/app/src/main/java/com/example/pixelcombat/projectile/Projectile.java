@@ -2,11 +2,17 @@ package com.example.pixelcombat.projectile;
 
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.util.Log;
 
 import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.GameObject;
+import com.example.pixelcombat.core.message.GameMessage;
+import com.example.pixelcombat.core.sound.SoundManager;
+import com.example.pixelcombat.exception.PixelCombatException;
 import com.example.pixelcombat.math.BoundingRectangle;
 import com.example.pixelcombat.math.Vector2d;
+import com.example.pixelcombat.observer.Observable;
+import com.example.pixelcombat.observer.Observer;
 import com.example.pixelcombat.projectile.manager.ProjectileBoxManager;
 import com.example.pixelcombat.projectile.manager.ProjectileStatusManager;
 import com.example.pixelcombat.projectile.manager.ProjectileViewManager;
@@ -18,7 +24,7 @@ import java.util.Map;
 import lombok.Getter;
 
 @Getter
-public class Projectile implements GameObject {
+public class Projectile implements GameObject, Observable {
 
     private final Map<String, ArrayList<LocatedBitmap>> images;
     private final ArrayList<ArrayList<Float>> times;
@@ -33,6 +39,7 @@ public class Projectile implements GameObject {
     private Map<String, ArrayList<ArrayList<BoundingRectangle>>> boxes;
     private boolean isRight;
     private boolean canHit = true;
+    private Observer observer;
 
 
     public Projectile(Vector2d pos, boolean isRight, Map<String, ArrayList<ArrayList<BoundingRectangle>>> boxes, Map<String, ArrayList<LocatedBitmap>> images,
@@ -67,8 +74,12 @@ public class Projectile implements GameObject {
 
     @Override
     public void update() {
-        statusManager.update();
-        viewManager.update();
+        try {
+            statusManager.update();
+            viewManager.update();
+        } catch (Exception e) {
+            Log.e("Error", "While Updating the statusmanager and viewmanager of the Projectile, an error ocurred: " + e.getMessage());
+        }
     }
 
 
@@ -90,6 +101,26 @@ public class Projectile implements GameObject {
         if (isRight())
             return 1.0f;
         else return -1.0f;
+    }
+
+    public Projectile register(SoundManager soundManager) {
+        addObserver(soundManager);
+        return this;
+    }
+
+    @Override
+    public void addObserver(Observer o) {
+        this.observer = o;
+    }
+
+    @Override
+    public void removeObserver(Observer o) {
+        this.observer = null;
+    }
+
+    @Override
+    public void notifyObservers(GameMessage message) throws PixelCombatException {
+        observer.processMessage(message);
     }
 
 }

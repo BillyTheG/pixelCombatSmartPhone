@@ -38,6 +38,7 @@ public abstract class GameCharacterViewManager extends ObjectViewManager<GameCha
     public final int ONGROUND = 13;
     public final int SPECIALATTACK1 = 14;
     public final int DASH = 15;
+    public final int SPECIALATTACK3 = 16;
 
     public final int DEAD = 99;
     @Getter
@@ -79,6 +80,7 @@ public abstract class GameCharacterViewManager extends ObjectViewManager<GameCha
         animations.add(new Animation(images.get("onGround"), times.get(ONGROUND), loop.get(ONGROUND), loopIndices.get(ONGROUND)));
         animations.add(new Animation(images.get("specialAttack1"), times.get(SPECIALATTACK1), loop.get(SPECIALATTACK1), loopIndices.get(SPECIALATTACK1)));
         animations.add(new Animation(images.get("dash"), times.get(DASH), loop.get(DASH), loopIndices.get(DASH)));
+        animations.add(new Animation(images.get("specialAttack3"), times.get(SPECIALATTACK3), loop.get(SPECIALATTACK3), loopIndices.get(SPECIALATTACK3)));
 
 
         Animation[] array = new Animation[animations.size()];
@@ -124,6 +126,8 @@ public abstract class GameCharacterViewManager extends ObjectViewManager<GameCha
                         return ATTACK1;
                     case SPECIALATTACK1:
                         return SPECIALATTACK1;
+                    case SPECIALATTACK3:
+                        return SPECIALATTACK3;
                     case ATTACK2:
                         // character.picManager.change(BASICATTACK1);
                         break;

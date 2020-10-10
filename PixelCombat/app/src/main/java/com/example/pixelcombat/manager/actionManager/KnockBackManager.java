@@ -3,12 +3,15 @@ package com.example.pixelcombat.manager.actionManager;
 import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.character.status.ActionStatus;
 import com.example.pixelcombat.character.status.GlobalStatus;
+import com.example.pixelcombat.core.message.GameMessage;
+import com.example.pixelcombat.enums.MessageType;
 import com.example.pixelcombat.enums.ScreenProperty;
+import com.example.pixelcombat.exception.PixelCombatException;
 
 public class KnockBackManager {
 
     private final GameCharacter character;
-    public float RECOVER_JUMP = -16.5f;
+    public float RECOVER_JUMP = -25.5f;
     private float requiredMaxVX = 35f;
     private float requiredLeastVY = 10f;
     private float requiredMaxVY = 150f;
@@ -41,8 +44,10 @@ public class KnockBackManager {
 
     }
 
-    public void knockBackFall() {
+    public void knockBackFall() throws PixelCombatException {
         if (character.getPos().y >= (ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE)) {
+            character.notifyObservers(new GameMessage(MessageType.SOUND, "groundhit2", null, true));
+
             character.getStatusManager().setGlobalStatus(GlobalStatus.INVINCIBLE);
             character.getDisabledManager().reset();
             character.getDashManager().reset();
@@ -52,7 +57,7 @@ public class KnockBackManager {
 
 
     public void knockBackRecover() {
-        if (character.getViewManager().isPlaying()) {
+        if (!character.getViewManager().isPlaying()) {
             character.getStatusManager().setGlobalStatus(GlobalStatus.ACTIVE);
             character.getStatusManager().setActionStatus(ActionStatus.JUMPFALL);
             character.getHitManager().resetCharStats();

@@ -44,7 +44,7 @@ public class KohakuSpecialAttack2 extends Attack {
                 case 6:
                     if (isSwitcher()) {
                         character.notifyObservers(new GameMessage(MessageType.DUST_CREATION, DustConfig.KOHAKU_SPECIAL_ATTACK_SPARK + ";test;",
-                                new Vector2d(character.getPos().x, character.getPos().y), character.isRight()));
+                                new Vector2d(character.getPos().x - getCharacter().getDirection() * 100, character.getPos().y), character.isRight()));
 
                         character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_sword_slash", null, true));
 
@@ -87,6 +87,7 @@ public class KohakuSpecialAttack2 extends Attack {
     public void checkContent() {
         character.getHitManager().setHitDelay(true);
         try {
+            enemy.cry();
             BoundingRectangle box = character.getBoxManager().getIntersectionBox();
             character.notifyObservers(new GameMessage(MessageType.SPARK_CREATION, SparkConfig.BLOOD_SPLASH_SPARK + ";test;",
                     new Vector2d(box.getPos().x, box.getPos().y), character.isRight()));

@@ -3,6 +3,8 @@ package com.example.pixelcombat.projectile.manager;
 import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.character.status.MovementStatus;
 import com.example.pixelcombat.character.status.ProjectileActionStatus;
+import com.example.pixelcombat.exception.PixelCombatException;
+import com.example.pixelcombat.observer.Observer;
 import com.example.pixelcombat.projectile.Projectile;
 
 import lombok.Getter;
@@ -15,8 +17,10 @@ public abstract class ProjectileStatusManager {
     protected Projectile projectile;
     private MovementStatus movementStatus = MovementStatus.RIGHT;
     private ProjectileActionStatus actionStatus = ProjectileActionStatus.CREATION;
-    private boolean dead = false;
-    private float BASE_SPEED_VX = 50f;
+    protected boolean dead = false;
+    protected float BASE_SPEED_VX = 50f;
+    protected float BASE_SPEED_VY = 30f;
+    private Observer observer;
 
     public ProjectileStatusManager(Projectile projectile) {
         this.projectile = projectile;
@@ -32,7 +36,7 @@ public abstract class ProjectileStatusManager {
         if (!projectile.isRight()) movementStatus = MovementStatus.LEFT;
     }
 
-    public void update() {
+    public void update() throws PixelCombatException {
 
         switch (getActionStatus()) {
             case CREATION:
@@ -49,13 +53,13 @@ public abstract class ProjectileStatusManager {
         }
     }
 
-    private void explosion() {
+    protected void explosion() throws PixelCombatException {
         if (!projectile.getViewManager().isPlaying()) {
             dead = true;
         }
     }
 
-    private void move() {
+    protected void move() throws PixelCombatException {
 
         projectile.getPos().x += projectile.getDirection() * BASE_SPEED_VX;
 
@@ -64,7 +68,7 @@ public abstract class ProjectileStatusManager {
         }
     }
 
-    private void create() {
+    protected void create() {
 
         if (!projectile.getViewManager().isPlaying()) {
             setActionStatus(ProjectileActionStatus.MOVE);

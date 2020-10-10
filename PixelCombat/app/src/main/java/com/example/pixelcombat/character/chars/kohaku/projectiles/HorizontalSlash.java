@@ -24,6 +24,7 @@ public class HorizontalSlash extends ProjectileStatusManager {
         }
 
         try {
+            defender.cry();
             BoundingRectangle box = defender.getBoxManager().getIntersectionBox();
             defender.notifyObservers(new GameMessage(MessageType.SPARK_CREATION, SparkConfig.BLOOD_SPLASH_SPARK + ";test;",
                     new Vector2d(box.getPos().x, box.getPos().y), defender.isRight()));

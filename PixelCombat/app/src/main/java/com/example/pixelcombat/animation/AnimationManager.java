@@ -35,12 +35,12 @@ public class AnimationManager<T extends GameObject> implements Runnable {
         animationIndex = index;
     }
 
-    public synchronized void draw(Canvas canvas, int screenX, int screenY, Rect gameRect) {
+    public void draw(Canvas canvas, int screenX, int screenY, Rect gameRect) {
         if (animations[animationIndex].isPlaying())
             animations[animationIndex].draw(canvas, gameObject, screenX, screenY, gameRect);
     }
 
-    public synchronized void update() {
+    public void update() {
         if (animations[animationIndex].isPlaying())
             animations[animationIndex].update();
     }

@@ -2,7 +2,10 @@ package com.example.pixelcombat.manager.actionManager;
 
 import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.character.status.ActionStatus;
+import com.example.pixelcombat.core.message.GameMessage;
+import com.example.pixelcombat.enums.MessageType;
 import com.example.pixelcombat.enums.ScreenProperty;
+import com.example.pixelcombat.exception.PixelCombatException;
 
 public class JumpManager {
 
@@ -19,8 +22,10 @@ public class JumpManager {
         }
     }
 
-    public void updateJumpFall() {
+    public void updateJumpFall() throws PixelCombatException {
         if (character.getPos().y == (ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE)) {
+            character.notifyObservers(new GameMessage(MessageType.SOUND, "groundrecover", null, true));
+
             character.getStatusManager().setActionStatus(ActionStatus.JUMP_RECOVER);
         }
     }

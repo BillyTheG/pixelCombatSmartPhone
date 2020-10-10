@@ -17,15 +17,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.MessageFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import lombok.Getter;
 
 public class BoxParser {
 
     @Getter
-    private Map<String, ArrayList<ArrayList<BoundingRectangle>>> boxes = new HashMap<String, ArrayList<ArrayList<BoundingRectangle>>>();
+    private ConcurrentHashMap<String, ArrayList<ArrayList<BoundingRectangle>>> boxes = new ConcurrentHashMap<String, ArrayList<ArrayList<BoundingRectangle>>>();
     private boolean readingBox = false;
     private boolean readingBoxList = false;
 

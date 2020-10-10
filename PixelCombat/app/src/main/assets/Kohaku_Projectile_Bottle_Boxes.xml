@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+    <type>Kohaku_Projectile_Bottle</type>
+    <boxes>
+        <explosion>
+            <box_list picture="0">
+                <box height="1.5866661" hurts="true" id="0" width="1.0" x="0.059999466" y="-0.85999966" />
+            </box_list>
+            <box_list picture="1">
+                <box height="1.5866661" hurts="true" id="0" width="1.4799995" x="0.10000038" y="-0.9200001" />
+            </box_list>
+            <box_list picture="2">
+                <box height="1.5866661" hurts="true" id="0" width="1.4799995" x="0.059999466" y="-0.84666634" />
+                <box height="0.66666603" hurts="true" id="1" width="0.91999817" x="0.033332825" y="-1.9533329" />
+            </box_list>
+            <box_list picture="3">
+                <box height="1.5866661" hurts="true" id="0" width="1.4799995" x="-0.026666641" y="-0.8866663" />
+                <box height="0.66666603" hurts="true" id="1" width="1.0666656" x="0.013332367" y="-2.0066662" />
+            </box_list>
+            <box_list picture="4">
+                <box height="1.5866661" hurts="true" id="0" width="2.126667" x="0.049999237" y="-0.8666668" />
+                <box height="0.84000015" hurts="true" id="1" width="0.91999817" x="-0.033332825" y="-2.0666666" />
+            </box_list>
+            <box_list picture="5">
+                <box height="1.5866661" hurts="true" id="0" width="2.2000008" x="0.0466671" y="-0.8666668" />
+                <box height="1.0383339" hurts="true" id="1" width="1.3683357" x="-0.015832901" y="-2.1658335" />
+            </box_list>
+            <box_list picture="6">
+                <box height="1.5866661" hurts="true" id="0" width="2.420002" x="0.010000229" y="-0.8800001" />
+                <box height="1.0266666" hurts="true" id="1" width="1.4399986" x="-0.033332825" y="-2.1599998" />
+            </box_list>
+            <box_list picture="7">
+                <box height="1.5866661" hurts="true" id="0" width="2.420002" x="-0.059999466" y="-0.8800001" />
+                <box height="0.66666603" hurts="true" id="1" width="1.373333" x="-0.053333282" y="-1.9933338" />
+            </box_list>
+            <box_list picture="8">
+                <box height="1.5866661" hurts="true" id="0" width="2.8533325" x="0.0066661835" y="-0.9200001" />
+                <box height="0.66666603" hurts="true" id="1" width="1.373333" x="-0.059999466" y="-2.04" />
+            </box_list>
+            <box_list picture="9">
+                <box height="1.5866661" hurts="true" id="0" width="2.8533325" x="-0.0466671" y="-0.8666668" />
+                <box height="0.66666603" hurts="true" id="1" width="1.373333" x="-0.1800003" y="-1.9866667" />
+            </box_list>
+            <box_list picture="10">
+                <box height="1.5866661" hurts="true" id="0" width="2.8533325" x="-0.106666565" y="-0.8533335" />
+                <box height="0.6700001" hurts="true" id="1" width="1.3699989" x="-0.22000122" y="-1.9799995" />
+            </box_list>
+            <box_list picture="11" />
+            <box_list picture="12" />
+            <box_list picture="13" />
+        </explosion>
+        <move>
+            <box_list picture="0" />
+            <box_list picture="1" />
+            <box_list picture="2" />
+            <box_list picture="3" />
+            <box_list picture="4" />
+            <box_list picture="5" />
+            <box_list picture="6" />
+            <box_list picture="7" />
+        </move>
+        <creation>
+            <box_list picture="0" />
+        </creation>
+    </boxes>
+</character>

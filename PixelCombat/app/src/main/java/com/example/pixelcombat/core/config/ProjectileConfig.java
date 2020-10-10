@@ -6,5 +6,6 @@ public class ProjectileConfig {
 
     //KOHAKU
     public static final String KOHAKU_SPECIAL_ATTACK_PROJECTILE_HORIZONTAL = "Kohaku_Projectile_Horizontal";
+    public static final String KOHAKU_SPECIAL_ATTACK_PROJECTILE_BOTTLE = "Kohaku_Projectile_Bottle";
 
 }
