@@ -51,6 +51,11 @@ public class KohakuSpecialAttack1 extends Attack {
 
                         character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_sword_slash", null, true));
 
+                        Vector2d pos = new Vector2d(getCharacter().getPos().x + getCharacter().getDirection() * 200, character.getPos().y);
+
+                        character.notifyObservers(new GameMessage(MessageType.PROJECTILE_CREATION, "Kohaku_Projectile_Horizontal" + ";test;",
+                                pos, character.isRight()));
+
                         setSwitcher(false);
                     }
                     break;

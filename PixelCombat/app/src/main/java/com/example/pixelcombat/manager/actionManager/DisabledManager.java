@@ -38,6 +38,7 @@ public abstract class DisabledManager {
         }
 
         if (!character.getViewManager().getAnimManager().isPlaying()) {
+            switcher = true;
             character.getStatusManager().setGlobalStatus(GlobalStatus.DISABLEDRECOVER);
         }
     }

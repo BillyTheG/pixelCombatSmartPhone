@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+    <type>Kohaku_Projectile_Bottle</type>
+    <sprites>
+        <creation airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="50" key="0" x="0.069999695" y="-0.31000042">projectile_bottle_kohaku_special_attack2_0.png</img>
+        </creation>
+        <move airBool="true" airIndex="0" loopIndex="0" loops="true">
+            <img duration="50" key="0" x="0.0" y="-0.3199997">projectile_bottle_kohaku_special_attack2_1.png</img>
+            <img duration="50" key="1" x="-0.069999695" y="-0.3199997">projectile_bottle_kohaku_special_attack2_2.png</img>
+            <img duration="50" key="2" x="-0.12999916" y="-0.31000042">projectile_bottle_kohaku_special_attack2_3.png</img>
+            <img duration="50" key="3" x="-0.19000053" y="-0.28999996">projectile_bottle_kohaku_special_attack2_4.png</img>
+            <img duration="50" key="4" x="-0.21999931" y="-0.22999954">projectile_bottle_kohaku_special_attack2_5.png</img>
+            <img duration="50" key="5" x="-0.21999931" y="-0.21000004">projectile_bottle_kohaku_special_attack2_6.png</img>
+            <img duration="50" key="6" x="-0.21999931" y="-0.17000008">projectile_bottle_kohaku_special_attack2_7.png</img>
+            <img duration="50" key="7" x="-0.22999954" y="-0.13000011">projectile_bottle_kohaku_special_attack2_8.png</img>
+        </move>
+        <explosion airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="50" key="0" x="0.069999695" y="-0.97000027">projectile_explosion_kohaku_special_attack2_0.png</img>
+            <img duration="50" key="1" x="0.11000061" y="-1.1800003">projectile_explosion_kohaku_special_attack2_1.png</img>
+            <img duration="50" key="2" x="0.11000061" y="-1.2799997">projectile_explosion_kohaku_special_attack2_2.png</img>
+            <img duration="50" key="3" x="0.069999695" y="-1.3099995">projectile_explosion_kohaku_special_attack2_3.png</img>
+            <img duration="50" key="4" x="0.030000687" y="-1.3099995">projectile_explosion_kohaku_special_attack2_4.png</img>
+            <img duration="50" key="5" x="0.030000687" y="-1.3999996">projectile_explosion_kohaku_special_attack2_5.png</img>
+            <img duration="50" key="6" x="0.010000229" y="-1.4300003">projectile_explosion_kohaku_special_attack2_6.png</img>
+            <img duration="50" key="7" x="0.010000229" y="-1.5200005">projectile_explosion_kohaku_special_attack2_7.png</img>
+            <img duration="50" key="8" x="-0.020000458" y="-1.5500002">projectile_explosion_kohaku_special_attack2_8.png</img>
+            <img duration="50" key="9" x="-0.040000916" y="-1.5699997">projectile_explosion_kohaku_special_attack2_9.png</img>
+            <img duration="50" key="10" x="-0.049999237" y="-1.5299997">projectile_explosion_kohaku_special_attack2_10.png</img>
+            <img duration="50" key="11" x="-0.049999237" y="-1.5100002">projectile_explosion_kohaku_special_attack2_11.png</img>
+            <img duration="50" key="12" x="-0.030000687" y="-1.5699997">projectile_explosion_kohaku_special_attack2_12.png</img>
+            <img duration="50" key="13" x="-0.026666641" y="-1.4700003">projectile_explosion_kohaku_special_attack2_13.png</img>
+        </explosion>
+    </sprites>
+</character>

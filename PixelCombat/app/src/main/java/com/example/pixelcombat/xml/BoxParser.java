@@ -17,15 +17,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.MessageFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import lombok.Getter;
 
 public class BoxParser {
 
     @Getter
-    private Map<String, ArrayList<ArrayList<BoundingRectangle>>> boxes = new HashMap<String, ArrayList<ArrayList<BoundingRectangle>>>();
+    private ConcurrentHashMap<String, ArrayList<ArrayList<BoundingRectangle>>> boxes = new ConcurrentHashMap<String, ArrayList<ArrayList<BoundingRectangle>>>();
     private boolean readingBox = false;
     private boolean readingBoxList = false;
 
@@ -50,6 +49,29 @@ public class BoxParser {
             throw new XmlParseErrorException(MessageFormat.format(ExceptionGroup.PARSER.getDescription(), fileName) + e.getMessage());
         }
 
+    }
+
+    public BoxParser(Context context) throws Exception {
+        this.context = context;
+        XmlPullParserFactory parserFactory;
+        try {
+            parserFactory = XmlPullParserFactory.newInstance();
+            parser = parserFactory.newPullParser();
+        } catch (XmlPullParserException e) {
+            throw e;
+        }
+
+    }
+
+    public void parse(String fileName) throws XmlParseErrorException {
+        try {
+            InputStream is = context.getAssets().open(fileName);
+            parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+            parser.setInput(is, null);
+            parseXMLData();
+        } catch (XmlPullParserException | IOException e) {
+            throw new XmlParseErrorException(MessageFormat.format(ExceptionGroup.PARSER.getDescription(), fileName) + e.getMessage());
+        }
     }
 
     public void parseXMLData() throws XmlPullParserException, IOException, XmlParseErrorException {

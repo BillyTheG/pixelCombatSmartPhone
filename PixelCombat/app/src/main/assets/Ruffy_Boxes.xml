@@ -176,5 +176,8 @@
         <dash>
             <box_list picture="0" />
         </dash>
+        <specialAttack3>
+            <box_list picture="0" />
+        </specialAttack3>
     </boxes>
 </character>

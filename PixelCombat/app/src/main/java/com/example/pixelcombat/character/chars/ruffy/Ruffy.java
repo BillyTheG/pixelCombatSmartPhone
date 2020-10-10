@@ -7,6 +7,11 @@ import android.graphics.Rect;
 import android.util.Log;
 
 import com.example.pixelcombat.GameCharacter;
+import com.example.pixelcombat.character.chars.ruffy.manager.RuffyAttackManager;
+import com.example.pixelcombat.character.chars.ruffy.manager.RuffyBoxManager;
+import com.example.pixelcombat.character.chars.ruffy.manager.RuffyDisabledManager;
+import com.example.pixelcombat.character.chars.ruffy.manager.RuffyMoveManager;
+import com.example.pixelcombat.character.chars.ruffy.manager.RuffyViewManager;
 import com.example.pixelcombat.character.controller.CharacterController;
 import com.example.pixelcombat.character.physics.PlayerPhysics;
 import com.example.pixelcombat.core.config.ViewConfig;
@@ -39,6 +44,7 @@ public class Ruffy implements GameCharacter {
     private StatusManager statusManager;
     private RuffyViewManager viewManager;
     private RuffyBoxManager boxManager;
+    private RuffyMoveManager moveManager;
     private CrouchManager crouchManager;
     private HitManager hitManager;
     private DisabledManager disabledManager;
@@ -51,8 +57,10 @@ public class Ruffy implements GameCharacter {
     private JumpManager jumpManager;
     private ArrayList<Observer> observer;
     private GameCharacter enemy;
+    private String player;
 
-    public Ruffy(Vector2d pos, Context context) throws Exception {
+    public Ruffy(String player, Vector2d pos, Context context) throws Exception {
+        this.player = player;
         this.context = context;
         this.pos = pos;
         init();
@@ -62,6 +70,7 @@ public class Ruffy implements GameCharacter {
     private void init() throws Exception {
         physics = new PlayerPhysics(this);
         attackManager = new RuffyAttackManager(this);
+        moveManager = new RuffyMoveManager(this);
         statusManager = new StatusManager(this);
         viewManager = new RuffyViewManager(this);
         controller = new CharacterController(this);
@@ -80,6 +89,11 @@ public class Ruffy implements GameCharacter {
     }
 
     @Override
+    public void cry() {
+
+    }
+
+    @Override
     public void draw(Canvas canvas, int screenX, int screenY, Rect gameRect) {
         viewManager.draw(canvas, screenX, screenY, gameRect);
 
@@ -91,7 +105,7 @@ public class Ruffy implements GameCharacter {
     }
 
     @Override
-    public void update() {
+    public void update() throws PixelCombatException {
         viewManager.update();
         physics.update();
         statusManager.update();

@@ -5,6 +5,7 @@ import com.example.pixelcombat.character.status.ActionStatus;
 import com.example.pixelcombat.character.status.GlobalStatus;
 import com.example.pixelcombat.character.status.MovementStatus;
 import com.example.pixelcombat.enums.ScreenProperty;
+import com.example.pixelcombat.exception.PixelCombatException;
 
 
 public class StatusManager {
@@ -96,7 +97,7 @@ public class StatusManager {
         return isJumping() || isJumpFalling() || isJumpRecovering() || character.getPos().y < ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE;
     }
 
-    public void update() {
+    public void update() throws PixelCombatException {
 
         switch (getGlobalStatus()) {
             case INVINCIBLE:
@@ -143,6 +144,9 @@ public class StatusManager {
                 break;
             case DECROUCHING:
                 character.getCrouchManager().decrouch();
+                break;
+            case MOVE:
+                character.getMoveManager().move();
                 break;
             default:
                 break;

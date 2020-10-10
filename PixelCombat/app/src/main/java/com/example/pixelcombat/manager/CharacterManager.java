@@ -7,7 +7,7 @@ public class CharacterManager {
 
     private final GameCharacter character;
     private BoxManager boxManager;
-    private ViewManager vieManager;
+    private GameCharacterViewManager vieManager;
     private StatusManager statusManager;
 
 

@@ -59,7 +59,6 @@ public class Animation {
         for (int i = 0; i < images.size(); i++) {
             addFrame(images.get(i).image, times.get(i));
         }
-
     }
 
     public void addFrame(Bitmap image, float duration) {

@@ -15,6 +15,7 @@ import com.example.pixelcombat.core.config.ViewConfig;
 import com.example.pixelcombat.core.sound.SoundManager;
 import com.example.pixelcombat.enums.DrawLevel;
 import com.example.pixelcombat.enums.ScreenProperty;
+import com.example.pixelcombat.exception.PixelCombatException;
 import com.example.pixelcombat.manager.ScreenScrollerManager;
 import com.example.pixelcombat.math.Vector2d;
 
@@ -95,7 +96,7 @@ public class PXMap implements GameObject {
     }
 
     @Override
-    public void update() {
+    public void update() throws PixelCombatException {
 
         character1.update();
         character2.update();

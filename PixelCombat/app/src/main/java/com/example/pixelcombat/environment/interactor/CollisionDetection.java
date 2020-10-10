@@ -160,7 +160,7 @@ public class CollisionDetection implements EnvironmentInteract {
             boolean hurts1 = ownBoxes.get(currentOwnAnimation).get(i).isHurts();
 
             if (!hurts1) {
-                BoundingRectangle ownBox = new BoundingRectangle(height1, new Vector2d(x1, y1), width1);
+                BoundingRectangle ownBox = new BoundingRectangle(height1, new Vector2d(x1, y1), width1, 0, 0);
                 ownBox.setHurts(false);
 
                 for (int j = 0; j < enemyBoxes.get(currentDefenderAnimation).size(); j++) {
@@ -171,7 +171,7 @@ public class CollisionDetection implements EnvironmentInteract {
                     boolean hurts2 = enemyBoxes.get(currentDefenderAnimation).get(j).isHurts();
 
                     if (!hurts2) {
-                        BoundingRectangle enemyBox = new BoundingRectangle(height2, new Vector2d(x2, y2), width2);
+                        BoundingRectangle enemyBox = new BoundingRectangle(height2, new Vector2d(x2, y2), width2, 0, 0);
                         enemyBox.setHurts(false);
                         if (GeometryUtils.isCollision(ownBox, enemyBox)) {
 

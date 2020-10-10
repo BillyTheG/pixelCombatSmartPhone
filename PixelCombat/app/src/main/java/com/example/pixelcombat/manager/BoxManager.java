@@ -35,7 +35,7 @@ public abstract class BoxManager {
     public final int ONGROUND = 13;
     public final int SPECIALATTACK1 = 14;
     public final int DASH = 15;
-
+    public final int SPECIALATTACK3 = 16;
 
     public final int MAX_STANDARD_SPRITES = JUMPFALL;
     public int currentAnimation;
@@ -122,6 +122,9 @@ public abstract class BoxManager {
                 break;
             case SPECIALATTACK1:
                 updateBoxSeq(SPECIALATTACK1, "specialAttack1");
+                break;
+            case SPECIALATTACK3:
+                updateBoxSeq(SPECIALATTACK3, "specialAttack3");
                 break;
             case DISABLE:
                 updateBoxSeq(KNOCKBACK, "disabled");

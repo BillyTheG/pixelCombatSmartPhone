@@ -4,9 +4,9 @@
     <type>Ruffy</type>
     <sprites>
         <stand airBool="false" airIndex="0" loopIndex="0" loops="true">
-            <img duration="80" key="0" x="0.12000084" y="-2.5599995">ruffy_stand_1.png</img>
-            <img duration="80" key="1" x="0.07999992" y="-2.5599995">ruffy_stand_2.png</img>
-            <img duration="80" key="2" x="0.10000038" y="-2.5599995">ruffy_stand_3.png</img>
+            <img duration="110" key="0" x="0.12000084" y="-2.5599995">ruffy_stand_1.png</img>
+            <img duration="110" key="1" x="0.07999992" y="-2.5599995">ruffy_stand_2.png</img>
+            <img duration="110" key="2" x="0.10000038" y="-2.5599995">ruffy_stand_3.png</img>
         </stand>
         <move airBool="false" airIndex="0" loopIndex="0" loops="true">
             <img duration="50" key="0" x="0.059999466" y="-2.6000004">ruffy_move_1.png</img>
@@ -86,5 +86,8 @@
         <dash airBool="false" airIndex="0" loopIndex="0" loops="false">
             <img duration="85" key="0" x="-0.12000084" y="-2.08">ruffy_invincible_0.png</img>
         </dash>
+        <specialAttack3 airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="85" key="0" x="-0.12000084" y="-2.08">ruffy_invincible_0.png</img>
+        </specialAttack3>
     </sprites>
 </character>

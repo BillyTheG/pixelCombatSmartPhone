@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+    <type>Kohaku_Projectile_Horizontal</type>
+    <boxes>
+        <explosion>
+            <box_list picture="0" />
+            <box_list picture="1" />
+            <box_list picture="2" />
+            <box_list picture="3" />
+        </explosion>
+        <move>
+            <box_list picture="0">
+                <box height="1.206667" hurts="true" id="0" width="0.52000046" x="0.0" y="-0.6366663" />
+                <box height="2.1433334" hurts="true" id="1" width="0.5533333" x="-0.5766678" y="-1.1033335" />
+                <box height="0.5566673" hurts="true" id="2" width="0.5533333" x="-0.2266674" y="-1.4433336" />
+            </box_list>
+            <box_list picture="1">
+                <box height="2.1433334" hurts="true" id="0" width="0.5533333" x="-0.5466671" y="-1.1599998" />
+                <box height="1.206667" hurts="true" id="1" width="0.52000046" x="0.013332367" y="-0.65999985" />
+                <box height="0.5566673" hurts="true" id="2" width="0.873333" x="-0.28666687" y="-1.5200005" />
+            </box_list>
+            <box_list picture="2">
+                <box height="2.1433334" hurts="true" id="0" width="0.47000122" x="-0.5066662" y="-1.1400003" />
+                <box height="1.5" hurts="true" id="1" width="0.4366684" x="-0.030000687" y="-0.7833338" />
+            </box_list>
+            <box_list picture="3">
+                <box height="1.3466663" hurts="true" id="0" width="0.2733345" x="0.2033329" y="-0.6999998" />
+                <box height="0.75" hurts="true" id="1" width="0.5" x="-0.21000099" y="-1.7200003" />
+                <box height="0.4766674" hurts="true" id="2" width="0.29999924" x="-0.53666687" y="-2.1766663" />
+            </box_list>
+        </move>
+        <creation>
+            <box_list picture="0">
+                <box height="2.0066662" hurts="true" id="0" width="0.5533333" x="-0.31666756" y="-1.0966663" />
+                <box height="1.5766659" hurts="true" id="1" width="0.5233345" x="0.08666611" y="-0.8633337" />
+            </box_list>
+        </creation>
+    </boxes>
+</character>

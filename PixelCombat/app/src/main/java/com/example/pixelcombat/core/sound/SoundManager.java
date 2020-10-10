@@ -33,9 +33,9 @@ public class SoundManager implements Observer {
         soundsIds.put("kohaku_attack2", soundPool.load(context, R.raw.kohaku_attack2, 1));
         soundsIds.put("kohaku_attack1_hit", soundPool.load(context, R.raw.kohaku_attack1_hit, 1));
         soundsIds.put("kohaku_attack1_sonic", soundPool.load(context, R.raw.kohaku_attack1_sonic, 1));
-        soundsIds.put("kohaku_disabled", soundPool.load(context, R.raw.kohaku_disabled, 1));
+        soundsIds.put("kohaku_cry1", soundPool.load(context, R.raw.kohaku_cry1, 1));
         soundsIds.put("kohaku_jump", soundPool.load(context, R.raw.kohaku_jump, 1));
-        soundsIds.put("kohaku_knockback", soundPool.load(context, R.raw.kohaku_knockback, 1));
+        soundsIds.put("kohaku_cry2", soundPool.load(context, R.raw.kohaku_cry2, 1));
         soundsIds.put("ruffy_disabled", soundPool.load(context, R.raw.ruffy_disabled, 1));
         soundsIds.put("ruffy_attack1", soundPool.load(context, R.raw.ruffy_attack1, 1));
         soundsIds.put("ruffy_attack2", soundPool.load(context, R.raw.ruffy_attack2, 1));
@@ -46,6 +46,22 @@ public class SoundManager implements Observer {
         soundsIds.put("kohaku_sword_back", soundPool.load(context, R.raw.kohaku_sword_back, 1));
         soundsIds.put("kohaku_sword_slash", soundPool.load(context, R.raw.kohaku_sword_slash, 1));
         soundsIds.put("kohaku_special_attack_end", soundPool.load(context, R.raw.kohaku_special_attack_end, 1));
+        soundsIds.put("kohaku_bottle_explosion1", soundPool.load(context, R.raw.kohaku_bottle_explosion1, 1));
+        soundsIds.put("kohaku_bottle_explosion2", soundPool.load(context, R.raw.kohaku_bottle_explosion2, 1));
+        soundsIds.put("kohaku_bottle_explosion_hit", soundPool.load(context, R.raw.kohaku_bottle_explosion_hit, 1));
+        soundsIds.put("kohaku_special_attack3", soundPool.load(context, R.raw.kohaku_special_attack3, 1));
+        soundsIds.put("kohaku_special_attack3_laughter", soundPool.load(context, R.raw.kohaku_special_attack3_laughter, 1));
+        soundsIds.put("kohaku_special_attack3_rise", soundPool.load(context, R.raw.kohaku_special_attack3_rise, 1));
+        soundsIds.put("kohaku_bottle_break", soundPool.load(context, R.raw.kohaku_bottle_break, 1));
+        soundsIds.put("kohaku_cry3", soundPool.load(context, R.raw.kohaku_cry3, 1));
+        soundsIds.put("kohaku_cry4", soundPool.load(context, R.raw.kohaku_cry4, 1));
+        soundsIds.put("kohaku_cry5", soundPool.load(context, R.raw.kohaku_cry5, 1));
+        soundsIds.put("groundhit2", soundPool.load(context, R.raw.groundhit2, 1));
+        soundsIds.put("groundrecover", soundPool.load(context, R.raw.groundrecover, 1));
+        soundsIds.put("kohaku_step1", soundPool.load(context, R.raw.kohaku_step1, 1));
+        soundsIds.put("kohaku_step2", soundPool.load(context, R.raw.kohaku_step2, 1));
+
+
     }
 
 

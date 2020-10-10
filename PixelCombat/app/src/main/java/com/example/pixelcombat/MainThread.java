@@ -1,6 +1,7 @@
 package com.example.pixelcombat;
 
 import android.graphics.Canvas;
+import android.util.Log;
 import android.view.SurfaceHolder;
 
 public class MainThread extends Thread {
@@ -67,8 +68,8 @@ public class MainThread extends Thread {
             if(frameCount == MAX_FPS){
                 averageFPS = 1000/((totalTime/frameCount)/1000000);
                 frameCount = 0;
-                totalTime  = 0;
-                //System.out.println(averageFPS);
+                totalTime = 0;
+                Log.i("Info", "Average FPS: " + averageFPS);
             }
         }
 

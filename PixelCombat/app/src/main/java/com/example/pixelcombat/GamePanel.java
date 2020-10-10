@@ -13,7 +13,6 @@ import android.view.SurfaceView;
 import androidx.annotation.RequiresApi;
 
 import com.example.pixelcombat.character.chars.kohaku.Kohaku;
-import com.example.pixelcombat.character.chars.ruffy.Ruffy;
 import com.example.pixelcombat.character.status.MovementStatus;
 import com.example.pixelcombat.core.Game;
 import com.example.pixelcombat.core.sound.SoundManager;
@@ -32,7 +31,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     private Bitmap bg;
 
 
-    private Ruffy ruffy;
+    private Kohaku ruffy;
 
     private Kohaku kohaku;
     private CollisionDetection collisionDetection;
@@ -66,8 +65,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         bg = Bitmap.createScaledBitmap(bg, ((int) (ScreenProperty.SCREEN_WIDTH * 1.5f)), ((int) (ScreenProperty.SCREEN_HEIGHT * 1.4f)), false);
 
 
-        ruffy = new Ruffy(new Vector2d(500, ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE), context);
-        kohaku = new Kohaku(new Vector2d(1000, ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE), context);
+        ruffy = new Kohaku("player2", new Vector2d(500, ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE), context);
+        kohaku = new Kohaku("player1", new Vector2d(1000, ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE), context);
         ruffy.getBoxManager().loadParsedBoxes();
         kohaku.getBoxManager().loadParsedBoxes();
         kohaku.getStatusManager().setMovementStatus(MovementStatus.LEFT);
@@ -76,9 +75,11 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         player2 = ruffy;
 
         testMap = new PXMap("Blue Winter", bg, context, player1, player2);
-        collisionDetection = new CollisionDetection(ruffy, kohaku);
-        game = new Game(context, testMap, new Weather());
+        collisionDetection = new CollisionDetection(player1, player2);
+
         soundManager = new SoundManager(context);
+        game = new Game(context, testMap, new Weather(), soundManager);
+
         testMap.registerSoundManager(soundManager);
 
         Log.i("Info", "Game was created successfully");
