@@ -3,6 +3,7 @@ package com.example.pixelcombat.manager.actionManager;
 import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.character.attack.Attack;
 import com.example.pixelcombat.character.status.AttackStatus;
+import com.example.pixelcombat.exception.PixelCombatException;
 
 import java.util.TreeMap;
 
@@ -21,7 +22,7 @@ public abstract class AttackManager {
 
     public abstract void init();
 
-    public void updateAttacks() {
+    public void updateAttacks() throws PixelCombatException {
 
         if (!isAttacking())
             return;

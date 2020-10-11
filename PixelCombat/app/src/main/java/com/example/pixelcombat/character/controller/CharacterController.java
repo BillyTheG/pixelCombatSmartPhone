@@ -86,6 +86,20 @@ public class CharacterController {
         return true;
     }
 
+    public boolean defend(boolean hold, boolean right) {
+        if (character.getStatusManager().canNotDefend())
+            return false;
+
+
+        if (!hold) {
+            character.getStatusManager().setActionStatus(ActionStatus.DEFENDSTOP);
+        } else {
+            character.getStatusManager().setActionStatus(ActionStatus.DEFENDING);
+        }
+
+        return true;
+    }
+
 
     public boolean attack(AttackStatus attackStates) {
         if (character.getStatusManager().isOnAir()) {

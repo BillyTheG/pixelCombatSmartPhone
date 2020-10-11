@@ -4,6 +4,7 @@ public enum ActionStatus {
     AIR_DEFENDING,
     DASHING,
     DEFENDING,
+    DEFENDSTOP,
     INTRO,
     JUMP,
     JUMPFALL,

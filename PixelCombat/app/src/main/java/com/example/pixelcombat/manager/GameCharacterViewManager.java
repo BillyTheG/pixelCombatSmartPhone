@@ -41,6 +41,8 @@ public abstract class GameCharacterViewManager extends ObjectViewManager<GameCha
     public final int SPECIALATTACK3 = 16;
     public final int ATTACK2 = 17;
     public final int ATTACK3 = 18;
+    public final int DEFEND = 19;
+    public final int DEFENDSTOP = 20;
 
     public final int DEAD = 99;
     @Getter
@@ -85,6 +87,8 @@ public abstract class GameCharacterViewManager extends ObjectViewManager<GameCha
         animations.add(new Animation(images.get("specialAttack3"), times.get(SPECIALATTACK3), loop.get(SPECIALATTACK3), loopIndices.get(SPECIALATTACK3)));
         animations.add(new Animation(images.get("attack2"), times.get(ATTACK2), loop.get(ATTACK2), loopIndices.get(ATTACK2)));
         animations.add(new Animation(images.get("attack3"), times.get(ATTACK3), loop.get(ATTACK3), loopIndices.get(ATTACK3)));
+        animations.add(new Animation(images.get("defend"), times.get(DEFEND), loop.get(DEFEND), loopIndices.get(DEFEND)));
+        animations.add(new Animation(images.get("defendStop"), times.get(DEFENDSTOP), loop.get(DEFENDSTOP), loopIndices.get(DEFENDSTOP)));
 
 
         Animation[] array = new Animation[animations.size()];
@@ -161,6 +165,10 @@ public abstract class GameCharacterViewManager extends ObjectViewManager<GameCha
                         return CROUCH;
                     case DECROUCHING:
                         return DECROUCH;
+                    case DEFENDING:
+                        return DEFEND;
+                    case DEFENDSTOP:
+                        return DEFENDSTOP;
                 }
 
             }

@@ -45,7 +45,7 @@ public class ComboActionManager {
 
     private void insertKey(String player1, String key) {
         if (player1.equals("player1")) {
-            if (pressedKeysP1.length() > MAXIMUM_KEY_LISTENING_SIZE) {
+            if (pressedKeysP1.length() == MAXIMUM_KEY_LISTENING_SIZE) {
                 pressedKeysP1 = pressedKeysP1.substring(1);
             }
             pressedKeysP1 += key;

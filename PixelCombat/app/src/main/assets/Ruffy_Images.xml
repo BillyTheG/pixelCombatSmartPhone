@@ -95,5 +95,11 @@
         <attack3>
             <img duration="85" key="0" x="-0.12000084" y="-2.08">ruffy_invincible_0.png</img>
         </attack3>
+        <defendStop>
+            <img duration="85" key="0" x="-0.12000084" y="-2.08">ruffy_invincible_0.png</img>
+        </defendStop>
+        <defend>
+            <img duration="85" key="0" x="-0.12000084" y="-2.08">ruffy_invincible_0.png</img>
+        </defend>
     </sprites>
 </character>

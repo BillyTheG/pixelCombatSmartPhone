@@ -21,6 +21,7 @@ import com.example.pixelcombat.exception.PixelCombatException;
 import com.example.pixelcombat.manager.StatusManager;
 import com.example.pixelcombat.manager.actionManager.CrouchManager;
 import com.example.pixelcombat.manager.actionManager.DashManager;
+import com.example.pixelcombat.manager.actionManager.DefendManager;
 import com.example.pixelcombat.manager.actionManager.DisabledManager;
 import com.example.pixelcombat.manager.actionManager.HitManager;
 import com.example.pixelcombat.manager.actionManager.JumpManager;
@@ -50,6 +51,7 @@ public class Ruffy implements GameCharacter {
     private DisabledManager disabledManager;
     private KnockBackManager knockBackManager;
     private RuffyAttackManager attackManager;
+    private DefendManager defendManager;
     private DashManager dashManager;
     private PlayerPhysics physics;
     private CharacterController controller;
@@ -72,6 +74,7 @@ public class Ruffy implements GameCharacter {
         attackManager = new RuffyAttackManager(this);
         moveManager = new RuffyMoveManager(this);
         statusManager = new StatusManager(this);
+        defendManager = new DefendManager(this);
         viewManager = new RuffyViewManager(this);
         controller = new CharacterController(this);
         boxManager = new RuffyBoxManager(this);

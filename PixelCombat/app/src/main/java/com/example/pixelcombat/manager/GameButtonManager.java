@@ -145,6 +145,7 @@ public class GameButtonManager implements View.OnClickListener, View.OnTouchList
 
         start.setOnTouchListener(this);
         select.setOnTouchListener(this);
+        defend.setOnTouchListener(this);
         start.setOnClickListener(this);
         select.setOnClickListener(this);
         GameButtons.addView(start);
@@ -176,16 +177,16 @@ public class GameButtonManager implements View.OnClickListener, View.OnTouchList
                     gamePanel.getPlayer1().getController().attack(AttackStatus.ATTACK1);
                 break;
             case 5:
-                gamePanel.getPlayer1().getController().specialAttack(AttackStatus.SPECIALATTACK3);
-                break;
-            case 6:
                 gamePanel.getPlayer1().getController().specialAttack(AttackStatus.SPECIALATTACK1);
                 break;
-            case 7:
+            case 6:
                 gamePanel.getPlayer1().getController().dash();
                 break;
+            case 7:
+                gamePanel.getPlayer1().getController().defend(false, true);
+                break;
             case 8:
-                gamePanel.getPlayer2().getController().move(false, false);
+                gamePanel.getPlayer2().getController().defend(false, false);
                 break;
             case 9:
                 gamePanel.getPlayer2().getController().move(false, true);
@@ -216,8 +217,11 @@ public class GameButtonManager implements View.OnClickListener, View.OnTouchList
             case 3:
                 gamePanel.getPlayer1().getController().move(true, true);
                 break;
+            case 7:
+                gamePanel.getPlayer1().getController().defend(true, true);
+                break;
             case 8:
-                gamePanel.getPlayer2().getController().move(true, false);
+                gamePanel.getPlayer2().getController().defend(true, false);
                 break;
             case 9:
                 gamePanel.getPlayer2().getController().move(true, true);

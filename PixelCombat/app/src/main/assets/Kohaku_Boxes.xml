@@ -568,5 +568,25 @@
                 <box height="1.9599991" hurts="false" id="0" width="0.6100006" x="-0.060001373" y="-1.0100002" />
             </box_list>
         </attack3>
+        <defendStop>
+            <box_list picture="0">
+                <box height="1.873333" hurts="false" id="0" width="0.56666946" x="0.010000229" y="-0.97000027" />
+            </box_list>
+            <box_list picture="1">
+                <box height="1.873333" hurts="false" id="0" width="0.56666565" x="-0.06666756" y="-0.9399996" />
+            </box_list>
+        </defendStop>
+        <defend>
+            <box_list picture="0">
+                <box height="1.873333" hurts="false" id="0" width="0.5099983" x="-0.07999992" y="-1.0200005" />
+                <box height="1.0766659" hurts="false" id="1" width="0.4300003" x="0.42666626" y="-0.60999966" />
+                <box height="0.6000004" hurts="false" id="2" width="0.38000107" x="0.7199993" y="-0.35999966" />
+            </box_list>
+            <box_list picture="1">
+                <box height="1.873333" hurts="false" id="0" width="0.5099983" x="-0.07999992" y="-1.0200005" />
+                <box height="1.0766659" hurts="false" id="1" width="0.4300003" x="0.42666626" y="-0.60999966" />
+                <box height="0.6000004" hurts="false" id="2" width="0.38000107" x="0.7199993" y="-0.35999966" />
+            </box_list>
+        </defend>
     </boxes>
 </character>

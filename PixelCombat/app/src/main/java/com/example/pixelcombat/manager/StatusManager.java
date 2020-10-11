@@ -145,6 +145,12 @@ public class StatusManager {
             case DECROUCHING:
                 character.getCrouchManager().decrouch();
                 break;
+            case DEFENDING:
+                character.getDefendManager().defend();
+                break;
+            case DEFENDSTOP:
+                character.getDefendManager().stopDefend();
+                break;
             case MOVE:
                 character.getMoveManager().move();
                 break;
@@ -169,6 +175,11 @@ public class StatusManager {
     }
 
     public boolean canNotCrouch() {
+        return isOnAir() ||
+                notCombatReady();
+    }
+
+    public boolean canNotDefend() {
         return isOnAir() ||
                 notCombatReady();
     }
@@ -198,11 +209,14 @@ public class StatusManager {
                 || isDisabled()
                 || isDisabledRecovering()
                 || isDashing()
-                || isDefending()
+                || isDefendStopping()
                 || isDeCrouching();
 
     }
 
+    private boolean isDefendStopping() {
+        return this.actionStatus == ActionStatus.DEFENDSTOP;
+    }
 
 
     public void setActionStatus(ActionStatus actionStatus) {

@@ -51,6 +51,7 @@ public class KnockBackManager {
             character.getStatusManager().setGlobalStatus(GlobalStatus.INVINCIBLE);
             character.getDisabledManager().reset();
             character.getDashManager().reset();
+            character.getDefendManager().resetStats();
             character.getHitManager().resetCharStats();
         }
     }
@@ -60,6 +61,9 @@ public class KnockBackManager {
         if (!character.getViewManager().isPlaying()) {
             character.getStatusManager().setGlobalStatus(GlobalStatus.ACTIVE);
             character.getStatusManager().setActionStatus(ActionStatus.JUMPFALL);
+            character.getDisabledManager().reset();
+            character.getDashManager().reset();
+            character.getDefendManager().resetStats();
             character.getHitManager().resetCharStats();
         }
     }

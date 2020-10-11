@@ -115,4 +115,9 @@ public class KohakuAttack3 extends Attack {
     public void resetStats() {
         setSwitcher(true);
     }
+
+    @Override
+    public int getDefendDamage() {
+        return 3;
+    }
 }

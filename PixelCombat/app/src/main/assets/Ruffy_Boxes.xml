@@ -185,5 +185,11 @@
         <attack3>
             <box_list picture="0" />
         </attack3>
+        <defendStop>
+            <box_list picture="0" />
+        </defendStop>
+        <defend>
+            <box_list picture="0" />
+        </defend>
     </boxes>
 </character>

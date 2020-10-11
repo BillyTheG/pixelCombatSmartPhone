@@ -5,6 +5,12 @@ import com.example.pixelcombat.character.attack.Attack;
 import com.example.pixelcombat.character.status.ActionStatus;
 import com.example.pixelcombat.character.status.GlobalStatus;
 import com.example.pixelcombat.character.status.MovementStatus;
+import com.example.pixelcombat.core.config.SparkConfig;
+import com.example.pixelcombat.core.message.GameMessage;
+import com.example.pixelcombat.enums.MessageType;
+import com.example.pixelcombat.exception.PixelCombatException;
+import com.example.pixelcombat.math.BoundingRectangle;
+import com.example.pixelcombat.math.Vector2d;
 import com.example.pixelcombat.projectile.Projectile;
 
 import java.util.Objects;
@@ -46,8 +52,8 @@ public class HitManager {
         }
     }
 
-    public boolean checkDefender(GameCharacter defender) {
-        return (canTouch(defender)) && (!defender.getHitManager().canDefend(character)) && (!hitDelay);
+    public boolean checkDefender(GameCharacter defender, Attack attack) throws PixelCombatException {
+        return (canTouch(defender)) && (!defender.getHitManager().canDefend(character, attack)) && (!hitDelay);
     }
 
     public void comboTouch(float jumpSpeed, float movementSpeed) {
@@ -100,31 +106,32 @@ public class HitManager {
     }
 
 
-    public boolean canDefend(GameCharacter attacker) {
+    public boolean canDefend(GameCharacter attacker, Attack attack) throws PixelCombatException {
         if ((!isNotHittable()) && (attacker.isRight())) {
             if ((!character.isRight()) && (character.getStatusManager().isDefending())) {
-                return defend(attacker);
+                return defend(attacker, attack);
             }
         }
         if ((!isNotHittable()) && (!attacker.isRight())) {
             if ((character.isRight()) && (character.getStatusManager().isDefending())) {
-                return defend(attacker);
+                return defend(attacker, attack);
             }
         }
         return isNotHittable();
     }
 
-    private boolean defend(GameCharacter attacker) {
+    private boolean defend(GameCharacter attacker, Attack attack) throws PixelCombatException {
         if (!attacker.getHitManager().isHitDelay()) {
-            try {
-                Thread.sleep(50L);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            //    makeDefendBubbles();
+
+            BoundingRectangle box = character.getBoxManager().getIntersectionBox();
+            character.notifyObservers(new GameMessage(MessageType.SPARK_CREATION, SparkConfig.DEFEND_SPARK + ";test;",
+                    new Vector2d(box.getPos().x, box.getPos().y), true));
+            character.notifyObservers(new GameMessage(MessageType.SOUND, "defend", null, true));
+
             // sound(this.defendSound);
 
-            character.getPhysics().VX += attacker.getDirection() * 0.25F;
+            character.getPhysics().VX += attacker.getDirection() * 25F;
+            character.getDefendManager().damageDefendPoints(attack.getDefendDamage());
             attacker.getHitManager().setHitDelay(true);
         }
         return true;
