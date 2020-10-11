@@ -1,5 +1,7 @@
 package com.example.pixelcombat.character.controller;
 
+import android.util.Log;
+
 import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.character.status.ActionStatus;
 import com.example.pixelcombat.character.status.AttackStatus;
@@ -148,5 +150,31 @@ public class CharacterController {
         return true;
     }
 
+    public void checkDashOrRetreat(GameCharacter enemy, boolean right) {
+
+        if (character.getStatusManager().canNotDash())
+            return;
+
+        try {
+            if (character.getPos().x < enemy.getPos().x && right) {
+                character.getStatusManager().setActionStatus(ActionStatus.DASHING);
+                return;
+            }
+            if (character.getPos().x < enemy.getPos().x && !right) {
+                character.getStatusManager().setActionStatus(ActionStatus.RETREATING);
+                return;
+            }
+            if (character.getPos().x >= enemy.getPos().x && right) {
+                character.getStatusManager().setActionStatus(ActionStatus.RETREATING);
+                return;
+            }
+            if (character.getPos().x >= enemy.getPos().x && !right) {
+                character.getStatusManager().setActionStatus(ActionStatus.DASHING);
+                return;
+            }
+        } catch (Exception e) {
+            Log.e("Error", "the Dash or Retreat Button has been interrupted: " + e.getMessage());
+        }
+    }
 
 }

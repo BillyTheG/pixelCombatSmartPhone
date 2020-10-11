@@ -127,6 +127,12 @@ public class StatusManager {
 
 
         switch (getActionStatus()) {
+            case RETREATING:
+                character.getDashManager().retreat();
+                break;
+            case RETREATING_STOP:
+                character.getDashManager().retreatStop();
+                break;
             case JUMPSTART:
                 character.getJumpManager().updateJumpStart();
                 break;
@@ -222,6 +228,8 @@ public class StatusManager {
                 || isDisabled()
                 || isDisabledRecovering()
                 || isDashing()
+                || isRetreating()
+                || isRetreatStopping()
                 || isDefendStopping()
                 || isDeCrouching();
 
@@ -247,6 +255,9 @@ public class StatusManager {
         return this.actionStatus == ActionStatus.DEFENDSTOP;
     }
 
+    public boolean landed() {
+        return character.getPos().y == (ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE);
+    }
 
     public void setActionStatus(ActionStatus actionStatus) {
         this.actionStatus = actionStatus;
@@ -311,4 +322,9 @@ public class StatusManager {
     public boolean shouldNotBeDecelerated() {
         return isKnockbacked() || isDashing();
     }
+
+    public boolean isRetreatStopping() {
+        return actionStatus == ActionStatus.RETREATING_STOP;
+    }
+
 }

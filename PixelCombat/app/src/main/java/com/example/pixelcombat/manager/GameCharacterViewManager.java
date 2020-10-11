@@ -47,6 +47,8 @@ public abstract class GameCharacterViewManager extends ObjectViewManager<GameCha
     public final int MOVESTART = 22;
     public final int MOVEEND = 23;
     public final int JUMPSTART = 24;
+    public final int RETREAT = 25;
+    public final int RETREATSTOP = 26;
 
     public final int DEAD = 99;
     @Getter
@@ -97,6 +99,8 @@ public abstract class GameCharacterViewManager extends ObjectViewManager<GameCha
         animations.add(new Animation(images.get("moveStart"), times.get(MOVESTART), loop.get(MOVESTART), loopIndices.get(MOVESTART)));
         animations.add(new Animation(images.get("moveEnd"), times.get(MOVEEND), loop.get(MOVEEND), loopIndices.get(MOVEEND)));
         animations.add(new Animation(images.get("jumpStart"), times.get(JUMPSTART), loop.get(JUMPSTART), loopIndices.get(JUMPSTART)));
+        animations.add(new Animation(images.get("retreat"), times.get(RETREAT), loop.get(RETREAT), loopIndices.get(RETREAT)));
+        animations.add(new Animation(images.get("retreatStop"), times.get(RETREATSTOP), loop.get(RETREATSTOP), loopIndices.get(RETREATSTOP)));
 
 
         Animation[] array = new Animation[animations.size()];
@@ -185,6 +189,10 @@ public abstract class GameCharacterViewManager extends ObjectViewManager<GameCha
                         return DEFEND;
                     case DEFENDSTOP:
                         return DEFENDSTOP;
+                    case RETREATING:
+                        return RETREAT;
+                    case RETREATING_STOP:
+                        return RETREATSTOP;
                 }
 
             }

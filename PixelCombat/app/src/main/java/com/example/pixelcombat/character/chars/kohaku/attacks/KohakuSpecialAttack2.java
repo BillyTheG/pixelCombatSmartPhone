@@ -124,7 +124,7 @@ public class KohakuSpecialAttack2 extends Attack {
      */
     @Override
     public boolean isAttacking() {
-        return character.getAttackManager().isSpecialAttacking1();
+        return character.getAttackManager().isSpecialAttacking2();
     }
 
     @Override
