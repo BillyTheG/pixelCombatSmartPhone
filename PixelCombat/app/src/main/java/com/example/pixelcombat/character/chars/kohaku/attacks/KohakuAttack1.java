@@ -30,7 +30,6 @@ public class KohakuAttack1 extends Attack {
             switch (character.getViewManager().getFrameIndex()) {
                 case 0:
                     if (isSwitcher()) {
-
                         int rand = new Random().nextInt(2) + 1;
                         character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_attack" + rand, null, true));
                         setSwitcher(false);

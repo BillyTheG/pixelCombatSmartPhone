@@ -10,6 +10,7 @@ import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.character.chars.ruffy.manager.RuffyAttackManager;
 import com.example.pixelcombat.character.chars.ruffy.manager.RuffyBoxManager;
 import com.example.pixelcombat.character.chars.ruffy.manager.RuffyDisabledManager;
+import com.example.pixelcombat.character.chars.ruffy.manager.RuffyJumpManager;
 import com.example.pixelcombat.character.chars.ruffy.manager.RuffyMoveManager;
 import com.example.pixelcombat.character.chars.ruffy.manager.RuffyViewManager;
 import com.example.pixelcombat.character.controller.CharacterController;
@@ -78,7 +79,7 @@ public class Ruffy implements GameCharacter {
         viewManager = new RuffyViewManager(this);
         controller = new CharacterController(this);
         boxManager = new RuffyBoxManager(this);
-        jumpManager = new JumpManager(this);
+        jumpManager = new RuffyJumpManager(this);
         crouchManager = new CrouchManager(this);
         hitManager = new HitManager(this);
         disabledManager = new RuffyDisabledManager(this);

@@ -7,4 +7,5 @@ public class DustConfig {
     //KOHAKU
     public static final String KOHAKU_SPECIAL_ATTACK_SPARK = "Kohaku_Special_Attack_Dust";
     public static final String KOHAKU_SPECIAL_ATTACK2_SPARK = "Kohaku_Special2_Attack_Dust";
+    public static final String KOHAKU_DASH_DUST = "Kohaku_Dash_Dust";
 }

@@ -40,6 +40,7 @@ public class DustFactory {
             dustParser = new CharacterParser(context);
             sparkNames.add("Kohaku_Special_Attack_Dust.xml");
             sparkNames.add("Kohaku_Special2_Attack_Dust.xml");
+            sparkNames.add("Kohaku_Dash_Dust.xml");
 
             for (String spark : sparkNames) {
                 dustParser.parse(spark);
@@ -61,6 +62,8 @@ public class DustFactory {
                 return new Dust(pictures.get("Kohaku_Special_Attack_Dust"), times.get("Kohaku_Special_Attack_Dust"), pos, right).register(soundManager);
             case DustConfig.KOHAKU_SPECIAL_ATTACK2_SPARK:
                 return new Dust(pictures.get("Kohaku_Special2_Attack_Dust"), times.get("Kohaku_Special2_Attack_Dust"), pos, right).register(soundManager);
+            case DustConfig.KOHAKU_DASH_DUST:
+                return new Dust(pictures.get("Kohaku_Dash_Dust"), times.get("Kohaku_Dash_Dust"), pos, right).register(soundManager);
             default:
                 break;
         }

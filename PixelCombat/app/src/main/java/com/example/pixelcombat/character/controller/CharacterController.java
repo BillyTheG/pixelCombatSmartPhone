@@ -10,7 +10,7 @@ public class CharacterController {
 
     public static final float SPEED_BONUS = 15f;
     private final GameCharacter character;
-    private float VERTICAL_LEAP = -45f;
+
 
     public CharacterController(GameCharacter character){
         this.character = character;
@@ -35,9 +35,7 @@ public class CharacterController {
 
     public boolean jump(boolean hold, boolean b) {
         if (!character.getStatusManager().canNotJump()) {
-            character.getPhysics().VY = VERTICAL_LEAP;
-            character.getStatusManager().setActionStatus(ActionStatus.JUMP);
-            // sound(player.getJumpSound());
+            character.getStatusManager().setActionStatus(ActionStatus.JUMPSTART);
         }
         return true;
 
@@ -62,24 +60,30 @@ public class CharacterController {
     public boolean move(boolean hold, boolean right) {
         if (character.getStatusManager().canNotMove())
             return false;
-
+        boolean changeDir = false;
         if (!right) {
-            character.getStatusManager().setMovementStatus(MovementStatus.LEFT);
+            changeDir = character.getStatusManager().setMovementStatus(MovementStatus.LEFT);
         } else {
-            character.getStatusManager().setMovementStatus(MovementStatus.RIGHT);
+            changeDir = character.getStatusManager().setMovementStatus(MovementStatus.RIGHT);
         }
         float airFactor = 0.9f;
         if (hold) {
             if (!character.getStatusManager().isOnAir()) {
-                character.getStatusManager().setActionStatus(ActionStatus.MOVE);
-                airFactor = 1f;
+                if (changeDir) {
+                    character.getStatusManager().setActionStatus(ActionStatus.MOVESWITCH);
+                    return true;
+                } else if (!character.getStatusManager().isMoving() &&
+                        !character.getStatusManager().isMoveStarting() &&
+                        !character.getStatusManager().isMoveSwitching())
+                    character.getStatusManager().setActionStatus(ActionStatus.MOVESTART);
+                return true;
             }
             this.character.getPhysics().VX = character.getDirection() * SPEED_BONUS * airFactor;
         } else {
             if (character.getStatusManager().isOnAir()) {
                 this.character.getStatusManager().setActionStatus(ActionStatus.JUMPFALL);
             } else {
-                character.getStatusManager().setActionStatus(ActionStatus.STAND);
+                character.getStatusManager().setActionStatus(ActionStatus.MOVEEND);
             }
 
         }

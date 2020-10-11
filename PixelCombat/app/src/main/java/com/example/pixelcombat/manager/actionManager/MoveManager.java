@@ -11,8 +11,13 @@ public abstract class MoveManager {
         this.character = character;
     }
 
+    abstract public void moveStart() throws PixelCombatException;
+
+    abstract public void moveSwitch() throws PixelCombatException;
 
     abstract public void move() throws PixelCombatException;
+
+    abstract public void moveEnd() throws PixelCombatException;
 
     protected abstract void resetStats();
 

@@ -40,6 +40,10 @@ public abstract class BoxManager {
     public final int ATTACK3 = 18;
     public final int DEFEND = 19;
     public final int DEFENDSTOP = 20;
+    public final int MOVESWITCH = 21;
+    public final int MOVESTART = 22;
+    public final int MOVEEND = 23;
+    public final int JUMPSTART = 24;
 
     public final int MAX_STANDARD_SPRITES = JUMPFALL;
     public int currentAnimation;
@@ -103,8 +107,20 @@ public abstract class BoxManager {
             case STAND:
                 updateBoxSeq(STAND, "stand");
                 break;
+            case MOVESTART:
+                updateBoxSeq(MOVESTART, "moveStart");
+                break;
+            case MOVEEND:
+                updateBoxSeq(MOVEEND, "moveEnd");
+                break;
             case MOVE:
                 updateBoxSeq(MOVE, "move");
+                break;
+            case MOVESWITCH:
+                updateBoxSeq(MOVE, "moveSwitch");
+                break;
+            case JUMPSTART:
+                updateBoxSeq(JUMPING, "jumpStart");
                 break;
             case JUMPING:
                 updateBoxSeq(JUMPING, "jumping");

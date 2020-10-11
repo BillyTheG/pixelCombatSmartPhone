@@ -43,6 +43,10 @@ public abstract class GameCharacterViewManager extends ObjectViewManager<GameCha
     public final int ATTACK3 = 18;
     public final int DEFEND = 19;
     public final int DEFENDSTOP = 20;
+    public final int MOVESWITCH = 21;
+    public final int MOVESTART = 22;
+    public final int MOVEEND = 23;
+    public final int JUMPSTART = 24;
 
     public final int DEAD = 99;
     @Getter
@@ -89,6 +93,10 @@ public abstract class GameCharacterViewManager extends ObjectViewManager<GameCha
         animations.add(new Animation(images.get("attack3"), times.get(ATTACK3), loop.get(ATTACK3), loopIndices.get(ATTACK3)));
         animations.add(new Animation(images.get("defend"), times.get(DEFEND), loop.get(DEFEND), loopIndices.get(DEFEND)));
         animations.add(new Animation(images.get("defendStop"), times.get(DEFENDSTOP), loop.get(DEFENDSTOP), loopIndices.get(DEFENDSTOP)));
+        animations.add(new Animation(images.get("moveSwitch"), times.get(MOVESWITCH), loop.get(MOVESWITCH), loopIndices.get(MOVESWITCH)));
+        animations.add(new Animation(images.get("moveStart"), times.get(MOVESTART), loop.get(MOVESTART), loopIndices.get(MOVESTART)));
+        animations.add(new Animation(images.get("moveEnd"), times.get(MOVEEND), loop.get(MOVEEND), loopIndices.get(MOVEEND)));
+        animations.add(new Animation(images.get("jumpStart"), times.get(JUMPSTART), loop.get(JUMPSTART), loopIndices.get(JUMPSTART)));
 
 
         Animation[] array = new Animation[animations.size()];
@@ -151,10 +159,18 @@ public abstract class GameCharacterViewManager extends ObjectViewManager<GameCha
                 switch (character.getStatusManager().getActionStatus()) {
                     case MOVE:
                         return MOVE;
+                    case MOVESTART:
+                        return MOVESTART;
+                    case MOVEEND:
+                        return MOVEEND;
+                    case MOVESWITCH:
+                        return MOVESWITCH;
                     case DASHING:
                         return DASH;
                     case STAND:
                         return STAND;
+                    case JUMPSTART:
+                        return JUMPSTART;
                     case JUMP:
                         return JUMP;
                     case JUMPFALL:

@@ -191,5 +191,17 @@
         <defend>
             <box_list picture="0" />
         </defend>
+        <moveSwitch>
+            <box_list picture="0" />
+        </moveSwitch>
+        <moveStart>
+            <box_list picture="0" />
+        </moveStart>
+        <moveEnd>
+            <box_list picture="0" />
+        </moveEnd>
+        <jumpStart>
+            <box_list picture="0" />
+        </jumpStart>
     </boxes>
 </character>
