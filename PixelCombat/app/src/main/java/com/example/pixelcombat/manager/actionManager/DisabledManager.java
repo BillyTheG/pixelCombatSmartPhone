@@ -6,8 +6,8 @@ import com.example.pixelcombat.character.status.GlobalStatus;
 public abstract class DisabledManager {
 
     protected final GameCharacter character;
-    private final int MaxEnergy = 2;
-    private int currentEnergy = 2;
+    private final int MaxEnergy = 3;
+    private int currentEnergy = 3;
     private boolean switcher = true;
 
     public DisabledManager(GameCharacter character) {
@@ -49,6 +49,7 @@ public abstract class DisabledManager {
         if (!character.getViewManager().getAnimManager().isPlaying()) {
             character.getStatusManager().setGlobalStatus(GlobalStatus.ACTIVE);
             character.getHitManager().resetCharStats();
+            character.getDefendManager().resetStats();
             character.getDashManager().reset();
             reset();
         }

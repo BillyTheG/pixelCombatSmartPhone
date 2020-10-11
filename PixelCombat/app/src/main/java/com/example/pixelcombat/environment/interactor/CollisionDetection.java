@@ -3,7 +3,6 @@ package com.example.pixelcombat.environment.interactor;
 import android.util.Log;
 
 import com.example.pixelcombat.GameCharacter;
-import com.example.pixelcombat.character.status.ActionStatus;
 import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.environment.EnvironmentInteract;
 import com.example.pixelcombat.math.BoundingRectangle;
@@ -119,11 +118,13 @@ public class CollisionDetection implements EnvironmentInteract {
 
     private void resetCollideVars(GameCharacter player1) {
         if ((player1.getBoxManager().isCollidingX()) && (!player1.getBoxManager().isCollidingY())) {
-            player1.getStatusManager().setActionStatus(ActionStatus.STAND);
+            //player1.getStatusManager().setActionStatus(ActionStatus.STAND);
+            player1.getPhysics().VX = 0;
             player1.getBoxManager().setCollidingX(false);
         }
         if (player1.getBoxManager().isCollidingY()) {
-            player1.getStatusManager().setActionStatus(ActionStatus.STAND);
+            player1.getPhysics().VX = 0;
+            //player1.getStatusManager().setActionStatus(ActionStatus.STAND);
             player1.getBoxManager().setCollidingY(false);
         }
     }

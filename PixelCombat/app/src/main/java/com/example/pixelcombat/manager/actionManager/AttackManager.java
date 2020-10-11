@@ -3,6 +3,7 @@ package com.example.pixelcombat.manager.actionManager;
 import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.character.attack.Attack;
 import com.example.pixelcombat.character.status.AttackStatus;
+import com.example.pixelcombat.exception.PixelCombatException;
 
 import java.util.TreeMap;
 
@@ -21,7 +22,7 @@ public abstract class AttackManager {
 
     public abstract void init();
 
-    public void updateAttacks() {
+    public void updateAttacks() throws PixelCombatException {
 
         if (!isAttacking())
             return;
@@ -34,6 +35,10 @@ public abstract class AttackManager {
             case ATTACK2:
                 attacks.get("attack2").process();
                 attacks.get("attack2").check();
+                break;
+            case ATTACK3:
+                attacks.get("attack3").process();
+                attacks.get("attack3").check();
                 break;
             case SPECIALATTACK1:
                 attacks.get("specialAttack1").process();
@@ -66,6 +71,10 @@ public abstract class AttackManager {
 
     public boolean isAttacking2() {
         return attackStatus == AttackStatus.ATTACK2;
+    }
+
+    public boolean isAttacking3() {
+        return attackStatus == AttackStatus.ATTACK3;
     }
 
     public boolean isSpecialAttacking1() {

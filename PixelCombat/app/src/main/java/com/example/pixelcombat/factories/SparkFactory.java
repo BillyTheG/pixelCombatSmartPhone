@@ -46,6 +46,8 @@ public class SparkFactory {
                 return new Attack1Spark(pictures.get("Blood_Splash_Spark"), times.get("Blood_Splash_Spark"), pos, right).register(soundManager);
             case SparkConfig.KOHAKU_SPECIAL_ATTACK2_SPARK:
                 return new Attack1Spark(pictures.get("Kohaku_Special2_Attack_Spark"), times.get("Kohaku_Special2_Attack_Spark"), pos, right).register(soundManager);
+            case SparkConfig.DEFEND_SPARK:
+                return new Attack1Spark(pictures.get("Defend_Spark"), times.get("Defend_Spark"), pos, right).register(soundManager);
             default:
                 break;
         }
@@ -59,6 +61,7 @@ public class SparkFactory {
             sparkNames.add("Kohaku_Special_Attack1_Spark.xml");
             sparkNames.add("Kohaku_Special2_Attack_Spark.xml");
             sparkNames.add("Blood_Splash_Spark.xml");
+            sparkNames.add("Defend_Spark.xml");
 
             for (String spark : sparkNames) {
                 dustParser.parse(spark);

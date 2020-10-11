@@ -22,6 +22,7 @@ import com.example.pixelcombat.enums.MessageType;
 import com.example.pixelcombat.exception.PixelCombatException;
 import com.example.pixelcombat.manager.StatusManager;
 import com.example.pixelcombat.manager.actionManager.CrouchManager;
+import com.example.pixelcombat.manager.actionManager.DefendManager;
 import com.example.pixelcombat.manager.actionManager.DisabledManager;
 import com.example.pixelcombat.manager.actionManager.HitManager;
 import com.example.pixelcombat.manager.actionManager.JumpManager;
@@ -53,6 +54,7 @@ public class Kohaku implements GameCharacter {
     private DisabledManager disabledManager;
     private KnockBackManager knockBackManager;
     private KohakuAttackManager attackManager;
+    private DefendManager defendManager;
     private MoveManager moveManager;
     private KohakuDashManager dashManager;
     private PlayerPhysics physics;
@@ -73,6 +75,7 @@ public class Kohaku implements GameCharacter {
     private void init() throws Exception {
         physics = new PlayerPhysics(this);
         attackManager = new KohakuAttackManager(this);
+        defendManager = new DefendManager(this);
         statusManager = new StatusManager(this);
         viewManager = new KohakuViewManager(this);
         controller = new CharacterController(this);

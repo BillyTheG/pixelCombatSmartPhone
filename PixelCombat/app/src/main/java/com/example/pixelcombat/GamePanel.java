@@ -18,6 +18,7 @@ import com.example.pixelcombat.core.Game;
 import com.example.pixelcombat.core.sound.SoundManager;
 import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.environment.interactor.CollisionDetection;
+import com.example.pixelcombat.manager.ComboActionManager;
 import com.example.pixelcombat.map.PXMap;
 import com.example.pixelcombat.map.weather.Weather;
 import com.example.pixelcombat.math.Vector2d;
@@ -42,10 +43,13 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     private GameCharacter player1;
     @Getter
     private GameCharacter player2;
+    @Getter
+    private ComboActionManager comboActionManager;
 
     public GamePanel(Context context) throws Exception {
         super(context);
         this.context = context;
+
         getHolder().addCallback(this);
         ScreenProperty.CURRENT_CONTEXT = context;
         thread = new MainThread(getHolder(), this);
@@ -81,7 +85,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         game = new Game(context, testMap, new Weather(), soundManager);
 
         testMap.registerSoundManager(soundManager);
-
+        this.comboActionManager = new ComboActionManager(player1);
+        comboActionManager.init();
         Log.i("Info", "Game was created successfully");
     }
 
@@ -122,6 +127,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     public void update(){
         game.update();
         collisionDetection.interact();
+        comboActionManager.update();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)

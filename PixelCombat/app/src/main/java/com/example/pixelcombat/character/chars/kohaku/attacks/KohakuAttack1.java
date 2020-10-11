@@ -39,7 +39,7 @@ public class KohakuAttack1 extends Attack {
                 case 1:
                     if (!isSwitcher()) {
                         character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_attack1_sonic", null, true));
-                        setSwitcher(false);
+                        setSwitcher(true);
                     }
                     break;
                 default:
@@ -77,7 +77,7 @@ public class KohakuAttack1 extends Attack {
         if (!enemy.getStatusManager().isKnockbacked()) {
             // getUser().enemy.timeManager.getDisableTime().setY(Float.valueOf(0.0F));
             enemy.getHitManager().setKnockBackHeight(-7.0F);
-            enemy.getHitManager().setKnockBackRange(10.0F);
+            enemy.getHitManager().setKnockBackRange(5.0F);
             enemy.getHitManager().checkOnAir();
         } else {
             enemy.getHitManager().comboTouch(-20.0F, 10.0F);
