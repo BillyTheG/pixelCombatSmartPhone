@@ -101,9 +101,8 @@ public class PXMap implements GameObject {
         character1.update();
         character2.update();
 
-        boolean borders1 = checkHorizontalBorders(character1) || checkVerticalBorders(character1, character2);
-        boolean borders2 = checkHorizontalBorders(character2) || checkVerticalBorders(character2, character1);
-
+        boolean borders1 = checkHorizontalBorders(character1);
+        boolean borders2 = checkHorizontalBorders(character2);
 
         if (!borders1 && !borders2)
             screenScrollManager.update(character1, character2);
@@ -113,28 +112,40 @@ public class PXMap implements GameObject {
     private boolean checkHorizontalBorders(GameCharacter character) {
         if (character.getPos().x < BORDER_WIDTH) {
             character.getPos().x = BORDER_WIDTH;
+            checkReflect(character);
             return true;
         } else {
             float v = BORDER_WIDTH + screenScrollManager.getTarget().x - screenScrollManager.getCX() + OFFSET_X;
             if (character.getPos().x + OFFSET_X < v) {
                 character.getPos().x = v - OFFSET_X + 5;
+                checkReflect(character);
                 return true;
             }
         }
 
         if (character.getPos().x >= (length - 2 * OFFSET_X - BORDER_WIDTH)) {
             character.getPos().x = (length - 2 * OFFSET_X - BORDER_WIDTH) - 5;
+            checkReflect(character);
             return true;
         } else {
             aFloat = (-BORDER_WIDTH + screenScrollManager.getTarget().x + screenScrollManager.getCX() - OFFSET_X);
             if (character.getPos().x + OFFSET_X >= aFloat) {
                 character.getPos().x = aFloat - OFFSET_X - 5;
+                checkReflect(character);
                 return true;
             }
         }
 
+
         return false;
 
+    }
+
+    private void checkReflect(GameCharacter character) {
+        if (character.getStatusManager().isKnockbacked() || character.getStatusManager().isKnockBackFalling()) {
+            character.getStatusManager().swapDirections();
+            character.getPhysics().VX = -character.getPhysics().VX;
+        }
     }
 
     private boolean checkVerticalBorders(GameCharacter character1, GameCharacter character2) {

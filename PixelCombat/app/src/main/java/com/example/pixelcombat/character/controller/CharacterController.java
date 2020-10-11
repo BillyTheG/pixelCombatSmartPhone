@@ -108,14 +108,14 @@ public class CharacterController {
     public boolean specialAttack(AttackStatus attackStates) {
         if (character.getStatusManager().isOnAir()) {
             //check jumpAttacks
-            return true;
+            return false;
         }
         if (character.getStatusManager().notCombatReady()) {
-            return true;
+            return false;
         }
 
         if (character.getStatusManager().isMoving()) {   //&& Math.abs(player.physics.VX) == player.physics.maximumSpeed)
-            return true;
+            return false;
         }
 
         character.getStatusManager().setActionStatus(ActionStatus.STAND);

@@ -39,6 +39,8 @@ public abstract class GameCharacterViewManager extends ObjectViewManager<GameCha
     public final int SPECIALATTACK1 = 14;
     public final int DASH = 15;
     public final int SPECIALATTACK3 = 16;
+    public final int ATTACK2 = 17;
+    public final int ATTACK3 = 18;
 
     public final int DEAD = 99;
     @Getter
@@ -81,6 +83,8 @@ public abstract class GameCharacterViewManager extends ObjectViewManager<GameCha
         animations.add(new Animation(images.get("specialAttack1"), times.get(SPECIALATTACK1), loop.get(SPECIALATTACK1), loopIndices.get(SPECIALATTACK1)));
         animations.add(new Animation(images.get("dash"), times.get(DASH), loop.get(DASH), loopIndices.get(DASH)));
         animations.add(new Animation(images.get("specialAttack3"), times.get(SPECIALATTACK3), loop.get(SPECIALATTACK3), loopIndices.get(SPECIALATTACK3)));
+        animations.add(new Animation(images.get("attack2"), times.get(ATTACK2), loop.get(ATTACK2), loopIndices.get(ATTACK2)));
+        animations.add(new Animation(images.get("attack3"), times.get(ATTACK3), loop.get(ATTACK3), loopIndices.get(ATTACK3)));
 
 
         Animation[] array = new Animation[animations.size()];
@@ -129,8 +133,9 @@ public abstract class GameCharacterViewManager extends ObjectViewManager<GameCha
                     case SPECIALATTACK3:
                         return SPECIALATTACK3;
                     case ATTACK2:
-                        // character.picManager.change(BASICATTACK1);
-                        break;
+                        return ATTACK2;
+                    case ATTACK3:
+                        return ATTACK3;
                     default:
                         // changeFurtherImages(character.attackLogic.getAttackStatus());
                         break;

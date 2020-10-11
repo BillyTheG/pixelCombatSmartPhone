@@ -156,19 +156,24 @@ public class GameButtonManager implements View.OnClickListener, View.OnTouchList
     public void onClick(View view) {
         switch(view.getId()) {
             case 0:
+                gamePanel.getComboActionManager().pressKey("player1", "" + view.getId());
                 gamePanel.getPlayer1().getController().jump(false, false);
                 break;
             case 1:
+                gamePanel.getComboActionManager().pressKey("player1", "" + view.getId());
                 gamePanel.getPlayer1().getController().crouch(false, false);
                 break;
             case 2:
+                gamePanel.getComboActionManager().pressKey("player1", "" + view.getId());
                 gamePanel.getPlayer1().getController().move(false, false);
                 break;
             case 3:
                 gamePanel.getPlayer1().getController().move(false, true);
                 break;
             case 4:
-                gamePanel.getPlayer1().getController().attack(AttackStatus.ATTACK1);
+                gamePanel.getComboActionManager().pressKey("player1", "" + view.getId());
+                if (!gamePanel.getComboActionManager().checkComboActivation())
+                    gamePanel.getPlayer1().getController().attack(AttackStatus.ATTACK1);
                 break;
             case 5:
                 gamePanel.getPlayer1().getController().specialAttack(AttackStatus.SPECIALATTACK3);

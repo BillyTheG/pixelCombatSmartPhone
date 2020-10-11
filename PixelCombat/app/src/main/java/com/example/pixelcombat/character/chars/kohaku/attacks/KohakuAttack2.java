@@ -12,10 +12,10 @@ import com.example.pixelcombat.math.Vector2d;
 
 import java.util.Random;
 
-public class KohakuAttack1 extends Attack {
+public class KohakuAttack2 extends Attack {
 
 
-    public KohakuAttack1(GameCharacter character, int id) {
+    public KohakuAttack2(GameCharacter character, int id) {
         super(character, id);
     }
 
@@ -38,7 +38,7 @@ public class KohakuAttack1 extends Attack {
                     break;
                 case 1:
                     if (!isSwitcher()) {
-                        character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_attack1_sonic", null, true));
+                        character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_attack2_sonic", null, true));
                         setSwitcher(true);
                     }
                     break;
@@ -69,18 +69,18 @@ public class KohakuAttack1 extends Attack {
             character.notifyObservers(new GameMessage(MessageType.SPARK_CREATION, SparkConfig.ATTACK_SPARK + ";test;",
                     new Vector2d(box.getPos().x, box.getPos().y), true));
 
-            character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_attack1_hit", null, true));
+            character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_attack2_hit", null, true));
 
         } catch (Exception e) {
             Log.e("Error", "The spark could not be created: " + e.getMessage());
         }
         if (!enemy.getStatusManager().isKnockbacked()) {
             // getUser().enemy.timeManager.getDisableTime().setY(Float.valueOf(0.0F));
-            enemy.getHitManager().setKnockBackHeight(-7.0F);
-            enemy.getHitManager().setKnockBackRange(5.0F);
+            enemy.getHitManager().setKnockBackHeight(-15.0F);
+            enemy.getHitManager().setKnockBackRange(3.0F);
             enemy.getHitManager().checkOnAir();
         } else {
-            enemy.getHitManager().comboTouch(-20.0F, 10.0F);
+            enemy.getHitManager().comboTouch(-20.0F, 5.0F);
         }
 
     }
@@ -99,7 +99,7 @@ public class KohakuAttack1 extends Attack {
      */
     @Override
     public boolean isAttacking() {
-        return character.getAttackManager().isAttacking1();
+        return character.getAttackManager().isAttacking2();
     }
 
     @Override

@@ -35,6 +35,10 @@ public abstract class AttackManager {
                 attacks.get("attack2").process();
                 attacks.get("attack2").check();
                 break;
+            case ATTACK3:
+                attacks.get("attack3").process();
+                attacks.get("attack3").check();
+                break;
             case SPECIALATTACK1:
                 attacks.get("specialAttack1").process();
                 attacks.get("specialAttack1").check();
@@ -66,6 +70,10 @@ public abstract class AttackManager {
 
     public boolean isAttacking2() {
         return attackStatus == AttackStatus.ATTACK2;
+    }
+
+    public boolean isAttacking3() {
+        return attackStatus == AttackStatus.ATTACK3;
     }
 
     public boolean isSpecialAttacking1() {

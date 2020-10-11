@@ -179,5 +179,11 @@
         <specialAttack3>
             <box_list picture="0" />
         </specialAttack3>
+        <attack2>
+            <box_list picture="0" />
+        </attack2>
+        <attack3>
+            <box_list picture="0" />
+        </attack3>
     </boxes>
 </character>

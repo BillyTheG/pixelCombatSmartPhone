@@ -1,8 +1,10 @@
 package com.example.pixelcombat;
 
 import android.graphics.Canvas;
-import android.util.Log;
+import android.os.Build;
 import android.view.SurfaceHolder;
+
+import androidx.annotation.RequiresApi;
 
 public class MainThread extends Thread {
     public static final int MAX_FPS = 44;
@@ -12,7 +14,7 @@ public class MainThread extends Thread {
     private boolean running;
     public static Canvas canvas;
 
-    public MainThread(SurfaceHolder holder, GamePanel gamePanel){
+    public MainThread(SurfaceHolder holder, GamePanel gamePanel) {
         super();
         this.surfaceHolder = holder;
         this.gamePanel = gamePanel;
@@ -26,6 +28,7 @@ public class MainThread extends Thread {
     /**
      *
      */
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void run(){
         long startTime;
@@ -69,7 +72,7 @@ public class MainThread extends Thread {
                 averageFPS = 1000/((totalTime/frameCount)/1000000);
                 frameCount = 0;
                 totalTime = 0;
-                Log.i("Info", "Average FPS: " + averageFPS);
+                // Log.i("Info", "Average FPS: " + averageFPS);
             }
         }
 
