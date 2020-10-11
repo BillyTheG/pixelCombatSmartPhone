@@ -43,6 +43,7 @@ public class SoundManager implements Observer {
         soundsIds.put("ruffy_disabled", soundPool.load(context, R.raw.ruffy_disabled, 1));
         soundsIds.put("ruffy_attack1", soundPool.load(context, R.raw.ruffy_attack1, 1));
         soundsIds.put("ruffy_attack2", soundPool.load(context, R.raw.ruffy_attack2, 1));
+        soundsIds.put("ruffy_jump", soundPool.load(context, R.raw.ruffy_jump, 1));
         soundsIds.put("kohaku_special_attack", soundPool.load(context, R.raw.kohaku_special_attack, 1));
         soundsIds.put("kohaku_sword_out", soundPool.load(context, R.raw.kohaku_sword_out, 1));
         soundsIds.put("kohaku_sword_hit", soundPool.load(context, R.raw.kohaku_sword_hit, 1));

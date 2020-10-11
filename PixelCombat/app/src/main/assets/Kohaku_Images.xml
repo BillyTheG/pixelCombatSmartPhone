@@ -12,31 +12,24 @@
             <img duration="80" key="6" x="-0.030000687" y="-1.0100002">kohaku_stand_0_6.png</img>
             <img duration="80" key="7" x="-0.049999237" y="-1.0066662">kohaku_stand_0_7.png</img>
         </stand>
-        <move airBool="true" airIndex="2" loopIndex="3" loops="true">
-            <img duration="30" key="0" x="-0.049999237" y="-0.96000004">kohaku_move_0.png</img>
-            <img duration="30" key="1" x="0.049999237" y="-0.9499998">kohaku_move_1.png</img>
-            <img duration="30" key="2" x="0.11000061" y="-0.9399996">kohaku_move_2.png</img>
-            <img duration="30" key="3" x="-0.069999695" y="-0.89000034">kohaku_move_3.png</img>
-            <img duration="30" key="4" x="-0.010000229" y="-0.90999985">kohaku_move_4.png</img>
-            <img duration="30" key="5" x="0.030000687" y="-0.90999985">kohaku_move_5.png</img>
-            <img duration="30" key="6" x="0.030000687" y="-0.90999985">kohaku_move_6.png</img>
-            <img duration="30" key="7" x="-0.040000916" y="-0.9499998">kohaku_move_7.png</img>
-            <img duration="30" key="8" x="-0.049999237" y="-0.9499998">kohaku_move_8.png</img>
-            <img duration="20" key="9" x="-0.09000015" y="-0.9300003">kohaku_move_9.png</img>
-            <img duration="30" key="10" x="-0.13999939" y="-0.8999996">kohaku_move_10.png</img>
-            <img duration="30" key="11" x="-0.11000061" y="-0.89000034">kohaku_move_11.png</img>
-            <img duration="20" key="12" x="-0.11000061" y="-0.8699999">kohaku_move_12.png</img>
-            <img duration="20" key="13" x="-0.17000008" y="-0.90999985">kohaku_move_13.png</img>
+        <move airBool="true" airIndex="2" loopIndex="0" loops="true">
+            <img duration="30" key="0" x="-0.069999695" y="-0.89000034">kohaku_move_0.png</img>
+            <img duration="30" key="1" x="-0.010000229" y="-0.90999985">kohaku_move_1.png</img>
+            <img duration="30" key="2" x="0.030000687" y="-0.90999985">kohaku_move_2.png</img>
+            <img duration="30" key="3" x="0.030000687" y="-0.90999985">kohaku_move_3.png</img>
+            <img duration="30" key="4" x="-0.040000916" y="-0.9499998">kohaku_move_4.png</img>
+            <img duration="30" key="5" x="-0.049999237" y="-0.9499998">kohaku_move_5.png</img>
+            <img duration="20" key="6" x="-0.09000015" y="-0.9300003">kohaku_move_6.png</img>
+            <img duration="30" key="7" x="-0.13999939" y="-0.8999996">kohaku_move_7.png</img>
+            <img duration="30" key="8" x="-0.13999939" y="-0.8999996">kohaku_move_8.png</img>
+            <img duration="30" key="9" x="-0.11000061" y="-0.89000034">kohaku_move_9.png</img>
+            <img duration="20" key="10" x="-0.11000061" y="-0.8699999">kohaku_move_10.png</img>
         </move>
-        <jump airBool="true" airIndex="6" loopIndex="6" loops="true">
-            <img duration="30" key="0" x="-0.040000916" y="-0.9899998">kohaku_jump_0.png</img>
-            <img duration="20" key="1" x="-0.069999695" y="-0.90999985">kohaku_jump_1.png</img>
-            <img duration="20" key="2" x="-0.07999992" y="-0.89000034">kohaku_jump_2.png</img>
-            <img duration="20" key="3" x="-0.069999695" y="-0.8500004">kohaku_jump_3.png</img>
-            <img duration="50" key="4" x="-0.030000687" y="-1.0200005">kohaku_jump_4.png</img>
-            <img duration="50" key="5" x="0.17000008" y="-1.1099997">kohaku_jump_5.png</img>
-            <img duration="50" key="6" x="0.17000008" y="-1.1300001">kohaku_jump_6.png</img>
-            <img duration="50" key="7" x="0.1800003" y="-1.1333332">kohaku_jump_7.png</img>
+        <jump airBool="true" airIndex="6" loopIndex="2" loops="true">
+            <img duration="50" key="0" x="-0.030000687" y="-1.0200005">kohaku_jump_4.png</img>
+            <img duration="50" key="1" x="0.17000008" y="-1.1099997">kohaku_jump_5.png</img>
+            <img duration="50" key="2" x="0.17000008" y="-1.1300001">kohaku_jump_6.png</img>
+            <img duration="50" key="3" x="0.1800003" y="-1.1333332">kohaku_jump_7.png</img>
         </jump>
         <jumpFall airBool="true" airIndex="6" loopIndex="6" loops="true">
             <img duration="20" key="0" x="0.19000053" y="-1.0900002">kohaku_jumpfall_0.png</img>
@@ -240,5 +233,25 @@
             <img duration="300" key="0" x="0.11000061" y="-0.97000027">kohaku_defend_stop_0.png</img>
             <img duration="100" key="1" x="-0.10000038" y="-0.9499998">kohaku_defend_stop_1.png</img>
         </defendStop>
+        <moveSwitch airBool="true" airIndex="0" loopIndex="0" loops="false">
+            <img duration="50" key="0" x="-0.049999237" y="-1.0200005">kohaku_move_switch_0.png</img>
+            <img duration="50" key="1" x="-0.030000687" y="-1.0200005">kohaku_move_switch_1.png</img>
+        </moveSwitch>
+        <moveStart airBool="true" airIndex="0" loopIndex="0" loops="false">
+            <img duration="20" key="0" x="-0.049999237" y="-0.96000004">kohaku_move_start_0.png</img>
+            <img duration="40" key="1" x="0.049999237" y="-0.9499998">kohaku_move_start_1.png</img>
+            <img duration="40" key="2" x="0.11000061" y="-0.9399996">kohaku_move_start_2.png</img>
+        </moveStart>
+        <moveEnd airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="30" key="0" x="0.049999237" y="-0.89000034">kohaku_move_end_0.png</img>
+            <img duration="30" key="1" x="-0.020000458" y="-0.9300003">kohaku_move_end_1.png</img>
+            <img duration="30" key="2" x="-0.12000084" y="-0.96000004">kohaku_move_end_2.png</img>
+        </moveEnd>
+        <jumpStart airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="50" key="0" x="0.049999237" y="-0.89000034">kohaku_jump_0.png</img>
+            <img duration="50" key="1" x="-0.020000458" y="-0.9300003">kohaku_jump_1.png</img>
+            <img duration="30" key="2" x="-0.12000084" y="-0.96000004">kohaku_jump_2.png</img>
+            <img duration="20" key="3" x="-0.12000084" y="-0.96000004">kohaku_jump_3.png</img>
+        </jumpStart>
     </sprites>
 </character>

@@ -11,6 +11,7 @@ import com.example.pixelcombat.character.chars.kohaku.manager.KohakuAttackManage
 import com.example.pixelcombat.character.chars.kohaku.manager.KohakuBoxManager;
 import com.example.pixelcombat.character.chars.kohaku.manager.KohakuDashManager;
 import com.example.pixelcombat.character.chars.kohaku.manager.KohakuDisabledManager;
+import com.example.pixelcombat.character.chars.kohaku.manager.KohakuJumpManager;
 import com.example.pixelcombat.character.chars.kohaku.manager.KohakuMoveManager;
 import com.example.pixelcombat.character.chars.kohaku.manager.KohakuViewManager;
 import com.example.pixelcombat.character.controller.CharacterController;
@@ -81,7 +82,7 @@ public class Kohaku implements GameCharacter {
         controller = new CharacterController(this);
         boxManager = new KohakuBoxManager(this);
         moveManager = new KohakuMoveManager(this);
-        jumpManager = new JumpManager(this);
+        jumpManager = new KohakuJumpManager(this);
         crouchManager = new CrouchManager(this);
         hitManager = new HitManager(this);
         disabledManager = new KohakuDisabledManager(this);

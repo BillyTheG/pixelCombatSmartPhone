@@ -101,5 +101,17 @@
         <defend>
             <img duration="85" key="0" x="-0.12000084" y="-2.08">ruffy_invincible_0.png</img>
         </defend>
+        <moveSwitch>
+            <img duration="85" key="0" x="-0.12000084" y="-2.08">ruffy_invincible_0.png</img>
+        </moveSwitch>
+        <moveStart>
+            <img duration="85" key="0" x="-0.12000084" y="-2.08">ruffy_invincible_0.png</img>
+        </moveStart>
+        <moveEnd>
+            <img duration="85" key="0" x="-0.12000084" y="-2.08">ruffy_invincible_0.png</img>
+        </moveEnd>
+        <jumpStart>
+            <img duration="85" key="0" x="-0.12000084" y="-2.08">ruffy_invincible_0.png</img>
+        </jumpStart>
     </sprites>
 </character>

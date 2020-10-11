@@ -207,7 +207,6 @@ public class GameButtonManager implements View.OnClickListener, View.OnTouchList
         }
 
         switch(view.getId()) {
-
             case 1:
                 gamePanel.getPlayer1().getController().crouch(true, false);
                 break;

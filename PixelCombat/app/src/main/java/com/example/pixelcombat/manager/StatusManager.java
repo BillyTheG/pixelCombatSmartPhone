@@ -127,6 +127,9 @@ public class StatusManager {
 
 
         switch (getActionStatus()) {
+            case JUMPSTART:
+                character.getJumpManager().updateJumpStart();
+                break;
             case JUMP:
                 character.getJumpManager().updateJump();
                 break;
@@ -151,8 +154,17 @@ public class StatusManager {
             case DEFENDSTOP:
                 character.getDefendManager().stopDefend();
                 break;
+            case MOVESWITCH:
+                character.getMoveManager().moveSwitch();
+                break;
             case MOVE:
                 character.getMoveManager().move();
+                break;
+            case MOVESTART:
+                character.getMoveManager().moveStart();
+                break;
+            case MOVEEND:
+                character.getMoveManager().moveEnd();
                 break;
             default:
                 break;
@@ -205,6 +217,7 @@ public class StatusManager {
                 || isKnockBackRecovering()
                 || isInvincible()
                 || isDead()
+                || isJumpStarting()
                 || isJumpRecovering()
                 || isDisabled()
                 || isDisabledRecovering()
@@ -212,6 +225,22 @@ public class StatusManager {
                 || isDefendStopping()
                 || isDeCrouching();
 
+    }
+
+    private boolean isJumpStarting() {
+        return this.actionStatus == ActionStatus.JUMPSTART;
+    }
+
+    private boolean isMoveEnding() {
+        return this.actionStatus == ActionStatus.MOVEEND;
+    }
+
+    public boolean isMoveStarting() {
+        return this.actionStatus == ActionStatus.MOVESTART;
+    }
+
+    public boolean isMoveSwitching() {
+        return this.actionStatus == ActionStatus.MOVESWITCH;
     }
 
     private boolean isDefendStopping() {
@@ -229,9 +258,13 @@ public class StatusManager {
         character.getViewManager().updateAnimation();
     }
 
-    public void setMovementStatus(MovementStatus movementStatus) {
+    public boolean setMovementStatus(MovementStatus movementStatus) {
+        boolean changed = true;
+        if (this.movementStatus.equals(movementStatus))
+            changed = false;
         this.movementStatus = movementStatus;
         character.getViewManager().updateAnimation();
+        return changed;
     }
 
     public void swapDirections() {

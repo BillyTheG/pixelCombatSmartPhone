@@ -7,13 +7,24 @@ import com.example.pixelcombat.enums.MessageType;
 import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.exception.PixelCombatException;
 
-public class JumpManager {
+public abstract class JumpManager {
 
-    private final GameCharacter character;
+    protected final GameCharacter character;
+    private float VERTICAL_LEAP = -45f;
 
     public JumpManager(GameCharacter character) {
         this.character = character;
     }
+
+    public void updateJumpStart() throws PixelCombatException {
+        if (!character.getViewManager().isPlaying()) {
+            character.getPhysics().VY = VERTICAL_LEAP;
+            leapSound();
+            character.getStatusManager().setActionStatus(ActionStatus.JUMP);
+        }
+    }
+
+    protected abstract void leapSound() throws PixelCombatException;
 
 
     public void updateJump() {
