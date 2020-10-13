@@ -3,7 +3,6 @@ package com.example.pixelcombat.manager;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
@@ -128,10 +127,6 @@ public class GameButtonManager implements View.OnClickListener, View.OnTouchList
 
 
     public void addButtonsToView(RelativeLayout GameButtons){
-        //  up.setLayoutParams(b1);
-        //  down.setLayoutParams(b1);
-        //  left.setLayoutParams(b1);
-        //   right.setLayoutParams(b1);
 
         left.setOnTouchListener(this);
         down.setOnTouchListener(this);
@@ -253,7 +248,6 @@ public class GameButtonManager implements View.OnClickListener, View.OnTouchList
                 gamePanel.getPlayer1().getController().checkDashOrRetreat(gamePanel.getPlayer2(), false);
                 break;
             case 3:
-                Log.i("Info", "Double Clicked");
                 gamePanel.getPlayer1().getController().checkDashOrRetreat(gamePanel.getPlayer2(), true);
                 break;
             default:

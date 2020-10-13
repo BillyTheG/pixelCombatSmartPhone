@@ -62,14 +62,12 @@ public class KohakuDashManager extends DashManager {
                 }
             default:
                 break;
-
         }
 
         if (!character.getViewManager().isPlaying()) {
             switcher = true;
             character.getStatusManager().setActionStatus(ActionStatus.STAND);
         }
-
     }
 
     @Override
