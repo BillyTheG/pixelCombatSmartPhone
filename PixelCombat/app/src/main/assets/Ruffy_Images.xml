@@ -113,5 +113,11 @@
         <jumpStart>
             <img duration="85" key="0" x="-0.12000084" y="-2.08">ruffy_invincible_0.png</img>
         </jumpStart>
+        <retreat airBool="false" airIndex="4" loopIndex="4" loops="false">
+            <img duration="85" key="0" x="-0.12000084" y="-2.08">ruffy_invincible_0.png</img>
+        </retreat>
+        <retreatStop airBool="false" airIndex="5" loopIndex="5" loops="false">
+            <img duration="85" key="0" x="-0.12000084" y="-2.08">ruffy_invincible_0.png</img>
+        </retreatStop>
     </sprites>
 </character>

@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import com.example.pixelcombat.GamePanel;
 import com.example.pixelcombat.R;
 import com.example.pixelcombat.character.status.AttackStatus;
+import com.example.pixelcombat.utils.DoubleClickListener;
 
 import static android.view.MotionEvent.ACTION_UP;
 
@@ -48,7 +49,7 @@ public class GameButtonManager implements View.OnClickListener, View.OnTouchList
     private ImageButton select;
     private Bitmap select_bitmap;
 
-
+    private DoubleClickListener doubleClickListener;
     private Context context;
 
     public GameButtonManager(Context context, GamePanel gamePanel){
@@ -80,17 +81,27 @@ public class GameButtonManager implements View.OnClickListener, View.OnTouchList
         up      = setUpButton(0,150,1.15f,150,650,up_bitmap);
         down    = setUpButton(1,150,1.15f,150,800,down_bitmap);
         left    = setUpButton(2,150,1.15f,0,725,left_bitmap);
-        right   = setUpButton(3,150,1.15f,300,725,right_bitmap);
+        right = setUpButton(3, 150, 1.15f, 300, 725, right_bitmap);
 
-        attack1 = setUpButton(4,150,0.6f,1400,675,attack1_bitmap);
-        attack2 = setUpButton(5,150,0.6f,1575,675,attack2_bitmap);
-        dash    = setUpButton(6,150,0.6f,1750,675,defend_bitmap);
-        defend  = setUpButton(7,150,0.6f,1925,675,dash_bitmap);
+        attack1 = setUpButton(4, 150, 0.6f, 1400, 675, attack1_bitmap);
+        attack2 = setUpButton(5, 150, 0.6f, 1575, 675, attack2_bitmap);
+        dash = setUpButton(6, 150, 0.6f, 1750, 675, defend_bitmap);
+        defend = setUpButton(7, 150, 0.6f, 1925, 675, dash_bitmap);
 
-        select  = setUpButton(8,150,0.6f,800,700,select_bitmap);
-        start   = setUpButton(9,150,0.6f,1000,700,start_bitmap);
+        select = setUpButton(8, 150, 0.6f, 800, 700, select_bitmap);
+        start = setUpButton(9, 150, 0.6f, 1000, 700, start_bitmap);
 
+        doubleClickListener = new DoubleClickListener(this, 300) {
+            @Override
+            public void onSingleClick(View v) {
+                buttonManager.onClick(v);
+            }
 
+            @Override
+            public void onDoubleClick(View v) {
+                buttonManager.onDoubleClick(v);
+            }
+        };
 
     }
 
@@ -116,19 +127,17 @@ public class GameButtonManager implements View.OnClickListener, View.OnTouchList
 
 
     public void addButtonsToView(RelativeLayout GameButtons){
-      //  up.setLayoutParams(b1);
-      //  down.setLayoutParams(b1);
-      //  left.setLayoutParams(b1);
-     //   right.setLayoutParams(b1);
 
         left.setOnTouchListener(this);
         down.setOnTouchListener(this);
         right.setOnTouchListener(this);
-
-        left.setOnClickListener(this);
         down.setOnClickListener(this);
-        right.setOnClickListener(this);
         up.setOnClickListener(this);
+
+        right.setOnClickListener(doubleClickListener);
+        left.setOnClickListener(doubleClickListener);
+
+
         GameButtons.addView(up);
         GameButtons.addView(down);
         GameButtons.addView(left);
@@ -197,10 +206,9 @@ public class GameButtonManager implements View.OnClickListener, View.OnTouchList
         }
     }
 
+
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
-        System.out.println("Touch: "+motionEvent.getActionMasked());
-
         if((motionEvent.getActionMasked() == ACTION_UP)) {
             onClick(view);
             return false;
@@ -233,5 +241,18 @@ public class GameButtonManager implements View.OnClickListener, View.OnTouchList
         return false;
     }
 
+
+    public void onDoubleClick(View v) {
+        switch (v.getId()) {
+            case 2:
+                gamePanel.getPlayer1().getController().checkDashOrRetreat(gamePanel.getPlayer2(), false);
+                break;
+            case 3:
+                gamePanel.getPlayer1().getController().checkDashOrRetreat(gamePanel.getPlayer2(), true);
+                break;
+            default:
+                break;
+        }
+    }
 
 }

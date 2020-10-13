@@ -203,5 +203,11 @@
         <jumpStart>
             <box_list picture="0" />
         </jumpStart>
+        <retreat>
+            <box_list picture="0" />
+        </retreat>
+        <retreatStop>
+            <box_list picture="0" />
+        </retreatStop>
     </boxes>
 </character>

@@ -253,5 +253,22 @@
             <img duration="30" key="2" x="-0.12000084" y="-0.96000004">kohaku_jump_2.png</img>
             <img duration="20" key="3" x="-0.12000084" y="-0.96000004">kohaku_jump_3.png</img>
         </jumpStart>
+        <retreat airBool="false" airIndex="4" loopIndex="4" loops="true">
+            <img duration="50" key="0" x="-0.049999237" y="-0.97000027">kohaku_retreat_0.png</img>
+            <img duration="50" key="1" x="-0.25" y="-0.8999996">kohaku_retreat_1.png</img>
+            <img duration="50" key="2" x="-0.3199997" y="-0.8800001">kohaku_retreat_2.png</img>
+            <img duration="50" key="3" x="-0.22999954" y="-0.84000015">kohaku_retreat_3.png</img>
+            <img duration="50" key="4" x="-0.22999954" y="-0.84000015">kohaku_retreat_4.png</img>
+            <img duration="50" key="5" x="-0.30999947" y="-0.8299999">kohaku_retreat_5.png</img>
+            <img duration="50" key="6" x="-0.27000046" y="-0.833333">kohaku_retreat_6.png</img>
+        </retreat>
+        <retreatStop airBool="false" airIndex="5" loopIndex="5" loops="false">
+            <img duration="50" key="0" x="-0.049999237" y="-0.96000004">kohaku_retreat_stop_0.png</img>
+            <img duration="50" key="1" x="0.030000687" y="-0.9300003">kohaku_retreat_stop_1.png</img>
+            <img duration="50" key="2" x="-0.010000229" y="-0.9499998">kohaku_retreat_stop_2.png</img>
+            <img duration="50" key="3" x="0.049999237" y="-0.9499998">kohaku_retreat_stop_3.png</img>
+            <img duration="50" key="4" x="-0.12000084" y="-0.9200001">kohaku_retreat_stop_4.png</img>
+            <img duration="50" key="5" x="-0.19000053" y="-0.97000027">kohaku_retreat_stop_5.png</img>
+        </retreatStop>
     </sprites>
 </character>

@@ -6,6 +6,7 @@ public enum AttackStatus {
     ATTACK2,
     ATTACK3,
     SPECIALATTACK1,
+    SPECIALATTACK2,
     SPECIALATTACK3;
 
 

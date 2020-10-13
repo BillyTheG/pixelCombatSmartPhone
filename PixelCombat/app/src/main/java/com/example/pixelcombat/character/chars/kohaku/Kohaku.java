@@ -70,7 +70,7 @@ public class Kohaku implements GameCharacter {
         this.player = player;
         this.pos = pos;
         init();
-        Log.i("Info", "Ruffy was created successfully");
+        Log.i("Info", "Kohaku was created successfully");
     }
 
     private void init() throws Exception {

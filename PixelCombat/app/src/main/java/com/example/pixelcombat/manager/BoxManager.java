@@ -18,6 +18,7 @@ import lombok.SneakyThrows;
 
 public abstract class BoxManager {
 
+
     // Stütze für Bilder
     public final int STAND = 0;
     public final int MOVE = 1;
@@ -44,7 +45,9 @@ public abstract class BoxManager {
     public final int MOVESTART = 22;
     public final int MOVEEND = 23;
     public final int JUMPSTART = 24;
-
+    private static final int SPECIALATTACK2 = 98;
+    public final int RETREAT = 25;
+    public final int RETREATSTOP = 26;
     public final int MAX_STANDARD_SPRITES = JUMPFALL;
     public int currentAnimation;
     public BoundingRectangle currentColBox;
@@ -155,6 +158,9 @@ public abstract class BoxManager {
             case SPECIALATTACK1:
                 updateBoxSeq(SPECIALATTACK1, "specialAttack1");
                 break;
+            case SPECIALATTACK2:
+                updateBoxSeq(SPECIALATTACK2, "specialAttack2");
+                break;
             case SPECIALATTACK3:
                 updateBoxSeq(SPECIALATTACK3, "specialAttack3");
                 break;
@@ -178,6 +184,12 @@ public abstract class BoxManager {
                 break;
             case DASH:
                 updateBoxSeq(DASH, "dash");
+                break;
+            case RETREAT:
+                updateBoxSeq(RETREAT, "retreat");
+                break;
+            case RETREATSTOP:
+                updateBoxSeq(RETREATSTOP, "retreatStop");
                 break;
             default:
                 loadFurtherBoxes(character.getViewManager().getFrameIndex());

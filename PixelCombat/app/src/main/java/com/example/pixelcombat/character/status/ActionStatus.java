@@ -15,6 +15,7 @@ public enum ActionStatus {
     MOVEEND,
     MOVESWITCH,
     RETREATING,
+    RETREATING_STOP,
     STAND,
     WIN,
     CROUCHING,

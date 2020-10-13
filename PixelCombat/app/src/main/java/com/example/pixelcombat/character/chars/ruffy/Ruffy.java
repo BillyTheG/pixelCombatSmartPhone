@@ -9,6 +9,7 @@ import android.util.Log;
 import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.character.chars.ruffy.manager.RuffyAttackManager;
 import com.example.pixelcombat.character.chars.ruffy.manager.RuffyBoxManager;
+import com.example.pixelcombat.character.chars.ruffy.manager.RuffyDashManager;
 import com.example.pixelcombat.character.chars.ruffy.manager.RuffyDisabledManager;
 import com.example.pixelcombat.character.chars.ruffy.manager.RuffyJumpManager;
 import com.example.pixelcombat.character.chars.ruffy.manager.RuffyMoveManager;
@@ -84,7 +85,7 @@ public class Ruffy implements GameCharacter {
         hitManager = new HitManager(this);
         disabledManager = new RuffyDisabledManager(this);
         knockBackManager = new KnockBackManager(this);
-        dashManager = new DashManager(this);
+        dashManager = new RuffyDashManager(this);
         observer = new ArrayList<>();
     }
 
