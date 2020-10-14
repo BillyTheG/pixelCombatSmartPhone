@@ -3,6 +3,7 @@ package com.example.pixelcombat.manager.actionManager;
 import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.character.attack.Attack;
 import com.example.pixelcombat.character.status.ActionStatus;
+import com.example.pixelcombat.character.status.AttackStatus;
 import com.example.pixelcombat.character.status.GlobalStatus;
 import com.example.pixelcombat.character.status.MovementStatus;
 import com.example.pixelcombat.core.config.SparkConfig;
@@ -67,6 +68,7 @@ public class HitManager {
         } else {
             character.getPhysics().VX = (-character.getDirection() * movementSpeed);
         }
+        character.getAttackManager().setAttackStatus(AttackStatus.NOT_ATTACKING);
         character.getStatusManager().setActionStatus(ActionStatus.STAND);
         character.getStatusManager().setGlobalStatus(GlobalStatus.KNOCKBACK);
         character.getViewManager().resetFrameIndexTo(0);
@@ -145,10 +147,12 @@ public class HitManager {
         if ((character.getStatusManager().isOnAir())) {
             // sound(cry());
             character.getPhysics().update();
+            character.getAttackManager().setAttackStatus(AttackStatus.NOT_ATTACKING);
             character.getStatusManager().setActionStatus(ActionStatus.STAND);
             character.getStatusManager().setGlobalStatus(GlobalStatus.KNOCKBACK);
             return;
         }
+        character.getAttackManager().setAttackStatus(AttackStatus.NOT_ATTACKING);
         character.getStatusManager().setActionStatus(ActionStatus.STAND);
         character.getStatusManager().setGlobalStatus(GlobalStatus.DISABLED);
         character.getViewManager().resetFrameIndexTo(0);

@@ -33,6 +33,8 @@ public class ComboActionManager {
         //combo1
         combos.add(ComboAttacksConfig.ATTACK1_SECOND);
         combos.add(ComboAttacksConfig.ATTACK1_THIRD);
+        combos.add(ComboAttacksConfig.ATTACK2_SECOND);
+        combos.add(ComboAttacksConfig.ATTACK2_THIRD);
     }
 
     public synchronized void pressKey(String player1, String key) {
@@ -112,6 +114,16 @@ public class ComboActionManager {
             case "X4":
                 //   Log.i("Info", "The following combo was activated: "+combo);
                 activated = player1.getController().specialAttack(AttackStatus.ATTACK3);
+                bonus = "";
+                return activated;
+            case "555":
+                //     Log.i("Info", "The following combo was activated: "+combo);
+                activated = player1.getController().specialAttack(AttackStatus.ATTACK5);
+                bonus = "Y";
+                return activated;
+            case "Y5":
+                //   Log.i("Info", "The following combo was activated: "+combo);
+                activated = player1.getController().specialAttack(AttackStatus.ATTACK6);
                 bonus = "";
                 return activated;
             default:

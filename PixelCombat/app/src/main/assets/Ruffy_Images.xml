@@ -119,5 +119,14 @@
         <retreatStop airBool="false" airIndex="5" loopIndex="5" loops="false">
             <img duration="85" key="0" x="-0.12000084" y="-2.08">ruffy_invincible_0.png</img>
         </retreatStop>
+        <attack4 airBool="false" airIndex="5" loopIndex="5" loops="false">
+            <img duration="85" key="0" x="-0.12000084" y="-2.08">ruffy_invincible_0.png</img>
+        </attack4>
+        <attack5 airBool="false" airIndex="5" loopIndex="5" loops="false">
+            <img duration="85" key="0" x="-0.12000084" y="-2.08">ruffy_invincible_0.png</img>
+        </attack5>
+        <attack6 airBool="false" airIndex="5" loopIndex="5" loops="false">
+            <img duration="85" key="0" x="-0.12000084" y="-2.08">ruffy_invincible_0.png</img>
+        </attack6>
     </sprites>
 </character>

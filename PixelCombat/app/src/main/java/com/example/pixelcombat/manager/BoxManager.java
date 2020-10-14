@@ -48,6 +48,11 @@ public abstract class BoxManager {
     private static final int SPECIALATTACK2 = 98;
     public final int RETREAT = 25;
     public final int RETREATSTOP = 26;
+    public final int ATTACK4 = 27;
+    public final int ATTACK5 = 28;
+    public final int ATTACK6 = 29;
+
+
     public final int MAX_STANDARD_SPRITES = JUMPFALL;
     public int currentAnimation;
     public BoundingRectangle currentColBox;
@@ -148,6 +153,15 @@ public abstract class BoxManager {
                 break;
             case ATTACK3:
                 updateBoxSeq(ATTACK3, "attack3");
+                break;
+            case ATTACK4:
+                updateBoxSeq(ATTACK4, "attack4");
+                break;
+            case ATTACK5:
+                updateBoxSeq(ATTACK5, "attack5");
+                break;
+            case ATTACK6:
+                updateBoxSeq(ATTACK6, "attack6");
                 break;
             case DEFENDSTOP:
                 updateBoxSeq(DEFENDSTOP, "defendStop");

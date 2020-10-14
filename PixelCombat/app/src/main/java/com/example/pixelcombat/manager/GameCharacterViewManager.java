@@ -49,6 +49,9 @@ public abstract class GameCharacterViewManager extends ObjectViewManager<GameCha
     public final int JUMPSTART = 24;
     public final int RETREAT = 25;
     public final int RETREATSTOP = 26;
+    public final int ATTACK4 = 27;
+    public final int ATTACK5 = 28;
+    public final int ATTACK6 = 29;
 
     public final int DEAD = 99;
     @Getter
@@ -101,6 +104,9 @@ public abstract class GameCharacterViewManager extends ObjectViewManager<GameCha
         animations.add(new Animation(images.get("jumpStart"), times.get(JUMPSTART), loop.get(JUMPSTART), loopIndices.get(JUMPSTART)));
         animations.add(new Animation(images.get("retreat"), times.get(RETREAT), loop.get(RETREAT), loopIndices.get(RETREAT)));
         animations.add(new Animation(images.get("retreatStop"), times.get(RETREATSTOP), loop.get(RETREATSTOP), loopIndices.get(RETREATSTOP)));
+        animations.add(new Animation(images.get("attack4"), times.get(ATTACK4), loop.get(ATTACK4), loopIndices.get(ATTACK4)));
+        animations.add(new Animation(images.get("attack5"), times.get(ATTACK5), loop.get(ATTACK5), loopIndices.get(ATTACK5)));
+        animations.add(new Animation(images.get("attack6"), times.get(ATTACK6), loop.get(ATTACK6), loopIndices.get(ATTACK6)));
 
 
         Animation[] array = new Animation[animations.size()];
@@ -152,6 +158,12 @@ public abstract class GameCharacterViewManager extends ObjectViewManager<GameCha
                         return ATTACK2;
                     case ATTACK3:
                         return ATTACK3;
+                    case ATTACK4:
+                        return ATTACK4;
+                    case ATTACK5:
+                        return ATTACK5;
+                    case ATTACK6:
+                        return ATTACK6;
                     default:
                         // changeFurtherImages(character.attackLogic.getAttackStatus());
                         break;

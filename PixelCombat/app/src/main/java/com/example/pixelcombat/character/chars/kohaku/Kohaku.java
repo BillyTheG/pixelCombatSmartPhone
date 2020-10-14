@@ -7,6 +7,8 @@ import android.graphics.Rect;
 import android.util.Log;
 
 import com.example.pixelcombat.GameCharacter;
+import com.example.pixelcombat.ai.AIManager;
+import com.example.pixelcombat.ai.HasAI;
 import com.example.pixelcombat.character.chars.kohaku.manager.KohakuAttackManager;
 import com.example.pixelcombat.character.chars.kohaku.manager.KohakuBoxManager;
 import com.example.pixelcombat.character.chars.kohaku.manager.KohakuDashManager;
@@ -41,10 +43,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Kohaku implements GameCharacter {
+public class Kohaku implements GameCharacter, HasAI {
 
     private String player;
     private Vector2d pos;
+    private AIManager kohakuAIManager;
     private boolean faceRight = true;
     private int rank;
     private StatusManager statusManager;
@@ -114,10 +117,15 @@ public class Kohaku implements GameCharacter {
 
     @Override
     public void update() throws PixelCombatException {
+        if (getAIManager() != null)
+            kohakuAIManager.update();
+
         viewManager.update();
         physics.update();
         statusManager.update();
         attackManager.updateAttacks();
+
+
     }
 
     public float getDirection() {
@@ -146,5 +154,16 @@ public class Kohaku implements GameCharacter {
         for (Observer obs : observer) {
             obs.processMessage(message);
         }
+    }
+
+    @Override
+    public AIManager getAIManager() {
+        return kohakuAIManager;
+    }
+
+    @Override
+    public void setAIManager(AIManager aiManager) {
+        this.kohakuAIManager = aiManager;
+
     }
 }

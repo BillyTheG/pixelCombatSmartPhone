@@ -12,10 +12,12 @@ import android.view.SurfaceView;
 
 import androidx.annotation.RequiresApi;
 
+import com.example.pixelcombat.ai.KohakuAI;
 import com.example.pixelcombat.character.chars.kohaku.Kohaku;
 import com.example.pixelcombat.character.status.MovementStatus;
 import com.example.pixelcombat.core.Game;
 import com.example.pixelcombat.core.sound.SoundManager;
+import com.example.pixelcombat.enums.EnemyConfig;
 import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.environment.interactor.CollisionDetection;
 import com.example.pixelcombat.manager.ComboActionManager;
@@ -24,6 +26,8 @@ import com.example.pixelcombat.map.weather.Weather;
 import com.example.pixelcombat.math.Vector2d;
 
 import lombok.Getter;
+
+import static com.example.pixelcombat.core.config.AIConfig.ENEMY_CONFIG;
 
 
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
@@ -71,12 +75,18 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
         ruffy = new Kohaku("player2", new Vector2d(500, ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE), context);
         kohaku = new Kohaku("player1", new Vector2d(1000, ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE), context);
+
+        if (ENEMY_CONFIG == EnemyConfig.VERSUS_AI)
+            ruffy.setAIManager(new KohakuAI(ruffy, kohaku, ruffy.getController()));
+
+
         ruffy.getBoxManager().loadParsedBoxes();
         kohaku.getBoxManager().loadParsedBoxes();
         kohaku.getStatusManager().setMovementStatus(MovementStatus.LEFT);
 
         player1 = kohaku;
         player2 = ruffy;
+
 
         testMap = new PXMap("Blue Winter", bg, context, player1, player2);
         collisionDetection = new CollisionDetection(player1, player2);

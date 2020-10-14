@@ -37,6 +37,13 @@ public class SoundManager implements Observer {
         soundsIds.put("kohaku_attack2_sonic", soundPool.load(context, R.raw.kohaku_attack2_sonic, 1));
         soundsIds.put("kohaku_attack3_hit", soundPool.load(context, R.raw.kohaku_attack3_hit, 1));
         soundsIds.put("kohaku_attack3_sonic", soundPool.load(context, R.raw.kohaku_attack3_sonic, 1));
+        soundsIds.put("kohaku_attack4", soundPool.load(context, R.raw.kohaku_attack4, 1));
+        soundsIds.put("kohaku_attack4_hit", soundPool.load(context, R.raw.kohaku_attack4_hit, 1));
+        soundsIds.put("kohaku_attack5", soundPool.load(context, R.raw.kohaku_attack5, 1));
+        soundsIds.put("kohaku_attack5_hit", soundPool.load(context, R.raw.kohaku_attack5_hit, 1));
+        soundsIds.put("kohaku_attack6", soundPool.load(context, R.raw.kohaku_attack6, 1));
+        soundsIds.put("kohaku_attack6_hit", soundPool.load(context, R.raw.kohaku_attack6_hit, 1));
+        soundsIds.put("kohaku_attack6_sonic", soundPool.load(context, R.raw.kohaku_attack6_sonic, 1));
         soundsIds.put("kohaku_cry1", soundPool.load(context, R.raw.kohaku_cry1, 1));
         soundsIds.put("kohaku_jump", soundPool.load(context, R.raw.kohaku_jump, 1));
         soundsIds.put("kohaku_cry2", soundPool.load(context, R.raw.kohaku_cry2, 1));
