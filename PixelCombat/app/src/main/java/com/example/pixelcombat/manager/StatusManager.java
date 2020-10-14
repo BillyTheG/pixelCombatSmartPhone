@@ -224,13 +224,13 @@ public class StatusManager {
                 || isInvincible()
                 || isDead()
                 || isJumpStarting()
+                || isJumpFalling()
                 || isJumpRecovering()
                 || isDisabled()
                 || isDisabledRecovering()
                 || isDashing()
                 || isRetreating()
                 || isRetreatStopping()
-                || isDefendStopping()
                 || isDeCrouching();
 
     }

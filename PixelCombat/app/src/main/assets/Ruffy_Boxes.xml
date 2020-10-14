@@ -209,5 +209,14 @@
         <retreatStop>
             <box_list picture="0" />
         </retreatStop>
+        <attack4>
+            <box_list picture="0" />
+        </attack4>
+        <attack5>
+            <box_list picture="0" />
+        </attack5>
+        <attack6>
+            <box_list picture="0" />
+        </attack6>
     </boxes>
 </character>
