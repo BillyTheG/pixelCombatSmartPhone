@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 import lombok.Getter;
@@ -24,13 +25,12 @@ import lombok.Getter;
 public class BoxParser {
 
     @Getter
-    private ConcurrentHashMap<String, ArrayList<ArrayList<BoundingRectangle>>> boxes = new ConcurrentHashMap<String, ArrayList<ArrayList<BoundingRectangle>>>();
+    private ConcurrentHashMap<String, ArrayList<ArrayList<BoundingRectangle>>> boxes = new ConcurrentHashMap<>();
     private boolean readingBox = false;
     private boolean readingBoxList = false;
 
     private boolean readingSprites = false;
     private boolean readingAnimation = false;
-    private boolean readingIMG = false;
     private String animation = "";
     private int picture = 0;
     private Context context;
@@ -54,12 +54,8 @@ public class BoxParser {
     public BoxParser(Context context) throws Exception {
         this.context = context;
         XmlPullParserFactory parserFactory;
-        try {
-            parserFactory = XmlPullParserFactory.newInstance();
-            parser = parserFactory.newPullParser();
-        } catch (XmlPullParserException e) {
-            throw e;
-        }
+        parserFactory = XmlPullParserFactory.newInstance();
+        parser = parserFactory.newPullParser();
 
     }
 
@@ -74,7 +70,7 @@ public class BoxParser {
         }
     }
 
-    public void parseXMLData() throws XmlPullParserException, IOException, XmlParseErrorException {
+    public void parseXMLData() throws XmlPullParserException, IOException {
         int eventType = parser.getEventType();
         while (eventType != XmlPullParser.END_DOCUMENT) {
             String eltName;
@@ -87,19 +83,18 @@ public class BoxParser {
                     } else if (readingSprites) {
                         if (!readingAnimation) {
                             readingAnimation = true;
-                            boxes.put(eltName, new ArrayList<ArrayList<BoundingRectangle>>());
+                            boxes.put(eltName, new ArrayList<>());
                             animation = eltName;
-                            readingIMG = true;
                             Log.i("Info", "Created image animation: " + eltName);
                             System.out.println("Info: Created image animation: " + eltName);
                         } else {
-                            if (readingBoxList == false) {
+                            if (!readingBoxList) {
                                 readingBoxList = true;
-                                boxes.get(animation).add(new ArrayList<BoundingRectangle>());
-                                picture = boxes.get(animation).size() - 1;
+                                Objects.requireNonNull(boxes.get(animation)).add(new ArrayList<>());
+                                picture = Objects.requireNonNull(boxes.get(animation)).size() - 1;
                                 System.out.println("Info: Creating Boxes for Picture: " + picture + " in " + animation + " ...");
                                 Log.i("Info", "Creating Boxes for Picture: " + picture + " in " + animation + " ...");
-                            } else if (readingBox == false) {
+                            } else if (!readingBox) {
                                 int id = Integer.parseInt(parser.getAttributeValue(null, "id"));
                                 float x = Float.parseFloat(parser.getAttributeValue(null, "x")) * GamePlayView.FIELD_SIZE;
                                 float y = Float.parseFloat(parser.getAttributeValue(null, "y")) * GamePlayView.FIELD_SIZE;
@@ -109,7 +104,7 @@ public class BoxParser {
 
                                 BoundingRectangle newBox = new BoundingRectangle(height, new Vector2d(x, y), width);
                                 newBox.setHurts(hurts);
-                                boxes.get(animation).get(picture).add(newBox);
+                                Objects.requireNonNull(boxes.get(animation)).get(picture).add(newBox);
 
                                 Log.i("Info", "Loaded BoundaryRectangle with id " + id + " with height: " + height + " width: " +
                                         width + " and coordinates: (" + x + "," + y + ")");
@@ -125,8 +120,8 @@ public class BoxParser {
                 case XmlPullParser.END_TAG:
                     if (readingSprites) {
                         if (readingAnimation) {
-                            if (readingBoxList == true) {
-                                if (readingBox == true) {
+                            if (readingBoxList) {
+                                if (readingBox) {
                                     readingBox = false;
                                 } else {
                                     readingBoxList = false;

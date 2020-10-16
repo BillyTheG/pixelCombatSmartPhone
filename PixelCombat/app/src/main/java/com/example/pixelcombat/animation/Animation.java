@@ -39,9 +39,6 @@ public class Animation {
     }
 
 
-
-
-
     public Animation(ArrayList<LocatedBitmap> images, ArrayList<Float> times, boolean loops, int loopPoint) {
         this.images = images;
         this.loops = loops;

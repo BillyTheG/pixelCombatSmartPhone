@@ -1,20 +1,24 @@
 package com.example.pixelcombat.character.chars.kohaku.manager;
 
-import android.graphics.Bitmap;
-
+import com.example.pixelcombat.animation.Animation;
 import com.example.pixelcombat.character.chars.kohaku.Kohaku;
-import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.manager.GameCharacterViewManager;
 import com.example.pixelcombat.xml.CharacterParser;
 
+import java.util.ArrayList;
+
 public class KohakuViewManager extends GameCharacterViewManager {
 
-    private Thread imageLoaderThread;
 
     public KohakuViewManager(Kohaku character) throws Exception {
         super(character);
     }
 
+    @Override
+    protected void loadMoreImages(ArrayList<Animation> animations) {
+        //specialAttack1 and specialAttack2 have same animations
+
+    }
 
     @Override
     public void init() throws Exception {
@@ -23,10 +27,6 @@ public class KohakuViewManager extends GameCharacterViewManager {
         animManager.playAnim();
         Thread thread = new Thread(animManager);
         thread.start();
-    }
-
-    private Bitmap getScaledBitmap(Bitmap bitmap) {
-        return Bitmap.createScaledBitmap(bitmap, ((int) (bitmap.getWidth() * ScreenProperty.SCALE)), ((int) (bitmap.getHeight() * ScreenProperty.SCALE)), false);
     }
 
 

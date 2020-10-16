@@ -6,7 +6,7 @@ import com.example.pixelcombat.character.status.GlobalStatus;
 public abstract class DisabledManager {
 
     protected final GameCharacter character;
-    private final int MaxEnergy = 3;
+    protected final int MaxEnergy = 3;
     private int currentEnergy = 3;
     private boolean switcher = true;
 

@@ -8,14 +8,22 @@
       <w>disabledrecover</w>
       <w>disablerecover</w>
       <w>finishable</w>
+      <w>flytowards</w>
+      <w>groundhit</w>
+      <w>groundrecover</w>
       <w>jumpfall</w>
       <w>jumprecover</w>
+      <w>jumpstart</w>
       <w>knockback</w>
       <w>knockbacked</w>
       <w>knockbackfall</w>
       <w>knockbackrecover</w>
       <w>kohaku</w>
+      <w>moveend</w>
+      <w>movestart</w>
+      <w>moveswitch</w>
       <w>onground</w>
+      <w>retreatstop</w>
       <w>ruffy</w>
       <w>specialattack</w>
     </words>

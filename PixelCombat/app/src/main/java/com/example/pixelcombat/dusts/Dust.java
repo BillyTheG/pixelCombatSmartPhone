@@ -19,15 +19,8 @@ import java.util.ArrayList;
 public class Dust implements GameObject, IsFinishable, Observable {
     private Animation animation;
     private Vector2d pos;
-    private boolean isRight = true;
+    private boolean isRight;
     private Observer observer;
-
-    public Dust(ArrayList<LocatedBitmap> images, ArrayList<Float> times, Vector2d pos) {
-        this.animation = new Animation(images, times, false, 0);
-        this.pos = pos;
-        this.animation.play();
-
-    }
 
     public Dust(ArrayList<LocatedBitmap> images, ArrayList<Float> times, Vector2d pos, boolean isRight) {
         this.animation = new Animation(images, times, false, 0);

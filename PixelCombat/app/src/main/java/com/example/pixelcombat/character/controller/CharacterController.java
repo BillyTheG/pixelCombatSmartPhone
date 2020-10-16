@@ -134,10 +134,6 @@ public class CharacterController {
             return false;
         }
 
-        if (character.getStatusManager().isMoving()) {   //&& Math.abs(player.physics.VX) == player.physics.maximumSpeed)
-            return false;
-        }
-
         character.getStatusManager().setActionStatus(ActionStatus.STAND);
         character.getAttackManager().setAttackStatus(attackStates);
         return true;

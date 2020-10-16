@@ -8,8 +8,6 @@ import com.example.pixelcombat.manager.actionManager.JumpManager;
 
 public class KohakuJumpManager extends JumpManager {
 
-    public boolean moveSound = true;
-
     public KohakuJumpManager(Kohaku character) throws Exception {
         super(character);
     }

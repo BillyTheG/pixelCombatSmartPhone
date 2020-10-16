@@ -31,18 +31,9 @@ import com.example.pixelcombat.manager.GameButtonManager;
  */
 public abstract class DoubleClickListener implements OnClickListener {
 
-    // The time in which the second tap should be done in order to qualify as
-    // a double click
-    private static final long DEFAULT_QUALIFICATION_SPAN = 200;
     protected final GameButtonManager buttonManager;
     private long doubleClickQualificationSpanInMillis;
     private long timestampLastClick;
-
-    public DoubleClickListener(GameButtonManager buttonManager) {
-        this.buttonManager = buttonManager;
-        doubleClickQualificationSpanInMillis = DEFAULT_QUALIFICATION_SPAN;
-        timestampLastClick = 0;
-    }
 
     public DoubleClickListener(GameButtonManager buttonManager, long doubleClickQualificationSpanInMillis) {
         this.buttonManager = buttonManager;

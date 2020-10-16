@@ -1,19 +1,30 @@
 package com.example.pixelcombat.manager;
 
+import android.util.Log;
+
 import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.character.status.AttackStatus;
 import com.example.pixelcombat.core.config.ComboAttacksConfig;
 
+import java.util.Arrays;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-public class ComboActionManager {
+import static com.example.pixelcombat.core.config.ComboAttacksConfig.ATTACK1_SECOND;
+import static com.example.pixelcombat.core.config.ComboAttacksConfig.ATTACK1_THIRD;
+import static com.example.pixelcombat.core.config.ComboAttacksConfig.ATTACK2_SECOND;
+import static com.example.pixelcombat.core.config.ComboAttacksConfig.ATTACK2_THIRD;
+import static com.example.pixelcombat.core.config.ComboAttacksConfig.FORWARD_LEFT_SPECIAL_ATTACK;
+import static com.example.pixelcombat.core.config.ComboAttacksConfig.FORWARD_LEFT_SPECIAL_ATTACK2;
+import static com.example.pixelcombat.core.config.ComboAttacksConfig.FORWARD_RIGHT_SPECIAL_ATTACK;
+import static com.example.pixelcombat.core.config.ComboAttacksConfig.FORWARD_RIGHT_SPECIAL_ATTACK2;
+import static com.example.pixelcombat.core.config.ComboAttacksConfig.UP_SPECIAL_ATTACK3;
 
+public class ComboActionManager {
 
     private final GameCharacter player1;
     private String pressedKeysP1 = "";
     private int MAXIMUM_KEY_LISTENING_SIZE = 10;
-    private long MAXIMUM_DELAY_TIME_TIL_CLEAR = 1000l;
     private long lastFrame = 0;
     private Long[] timesP1 = new Long[MAXIMUM_KEY_LISTENING_SIZE];
 
@@ -26,15 +37,18 @@ public class ComboActionManager {
 
     public void init() {
         lastFrame = System.currentTimeMillis();
-        for (int i = 0; i < timesP1.length; i++) {
-            timesP1[i] = 0l;
-        }
+        Arrays.fill(timesP1, 0L);
 
         //combo1
-        combos.add(ComboAttacksConfig.ATTACK1_SECOND);
+        combos.add(ATTACK1_SECOND);
         combos.add(ComboAttacksConfig.ATTACK1_THIRD);
-        combos.add(ComboAttacksConfig.ATTACK2_SECOND);
-        combos.add(ComboAttacksConfig.ATTACK2_THIRD);
+        combos.add(ATTACK2_SECOND);
+        combos.add(ATTACK2_THIRD);
+        combos.add(ComboAttacksConfig.FORWARD_LEFT_SPECIAL_ATTACK);
+        combos.add(ComboAttacksConfig.FORWARD_RIGHT_SPECIAL_ATTACK);
+        combos.add(ComboAttacksConfig.FORWARD_LEFT_SPECIAL_ATTACK2);
+        combos.add(ComboAttacksConfig.FORWARD_RIGHT_SPECIAL_ATTACK2);
+        combos.add(ComboAttacksConfig.UP_SPECIAL_ATTACK3);
     }
 
     public synchronized void pressKey(String player1, String key) {
@@ -51,34 +65,35 @@ public class ComboActionManager {
                 pressedKeysP1 = pressedKeysP1.substring(1);
             }
             pressedKeysP1 += key;
-            timesP1[pressedKeysP1.length() - 1] = 0l;
+            timesP1[pressedKeysP1.length() - 1] = 0L;
         }
     }
 
     public synchronized void update() {
         checkTimes();
 
-        // Log.d("Info", "Pressed Keys so far: "+ pressedKeysP1);
+        Log.d("Info", "Pressed Keys so far: " + pressedKeysP1);
     }
 
     private void checkTimes() {
 
-        String futurePressedKeysP1 = "";
+        StringBuilder futurePressedKeysP1 = new StringBuilder();
         long currentFrame = System.currentTimeMillis();
 
         for (int i = 0; i < MAXIMUM_KEY_LISTENING_SIZE; i++) {
             timesP1[i] += (currentFrame - lastFrame);
 
 
+            long MAXIMUM_DELAY_TIME_TIL_CLEAR = 2300L;
             if (timesP1[i] > MAXIMUM_DELAY_TIME_TIL_CLEAR) {
-                timesP1[i] = 0l;
+                timesP1[i] = 0L;
             } else {
                 if (i < pressedKeysP1.length())
-                    futurePressedKeysP1 += "" + pressedKeysP1.charAt(i);
+                    futurePressedKeysP1.append("").append(pressedKeysP1.charAt(i));
             }
         }
         lastFrame = currentFrame;
-        pressedKeysP1 = futurePressedKeysP1;
+        pressedKeysP1 = futurePressedKeysP1.toString();
 
     }
 
@@ -93,9 +108,7 @@ public class ComboActionManager {
                 }
                 pressedKeysP1 = "" + bonus;
 
-                for (int i = 0; i < timesP1.length; i++) {
-                    timesP1[i] = 0l;
-                }
+                Arrays.fill(timesP1, 0L);
 
                 return true;
             }
@@ -104,26 +117,40 @@ public class ComboActionManager {
     }
 
     private boolean activateCombo(String combo) {
-        boolean activated = false;
+        boolean activated;
         switch (combo) {
-            case "444":
+            case ATTACK1_SECOND:
                 //     Log.i("Info", "The following combo was activated: "+combo);
                 activated = player1.getController().specialAttack(AttackStatus.ATTACK2);
                 bonus = "X";
                 return activated;
-            case "X4":
+            case ATTACK1_THIRD:
                 //   Log.i("Info", "The following combo was activated: "+combo);
                 activated = player1.getController().specialAttack(AttackStatus.ATTACK3);
                 bonus = "";
                 return activated;
-            case "555":
+            case ATTACK2_SECOND:
                 //     Log.i("Info", "The following combo was activated: "+combo);
                 activated = player1.getController().specialAttack(AttackStatus.ATTACK5);
                 bonus = "Y";
                 return activated;
-            case "Y5":
+            case ATTACK2_THIRD:
                 //   Log.i("Info", "The following combo was activated: "+combo);
                 activated = player1.getController().specialAttack(AttackStatus.ATTACK6);
+                bonus = "";
+                return activated;
+            case FORWARD_RIGHT_SPECIAL_ATTACK:
+            case FORWARD_LEFT_SPECIAL_ATTACK:
+                activated = player1.getController().specialAttack(AttackStatus.SPECIALATTACK1);
+                bonus = "";
+                return activated;
+            case FORWARD_RIGHT_SPECIAL_ATTACK2:
+            case FORWARD_LEFT_SPECIAL_ATTACK2:
+                activated = player1.getController().specialAttack(AttackStatus.SPECIALATTACK2);
+                bonus = "";
+                return activated;
+            case UP_SPECIAL_ATTACK3:
+                activated = player1.getController().specialAttack(AttackStatus.SPECIALATTACK3);
                 bonus = "";
                 return activated;
             default:
