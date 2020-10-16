@@ -1,8 +1,9 @@
 package com.example.pixelcombat.math;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
- *
- *2D vector with w as homogeneous coordinate <br>
+ * 2D vector with w as homogeneous coordinate <br>
  * w is always 1.0f and is needed to perform translation operations via vector-matrix-multiplication
  *
  * @author BillyG
@@ -11,7 +12,6 @@ package com.example.pixelcombat.math;
 public class Vector2d implements Comparable<Vector2d> {
 
     public float x, y;
-    public final float w = 1.0f;
 
     /**
      * Constructor of Vector2D <br>
@@ -59,7 +59,7 @@ public class Vector2d implements Comparable<Vector2d> {
      * @param v vector
      * @return v1 x v2
      */
-    public float pointproduct(Vector2d v) {
+    public float pointProduct(Vector2d v) {
         Vector2d tmp1 = normalize();
         Vector2d tmp2 = v.normalize();
 
@@ -72,17 +72,9 @@ public class Vector2d implements Comparable<Vector2d> {
      * @param f constant value
      * @return v * f
      */
-    public Vector2d mult(float f) {
+    public Vector2d multiple(float f) {
         return new Vector2d(x * f, y * f);
     }
-
-    /**
-     * Multiplies a vector v and a matrix m <br>
-     * The last value of vector has the constant value 1.0f, so the calculation of the last coordinate is omitted
-     *
-     * @param m matrix
-     * @return new v * m
-     */
 
 
     /**
@@ -159,6 +151,7 @@ public class Vector2d implements Comparable<Vector2d> {
      *
      * @return string
      */
+    @NotNull
     @Override
     public String toString() {
         return "(" + (x) + ")(" + (y) + ")";
@@ -172,12 +165,6 @@ public class Vector2d implements Comparable<Vector2d> {
      */
 
     public int compareTo(Vector2d v) {
-        if (length() < v.length()) {
-            return -1;
-        } else if (length() > v.length()) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return Float.compare(length(), v.length());
     }
 }

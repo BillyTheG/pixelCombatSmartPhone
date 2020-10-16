@@ -13,20 +13,20 @@ public class KohakuMoveManager extends MoveManager {
 
     public boolean moveSound = true;
 
-    public KohakuMoveManager(Kohaku character) throws Exception {
+    public KohakuMoveManager(Kohaku character) {
         super(character);
     }
 
 
     @Override
-    public void moveStart() throws PixelCombatException {
+    public void moveStart() {
         if (!character.getViewManager().getAnimManager().isPlaying()) {
             character.getStatusManager().setActionStatus(ActionStatus.MOVE);
         }
     }
 
     @Override
-    public void moveSwitch() throws PixelCombatException {
+    public void moveSwitch() {
         if (!character.getViewManager().getAnimManager().isPlaying()) {
             character.getStatusManager().setActionStatus(ActionStatus.MOVESTART);
         }
@@ -58,7 +58,7 @@ public class KohakuMoveManager extends MoveManager {
     }
 
     @Override
-    public void moveEnd() throws PixelCombatException {
+    public void moveEnd() {
         if (!character.getViewManager().getAnimManager().isPlaying()) {
             character.getStatusManager().setActionStatus(ActionStatus.STAND);
         }

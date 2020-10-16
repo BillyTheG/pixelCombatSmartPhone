@@ -49,9 +49,7 @@ public class CollisionDetection implements EnvironmentInteract {
         Log.i("Info", "Both Players Collide");
         // the intersection box
         float x1 = iRect.getUpperLeft().x;
-        float y1 = iRect.getUpperLeft().y;
         float w1 = iRect.getWidth();
-        float h1 = iRect.getHeight();
 
         Log.i("Info", "IRect: " + iRect);
 
@@ -59,12 +57,12 @@ public class CollisionDetection implements EnvironmentInteract {
         checkCollisionFromLeftOrRight(player2, x1, w1);
     }
 
-    private void checkCollisionFromBotton(GameCharacter player1, GameCharacter player2, float y1, float h1) {
+    public void checkCollisionFromBottom(GameCharacter player1, GameCharacter player2, float y1, float h1) {
 
         float y2 = player1.getBoxManager().currentColBox.getUpperLeft().y;
         float h2 = player1.getBoxManager().currentColBox.getHeight();
 
-        // we hit from botton
+        // we hit from bottom
         if ((y1 + h1 / 2.0F < y2 + h2 / 2.0F) && (!player1.getBoxManager().isCollidingY())) {
             player1.getPhysics().VY = Math.abs(player1.getPhysics().VY);
             player1.getBoxManager().setCollidingY(true);
@@ -186,20 +184,16 @@ public class CollisionDetection implements EnvironmentInteract {
                             float y3 = (y1 + ownBox.getHeight());
                             float y4 = (y2 + enemyBox.getHeight());
 
-                            float xmin = Math.max(x1, x2);
-                            float xmax1 = x3;
-                            float xmax2 = x4;
-                            float xmax = Math.min(xmax1, xmax2);
-                            if (xmax > xmin) {
-                                float ymin = Math.max(y1, y2);
-                                float ymax1 = y3;
-                                float ymax2 = y4;
-                                float ymax = Math.min(ymax1, ymax2);
-                                if (ymax > ymin) {
-                                    float out_x = xmin + (xmax - xmin) / 2f;
-                                    float out_y = ymin + (ymax - ymin) / 2f;
-                                    float out_width = xmax - xmin;
-                                    float out_height = ymax - ymin;
+                            float xMin = Math.max(x1, x2);
+                            float xMax = Math.min(x3, x4);
+                            if (xMax > xMin) {
+                                float yMin = Math.max(y1, y2);
+                                float yMax = Math.min(y3, y4);
+                                if (yMax > yMin) {
+                                    float out_x = xMin + (xMax - xMin) / 2f;
+                                    float out_y = yMin + (yMax - yMin) / 2f;
+                                    float out_width = xMax - xMin;
+                                    float out_height = yMax - yMin;
                                     player1.getBoxManager().currentColBox = ownBox;
                                     player2.getBoxManager().currentColBox = enemyBox;
                                     return new BoundingRectangle(out_height / ScreenProperty.SCALE, new Vector2d(out_x, out_y), out_width / ScreenProperty.SCALE);
@@ -225,7 +219,6 @@ public class CollisionDetection implements EnvironmentInteract {
             float height1 = ownBoxes.get(currentOwnAnimation).get(i).getHeight();
             BoundingRectangle ownBox = new BoundingRectangle(height1, new Vector2d(x1, y1), width1);
             if (GeometryUtils.isCollision(ownBox, box1)) {
-
                 x1 = ownBox.getUpperLeft().x;
                 y1 = ownBox.getUpperLeft().y;
                 float x2 = box1.getUpperLeft().x;
@@ -236,20 +229,16 @@ public class CollisionDetection implements EnvironmentInteract {
                 float y3 = (y1 + ownBox.getHeight());
                 float y4 = (y2 + box1.getHeight());
 
-                float xmin = Math.max(x1, x2);
-                float xmax1 = x3;
-                float xmax2 = x4;
-                float xmax = Math.min(xmax1, xmax2);
-                if (xmax > xmin) {
-                    float ymin = Math.max(y1, y2);
-                    float ymax1 = y3;
-                    float ymax2 = y4;
-                    float ymax = Math.min(ymax1, ymax2);
-                    if (ymax > ymin) {
-                        float out_x = xmin + (xmax - xmin) / 2f;
-                        float out_y = ymin + (ymax - ymin) / 2f;
-                        float out_width = xmax - xmin;
-                        float out_height = ymax - ymin;
+                float xMin = Math.max(x1, x2);
+                float xMax = Math.min(x3, x4);
+                if (xMax > xMin) {
+                    float yMin = Math.max(y1, y2);
+                    float yMax = Math.min(y3, y4);
+                    if (yMax > yMin) {
+                        float out_x = xMin + (xMax - xMin) / 2f;
+                        float out_y = yMin + (yMax - yMin) / 2f;
+                        float out_width = xMax - xMin;
+                        float out_height = yMax - yMin;
                         this.currentColBox = ownBox;
                         return new BoundingRectangle(out_height, new Vector2d(out_x, out_y), out_width);
 

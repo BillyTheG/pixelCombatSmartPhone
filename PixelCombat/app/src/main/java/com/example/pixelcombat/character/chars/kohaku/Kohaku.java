@@ -110,7 +110,7 @@ public class Kohaku implements GameCharacter, HasAI {
 
         if (ViewConfig.DRAW_DEPTH == DrawLevel.DEBUG) {
             for (BoundingRectangle box : getBoxManager().getCurrentBox().get(viewManager.getFrameIndex())) {
-                box.draw(this, canvas, screenX, screenY, gameRect);
+                box.draw(this, canvas, screenX, screenY);
             }
         }
     }

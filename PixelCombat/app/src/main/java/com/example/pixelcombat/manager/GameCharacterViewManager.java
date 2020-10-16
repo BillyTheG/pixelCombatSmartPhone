@@ -52,15 +52,13 @@ public abstract class GameCharacterViewManager extends ObjectViewManager<GameCha
     public final int ATTACK4 = 27;
     public final int ATTACK5 = 28;
     public final int ATTACK6 = 29;
+    public final int SPECIALATTACK2 = 30;
 
     public final int DEAD = 99;
     @Getter
-    protected AnimationManager animManager;
+    protected AnimationManager<GameCharacter> animManager;
     protected final GameCharacter character;
     private CharacterParser characterParser;
-
-    private Runnable imageLoaderRunnable;
-    private Thread imageLoaderThread;
 
     public GameCharacterViewManager(GameCharacter character) throws Exception {
         super(character);
@@ -107,17 +105,21 @@ public abstract class GameCharacterViewManager extends ObjectViewManager<GameCha
         animations.add(new Animation(images.get("attack4"), times.get(ATTACK4), loop.get(ATTACK4), loopIndices.get(ATTACK4)));
         animations.add(new Animation(images.get("attack5"), times.get(ATTACK5), loop.get(ATTACK5), loopIndices.get(ATTACK5)));
         animations.add(new Animation(images.get("attack6"), times.get(ATTACK6), loop.get(ATTACK6), loopIndices.get(ATTACK6)));
+        animations.add(new Animation(images.get("specialAttack2"), times.get(SPECIALATTACK2), loop.get(SPECIALATTACK2), loopIndices.get(SPECIALATTACK2)));
 
+        loadMoreImages(animations);
 
         Animation[] array = new Animation[animations.size()];
         animations.toArray(array); // fill the array
 
-        animManager = new AnimationManager(this, array, character);
+        animManager = new AnimationManager<>(this, array, character);
     }
+
+    protected abstract void loadMoreImages(ArrayList<Animation> animations);
 
     public void setUpLoaderThread() {
 
-        imageLoaderRunnable = new Runnable() {
+        Runnable imageLoaderRunnable = new Runnable() {
 
             @SneakyThrows
             @Override
@@ -125,7 +127,7 @@ public abstract class GameCharacterViewManager extends ObjectViewManager<GameCha
                 loadParsedImages();
             }
         };
-        imageLoaderThread = new Thread(imageLoaderRunnable);
+        Thread imageLoaderThread = new Thread(imageLoaderRunnable);
         imageLoaderThread.start();
     }
 
@@ -152,6 +154,8 @@ public abstract class GameCharacterViewManager extends ObjectViewManager<GameCha
                         return ATTACK1;
                     case SPECIALATTACK1:
                         return SPECIALATTACK1;
+                    case SPECIALATTACK2:
+                        return SPECIALATTACK2;
                     case SPECIALATTACK3:
                         return SPECIALATTACK3;
                     case ATTACK2:
@@ -240,10 +244,6 @@ public abstract class GameCharacterViewManager extends ObjectViewManager<GameCha
 
     public void setCharacterParser(CharacterParser characterParser) {
         this.characterParser = characterParser;
-    }
-
-    public CharacterParser getCharacterParser() {
-        return characterParser;
     }
 
     public int getFrameIndex() {

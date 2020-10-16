@@ -63,7 +63,7 @@ public class PXMap implements GameObject {
         if (height > ScreenProperty.SCREEN_HEIGHT) {
             deltaY = height - ScreenProperty.SCREEN_HEIGHT;
         }
-        sourceRect = new Rect(0, 0, ((int) (ScreenProperty.SCREEN_WIDTH)), ScreenProperty.SCREEN_HEIGHT);
+        sourceRect = new Rect(0, 0, ScreenProperty.SCREEN_WIDTH, ScreenProperty.SCREEN_HEIGHT);
         gameRect = new Rect(OFFSET_X, 0, ScreenProperty.SCREEN_WIDTH - OFFSET_X, ScreenProperty.SCREEN_HEIGHT - OFFSET_Y);
 
         screenScrollManager = new ScreenScrollerManager();
@@ -76,7 +76,7 @@ public class PXMap implements GameObject {
 
     @Override
     public void draw(Canvas canvas, int screenX, int screenY, Rect gameRect) {
-        sourceRect.offsetTo(0 + screenScrollManager.getScreenX() - screenScrollManager.getCX(),
+        sourceRect.offsetTo(screenScrollManager.getScreenX() - screenScrollManager.getCX(),
                 deltaY + screenScrollManager.getScreenY() - screenScrollManager.getCY());
 
         canvas.drawBitmap(bg, sourceRect, this.gameRect, null);
@@ -160,11 +160,8 @@ public class PXMap implements GameObject {
             float delta1 = Math.abs(y_char - v);
             float delta2 = Math.abs((float) (screenScrollManager.getCY()));
 
-            if (delta1 >= delta2) {
-                return true;
-            }
+            return delta1 >= delta2;
         }
-        return false;
     }
 
 

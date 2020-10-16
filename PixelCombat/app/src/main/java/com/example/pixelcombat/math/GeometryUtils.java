@@ -21,7 +21,7 @@ public class GeometryUtils {
         float t = (a.x * b.x + a.y * b.y) / ((a.length()) * (a.length()));
         if (t < 0) t = 0;
         if (t > 1) t = 1;
-        return linestart.add(a.mult(t));
+        return linestart.add(a.multiple(t));
     }
 
 
@@ -33,7 +33,7 @@ public class GeometryUtils {
      * @return angle between v1 and v2
      */
     public static float angle(Vector2d v1, Vector2d v2) {
-        float pp = v1.pointproduct(v2);
+        float pp = v1.pointProduct(v2);
         return (float) Math.toDegrees(Math.acos(pp));
     }
 

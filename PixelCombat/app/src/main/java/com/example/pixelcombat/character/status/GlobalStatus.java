@@ -10,6 +10,6 @@ public enum GlobalStatus {
     KNOCKBACKFALL,
     DISABLED,
     DISABLEDRECOVER,
-    DEAD;
+    DEAD
 
 }

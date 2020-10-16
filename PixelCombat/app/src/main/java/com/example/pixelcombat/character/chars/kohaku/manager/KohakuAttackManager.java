@@ -14,7 +14,7 @@ import com.example.pixelcombat.manager.actionManager.AttackManager;
 
 public class KohakuAttackManager extends AttackManager {
 
-    public KohakuAttackManager(Kohaku character) throws Exception {
+    public KohakuAttackManager(Kohaku character) {
         super(character);
     }
 

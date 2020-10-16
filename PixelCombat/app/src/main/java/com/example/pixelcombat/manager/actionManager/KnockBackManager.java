@@ -12,10 +12,10 @@ public class KnockBackManager {
 
     private final GameCharacter character;
     public float RECOVER_JUMP = -25.5f;
-    private float requiredMaxVX = 35f;
-    private float requiredLeastVY = 10f;
-    private float requiredMaxVY = 150f;
-    private float leastDistanceToGround = 1.5f;
+    protected float requiredMaxVX = 35f;
+    protected float requiredLeastVY = 10f;
+    protected float requiredMaxVY = 150f;
+    protected float leastDistanceToGround = 1.5f;
 
     public KnockBackManager(GameCharacter character) {
         this.character = character;

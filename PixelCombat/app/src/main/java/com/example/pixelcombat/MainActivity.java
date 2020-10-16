@@ -14,61 +14,92 @@ import android.widget.RelativeLayout;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.pixelcombat.core.sound.SoundManager;
+import com.example.pixelcombat.dagger2.components.DaggerPixelCombatAppComponent;
+import com.example.pixelcombat.dagger2.components.PixelCombatAppComponent;
+import com.example.pixelcombat.dagger2.modules.PixelCombatAppModule;
 import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.manager.GameButtonManager;
 
-import org.xmlpull.v1.XmlPullParserException;
+import javax.inject.Inject;
 
-import java.io.IOException;
+import lombok.Getter;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RelativeLayout GameButtons;
-    private FrameLayout gameFrameLayout;
-    private GameButtonManager buttonManager;
-    private GamePanel gamePanel;
+    @Inject
+    SoundManager soundManager;
+
+    @Inject
+    RelativeLayout GameButtons;
+
+    @Inject
+    FrameLayout gameFrameLayout;
+
+    @Inject
+    GameButtonManager buttonManager;
+
+    @Inject
+    GamePanel gamePanel;
+
+ /*   @Inject
+    DustFactory dustFactory;
+
+    @Inject
+    ProjectileFactory projectileFactory;
+
+    @Inject
+    SparkFactory sparkFactory;*/
+
+    @Getter
+    private PixelCombatAppComponent component;
 
     @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setVolumeControlStream(AudioManager.STREAM_MUSIC);
-        DisplayMetrics dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
-        ScreenProperty.SCREEN_HEIGHT = dm.heightPixels;
-        ScreenProperty.SCREEN_WIDTH = dm.widthPixels;
-        GameButtons = new RelativeLayout(this);
-        gameFrameLayout = new FrameLayout(this);
         try {
-            gamePanel = new GamePanel(this);
-        } catch (IOException e) {
-            Log.e("Error", e.getMessage());
-            e.printStackTrace();
-        } catch (XmlPullParserException e) {
-            Log.e("Error", e.getMessage());
-            e.printStackTrace();
+            super.onCreate(savedInstanceState);
+
+
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+            requestWindowFeature(Window.FEATURE_NO_TITLE);
+            setVolumeControlStream(AudioManager.STREAM_MUSIC);
+            DisplayMetrics dm = new DisplayMetrics();
+            getWindowManager().getDefaultDisplay().getMetrics(dm);
+
+            ScreenProperty.SCREEN_HEIGHT = dm.heightPixels;
+            ScreenProperty.SCREEN_WIDTH = dm.widthPixels;
+
+            // GameButtons = new RelativeLayout(this);
+            //  gameFrameLayout = new FrameLayout(this);
+
+
+            //gamePanel = new GamePanel(this);
         } catch (Exception e) {
             Log.e("Error", e.getMessage());
             e.printStackTrace();
-            }
-            buttonManager = new GameButtonManager(this,gamePanel);
+        }
+        //     buttonManager = new GameButtonManager(this,gamePanel);
 
-            RelativeLayout.LayoutParams b1 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        RelativeLayout.LayoutParams b1 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         RelativeLayout.LayoutParams b2 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
 
-        GameButtons.setLayoutParams(b2);
+        component = DaggerPixelCombatAppComponent.builder().pixelCombatAppModule(new PixelCombatAppModule(this))
+                .build();
+        component.inject(this);
 
+        GameButtons.setLayoutParams(b2);
 
         b1.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
         b1.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
 
-        buttonManager.addButtonsToView(GameButtons);
 
         gameFrameLayout.addView(gamePanel);
         gameFrameLayout.addView(GameButtons);
+
+        buttonManager.addButtonsToView(GameButtons);
+
         setContentView(gameFrameLayout);
     }
 
@@ -87,4 +118,9 @@ public class MainActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        soundManager.getSoundPool().release();
+    }
 }

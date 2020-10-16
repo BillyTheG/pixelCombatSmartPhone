@@ -13,15 +13,9 @@ import static com.example.pixelcombat.core.config.ProjectileConfig.KOHAKU_SPECIA
 
 public class KohakuSpecialAttack3 extends Attack {
 
-    private static final float FLY_SPEED_Y = 3;
-    private static final float FLY_SPEED_X = 10f;
     private boolean firstJumpDone = false;
-    private boolean flyUpwardsDone = false;
     private boolean flytowardsDone = false;
 
-
-    private float MIN_DISTANCE_Y = 200f;
-    private float MIN_DISTANCE_X = 800f;
     private float startLevel = 0f;
     private float buffer = 0f;
 
@@ -43,6 +37,12 @@ public class KohakuSpecialAttack3 extends Attack {
                 buffer = startLevel;
                 firstJumpDone = true;
             }
+
+            float FLY_SPEED_Y = 3;
+            float FLY_SPEED_X = 10f;
+
+            float MIN_DISTANCE_Y = 200f;
+            float MIN_DISTANCE_X = 800f;
 
             switch (character.getViewManager().getFrameIndex()) {
                 case 0:
@@ -82,7 +82,7 @@ public class KohakuSpecialAttack3 extends Attack {
                         character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_special_attack3_laughter", null, character.isRight()));
                     }
 
-                    character.getPhysics().VX = character.getDirection() * 10f;
+                    character.getPhysics().VX = character.getDirection() * FLY_SPEED_X;
                     buffer += Math.abs(character.getPhysics().VX);
                     break;
                 case 11:
@@ -148,7 +148,6 @@ public class KohakuSpecialAttack3 extends Attack {
     public void checkFinished() {
         setSwitcher(true);
         flytowardsDone = false;
-        flyUpwardsDone = false;
         firstJumpDone = false;
         buffer = 0f;
 
@@ -170,7 +169,6 @@ public class KohakuSpecialAttack3 extends Attack {
     public void resetStats() {
         setSwitcher(true);
         flytowardsDone = false;
-        flyUpwardsDone = false;
         firstJumpDone = false;
     }
 }

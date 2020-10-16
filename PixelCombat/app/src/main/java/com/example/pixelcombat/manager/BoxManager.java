@@ -14,7 +14,6 @@ import java.util.Map;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.SneakyThrows;
 
 public abstract class BoxManager {
 
@@ -45,15 +44,13 @@ public abstract class BoxManager {
     public final int MOVESTART = 22;
     public final int MOVEEND = 23;
     public final int JUMPSTART = 24;
-    private static final int SPECIALATTACK2 = 98;
     public final int RETREAT = 25;
     public final int RETREATSTOP = 26;
     public final int ATTACK4 = 27;
     public final int ATTACK5 = 28;
     public final int ATTACK6 = 29;
+    public final int SPECIALATTACK2 = 30;
 
-
-    public final int MAX_STANDARD_SPRITES = JUMPFALL;
     public int currentAnimation;
     public BoundingRectangle currentColBox;
     @Getter
@@ -67,10 +64,6 @@ public abstract class BoxManager {
     @Getter
     @Setter
     private boolean collidingY = false;
-    private boolean collidingBX = false;
-    private boolean collidingBY = false;
-    private Runnable boxLoaderRunnable;
-    private Thread boxLoaderThread;
     @Getter
     @Setter
     private BoundingRectangle intersectionBox;
@@ -86,15 +79,14 @@ public abstract class BoxManager {
 
     public void setUpLoaderThread() {
 
-        boxLoaderRunnable = new Runnable() {
-
-            @SneakyThrows
-            @Override
-            public void run() {
+        Runnable boxLoaderRunnable = () -> {
+            try {
                 loadParsedBoxes();
+            } catch (Exception e) {
+                Log.e("Error", "Loading the Parsed Box was interrupted: " + e.getMessage());
             }
         };
-        boxLoaderThread = new Thread(boxLoaderRunnable);
+        Thread boxLoaderThread = new Thread(boxLoaderRunnable);
         boxLoaderThread.start();
     }
 
@@ -282,20 +274,16 @@ public abstract class BoxManager {
         float y3 = (y1 + ownBox.getHeight());
         float y4 = (y2 + box1.getHeight());
 
-        float xmin = Math.max(x1, x2);
-        float xmax1 = x3;
-        float xmax2 = x4;
-        float xmax = Math.min(xmax1, xmax2);
-        if (xmax > xmin) {
-            float ymin = Math.max(y1, y2);
-            float ymax1 = y3;
-            float ymax2 = y4;
-            float ymax = Math.min(ymax1, ymax2);
-            if (ymax > ymin) {
-                float out_x = xmin + (xmax - xmin) / 2f;
-                float out_y = ymin + (ymax - ymin) / 2f;
-                float out_width = xmax - xmin;
-                float out_height = ymax - ymin;
+        float xMin = Math.max(x1, x2);
+        float xMax = Math.min(x3, x4);
+        if (xMax > xMin) {
+            float yMin = Math.max(y1, y2);
+            float yMax = Math.min(y3, y4);
+            if (yMax > yMin) {
+                float out_x = xMin + (xMax - xMin) / 2f;
+                float out_y = yMin + (yMax - yMin) / 2f;
+                float out_width = xMax - xMin;
+                float out_height = yMax - yMin;
                 return new BoundingRectangle(out_height, new Vector2d(out_x, out_y), out_width, 0, 0);
             }
         }

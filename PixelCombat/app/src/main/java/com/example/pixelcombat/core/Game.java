@@ -8,8 +8,6 @@ import android.util.Log;
 import androidx.annotation.RequiresApi;
 
 import com.example.pixelcombat.core.message.GameMessage;
-import com.example.pixelcombat.core.sound.SoundManager;
-import com.example.pixelcombat.dusts.Dust;
 import com.example.pixelcombat.enums.MessageType;
 import com.example.pixelcombat.environment.interactor.ProjectileHitDetection;
 import com.example.pixelcombat.exception.PixelCombatException;
@@ -20,59 +18,66 @@ import com.example.pixelcombat.factories.ProjectileFactory;
 import com.example.pixelcombat.factories.SparkFactory;
 import com.example.pixelcombat.manager.ScreenScrollerManager;
 import com.example.pixelcombat.map.PXMap;
-import com.example.pixelcombat.map.weather.Weather;
 import com.example.pixelcombat.observer.Observer;
 import com.example.pixelcombat.projectile.Projectile;
-import com.example.pixelcombat.sparks.Spark;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Game implements Observer {
+import javax.inject.Inject;
 
-    private final ScreenScrollerManager screenScrollManager;
+import lombok.Getter;
+
+public class Game implements Observer {
+    @Getter
+    private Context context;
+    private ScreenScrollerManager screenScrollManager;
     private PXMap map;
     private ArrayList<Projectile> projectiles;
-    private ArrayList<Spark> sparks;
-    private ArrayList<Dust> dusts;
+    private ArrayList<IsFinishable> sparks;
+    private ArrayList<IsFinishable> dusts;
     private DustFactory dustFactory;
     private ProjectileFactory projectileFactory;
     private SparkFactory sparkFactory;
-    private Weather weather;
     private ProjectileHitDetection projectileDetection;
 
-    public Game(Context context, PXMap map, Weather weather, SoundManager soundManager) {
-        this.map = map;
-        this.screenScrollManager = map.getScreenScrollManager();
+    @Inject
+    public Game(Context context, DustFactory dustFactory, SparkFactory sparkFactory,
+                ProjectileFactory projectileFactory) {
+        this.context = context;
         this.projectiles = new ArrayList<>();
         this.sparks = new ArrayList<>();
         this.dusts = new ArrayList<>();
-        this.weather = weather;
-        this.dustFactory = new DustFactory(context, soundManager);
-        this.projectileFactory = new ProjectileFactory(context, soundManager);
-        this.sparkFactory = new SparkFactory(context, soundManager);
-        this.projectileDetection = new ProjectileHitDetection(map.getCharacter1(), map.getCharacter2());
-        this.map.registerGame(this);
+
+        this.dustFactory = dustFactory;
+        this.projectileFactory = projectileFactory;
+        this.sparkFactory = sparkFactory;
+
         this.sparkFactory.init();
         this.dustFactory.init();
         this.projectileFactory.init();
     }
 
+    public void init(PXMap map) {
+        this.map = map;
+        this.screenScrollManager = map.getScreenScrollManager();
+        this.projectileDetection = new ProjectileHitDetection(map.getCharacter1(), map.getCharacter2());
+        this.map.registerGame(this);
+    }
+
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void update() {
-
 
         ArrayList<Thread> threads = new ArrayList<>();
 
         Thread projectileThread = new Thread(() -> projectiles.forEach(Projectile::update));
-        Thread sparkThread = new Thread(() -> sparks.forEach(Spark::update));
-        Thread dustThread = new Thread(() -> dusts.forEach(Dust::update));
-        Thread weatherThread = new Thread(() -> weather.update());
+        Thread sparkThread = new Thread(() -> sparks.forEach(IsFinishable::update));
+        Thread dustThread = new Thread(() -> dusts.forEach(IsFinishable::update));
 
         threads.add(projectileThread);
         threads.add(sparkThread);
         threads.add(dustThread);
-        threads.add(weatherThread);
 
         try {
             map.update();
@@ -92,21 +97,8 @@ public class Game implements Observer {
         }
         projectiles.removeAll(foundProjectiles);
 
-        List<Spark> foundSparks = new ArrayList<>();
-        for (Spark spark : sparks) {
-            if (spark.isFinished()) {
-                foundSparks.add(spark);
-            }
-        }
-        sparks.removeAll(foundSparks);
-
-        List<Dust> foundDusts = new ArrayList<>();
-        for (Dust dust : dusts) {
-            if (dust.isFinished()) {
-                foundDusts.add(dust);
-            }
-        }
-        sparks.removeAll(foundDusts);
+        removeFinishedObjects(sparks);
+        removeFinishedObjects(dusts);
 
         projectileDetection.interact(projectiles);
     }
@@ -133,7 +125,6 @@ public class Game implements Observer {
         projectiles.forEach(x -> x.draw(canvas, screenX, screenY, map.getGameRect()));
         sparks.forEach(x -> x.draw(canvas, screenX, screenY, map.getGameRect()));
         dusts.forEach(x -> x.draw(canvas, screenX, screenY, map.getGameRect()));
-        weather.draw(canvas, screenX, screenY, map.getGameRect());
 
     }
 

@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.util.Log;
 
 import com.example.pixelcombat.enums.ExceptionGroup;
-import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.exception.parser.XmlParseErrorException;
 import com.example.pixelcombat.math.Vector2d;
 import com.example.pixelcombat.utils.LocatedBitmap;
@@ -20,12 +19,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
+import lombok.Getter;
 import lombok.Setter;
 
 import static com.example.pixelcombat.enums.GamePlayView.FIELD_SIZE;
 
+@Getter
 public class CharacterParser {
 
     private ConcurrentHashMap<String, ArrayList<LocatedBitmap>> character = new ConcurrentHashMap<>();
@@ -63,12 +65,8 @@ public class CharacterParser {
     public CharacterParser(Context context) throws Exception {
         this.context = context;
         XmlPullParserFactory parserFactory;
-        try {
-            parserFactory = XmlPullParserFactory.newInstance();
-            parser = parserFactory.newPullParser();
-        } catch (XmlPullParserException e) {
-            throw e;
-        }
+        parserFactory = XmlPullParserFactory.newInstance();
+        parser = parserFactory.newPullParser();
 
     }
 
@@ -99,7 +97,7 @@ public class CharacterParser {
                             readingAnimation = true;
 
                             time = new ArrayList<>();
-                            character.put(eltName, new ArrayList<LocatedBitmap>());
+                            character.put(eltName, new ArrayList<>());
                             animation = eltName;
 
                             int loopIndex = Integer.parseInt(parser.getAttributeValue(null, "loopIndex"));
@@ -133,16 +131,17 @@ public class CharacterParser {
                                     BitmapFactory.Options options = new BitmapFactory.Options();
                                     options.inPreferredConfig = Bitmap.Config.RGB_565;
 
-                                    Bitmap bitmap = BitmapFactory.decodeResourceStream(ScreenProperty.CURRENT_CONTEXT.getResources(), null, is, null, options);
+                                    Bitmap bitmap = BitmapFactory.decodeResourceStream(context.getResources(), null, is, null, options);
                                     Vector2d pos = new Vector2d(x * FIELD_SIZE, y * FIELD_SIZE);
-                                    if (trim)
+                                    if (trim) {
+                                        assert bitmap != null;
                                         bitmap = LocatedBitmap.TrimImage(bitmap);
+                                    }
                                     LocatedBitmap locatedBitmap = new LocatedBitmap(bitmap, pos);
-                                    character.get(animation).add(key, locatedBitmap);
+                                    Objects.requireNonNull(character.get(animation)).add(key, locatedBitmap);
                                     Log.i("Info", "Loaded image " + fileName + " at position " + key + " with duration: " + duration + " in " + animation + " in position: " + pos);
                                     time.add(duration);
-                                }
-                                catch(Exception e){
+                                } catch(Exception e){
                                     throw new XmlParseErrorException(MessageFormat.format(ExceptionGroup.PARSER.getDescription(),fileName)+"\n"+e.getMessage());
                                 }
 
@@ -170,20 +169,5 @@ public class CharacterParser {
         }
     }
 
-    public ConcurrentHashMap<String, ArrayList<LocatedBitmap>> getCharacter() {
-        return character;
-    }
-
-    public ArrayList<ArrayList<Float>> getTimes() {
-        return times;
-    }
-
-    public ArrayList<Boolean> getLoop() {
-        return loop;
-    }
-
-    public ArrayList<Integer> getLoopIndizes() {
-        return loopIndizes;
-    }
 
 }
