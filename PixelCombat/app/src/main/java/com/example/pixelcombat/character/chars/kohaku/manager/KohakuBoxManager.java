@@ -6,7 +6,7 @@ import com.example.pixelcombat.manager.BoxManager;
 public class KohakuBoxManager extends BoxManager {
 
 
-    public KohakuBoxManager(Kohaku character) throws Exception {
+    public KohakuBoxManager(Kohaku character) {
         super(character);
     }
 

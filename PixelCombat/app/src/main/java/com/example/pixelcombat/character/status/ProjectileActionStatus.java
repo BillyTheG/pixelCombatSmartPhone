@@ -4,5 +4,5 @@ public enum ProjectileActionStatus {
 
     CREATION,
     MOVE,
-    EXPLOSION;
+    EXPLOSION
 }

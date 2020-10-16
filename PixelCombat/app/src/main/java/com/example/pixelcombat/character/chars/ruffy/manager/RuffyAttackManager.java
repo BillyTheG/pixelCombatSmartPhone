@@ -6,7 +6,7 @@ import com.example.pixelcombat.manager.actionManager.AttackManager;
 
 public class RuffyAttackManager extends AttackManager {
 
-    public RuffyAttackManager(Ruffy character) throws Exception {
+    public RuffyAttackManager(Ruffy character) {
         super(character);
     }
 

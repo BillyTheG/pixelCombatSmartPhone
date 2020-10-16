@@ -1,5 +1,6 @@
 package com.example.pixelcombat;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -22,27 +23,27 @@ import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.environment.interactor.CollisionDetection;
 import com.example.pixelcombat.manager.ComboActionManager;
 import com.example.pixelcombat.map.PXMap;
-import com.example.pixelcombat.map.weather.Weather;
 import com.example.pixelcombat.math.Vector2d;
+
+import org.jetbrains.annotations.NotNull;
+
+import javax.inject.Inject;
 
 import lombok.Getter;
 
 import static com.example.pixelcombat.core.config.AIConfig.ENEMY_CONFIG;
 
 
+@SuppressLint("ViewConstructor")
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     private Context context;
     private MainThread thread;
-    private Bitmap bg;
 
 
-    private Kohaku ruffy;
-
-    private Kohaku kohaku;
     private CollisionDetection collisionDetection;
-    private PXMap testMap;
     private Game game;
     private SoundManager soundManager;
+
     @Getter
     private GameCharacter player1;
     @Getter
@@ -50,84 +51,86 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     @Getter
     private ComboActionManager comboActionManager;
 
-    public GamePanel(Context context) throws Exception {
+    @Inject
+    public GamePanel(Context context, SoundManager soundManager, Game game) {
         super(context);
         this.context = context;
-
+        this.game = game;
+        this.soundManager = soundManager;
         getHolder().addCallback(this);
-        ScreenProperty.CURRENT_CONTEXT = context;
         thread = new MainThread(getHolder(), this);
         setFocusable(true);
 
         init();
     }
 
-    private void init() throws Exception {
+    private void init() {
 
-        BitmapFactory bf = new BitmapFactory();
+        try {
 
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inPreferredConfig = Bitmap.Config.RGB_565;
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inPreferredConfig = Bitmap.Config.RGB_565;
 
-        bg = bf.decodeResource(ScreenProperty.CURRENT_CONTEXT.getResources(), R.drawable.cold_winter_1, options);
-        bg = Bitmap.createScaledBitmap(bg, ((int) (ScreenProperty.SCREEN_WIDTH * 1.5f)), ((int) (ScreenProperty.SCREEN_HEIGHT * 1.4f)), false);
-
-
-        ruffy = new Kohaku("player2", new Vector2d(500, ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE), context);
-        kohaku = new Kohaku("player1", new Vector2d(1000, ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE), context);
-
-        if (ENEMY_CONFIG == EnemyConfig.VERSUS_AI)
-            ruffy.setAIManager(new KohakuAI(ruffy, kohaku, ruffy.getController()));
+            Bitmap bg = BitmapFactory.decodeResource(context.getResources(), R.drawable.cold_winter_1, options);
+            bg = Bitmap.createScaledBitmap(bg, ((int) (ScreenProperty.SCREEN_WIDTH * 1.5f)), ((int) (ScreenProperty.SCREEN_HEIGHT * 1.4f)), false);
 
 
-        ruffy.getBoxManager().loadParsedBoxes();
-        kohaku.getBoxManager().loadParsedBoxes();
-        kohaku.getStatusManager().setMovementStatus(MovementStatus.LEFT);
+            Kohaku ruffy = new Kohaku("player2", new Vector2d(500, ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE), context);
+            Kohaku kohaku = new Kohaku("player1", new Vector2d(1000, ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE), context);
 
-        player1 = kohaku;
-        player2 = ruffy;
+            if (ENEMY_CONFIG == EnemyConfig.VERSUS_AI)
+                ruffy.setAIManager(new KohakuAI(ruffy, kohaku, ruffy.getController()));
 
 
-        testMap = new PXMap("Blue Winter", bg, context, player1, player2);
-        collisionDetection = new CollisionDetection(player1, player2);
+            ruffy.getBoxManager().loadParsedBoxes();
+            kohaku.getBoxManager().loadParsedBoxes();
+            kohaku.getStatusManager().setMovementStatus(MovementStatus.LEFT);
 
-        soundManager = new SoundManager(context);
-        game = new Game(context, testMap, new Weather(), soundManager);
+            player1 = kohaku;
+            player2 = ruffy;
 
-        testMap.registerSoundManager(soundManager);
-        this.comboActionManager = new ComboActionManager(player1);
-        comboActionManager.init();
-        Log.i("Info", "Game was created successfully");
+
+            PXMap testMap = new PXMap("Blue Winter", bg, context, player1, player2);
+            collisionDetection = new CollisionDetection(player1, player2);
+
+            testMap.registerSoundManager(soundManager);
+            comboActionManager = new ComboActionManager(player1);
+            comboActionManager.init();
+            game.init(testMap);
+            Log.i("Info", "Game was created successfully");
+        } catch (Exception e) {
+            Log.e("Error", "THe GamePanel could not initiated, Check the Exception: " + e.getMessage());
+        }
     }
 
     @Override
-    public void surfaceChanged (SurfaceHolder holder, int format, int width, int height){
+    public void surfaceChanged(@NotNull SurfaceHolder holder, int format, int width, int height) {
 
     }
 
     @Override
-    public void surfaceCreated (SurfaceHolder holder){
-    thread = new MainThread(getHolder(),this);
-    thread.setRunning(true);
-    thread.start();
+    public void surfaceCreated(@NotNull SurfaceHolder holder) {
+        thread = new MainThread(getHolder(), this);
+        thread.setRunning(true);
+        thread.start();
     }
 
     @Override
-    public void surfaceDestroyed (SurfaceHolder holder){
+    public void surfaceDestroyed(@NotNull SurfaceHolder holder) {
         boolean retry = true;
-        while(retry){
-            try{
+        while (retry) {
+            try {
                 thread.setRunning(false);
                 thread.join();
-                soundManager.getSoundPool().release();
-            }
-            catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             retry = false;
         }
+
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         return super.onTouchEvent(event);
@@ -145,6 +148,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         super.draw(canvas);
         game.draw(canvas);
         canvas.restore();
+
     }
 
 }

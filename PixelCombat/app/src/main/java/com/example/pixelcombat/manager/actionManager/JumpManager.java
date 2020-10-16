@@ -10,7 +10,7 @@ import com.example.pixelcombat.exception.PixelCombatException;
 public abstract class JumpManager {
 
     protected final GameCharacter character;
-    private float VERTICAL_LEAP = -45f;
+    protected float VERTICAL_LEAP = -45f;
 
     public JumpManager(GameCharacter character) {
         this.character = character;

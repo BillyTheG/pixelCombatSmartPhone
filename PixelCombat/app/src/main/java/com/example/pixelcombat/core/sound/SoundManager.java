@@ -8,19 +8,23 @@ import android.util.Log;
 import com.example.pixelcombat.R;
 import com.example.pixelcombat.core.message.GameMessage;
 import com.example.pixelcombat.enums.MessageType;
-import com.example.pixelcombat.exception.PixelCombatException;
 import com.example.pixelcombat.observer.Observer;
 
 import java.util.TreeMap;
 
+import javax.inject.Inject;
+
 import lombok.Getter;
 
+
 public class SoundManager implements Observer {
+
     private final Context context;
     @Getter
     private SoundPool soundPool;
     private TreeMap<String, Integer> soundsIds;
 
+    @Inject
     public SoundManager(Context context) {
         this.context = context;
         this.soundPool = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
@@ -75,20 +79,19 @@ public class SoundManager implements Observer {
         soundsIds.put("defend", soundPool.load(context, R.raw.defend, 1));
         soundsIds.put("kohaku_dash", soundPool.load(context, R.raw.kohaku_dash, 1));
         soundsIds.put("kohaku_dash_sonic", soundPool.load(context, R.raw.kohaku_dash_sonic, 1));
-
-
     }
 
 
     @Override
-    public void processMessage(GameMessage gameMessage) throws PixelCombatException {
+    public void processMessage(GameMessage gameMessage) {
         MessageType messageType = gameMessage.getMessageType();
         if (!(messageType == MessageType.SOUND))
             return;
         try {
             String soundName = gameMessage.getGameObject();
-            int soundId = soundsIds.get(soundName);
-            soundPool.play(soundId, 1, 1, 1, 0, 1.0f);
+            Integer soundId = soundsIds.get(soundName);
+            if (soundId != null)
+                soundPool.play(soundId, 1, 1, 1, 0, 1.0f);
         } catch (Exception e) {
             Log.e("Error", "The attempted sound could not be played");
         }

@@ -14,19 +14,20 @@ import com.example.pixelcombat.xml.CharacterParser;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.inject.Inject;
+
 public class SparkFactory {
 
-    private final Context context;
-    private final SoundManager soundManager;
+    //all additional variables
+    public HashMap<String, ArrayList<Float>> times;
+    private Context context;
     //all pictures hold in map
     public HashMap<String, ArrayList<LocatedBitmap>> pictures;
-    //all additional variabels
-    public HashMap<String, ArrayList<Float>> times;
+    private SoundManager soundManager;
 
-    private CharacterParser dustParser;
     private ArrayList<String> sparkNames;
 
-
+    @Inject
     public SparkFactory(Context context, SoundManager soundManager) {
         this.soundManager = soundManager;
         this.context = context;
@@ -56,7 +57,7 @@ public class SparkFactory {
 
     public void init() {
         try {
-            dustParser = new CharacterParser(context);
+            CharacterParser dustParser = new CharacterParser(context);
             sparkNames.add("Attack1_Spark.xml");
             sparkNames.add("Kohaku_Special_Attack1_Spark.xml");
             sparkNames.add("Kohaku_Special2_Attack_Spark.xml");

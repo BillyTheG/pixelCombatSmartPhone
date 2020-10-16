@@ -230,8 +230,7 @@ public class StatusManager {
                 || isDisabledRecovering()
                 || isDashing()
                 || isRetreating()
-                || isRetreatStopping()
-                || isDeCrouching();
+                || isRetreatStopping();
 
     }
 
@@ -239,7 +238,7 @@ public class StatusManager {
         return this.actionStatus == ActionStatus.JUMPSTART;
     }
 
-    private boolean isMoveEnding() {
+    public boolean isMoveEnding() {
         return this.actionStatus == ActionStatus.MOVEEND;
     }
 
@@ -251,7 +250,7 @@ public class StatusManager {
         return this.actionStatus == ActionStatus.MOVESWITCH;
     }
 
-    private boolean isDefendStopping() {
+    public boolean isDefendStopping() {
         return this.actionStatus == ActionStatus.DEFENDSTOP;
     }
 

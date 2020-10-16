@@ -1,5 +1,6 @@
 package com.example.pixelcombat.manager;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -13,6 +14,8 @@ import com.example.pixelcombat.R;
 import com.example.pixelcombat.character.status.AttackStatus;
 import com.example.pixelcombat.utils.DoubleClickListener;
 
+import javax.inject.Inject;
+
 import static android.view.MotionEvent.ACTION_UP;
 
 
@@ -20,38 +23,29 @@ public class GameButtonManager implements View.OnClickListener, View.OnTouchList
 
     private GamePanel gamePanel;
     private ImageButton up;
-    private Bitmap up_bitmap;
 
     private ImageButton down;
-    private Bitmap down_bitmap;
 
     private ImageButton left;
-    private Bitmap left_bitmap;
 
     private ImageButton right;
-    private Bitmap right_bitmap;
 
     private ImageButton attack1;
-    private Bitmap attack1_bitmap;
 
     private ImageButton attack2;
-    private Bitmap attack2_bitmap;
 
     private ImageButton dash;
-    private Bitmap dash_bitmap;
 
     private ImageButton defend;
-    private Bitmap defend_bitmap;
 
     private ImageButton start;
-    private Bitmap start_bitmap;
 
     private ImageButton select;
-    private Bitmap select_bitmap;
 
     private DoubleClickListener doubleClickListener;
     private Context context;
 
+    @Inject
     public GameButtonManager(Context context, GamePanel gamePanel){
         this.context = context;
         this.gamePanel = gamePanel;
@@ -64,23 +58,23 @@ public class GameButtonManager implements View.OnClickListener, View.OnTouchList
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inPreferredConfig = Bitmap.Config.RGB_565;
 
-        up_bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.button_up,options);
-        down_bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.button_down,options);
-        left_bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.button_left,options);
-        right_bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.button_right,options);
+        Bitmap up_bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.button_up, options);
+        Bitmap down_bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.button_down, options);
+        Bitmap left_bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.button_left, options);
+        Bitmap right_bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.button_right, options);
 
-        attack1_bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.button_attack1,options);
-        attack2_bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.button_attack2,options);
-        defend_bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.button_defend,options);
-        dash_bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.button_dash,options);
+        Bitmap attack1_bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.button_attack1, options);
+        Bitmap attack2_bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.button_attack2, options);
+        Bitmap defend_bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.button_defend, options);
+        Bitmap dash_bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.button_dash, options);
 
-        start_bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.button_start,options);
-        select_bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.button_select,options);
+        Bitmap start_bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.button_start, options);
+        Bitmap select_bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.button_select, options);
 
 
-        up      = setUpButton(0,150,1.15f,150,650,up_bitmap);
-        down    = setUpButton(1,150,1.15f,150,800,down_bitmap);
-        left    = setUpButton(2,150,1.15f,0,725,left_bitmap);
+        up = setUpButton(0, 150, 1.15f, 150, 650, up_bitmap);
+        down = setUpButton(1, 150, 1.15f, 150, 800, down_bitmap);
+        left = setUpButton(2, 150, 1.15f, 0, 725, left_bitmap);
         right = setUpButton(3, 150, 1.15f, 300, 725, right_bitmap);
 
         attack1 = setUpButton(4, 150, 0.6f, 1400, 675, attack1_bitmap);
@@ -125,7 +119,7 @@ public class GameButtonManager implements View.OnClickListener, View.OnTouchList
     }
 
 
-
+    @SuppressLint("ClickableViewAccessibility")
     public void addButtonsToView(RelativeLayout GameButtons){
 
         left.setOnTouchListener(this);
@@ -167,18 +161,23 @@ public class GameButtonManager implements View.OnClickListener, View.OnTouchList
         switch(view.getId()) {
             case 0:
                 gamePanel.getComboActionManager().pressKey("player1", "" + view.getId());
-                gamePanel.getPlayer1().getController().jump(false, false);
+                if (!gamePanel.getComboActionManager().checkComboActivation())
+                    gamePanel.getPlayer1().getController().jump(false, false);
                 break;
             case 1:
                 gamePanel.getComboActionManager().pressKey("player1", "" + view.getId());
-                gamePanel.getPlayer1().getController().crouch(false, false);
+                if (!gamePanel.getComboActionManager().checkComboActivation())
+                    gamePanel.getPlayer1().getController().crouch(false, false);
                 break;
             case 2:
                 gamePanel.getComboActionManager().pressKey("player1", "" + view.getId());
-                gamePanel.getPlayer1().getController().move(false, false);
+                if (!gamePanel.getComboActionManager().checkComboActivation())
+                    gamePanel.getPlayer1().getController().move(false, false);
                 break;
             case 3:
-                gamePanel.getPlayer1().getController().move(false, true);
+                gamePanel.getComboActionManager().pressKey("player1", "" + view.getId());
+                if (!gamePanel.getComboActionManager().checkComboActivation())
+                    gamePanel.getPlayer1().getController().move(false, true);
                 break;
             case 4:
                 gamePanel.getComboActionManager().pressKey("player1", "" + view.getId());
@@ -194,7 +193,9 @@ public class GameButtonManager implements View.OnClickListener, View.OnTouchList
                 gamePanel.getPlayer1().getController().dash();
                 break;
             case 7:
-                gamePanel.getPlayer1().getController().defend(false, true);
+                gamePanel.getComboActionManager().pressKey("player1", "" + view.getId());
+                if (!gamePanel.getComboActionManager().checkComboActivation())
+                    gamePanel.getPlayer1().getController().defend(false, true);
                 break;
             case 8:
                 gamePanel.getPlayer2().getController().defend(false, false);
@@ -209,6 +210,7 @@ public class GameButtonManager implements View.OnClickListener, View.OnTouchList
     }
 
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         if((motionEvent.getActionMasked() == ACTION_UP)) {

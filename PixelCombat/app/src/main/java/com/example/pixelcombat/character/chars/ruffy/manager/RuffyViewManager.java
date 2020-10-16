@@ -1,20 +1,22 @@
 package com.example.pixelcombat.character.chars.ruffy.manager;
 
-import android.graphics.Bitmap;
-
+import com.example.pixelcombat.animation.Animation;
 import com.example.pixelcombat.character.chars.ruffy.Ruffy;
-import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.manager.GameCharacterViewManager;
 import com.example.pixelcombat.xml.CharacterParser;
 
-public class RuffyViewManager extends GameCharacterViewManager {
+import java.util.ArrayList;
 
-    private Thread imageLoaderThread;
+public class RuffyViewManager extends GameCharacterViewManager {
 
     public RuffyViewManager(Ruffy character) throws Exception {
         super(character);
     }
 
+    @Override
+    protected void loadMoreImages(ArrayList<Animation> animations) {
+
+    }
 
     @Override
     public void init() throws Exception {
@@ -25,9 +27,6 @@ public class RuffyViewManager extends GameCharacterViewManager {
         thread.start();
     }
 
-    private Bitmap getScaledBitmap(Bitmap bitmap) {
-        return Bitmap.createScaledBitmap(bitmap, ((int) (bitmap.getWidth() * ScreenProperty.SCALE)), ((int) (bitmap.getHeight() * ScreenProperty.SCALE)), false);
-    }
 
 
 }

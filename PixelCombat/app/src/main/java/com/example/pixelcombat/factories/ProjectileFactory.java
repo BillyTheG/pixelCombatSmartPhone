@@ -17,24 +17,24 @@ import com.example.pixelcombat.xml.CharacterParser;
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
 
+import javax.inject.Inject;
+
 public class ProjectileFactory {
 
-    private final Context context;
-    private final SoundManager soundManager;
+    //all additional variables
+    public ConcurrentHashMap<String, ArrayList<ArrayList<Float>>> times;
+    private Context context;
     //all pictures hold in map
     public ConcurrentHashMap<String, ConcurrentHashMap<String, ArrayList<LocatedBitmap>>> pictures;
 
     //all boxes hold in map
     public ConcurrentHashMap<String, ConcurrentHashMap<String, ArrayList<ArrayList<BoundingRectangle>>>> boxes;
-
-    //all additional variabels
-    public ConcurrentHashMap<String, ArrayList<ArrayList<Float>>> times;
+    private SoundManager soundManager;
     public ConcurrentHashMap<String, ArrayList<Integer>> loopVariabels;
     public ConcurrentHashMap<String, ArrayList<Boolean>> loopBools;
     private ArrayList<String> projectileNames;
-    private CharacterParser projectileParser;
-    private BoxParser boxParser;
 
+    @Inject
     public ProjectileFactory(Context context, SoundManager soundManager) {
         this.soundManager = soundManager;
         this.context = context;
@@ -80,8 +80,8 @@ public class ProjectileFactory {
             projectileNames.add("Kohaku_Projectile_Bottle");
 
             for (String projectile : projectileNames) {
-                projectileParser = new CharacterParser(context);
-                boxParser = new BoxParser(context);
+                CharacterParser projectileParser = new CharacterParser(context);
+                BoxParser boxParser = new BoxParser(context);
                 //  projectileParser.setTrim(true);
                 projectileParser.parse(projectile + "_Images.xml");
                 boxParser.parse(projectile + "_Boxes.xml");

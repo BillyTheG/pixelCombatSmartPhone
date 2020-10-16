@@ -1,10 +1,13 @@
 package com.example.pixelcombat.manager.actionManager;
 
+import android.util.Log;
+
 import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.character.attack.Attack;
 import com.example.pixelcombat.character.status.AttackStatus;
 import com.example.pixelcombat.exception.PixelCombatException;
 
+import java.util.Objects;
 import java.util.TreeMap;
 
 import lombok.Getter;
@@ -26,47 +29,49 @@ public abstract class AttackManager {
 
         if (!isAttacking())
             return;
-
-        switch (attackStatus) {
-            case ATTACK1:
-                attacks.get("attack1").process();
-                attacks.get("attack1").check();
-                break;
-            case ATTACK2:
-                attacks.get("attack2").process();
-                attacks.get("attack2").check();
-                break;
-            case ATTACK3:
-                attacks.get("attack3").process();
-                attacks.get("attack3").check();
-                break;
-            case ATTACK4:
-                attacks.get("attack4").process();
-                attacks.get("attack4").check();
-                break;
-            case ATTACK5:
-                attacks.get("attack5").process();
-                attacks.get("attack5").check();
-                break;
-            case ATTACK6:
-                attacks.get("attack6").process();
-                attacks.get("attack6").check();
-                break;
-            case SPECIALATTACK1:
-                attacks.get("specialAttack1").process();
-                attacks.get("specialAttack1").check();
-                break;
-            case SPECIALATTACK2:
-                attacks.get("specialAttack2").process();
-                attacks.get("specialAttack2").check();
-                break;
-            case SPECIALATTACK3:
-                attacks.get("specialAttack3").process();
-                attacks.get("specialAttack3").check();
-                break;
-            default:
-                updateFurtherAttacks();
-                return;
+        try {
+            switch (attackStatus) {
+                case ATTACK1:
+                    Objects.requireNonNull(attacks.get("attack1")).process();
+                    Objects.requireNonNull(attacks.get("attack1")).check();
+                    break;
+                case ATTACK2:
+                    Objects.requireNonNull(attacks.get("attack2")).process();
+                    Objects.requireNonNull(attacks.get("attack2")).check();
+                    break;
+                case ATTACK3:
+                    Objects.requireNonNull(attacks.get("attack3")).process();
+                    Objects.requireNonNull(attacks.get("attack3")).check();
+                    break;
+                case ATTACK4:
+                    Objects.requireNonNull(attacks.get("attack4")).process();
+                    Objects.requireNonNull(attacks.get("attack4")).check();
+                    break;
+                case ATTACK5:
+                    Objects.requireNonNull(attacks.get("attack5")).process();
+                    Objects.requireNonNull(attacks.get("attack5")).check();
+                    break;
+                case ATTACK6:
+                    Objects.requireNonNull(attacks.get("attack6")).process();
+                    Objects.requireNonNull(attacks.get("attack6")).check();
+                    break;
+                case SPECIALATTACK1:
+                    Objects.requireNonNull(attacks.get("specialAttack1")).process();
+                    Objects.requireNonNull(attacks.get("specialAttack1")).check();
+                    break;
+                case SPECIALATTACK2:
+                    Objects.requireNonNull(attacks.get("specialAttack2")).process();
+                    Objects.requireNonNull(attacks.get("specialAttack2")).check();
+                    break;
+                case SPECIALATTACK3:
+                    Objects.requireNonNull(attacks.get("specialAttack3")).process();
+                    Objects.requireNonNull(attacks.get("specialAttack3")).check();
+                    break;
+                default:
+                    updateFurtherAttacks();
+            }
+        } catch (NullPointerException e) {
+            Log.e("Error", "During Processing and Checking an Attack a NullPointer was thrown: " + e.getMessage());
         }
     }
 

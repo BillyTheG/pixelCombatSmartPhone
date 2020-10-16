@@ -4,10 +4,11 @@ package com.example.pixelcombat.math;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
 
 import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.enums.ScreenProperty;
+
+import org.jetbrains.annotations.NotNull;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -42,9 +43,6 @@ public class BoundingRectangle implements BoundingBoxInterface {
         this.upperLeft = upperLeft;
         this.lowerRight = lowerRight;
         this.pos = new Vector2d((upperLeft.x - lowerRight.x) / 2f, (upperLeft.y - lowerRight.y) / 2f);
-
-        this.height = height;
-        this.width = width;
     }
 
     /**
@@ -111,13 +109,10 @@ public class BoundingRectangle implements BoundingBoxInterface {
      */
 
     public boolean isCollision(Vector2d v) {
-        if (upperLeft.x <= v.x && upperLeft.y <= v.y && lowerRight.x >= v.x && lowerRight.y >= v.y) {
-            return true;
-        }
-        return false;
+        return upperLeft.x <= v.x && upperLeft.y <= v.y && lowerRight.x >= v.x && lowerRight.y >= v.y;
     }
 
-    public void draw(GameCharacter character, Canvas canvas, float screenX, float screenY, Rect gameRect) {
+    public void draw(GameCharacter character, Canvas canvas, float screenX, float screenY) {
 
         float x1 = character.getDirection() * (pos.x - width / 2f) + character.getPos().x + ScreenProperty.OFFSET_X;
         float y1 = (pos.y - height / 2f) + character.getPos().y - ScreenProperty.OFFSET_Y;
@@ -140,20 +135,6 @@ public class BoundingRectangle implements BoundingBoxInterface {
     }
 
 
-    public void edit(float height, Vector2d point, float width) {
-        this.pos.x = point.x;
-        this.pos.y = point.y;
-
-        this.upperLeft = new Vector2d(pos.x - width / 2f, pos.y - height / 2f);
-        this.lowerRight = new Vector2d(pos.x + width / 2f, pos.y + height / 2f);
-
-
-        this.height = height;
-        this.width = width;
-
-    }
-
-
     public float getWidth() {
         return (lowerRight.x - upperLeft.x);
     }
@@ -163,6 +144,7 @@ public class BoundingRectangle implements BoundingBoxInterface {
 
     }
 
+    @NotNull
     @Override
     public String toString() {
         return "BoundingRectangle{" +
