@@ -6,8 +6,12 @@ import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.util.Log;
 
+import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.GameObject;
+import com.example.pixelcombat.animation.util.ShadowCreator;
+import com.example.pixelcombat.core.config.ViewConfig;
 import com.example.pixelcombat.enums.ScreenProperty;
+import com.example.pixelcombat.enums.ShadowLevel;
 import com.example.pixelcombat.utils.LocatedBitmap;
 
 import java.util.ArrayList;
@@ -16,8 +20,8 @@ import lombok.Getter;
 
 public class Animation {
     private boolean loops;
-    private int loopPoint;
-    private ArrayList<LocatedBitmap> images;
+    private final int loopPoint;
+    private final ArrayList<LocatedBitmap> images;
     protected ArrayList<AnimFrame> frames;
 
     @Getter
@@ -86,6 +90,11 @@ public class Animation {
 
         Bitmap bitmap = cropBitmap(desRect, gameRect, object.isRight());
         if (bitmap == null) return;
+
+        int distanceToGround = (int) Math.abs(ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE - object.getPos().y);
+
+        if (object instanceof GameCharacter && ViewConfig.SHADOW_LEVEL == ShadowLevel.REAL)
+            ShadowCreator.drawCharacterShadow(canvas, bitmap, object.isRight(), desRect, distanceToGround);
 
         canvas.drawBitmap(bitmap, null, desRect, null);
     }
