@@ -10,6 +10,7 @@ import com.example.pixelcombat.exception.PixelCombatException;
 
 public class StatusManager {
 
+    private static final int Y_ATTACK_FREE_ZONE = 150;
     private GlobalStatus globalStatus = GlobalStatus.ACTIVE;
     private MovementStatus movementStatus = MovementStatus.RIGHT;
     private ActionStatus actionStatus = ActionStatus.STAND;
@@ -223,8 +224,8 @@ public class StatusManager {
                 || isKnockBackRecovering()
                 || isInvincible()
                 || isDead()
+                || nearGround()
                 || isJumpStarting()
-                || isJumpFalling()
                 || isJumpRecovering()
                 || isDisabled()
                 || isDisabledRecovering()
@@ -326,4 +327,8 @@ public class StatusManager {
         return actionStatus == ActionStatus.RETREATING_STOP;
     }
 
+    public boolean nearGround() {
+        return ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE - Y_ATTACK_FREE_ZONE < character.getPos().y &&
+                character.getPos().y <= ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE && (isJumping() || isJumpFalling());
+    }
 }

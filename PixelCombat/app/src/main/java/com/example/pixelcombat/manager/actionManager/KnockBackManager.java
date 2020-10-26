@@ -11,11 +11,11 @@ import com.example.pixelcombat.exception.PixelCombatException;
 public class KnockBackManager {
 
     private final GameCharacter character;
-    public float RECOVER_JUMP = -25.5f;
-    protected float requiredMaxVX = 35f;
-    protected float requiredLeastVY = 10f;
-    protected float requiredMaxVY = 150f;
-    protected float leastDistanceToGround = 1.5f;
+    public float RECOVER_JUMP = -12.5f;
+    protected float requiredMaxVX = 25f;
+    protected float requiredLeastVY = 0f;
+    protected float requiredMaxVY = 10f;
+    protected float leastDistanceToGround = 50;
 
     public KnockBackManager(GameCharacter character) {
         this.character = character;
@@ -23,6 +23,10 @@ public class KnockBackManager {
 
     public void knockBack() {
 
+        if (character.getPos().y >= (ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE)) {
+            character.getStatusManager().setGlobalStatus(GlobalStatus.KNOCKBACKFALL);
+            return;
+        }
         //Requirement for KnockBack Fall
         if (character.getViewManager().isPlaying()) {
             return;
@@ -30,8 +34,8 @@ public class KnockBackManager {
 
 
         //Requirement for KnockBack Recover
-        if (Math.abs(character.getPhysics().VX) <= requiredMaxVX && character.getPhysics().VY > requiredLeastVY
-                && character.getPhysics().VY <= requiredMaxVY
+        if (Math.abs(character.getPhysics().VX) <= requiredMaxVX && Math.abs(character.getPhysics().VY) > requiredLeastVY
+                && Math.abs(character.getPhysics().VY) <= requiredMaxVY
                 && Math.abs(character.getPos().y - (ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE)) > leastDistanceToGround) {
 
             character.getPhysics().VX = 0;
@@ -45,7 +49,17 @@ public class KnockBackManager {
     }
 
     public void knockBackFall() throws PixelCombatException {
+        float minimumVY = 35f;
         if (character.getPos().y >= (ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE)) {
+
+            if (Math.abs(character.getPhysics().VY) > minimumVY) {
+                character.getPhysics().VY *= -0.5;
+                character.notifyObservers(new GameMessage(MessageType.SHAKE, "", null, false));
+                character.notifyObservers(new GameMessage(MessageType.SOUND, "hard_ground_hit", null, true));
+                return;
+            }
+
+
             character.notifyObservers(new GameMessage(MessageType.SOUND, "groundhit2", null, true));
 
             character.getStatusManager().setGlobalStatus(GlobalStatus.INVINCIBLE);

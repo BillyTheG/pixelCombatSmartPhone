@@ -1,6 +1,12 @@
 package com.example.pixelcombat.character.chars.kohaku.manager;
 
 import com.example.pixelcombat.character.chars.kohaku.Kohaku;
+import com.example.pixelcombat.character.chars.kohaku.attacks.KohakuAirAttack1;
+import com.example.pixelcombat.character.chars.kohaku.attacks.KohakuAirAttack2;
+import com.example.pixelcombat.character.chars.kohaku.attacks.KohakuAirAttack3;
+import com.example.pixelcombat.character.chars.kohaku.attacks.KohakuAirAttack4;
+import com.example.pixelcombat.character.chars.kohaku.attacks.KohakuAirAttack5;
+import com.example.pixelcombat.character.chars.kohaku.attacks.KohakuAirAttack6;
 import com.example.pixelcombat.character.chars.kohaku.attacks.KohakuAttack1;
 import com.example.pixelcombat.character.chars.kohaku.attacks.KohakuAttack2;
 import com.example.pixelcombat.character.chars.kohaku.attacks.KohakuAttack3;
@@ -30,6 +36,12 @@ public class KohakuAttackManager extends AttackManager {
         this.getAttacks().put("attack4", new KohakuAttack4(getCharacter(), 6));
         this.getAttacks().put("attack5", new KohakuAttack5(getCharacter(), 7));
         this.getAttacks().put("attack6", new KohakuAttack6(getCharacter(), 8));
+        this.getAttacks().put("airAttack1", new KohakuAirAttack1(getCharacter(), 9));
+        this.getAttacks().put("airAttack2", new KohakuAirAttack2(getCharacter(), 9));
+        this.getAttacks().put("airAttack3", new KohakuAirAttack3(getCharacter(), 9));
+        this.getAttacks().put("airAttack4", new KohakuAirAttack4(getCharacter(), 9));
+        this.getAttacks().put("airAttack5", new KohakuAirAttack5(getCharacter(), 9));
+        this.getAttacks().put("airAttack6", new KohakuAirAttack6(getCharacter(), 9));
     }
 
     @Override

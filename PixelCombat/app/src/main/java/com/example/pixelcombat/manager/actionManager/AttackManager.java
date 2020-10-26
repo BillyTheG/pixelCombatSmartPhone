@@ -55,6 +55,30 @@ public abstract class AttackManager {
                     Objects.requireNonNull(attacks.get("attack6")).process();
                     Objects.requireNonNull(attacks.get("attack6")).check();
                     break;
+                case AIRATTACK1:
+                    Objects.requireNonNull(attacks.get("airAttack1")).process();
+                    Objects.requireNonNull(attacks.get("airAttack1")).check();
+                    break;
+                case AIRATTACK2:
+                    Objects.requireNonNull(attacks.get("airAttack2")).process();
+                    Objects.requireNonNull(attacks.get("airAttack2")).check();
+                    break;
+                case AIRATTACK3:
+                    Objects.requireNonNull(attacks.get("airAttack3")).process();
+                    Objects.requireNonNull(attacks.get("airAttack3")).check();
+                    break;
+                case AIRATTACK4:
+                    Objects.requireNonNull(attacks.get("airAttack4")).process();
+                    Objects.requireNonNull(attacks.get("airAttack4")).check();
+                    break;
+                case AIRATTACK5:
+                    Objects.requireNonNull(attacks.get("airAttack5")).process();
+                    Objects.requireNonNull(attacks.get("airAttack5")).check();
+                    break;
+                case AIRATTACK6:
+                    Objects.requireNonNull(attacks.get("airAttack6")).process();
+                    Objects.requireNonNull(attacks.get("airAttack6")).check();
+                    break;
                 case SPECIALATTACK1:
                     Objects.requireNonNull(attacks.get("specialAttack1")).process();
                     Objects.requireNonNull(attacks.get("specialAttack1")).check();
@@ -70,6 +94,12 @@ public abstract class AttackManager {
                 default:
                     updateFurtherAttacks();
             }
+
+            if (isAirAttacking() && character.getStatusManager().isJumpFalling()) {
+                character.getPhysics().VX = 0f;
+                character.getPhysics().VY = 1f;
+            }
+
         } catch (NullPointerException e) {
             Log.e("Error", "During Processing and Checking an Attack a NullPointer was thrown: " + e.getMessage());
         }
@@ -109,6 +139,41 @@ public abstract class AttackManager {
     public boolean isAttacking6() {
         return attackStatus == AttackStatus.ATTACK6;
     }
+
+    public boolean isAirAttacking1() {
+        return attackStatus == AttackStatus.AIRATTACK1;
+    }
+
+    public boolean isAirAttacking2() {
+        return attackStatus == AttackStatus.AIRATTACK2;
+    }
+
+    public boolean isAirAttacking3() {
+        return attackStatus == AttackStatus.AIRATTACK3;
+    }
+
+    public boolean isAirAttacking4() {
+        return attackStatus == AttackStatus.AIRATTACK4;
+    }
+
+    public boolean isAirAttacking5() {
+        return attackStatus == AttackStatus.AIRATTACK5;
+    }
+
+    public boolean isAirAttacking6() {
+        return attackStatus == AttackStatus.AIRATTACK6;
+    }
+
+
+    public boolean isAirAttacking() {
+        return isAirAttacking1() ||
+                isAirAttacking2() ||
+                isAirAttacking3() ||
+                isAirAttacking4() ||
+                isAirAttacking5() ||
+                isAirAttacking6();
+    }
+
 
     public boolean isSpecialAttacking1() {
         return attackStatus == AttackStatus.SPECIALATTACK1;

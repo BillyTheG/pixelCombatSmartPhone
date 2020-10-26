@@ -133,7 +133,7 @@ public class Game implements Observer {
 
         try {
             MessageType type = gameMessage.getMessageType();
-            if (type == MessageType.SOUND)
+            if (type == MessageType.SOUND || type == MessageType.SHAKE)
                 return;
 
             String[] inputs = gameMessage.getGameObject().split(";");
@@ -144,7 +144,7 @@ public class Game implements Observer {
 
             switch (type) {
                 case PROJECTILE_CREATION:
-                    projectiles.add(projectileFactory.createProjectile(gameObject, gameMessage.getPos(), right, owner));
+                    projectiles.add(projectileFactory.createProjectile(gameObject, gameMessage.getPos(), right, owner, screenScrollManager));
                     break;
                 case DUST_CREATION:
                     dusts.add(dustFactory.createDust(gameObject, gameMessage.getPos(), right));

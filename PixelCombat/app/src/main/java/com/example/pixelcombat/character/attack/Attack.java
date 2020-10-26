@@ -3,6 +3,7 @@ package com.example.pixelcombat.character.attack;
 import android.util.Log;
 
 import com.example.pixelcombat.GameCharacter;
+import com.example.pixelcombat.character.status.ActionStatus;
 import com.example.pixelcombat.character.status.AttackStatus;
 import com.example.pixelcombat.character.status.MovementStatus;
 import com.example.pixelcombat.exception.PixelCombatException;
@@ -80,6 +81,9 @@ public abstract class Attack {
         if (!character.getViewManager().isPlaying() && isAttacking()) {
             checkFinished();
             character.getAttackManager().setAttackStatus(AttackStatus.NOT_ATTACKING);
+            if (character.getStatusManager().isOnAir()) {
+                character.getStatusManager().setActionStatus(ActionStatus.JUMPFALL);
+            }
             character.getHitManager().setHitDelay(false);
             switcher = true;
             attackOnAir = false;

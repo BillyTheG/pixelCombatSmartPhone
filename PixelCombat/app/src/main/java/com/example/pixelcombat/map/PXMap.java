@@ -12,8 +12,10 @@ import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.GameObject;
 import com.example.pixelcombat.core.Game;
 import com.example.pixelcombat.core.config.ViewConfig;
+import com.example.pixelcombat.core.message.GameMessage;
 import com.example.pixelcombat.core.sound.SoundManager;
 import com.example.pixelcombat.enums.DrawLevel;
+import com.example.pixelcombat.enums.MessageType;
 import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.exception.PixelCombatException;
 import com.example.pixelcombat.manager.ScreenScrollerManager;
@@ -142,9 +144,14 @@ public class PXMap implements GameObject {
     }
 
     private void checkReflect(GameCharacter character) {
-        if (character.getStatusManager().isKnockbacked() || character.getStatusManager().isKnockBackFalling()) {
-            character.getStatusManager().swapDirections();
-            character.getPhysics().VX = -character.getPhysics().VX;
+        try {
+            if (character.getStatusManager().isKnockbacked() || character.getStatusManager().isKnockBackFalling()) {
+                character.getStatusManager().swapDirections();
+                character.notifyObservers(new GameMessage(MessageType.SHAKE, "", null, true));
+                character.getPhysics().VX = -character.getPhysics().VX;
+            }
+        } catch (Exception e) {
+            Log.e("Error", "The Reflect could not be handled: " + e.getMessage());
         }
     }
 
@@ -198,6 +205,8 @@ public class PXMap implements GameObject {
     public void registerGame(Game game) {
         character1.addObserver(game);
         character2.addObserver(game);
+        character1.addObserver(screenScrollManager);
+        character2.addObserver(screenScrollManager);
     }
 
     public void registerSoundManager(SoundManager soundManager) {

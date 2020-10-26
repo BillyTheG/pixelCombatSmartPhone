@@ -14,10 +14,10 @@ import com.example.pixelcombat.math.Vector2d;
 
 import java.util.Random;
 
-public class KohakuAttack3 extends Attack {
+public class KohakuAirAttack3 extends Attack {
 
 
-    public KohakuAttack3(GameCharacter character, int id) {
+    public KohakuAirAttack3(GameCharacter character, int id) {
         super(character, id);
     }
 
@@ -108,7 +108,7 @@ public class KohakuAttack3 extends Attack {
      */
     @Override
     public boolean isAttacking() {
-        return character.getAttackManager().isAttacking3();
+        return character.getAttackManager().isAirAttacking3();
     }
 
     @Override

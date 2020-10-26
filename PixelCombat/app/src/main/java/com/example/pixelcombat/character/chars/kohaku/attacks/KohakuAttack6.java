@@ -90,7 +90,7 @@ public class KohakuAttack6 extends Attack {
             BoundingRectangle box = character.getBoxManager().getIntersectionBox();
             character.notifyObservers(new GameMessage(MessageType.SPARK_CREATION, SparkConfig.ATTACK_SPARK + ";test;",
                     new Vector2d(box.getPos().x, box.getPos().y), true));
-
+            character.notifyObservers(new GameMessage(MessageType.SHAKE, "", null, false));
 
             switch (character.getViewManager().getFrameIndex()) {
                 case 2:

@@ -1,7 +1,7 @@
 package com.example.pixelcombat.core.sound;
 
 import android.content.Context;
-import android.media.AudioManager;
+import android.media.AudioAttributes;
 import android.media.SoundPool;
 import android.util.Log;
 
@@ -21,13 +21,20 @@ public class SoundManager implements Observer {
 
     private final Context context;
     @Getter
-    private SoundPool soundPool;
+    private final SoundPool soundPool;
     private TreeMap<String, Integer> soundsIds;
 
     @Inject
     public SoundManager(Context context) {
         this.context = context;
-        this.soundPool = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
+
+
+        AudioAttributes attributes = new AudioAttributes.Builder()
+                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                .setUsage(AudioAttributes.USAGE_GAME)
+                .build();
+        soundPool = new SoundPool.Builder().setAudioAttributes(attributes).setMaxStreams(10).build();
+
         init();
     }
 
@@ -79,6 +86,8 @@ public class SoundManager implements Observer {
         soundsIds.put("defend", soundPool.load(context, R.raw.defend, 1));
         soundsIds.put("kohaku_dash", soundPool.load(context, R.raw.kohaku_dash, 1));
         soundsIds.put("kohaku_dash_sonic", soundPool.load(context, R.raw.kohaku_dash_sonic, 1));
+        soundsIds.put("hard_ground_hit", soundPool.load(context, R.raw.hard_ground_hit, 1));
+
     }
 
 

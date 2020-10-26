@@ -77,10 +77,10 @@ public class GameButtonManager implements View.OnClickListener, View.OnTouchList
         left = setUpButton(2, 150, 1.15f, 0, 725, left_bitmap);
         right = setUpButton(3, 150, 1.15f, 300, 725, right_bitmap);
 
-        attack1 = setUpButton(4, 150, 0.6f, 1400, 675, attack1_bitmap);
-        attack2 = setUpButton(5, 150, 0.6f, 1575, 675, attack2_bitmap);
-        dash = setUpButton(6, 150, 0.6f, 1750, 675, defend_bitmap);
-        defend = setUpButton(7, 150, 0.6f, 1925, 675, dash_bitmap);
+        attack1 = setUpButton(4, 250, 0.6f, 1400, 675, attack1_bitmap);
+        attack2 = setUpButton(5, 250, 0.6f, 1575, 675, attack2_bitmap);
+        dash = setUpButton(6, 250, 0.6f, 1750, 675, defend_bitmap);
+        defend = setUpButton(7, 250, 0.6f, 1925, 675, dash_bitmap);
 
         select = setUpButton(8, 150, 0.6f, 800, 700, select_bitmap);
         start = setUpButton(9, 150, 0.6f, 1000, 700, start_bitmap);

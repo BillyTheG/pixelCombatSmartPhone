@@ -1,7 +1,5 @@
 package com.example.pixelcombat.manager;
 
-import android.util.Log;
-
 import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.character.status.AttackStatus;
 import com.example.pixelcombat.core.config.ComboAttacksConfig;
@@ -71,8 +69,6 @@ public class ComboActionManager {
 
     public synchronized void update() {
         checkTimes();
-
-        Log.d("Info", "Pressed Keys so far: " + pressedKeysP1);
     }
 
     private void checkTimes() {

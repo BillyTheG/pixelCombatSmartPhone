@@ -4,8 +4,6 @@ import android.util.Log;
 
 import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.character.attack.Attack;
-import com.example.pixelcombat.character.status.ActionStatus;
-import com.example.pixelcombat.character.status.GlobalStatus;
 import com.example.pixelcombat.core.config.SparkConfig;
 import com.example.pixelcombat.core.message.GameMessage;
 import com.example.pixelcombat.enums.MessageType;
@@ -14,10 +12,10 @@ import com.example.pixelcombat.math.Vector2d;
 
 import java.util.Random;
 
-public class KohakuAttack3 extends Attack {
+public class KohakuAirAttack1 extends Attack {
 
 
-    public KohakuAttack3(GameCharacter character, int id) {
+    public KohakuAirAttack1(GameCharacter character, int id) {
         super(character, id);
     }
 
@@ -39,15 +37,9 @@ public class KohakuAttack3 extends Attack {
                     break;
                 case 1:
                     if (!isSwitcher()) {
-                        character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_attack3_sonic", null, true));
+                        character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_attack1_sonic", null, true));
                         setSwitcher(true);
                     }
-                    break;
-                case 4:
-                    //if (isSwitcher()) {
-                    character.getPhysics().VX = character.getDirection() * 30f;
-                    //     setSwitcher(false);
-                    // }
                     break;
                 default:
                     break;
@@ -76,20 +68,18 @@ public class KohakuAttack3 extends Attack {
             character.notifyObservers(new GameMessage(MessageType.SPARK_CREATION, SparkConfig.ATTACK_SPARK + ";test;",
                     new Vector2d(box.getPos().x, box.getPos().y), true));
 
-            character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_attack3_hit", null, true));
-            character.notifyObservers(new GameMessage(MessageType.SHAKE, "", null, false));
+            character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_attack1_hit", null, true));
+
         } catch (Exception e) {
             Log.e("Error", "The spark could not be created: " + e.getMessage());
         }
         if (!enemy.getStatusManager().isKnockbacked()) {
             // getUser().enemy.timeManager.getDisableTime().setY(Float.valueOf(0.0F));
-            enemy.getHitManager().setKnockBackHeight(-27.0F);
-            enemy.getHitManager().setKnockBackRange(15.0F);
+            enemy.getHitManager().setKnockBackHeight(-7.0F);
+            enemy.getHitManager().setKnockBackRange(5.0F);
             enemy.getHitManager().checkOnAir();
-            enemy.getStatusManager().setActionStatus(ActionStatus.STAND);
-            enemy.getStatusManager().setGlobalStatus(GlobalStatus.KNOCKBACK);
         } else {
-            enemy.getHitManager().comboTouch(-27.0F, 15.0F);
+            enemy.getHitManager().comboTouch(-20.0F, 10.0F);
         }
 
     }
@@ -108,16 +98,11 @@ public class KohakuAttack3 extends Attack {
      */
     @Override
     public boolean isAttacking() {
-        return character.getAttackManager().isAttacking3();
+        return character.getAttackManager().isAirAttacking1();
     }
 
     @Override
     public void resetStats() {
         setSwitcher(true);
-    }
-
-    @Override
-    public int getDefendDamage() {
-        return 3;
     }
 }

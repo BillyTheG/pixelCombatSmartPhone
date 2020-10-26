@@ -12,12 +12,9 @@ import com.example.pixelcombat.enums.MessageType;
 import com.example.pixelcombat.math.BoundingRectangle;
 import com.example.pixelcombat.math.Vector2d;
 
-import java.util.Random;
+public class KohakuAirAttack6 extends Attack {
 
-public class KohakuAttack3 extends Attack {
-
-
-    public KohakuAttack3(GameCharacter character, int id) {
+    public KohakuAirAttack6(GameCharacter character, int id) {
         super(character, id);
     }
 
@@ -32,22 +29,9 @@ public class KohakuAttack3 extends Attack {
             switch (character.getViewManager().getFrameIndex()) {
                 case 0:
                     if (isSwitcher()) {
-                        int rand = new Random().nextInt(2) + 1;
-                        character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_attack" + rand, null, true));
+                        character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_attack6", null, true));
                         setSwitcher(false);
                     }
-                    break;
-                case 1:
-                    if (!isSwitcher()) {
-                        character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_attack3_sonic", null, true));
-                        setSwitcher(true);
-                    }
-                    break;
-                case 4:
-                    //if (isSwitcher()) {
-                    character.getPhysics().VX = character.getDirection() * 30f;
-                    //     setSwitcher(false);
-                    // }
                     break;
                 default:
                     break;
@@ -66,30 +50,33 @@ public class KohakuAttack3 extends Attack {
      */
     @Override
     public void checkContent() {
-        // getUser().sound("/audio/punches.wav");
-        // getUser().enemy.damage(getUser().getStrength() * 2);
-        // getUser().sound(getUser().enemy.cry());
         character.getHitManager().setHitDelay(true);
+
+        float yPush = 50;
+        float xPush = 5;
+
         try {
 
             BoundingRectangle box = character.getBoxManager().getIntersectionBox();
             character.notifyObservers(new GameMessage(MessageType.SPARK_CREATION, SparkConfig.ATTACK_SPARK + ";test;",
                     new Vector2d(box.getPos().x, box.getPos().y), true));
-
-            character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_attack3_hit", null, true));
+            character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_attack6_hit", null, true));
             character.notifyObservers(new GameMessage(MessageType.SHAKE, "", null, false));
         } catch (Exception e) {
             Log.e("Error", "The spark could not be created: " + e.getMessage());
         }
+        enemy.getPhysics().VX = 0f;
+        enemy.getPhysics().VY = 0f;
+
         if (!enemy.getStatusManager().isKnockbacked()) {
             // getUser().enemy.timeManager.getDisableTime().setY(Float.valueOf(0.0F));
-            enemy.getHitManager().setKnockBackHeight(-27.0F);
-            enemy.getHitManager().setKnockBackRange(15.0F);
+            enemy.getHitManager().setKnockBackHeight(yPush);
+            enemy.getHitManager().setKnockBackRange(xPush);
             enemy.getHitManager().checkOnAir();
             enemy.getStatusManager().setActionStatus(ActionStatus.STAND);
             enemy.getStatusManager().setGlobalStatus(GlobalStatus.KNOCKBACK);
         } else {
-            enemy.getHitManager().comboTouch(-27.0F, 15.0F);
+            enemy.getHitManager().comboTouch(yPush, xPush);
         }
 
     }
@@ -100,7 +87,7 @@ public class KohakuAttack3 extends Attack {
      */
     @Override
     public void checkFinished() {
-
+        resetStats();
     }
 
     /**
@@ -108,7 +95,7 @@ public class KohakuAttack3 extends Attack {
      */
     @Override
     public boolean isAttacking() {
-        return character.getAttackManager().isAttacking3();
+        return character.getAttackManager().isAirAttacking6();
     }
 
     @Override

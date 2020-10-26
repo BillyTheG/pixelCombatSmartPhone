@@ -54,6 +54,13 @@ public abstract class GameCharacterViewManager extends ObjectViewManager<GameCha
     public final int ATTACK6 = 29;
     public final int SPECIALATTACK2 = 30;
 
+    public final int AIRATTACK1 = 31;
+    public final int AIRATTACK2 = 32;
+    public final int AIRATTACK3 = 33;
+    public final int AIRATTACK4 = 34;
+    public final int AIRATTACK5 = 35;
+    public final int AIRATTACK6 = 36;
+
     public final int DEAD = 99;
     @Getter
     protected AnimationManager<GameCharacter> animManager;
@@ -106,6 +113,12 @@ public abstract class GameCharacterViewManager extends ObjectViewManager<GameCha
         animations.add(new Animation(images.get("attack5"), times.get(ATTACK5), loop.get(ATTACK5), loopIndices.get(ATTACK5)));
         animations.add(new Animation(images.get("attack6"), times.get(ATTACK6), loop.get(ATTACK6), loopIndices.get(ATTACK6)));
         animations.add(new Animation(images.get("specialAttack2"), times.get(SPECIALATTACK2), loop.get(SPECIALATTACK2), loopIndices.get(SPECIALATTACK2)));
+        animations.add(new Animation(images.get("airAttack1"), times.get(AIRATTACK1), loop.get(AIRATTACK1), loopIndices.get(AIRATTACK1)));
+        animations.add(new Animation(images.get("airAttack2"), times.get(AIRATTACK2), loop.get(AIRATTACK2), loopIndices.get(AIRATTACK2)));
+        animations.add(new Animation(images.get("airAttack3"), times.get(AIRATTACK3), loop.get(AIRATTACK3), loopIndices.get(AIRATTACK3)));
+        animations.add(new Animation(images.get("airAttack4"), times.get(AIRATTACK4), loop.get(AIRATTACK4), loopIndices.get(AIRATTACK4)));
+        animations.add(new Animation(images.get("airAttack5"), times.get(AIRATTACK5), loop.get(AIRATTACK5), loopIndices.get(AIRATTACK5)));
+        animations.add(new Animation(images.get("airAttack6"), times.get(AIRATTACK6), loop.get(AIRATTACK6), loopIndices.get(AIRATTACK6)));
 
         loadMoreImages(animations);
 
@@ -152,12 +165,6 @@ public abstract class GameCharacterViewManager extends ObjectViewManager<GameCha
                 switch (character.getAttackManager().getAttackStatus()) {
                     case ATTACK1:
                         return ATTACK1;
-                    case SPECIALATTACK1:
-                        return SPECIALATTACK1;
-                    case SPECIALATTACK2:
-                        return SPECIALATTACK2;
-                    case SPECIALATTACK3:
-                        return SPECIALATTACK3;
                     case ATTACK2:
                         return ATTACK2;
                     case ATTACK3:
@@ -168,6 +175,24 @@ public abstract class GameCharacterViewManager extends ObjectViewManager<GameCha
                         return ATTACK5;
                     case ATTACK6:
                         return ATTACK6;
+                    case AIRATTACK1:
+                        return AIRATTACK1;
+                    case AIRATTACK2:
+                        return AIRATTACK2;
+                    case AIRATTACK3:
+                        return AIRATTACK3;
+                    case AIRATTACK4:
+                        return AIRATTACK4;
+                    case AIRATTACK5:
+                        return AIRATTACK5;
+                    case AIRATTACK6:
+                        return AIRATTACK6;
+                    case SPECIALATTACK1:
+                        return SPECIALATTACK1;
+                    case SPECIALATTACK2:
+                        return SPECIALATTACK2;
+                    case SPECIALATTACK3:
+                        return SPECIALATTACK3;
                     default:
                         // changeFurtherImages(character.attackLogic.getAttackStatus());
                         break;

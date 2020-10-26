@@ -38,7 +38,7 @@ public class KohakuSpecialAttack3 extends Attack {
                 firstJumpDone = true;
             }
 
-            float FLY_SPEED_Y = 3;
+            float FLY_SPEED_Y = 3f;
             float FLY_SPEED_X = 10f;
 
             float MIN_DISTANCE_Y = 200f;
@@ -47,6 +47,7 @@ public class KohakuSpecialAttack3 extends Attack {
             switch (character.getViewManager().getFrameIndex()) {
                 case 0:
                     if (isSwitcher()) {
+
                         character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_special_attack3",
                                 null, character.isRight()));
                         setSwitcher(false);
@@ -59,7 +60,11 @@ public class KohakuSpecialAttack3 extends Attack {
                         character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_special_attack3_rise",
                                 null, character.isRight()));
                         setSwitcher(true);
+                        character.getPhysics().VY = 0f;
                     }
+                    break;
+                case 2:
+                    character.getPhysics().VY = 0f;
                     break;
                 case 3:
                 case 4:
@@ -71,7 +76,7 @@ public class KohakuSpecialAttack3 extends Attack {
                 case 8:
                     character.getPhysics().VY -= FLY_SPEED_Y;
                     if (Math.abs(character.getPos().y - startLevel) < MIN_DISTANCE_Y && character.getViewManager().getAnimManager().animationAlmostFinished(30)) {
-                        character.getViewManager().resetFrameIndexTo(3);
+                        character.getViewManager().resetFrameIndexTo(4);
                     }
                     break;
                 case 10:
