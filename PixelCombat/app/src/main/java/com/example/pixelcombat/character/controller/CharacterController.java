@@ -115,7 +115,7 @@ public class CharacterController {
         }
 
         if (character.getStatusManager().isMoving()) {   //&& Math.abs(player.physics.VX) == player.physics.maximumSpeed)
-            return true;
+            character.getPhysics().VX = 0;
         }
 
         if (character.getStatusManager().isOnAir())
@@ -138,7 +138,7 @@ public class CharacterController {
         }
 
         if (character.getStatusManager().isMoving()) {   //&& Math.abs(player.physics.VX) == player.physics.maximumSpeed)
-            return true;
+            character.getPhysics().VX = 0;
         }
 
         if (character.getStatusManager().isOnAir())
