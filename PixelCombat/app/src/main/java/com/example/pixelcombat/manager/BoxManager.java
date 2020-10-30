@@ -51,6 +51,13 @@ public abstract class BoxManager {
     public final int ATTACK6 = 29;
     public final int SPECIALATTACK2 = 30;
 
+    public final int AIRATTACK1 = 31;
+    public final int AIRATTACK2 = 32;
+    public final int AIRATTACK3 = 33;
+    public final int AIRATTACK4 = 34;
+    public final int AIRATTACK5 = 35;
+    public final int AIRATTACK6 = 36;
+
     public int currentAnimation;
     public BoundingRectangle currentColBox;
     @Getter
@@ -154,6 +161,24 @@ public abstract class BoxManager {
                 break;
             case ATTACK6:
                 updateBoxSeq(ATTACK6, "attack6");
+                break;
+            case AIRATTACK1:
+                updateBoxSeq(AIRATTACK1, "airAttack1");
+                break;
+            case AIRATTACK2:
+                updateBoxSeq(AIRATTACK2, "airAttack2");
+                break;
+            case AIRATTACK3:
+                updateBoxSeq(AIRATTACK3, "airAttack3");
+                break;
+            case AIRATTACK4:
+                updateBoxSeq(AIRATTACK4, "airAttack4");
+                break;
+            case AIRATTACK5:
+                updateBoxSeq(AIRATTACK5, "airAttack5");
+                break;
+            case AIRATTACK6:
+                updateBoxSeq(AIRATTACK6, "airAttack6");
                 break;
             case DEFENDSTOP:
                 updateBoxSeq(DEFENDSTOP, "defendStop");

@@ -71,10 +71,10 @@
         </decrouch>
         <attack1 airBool="false" airIndex="0" loopIndex="0" loops="false">
             <img duration="50" key="0" x="-0.12999916" y="-0.97000027">kohaku_attack1_0.png</img>
-            <img duration="50" key="1" x="0.12000084" y="-0.97000027">kohaku_attack1_1.png</img>
-            <img duration="50" key="2" x="0.020000458" y="-0.96000004">kohaku_attack1_2.png</img>
-            <img duration="50" key="3" x="-0.049999237" y="-0.9499998">kohaku_attack1_3.png</img>
-            <img duration="50" key="4" x="-0.17000008" y="-0.97000027">kohaku_attack1_4.png</img>
+            <img duration="20" key="1" x="0.12000084" y="-0.97000027">kohaku_attack1_1.png</img>
+            <img duration="40" key="2" x="0.020000458" y="-0.96000004">kohaku_attack1_2.png</img>
+            <img duration="40" key="3" x="-0.049999237" y="-0.9499998">kohaku_attack1_3.png</img>
+            <img duration="30" key="4" x="-0.17000008" y="-0.97000027">kohaku_attack1_4.png</img>
         </attack1>
         <disabled airBool="false" airIndex="0" loopIndex="0" loops="false">
             <img duration="50" key="0" x="0.049999237" y="-0.90999985">kohaku_disabled_0.png</img>
@@ -100,13 +100,13 @@
         </knockBackFall>
         <knockBackRecover airBool="false" airIndex="0" loopIndex="0" loops="false">
             <img duration="50" key="0" x="-0.15999985" y="-1.0200005">kohaku_knockback_recover_0.png</img>
-            <img duration="50" key="1" x="-0.20999908" y="-1.2700005">kohaku_knockback_recover_1.png</img>
-            <img duration="50" key="2" x="0.22999954" y="-1.29">kohaku_knockback_recover_2.png</img>
-            <img duration="50" key="3" x="0.15999985" y="-1.4300003">kohaku_knockback_recover_3.png</img>
-            <img duration="50" key="4" x="0.07999992" y="-1.6499996">kohaku_knockback_recover_4.png</img>
-            <img duration="50" key="5" x="-0.049999237" y="-1.6099997">kohaku_knockback_recover_5.png</img>
-            <img duration="50" key="6" x="-0.14999962" y="-1.3500004">kohaku_knockback_recover_6.png</img>
-            <img duration="50" key="7" x="-0.12999916" y="-1.2399998">kohaku_knockback_recover_7.png</img>
+            <img duration="30" key="1" x="-0.20999908" y="-1.2700005">kohaku_knockback_recover_1.png</img>
+            <img duration="30" key="2" x="0.22999954" y="-1.29">kohaku_knockback_recover_2.png</img>
+            <img duration="30" key="3" x="0.15999985" y="-1.4300003">kohaku_knockback_recover_3.png</img>
+            <img duration="20" key="4" x="0.07999992" y="-1.6499996">kohaku_knockback_recover_4.png</img>
+            <img duration="30" key="5" x="-0.049999237" y="-1.6099997">kohaku_knockback_recover_5.png</img>
+            <img duration="30" key="6" x="-0.14999962" y="-1.3500004">kohaku_knockback_recover_6.png</img>
+            <img duration="30" key="7" x="-0.12999916" y="-1.2399998">kohaku_knockback_recover_7.png</img>
             <img duration="50" key="8" x="-0.1333332" y="-1.2600002">kohaku_knockback_recover_8.png</img>
         </knockBackRecover>
         <onGround airBool="false" airIndex="0" loopIndex="0" loops="false">
@@ -198,32 +198,32 @@
             <img duration="50" key="25" x="-0.11000061" y="-1.4400005">kohkau_specialattack2_25.png</img>
         </specialAttack3>
         <attack2 airBool="false" airIndex="0" loopIndex="0" loops="false">
-            <img duration="30" key="0" x="-0.25" y="-0.97999954">kohaku_attack2_0.png</img>
-            <img duration="30" key="1" x="-0.17000008" y="-0.97999954">kohaku_attack2_1.png</img>
-            <img duration="50" key="2" x="0.23999977" y="-1.3999996">kohaku_attack2_2.png</img>
-            <img duration="30" key="3" x="0.8299999" y="-1.4300003">kohaku_attack2_3.png</img>
-            <img duration="30" key="4" x="1.1200008" y="-0.97000027">kohaku_attack2_4.png</img>
-            <img duration="50" key="5" x="1.0900002" y="-0.97000027">kohaku_attack2_5.png</img>
-            <img duration="50" key="6" x="0.90999985" y="-0.97000027">kohaku_attack2_6.png</img>
-            <img duration="30" key="7" x="0.5699997" y="-0.9499998">kohaku_attack2_7.png</img>
-            <img duration="30" key="8" x="0.09000015" y="-1.0100002">kohaku_attack2_8.png</img>
-            <img duration="40" key="9" x="-0.010000229" y="-1.0100002">kohaku_attack2_9.png</img>
-            <img duration="50" key="10" x="-0.013334274" y="-1.0299997">kohaku_attack2_10.png</img>
+            <img duration="20" key="0" x="-0.25" y="-0.97999954">kohaku_attack2_0.png</img>
+            <img duration="20" key="1" x="-0.17000008" y="-0.97999954">kohaku_attack2_1.png</img>
+            <img duration="40" key="2" x="0.23999977" y="-1.3999996">kohaku_attack2_2.png</img>
+            <img duration="20" key="3" x="0.8299999" y="-1.4300003">kohaku_attack2_3.png</img>
+            <img duration="20" key="4" x="1.1200008" y="-0.97000027">kohaku_attack2_4.png</img>
+            <img duration="20" key="5" x="1.0900002" y="-0.97000027">kohaku_attack2_5.png</img>
+            <img duration="30" key="6" x="0.90999985" y="-0.97000027">kohaku_attack2_6.png</img>
+            <img duration="20" key="7" x="0.5699997" y="-0.9499998">kohaku_attack2_7.png</img>
+            <img duration="20" key="8" x="0.09000015" y="-1.0100002">kohaku_attack2_8.png</img>
+            <img duration="30" key="9" x="-0.010000229" y="-1.0100002">kohaku_attack2_9.png</img>
+            <img duration="30" key="10" x="-0.013334274" y="-1.0299997">kohaku_attack2_10.png</img>
         </attack2>
         <attack3 airBool="false" airIndex="0" loopIndex="0" loops="false">
-            <img duration="50" key="0" x="-0.27000046" y="-1.0">kohaku_attack3_0.png</img>
-            <img duration="50" key="1" x="-0.62999916" y="-1.2799997">kohaku_attack3_1.png</img>
-            <img duration="50" key="2" x="0.0" y="-1.2399998">kohaku_attack3_2.png</img>
-            <img duration="40" key="3" x="0.030000687" y="-1.1700001">kohaku_attack3_3.png</img>
-            <img duration="40" key="4" x="0.010000229" y="-0.9899998">kohaku_attack3_4.png</img>
-            <img duration="40" key="5" x="0.42000008" y="-1.2700005">kohaku_attack3_5.png</img>
-            <img duration="40" key="6" x="-0.37000084" y="-1.25">kohaku_attack3_6.png</img>
-            <img duration="40" key="7" x="-0.40999985" y="-1.0900002">kohaku_attack3_7.png</img>
-            <img duration="60" key="8" x="-0.29999924" y="-1.0799999">kohaku_attack3_8.png</img>
-            <img duration="60" key="9" x="-0.27000046" y="-1.1800003">kohaku_attack3_9.png</img>
-            <img duration="60" key="10" x="0.3600006" y="-1.1199999">kohaku_attack3_10.png</img>
-            <img duration="60" key="11" x="0.030000687" y="-1.0100002">kohaku_attack3_11.png</img>
-            <img duration="60" key="12" x="-0.059999466" y="-0.9899998">kohaku_attack3_12.png</img>
+            <img duration="40" key="0" x="-0.27000046" y="-1.0">kohaku_attack3_0.png</img>
+            <img duration="30" key="1" x="-0.62999916" y="-1.2799997">kohaku_attack3_1.png</img>
+            <img duration="30" key="2" x="0.0" y="-1.2399998">kohaku_attack3_2.png</img>
+            <img duration="30" key="3" x="0.030000687" y="-1.1700001">kohaku_attack3_3.png</img>
+            <img duration="30" key="4" x="0.010000229" y="-0.9899998">kohaku_attack3_4.png</img>
+            <img duration="30" key="5" x="0.42000008" y="-1.2700005">kohaku_attack3_5.png</img>
+            <img duration="30" key="6" x="-0.37000084" y="-1.25">kohaku_attack3_6.png</img>
+            <img duration="20" key="7" x="-0.40999985" y="-1.0900002">kohaku_attack3_7.png</img>
+            <img duration="40" key="8" x="-0.29999924" y="-1.0799999">kohaku_attack3_8.png</img>
+            <img duration="30" key="9" x="-0.27000046" y="-1.1800003">kohaku_attack3_9.png</img>
+            <img duration="30" key="10" x="0.3600006" y="-1.1199999">kohaku_attack3_10.png</img>
+            <img duration="30" key="11" x="0.030000687" y="-1.0100002">kohaku_attack3_11.png</img>
+            <img duration="30" key="12" x="-0.059999466" y="-0.9899998">kohaku_attack3_12.png</img>
         </attack3>
         <defend airBool="true" airIndex="0" loopIndex="0" loops="true">
             <img duration="80" key="0" x="0.22999954" y="-1.04">kohaku_defend_start_0.png</img>
@@ -234,13 +234,13 @@
             <img duration="100" key="1" x="-0.10000038" y="-0.9499998">kohaku_defend_stop_1.png</img>
         </defendStop>
         <moveSwitch airBool="true" airIndex="0" loopIndex="0" loops="false">
-            <img duration="50" key="0" x="-0.049999237" y="-1.0200005">kohaku_move_switch_0.png</img>
-            <img duration="50" key="1" x="-0.030000687" y="-1.0200005">kohaku_move_switch_1.png</img>
+            <img duration="20" key="0" x="-0.049999237" y="-1.0200005">kohaku_move_switch_0.png</img>
+            <img duration="20" key="1" x="-0.030000687" y="-1.0200005">kohaku_move_switch_1.png</img>
         </moveSwitch>
         <moveStart airBool="true" airIndex="0" loopIndex="0" loops="false">
             <img duration="20" key="0" x="-0.049999237" y="-0.96000004">kohaku_move_start_0.png</img>
-            <img duration="40" key="1" x="0.049999237" y="-0.9499998">kohaku_move_start_1.png</img>
-            <img duration="40" key="2" x="0.11000061" y="-0.9399996">kohaku_move_start_2.png</img>
+            <img duration="30" key="1" x="0.049999237" y="-0.9499998">kohaku_move_start_1.png</img>
+            <img duration="20" key="2" x="0.11000061" y="-0.9399996">kohaku_move_start_2.png</img>
         </moveStart>
         <moveEnd airBool="false" airIndex="0" loopIndex="0" loops="false">
             <img duration="30" key="0" x="0.049999237" y="-0.89000034">kohaku_move_end_0.png</img>
@@ -248,9 +248,9 @@
             <img duration="30" key="2" x="-0.12000084" y="-0.96000004">kohaku_move_end_2.png</img>
         </moveEnd>
         <jumpStart airBool="false" airIndex="0" loopIndex="0" loops="false">
-            <img duration="50" key="0" x="0.049999237" y="-0.89000034">kohaku_jump_0.png</img>
-            <img duration="50" key="1" x="-0.020000458" y="-0.9300003">kohaku_jump_1.png</img>
-            <img duration="30" key="2" x="-0.12000084" y="-0.96000004">kohaku_jump_2.png</img>
+            <img duration="30" key="0" x="0.049999237" y="-0.89000034">kohaku_jump_0.png</img>
+            <img duration="20" key="1" x="-0.020000458" y="-0.9300003">kohaku_jump_1.png</img>
+            <img duration="20" key="2" x="-0.12000084" y="-0.96000004">kohaku_jump_2.png</img>
             <img duration="20" key="3" x="-0.12000084" y="-0.96000004">kohaku_jump_3.png</img>
         </jumpStart>
         <retreat airBool="false" airIndex="4" loopIndex="4" loops="true">
@@ -339,5 +339,70 @@
             <img duration="85" key="26" x="-0.14999962" y="-1.0100002">kohaku_special_attack_26.png</img>
             <img duration="145" key="27" x="-0.14999962" y="-0.97999954">kohaku_special_attack_27.png</img>
         </specialAttack2>
+        <airAttack1 airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="50" key="0" x="0.13999939" y="-1.1599998">kohaku_air_attack1_0.png</img>
+            <img duration="20" key="1" x="0.17000008" y="-1.1900005">kohaku_air_attack1_1.png</img>
+            <img duration="20" key="2" x="0.29000092" y="-1.1599998">kohaku_air_attack1_2.png</img>
+            <img duration="50" key="3" x="-0.07999992" y="-1.0699997">kohaku_air_attack1_3.png</img>
+            <img duration="30" key="4" x="-0.11000061" y="-1.0699997">kohaku_air_attack1_4.png</img>
+            <img duration="20" key="5" x="0.010000229" y="-1.2299995">kohaku_air_attack1_5.png</img>
+            <img duration="20" key="6" x="0.12000084" y="-1.6099997">kohaku_air_attack1_6.png</img>
+        </airAttack1>
+        <airAttack2 airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="50" key="0" x="-0.34000015" y="-1.3400002">kohaku_air_attack2_0.png</img>
+            <img duration="50" key="1" x="-0.3199997" y="-1.3500004">kohaku_air_attack2_1.png</img>
+            <img duration="50" key="2" x="0.30999947" y="-1.3800001">kohaku_air_attack2_2.png</img>
+            <img duration="50" key="3" x="0.32999992" y="-1.3299999">kohaku_air_attack2_3.png</img>
+            <img duration="50" key="4" x="-0.25" y="-1.6400003">kohaku_air_attack2_4.png</img>
+            <img duration="50" key="5" x="-0.26000023" y="-1.6900005">kohaku_air_attack2_5.png</img>
+            <img duration="50" key="6" x="-0.14999962" y="-1.4400005">kohaku_air_attack2_6.png</img>
+            <img duration="50" key="7" x="0.09000015" y="-1.29">kohaku_air_attack2_7.png</img>
+            <img duration="50" key="8" x="0.11000061" y="-1.6700001">kohaku_air_attack2_8.png</img>
+        </airAttack2>
+        <airAttack3 airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="50" key="0" x="0.09000015" y="-1.7799997">kohaku_air_attack3_0.png</img>
+            <img duration="50" key="1" x="0.12999916" y="-1.8400002">kohaku_air_attack3_1.png</img>
+            <img duration="50" key="2" x="0.11000061" y="-1.4099998">kohaku_air_attack3_2.png</img>
+            <img duration="50" key="3" x="0.010000229" y="-1.9200001">kohaku_air_attack3_3.png</img>
+            <img duration="50" key="4" x="-0.09000015" y="-2.0500002">kohaku_air_attack3_4.png</img>
+            <img duration="50" key="5" x="-0.30999947" y="-2.1000004">kohaku_air_attack3_5.png</img>
+            <img duration="50" key="6" x="-0.19000053" y="-1.9499998">kohaku_air_attack3_6.png</img>
+            <img duration="50" key="7" x="-0.14999962" y="-1.8500004">kohaku_air_attack3_7.png</img>
+            <img duration="50" key="8" x="0.0" y="-1.71">kohaku_air_attack3_8.png</img>
+        </airAttack3>
+        <airAttack4 airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="50" key="0" x="0.0" y="-1.0900002">kohaku_air_attack4_0.png</img>
+            <img duration="30" key="1" x="-0.09000015" y="-1.1000004">kohaku_air_attack4_1.png</img>
+            <img duration="20" key="2" x="0.44000053" y="-1.1499996">kohaku_air_attack4_2.png</img>
+            <img duration="20" key="3" x="0.6700001" y="-1.1999998">kohaku_air_attack4_3.png</img>
+            <img duration="20" key="4" x="0.6700001" y="-1.2200003">kohaku_air_attack4_4.png</img>
+            <img duration="40" key="5" x="0.27000046" y="-1.3699999">kohaku_air_attack4_5.png</img>
+            <img duration="50" key="6" x="0.30999947" y="-1.3299999">kohaku_air_attack4_6.png</img>
+        </airAttack4>
+        <airAttack5 airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="50" key="0" x="-0.34000015" y="-1.3400002">kohaku_air_attack2_0.png</img>
+            <img duration="30" key="1" x="-0.3199997" y="-1.3500004">kohaku_air_attack2_1.png</img>
+            <img duration="30" key="2" x="0.30999947" y="-1.3800001">kohaku_air_attack2_2.png</img>
+            <img duration="30" key="3" x="0.32999992" y="-1.3299999">kohaku_air_attack2_3.png</img>
+            <img duration="30" key="4" x="-0.25" y="-1.6400003">kohaku_air_attack2_4.png</img>
+            <img duration="30" key="5" x="-0.26000023" y="-1.6900005">kohaku_air_attack2_5.png</img>
+            <img duration="30" key="6" x="-0.14999962" y="-1.4400005">kohaku_air_attack2_6.png</img>
+            <img duration="30" key="7" x="0.09000015" y="-1.29">kohaku_air_attack2_7.png</img>
+            <img duration="40" key="8" x="0.11000061" y="-1.6700001">kohaku_air_attack2_8.png</img>
+        </airAttack5>
+        <airAttack6 airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="100" key="0" x="-0.12999916" y="-1.1800003">kohaku_air_attack6_0.png</img>
+            <img duration="30" key="1" x="0.0" y="-1.1499996">kohaku_air_attack6_1.png</img>
+            <img duration="30" key="2" x="0.069999695" y="-1.1300001">kohaku_air_attack6_2.png</img>
+            <img duration="30" key="3" x="0.37000084" y="-1.3599997">kohaku_air_attack6_3.png</img>
+            <img duration="40" key="4" x="0.39999962" y="-0.7600002">kohaku_air_attack6_4.png</img>
+            <img duration="40" key="5" x="0.4300003" y="-0.52999973">kohaku_air_attack6_5.png</img>
+            <img duration="40" key="6" x="0.35000038" y="-0.48999977">kohaku_air_attack6_6.png</img>
+            <img duration="40" key="7" x="0.040000916" y="-0.5500002">kohaku_air_attack6_7.png</img>
+            <img duration="40" key="8" x="-0.13999939" y="-0.6499996">kohaku_air_attack6_8.png</img>
+            <img duration="40" key="9" x="-0.48999977" y="-1.0699997">kohaku_air_attack6_9.png</img>
+            <img duration="40" key="10" x="-0.5" y="-1.1199999">kohaku_air_attack6_10.png</img>
+            <img duration="50" key="11" x="-0.059999466" y="-1.6300001">kohaku_air_attack6_11.png</img>
+        </airAttack6>
     </sprites>
 </character>

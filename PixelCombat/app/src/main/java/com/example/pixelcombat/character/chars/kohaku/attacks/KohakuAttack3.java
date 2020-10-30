@@ -77,19 +77,19 @@ public class KohakuAttack3 extends Attack {
                     new Vector2d(box.getPos().x, box.getPos().y), true));
 
             character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_attack3_hit", null, true));
-
+            character.notifyObservers(new GameMessage(MessageType.SHAKE, "", null, false));
         } catch (Exception e) {
             Log.e("Error", "The spark could not be created: " + e.getMessage());
         }
         if (!enemy.getStatusManager().isKnockbacked()) {
             // getUser().enemy.timeManager.getDisableTime().setY(Float.valueOf(0.0F));
             enemy.getHitManager().setKnockBackHeight(-27.0F);
-            enemy.getHitManager().setKnockBackRange(15.0F);
+            enemy.getHitManager().setKnockBackRange(45.0F);
             enemy.getHitManager().checkOnAir();
             enemy.getStatusManager().setActionStatus(ActionStatus.STAND);
             enemy.getStatusManager().setGlobalStatus(GlobalStatus.KNOCKBACK);
         } else {
-            enemy.getHitManager().comboTouch(-27.0F, 15.0F);
+            enemy.getHitManager().comboTouch(-27.0F, 35.0F);
         }
 
     }

@@ -1,6 +1,8 @@
 package com.example.pixelcombat.enums;
 
 public class ScreenProperty {
+    public static float X_PORTION = 0.2f;
+    public static float Y_PORTION = 0.4f;
     public static int SCREEN_WIDTH;
     public static int SCREEN_HEIGHT;
     public static int OFFSET_X = 350;

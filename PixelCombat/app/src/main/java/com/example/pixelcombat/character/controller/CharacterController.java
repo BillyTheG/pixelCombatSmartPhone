@@ -10,7 +10,7 @@ import com.example.pixelcombat.enums.KeyCommand;
 
 public class CharacterController {
 
-    public static final float SPEED_BONUS = 15f;
+    public static final float SPEED_BONUS = 20f;
     private final GameCharacter character;
 
 
@@ -57,7 +57,6 @@ public class CharacterController {
         return true;
 
     }
-
 
     public boolean move(boolean hold, boolean right) {
         if (character.getStatusManager().canNotMove())
@@ -109,35 +108,70 @@ public class CharacterController {
 
     public boolean attack(AttackStatus attackStates) {
         if (character.getStatusManager().isOnAir()) {
-            //check jumpAttacks
-            return true;
+            attackStates = mapStandToJumpAttack(attackStates);
         }
         if (character.getStatusManager().notCombatReady()) {
             return true;
         }
 
         if (character.getStatusManager().isMoving()) {   //&& Math.abs(player.physics.VX) == player.physics.maximumSpeed)
-            return true;
+            character.getPhysics().VX = 0;
         }
 
-        character.getStatusManager().setActionStatus(ActionStatus.STAND);
+        if (character.getStatusManager().isOnAir())
+            character.getStatusManager().setActionStatus(ActionStatus.JUMPFALL);
+        else
+            character.getStatusManager().setActionStatus(ActionStatus.STAND);
+
         character.getAttackManager().setAttackStatus(attackStates);
         return true;
     }
+
 
     public boolean specialAttack(AttackStatus attackStates) {
         if (character.getStatusManager().isOnAir()) {
-            //check jumpAttacks
-            return false;
-        }
-        if (character.getStatusManager().notCombatReady()) {
-            return false;
+            attackStates = mapStandToJumpAttack(attackStates);
         }
 
-        character.getStatusManager().setActionStatus(ActionStatus.STAND);
+        if (character.getStatusManager().notCombatReady()) {
+            return true;
+        }
+
+        if (character.getStatusManager().isMoving()) {   //&& Math.abs(player.physics.VX) == player.physics.maximumSpeed)
+            character.getPhysics().VX = 0;
+        }
+
+        if (character.getStatusManager().isOnAir())
+            character.getStatusManager().setActionStatus(ActionStatus.JUMPFALL);
+        else
+            character.getStatusManager().setActionStatus(ActionStatus.STAND);
+
         character.getAttackManager().setAttackStatus(attackStates);
         return true;
     }
+
+    private AttackStatus mapStandToJumpAttack(AttackStatus attackStates) {
+
+        switch (attackStates) {
+
+            case ATTACK1:
+                return AttackStatus.AIRATTACK1;
+            case ATTACK2:
+                return AttackStatus.AIRATTACK2;
+            case ATTACK3:
+                return AttackStatus.AIRATTACK3;
+            case ATTACK4:
+                return AttackStatus.AIRATTACK4;
+            case ATTACK5:
+                return AttackStatus.AIRATTACK5;
+            case ATTACK6:
+                return AttackStatus.AIRATTACK6;
+            default:
+                return attackStates;
+        }
+
+    }
+
 
     public boolean dash() {
         if (character.getStatusManager().canNotDash())

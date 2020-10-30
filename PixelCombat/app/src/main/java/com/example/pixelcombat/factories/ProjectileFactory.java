@@ -7,6 +7,7 @@ import com.example.pixelcombat.character.chars.kohaku.projectiles.FireBottle;
 import com.example.pixelcombat.character.chars.kohaku.projectiles.HorizontalSlash;
 import com.example.pixelcombat.core.config.ProjectileConfig;
 import com.example.pixelcombat.core.sound.SoundManager;
+import com.example.pixelcombat.manager.ScreenScrollerManager;
 import com.example.pixelcombat.math.BoundingRectangle;
 import com.example.pixelcombat.math.Vector2d;
 import com.example.pixelcombat.projectile.Projectile;
@@ -40,7 +41,7 @@ public class ProjectileFactory {
         this.context = context;
     }
 
-    public Projectile createProjectile(String type, Vector2d pos, boolean right, String owner) {
+    public Projectile createProjectile(String type, Vector2d pos, boolean right, String owner, ScreenScrollerManager screenScrollerManager) {
 
         ConcurrentHashMap<String, ArrayList<LocatedBitmap>> imagesP = pictures.get(type);
         ConcurrentHashMap<String, ArrayList<ArrayList<BoundingRectangle>>> boxesP = boxes.get(type);
@@ -50,9 +51,9 @@ public class ProjectileFactory {
 
         switch (type) {
             case ProjectileConfig.KOHAKU_SPECIAL_ATTACK_PROJECTILE_HORIZONTAL:
-                return new Projectile(pos, right, boxesP, imagesP, timesP, loopVariabelsP, loopBoolsP, new HorizontalSlash(), owner).register(soundManager);
+                return new Projectile(pos, right, boxesP, imagesP, timesP, loopVariabelsP, loopBoolsP, new HorizontalSlash(), owner).register(soundManager).register(screenScrollerManager);
             case ProjectileConfig.KOHAKU_SPECIAL_ATTACK_PROJECTILE_BOTTLE:
-                return new Projectile(pos, right, boxesP, imagesP, timesP, loopVariabelsP, loopBoolsP, new FireBottle(), owner).register(soundManager);
+                return new Projectile(pos, right, boxesP, imagesP, timesP, loopVariabelsP, loopBoolsP, new FireBottle(), owner).register(soundManager).register(screenScrollerManager);
 
             default:
                 return null;

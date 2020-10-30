@@ -79,6 +79,7 @@ public class FireBottle extends ProjectileStatusManager {
         if (!explosionSound) {
             int rand = new Random().nextInt(2) + 1;
             projectile.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_bottle_explosion" + rand, null, true));
+            projectile.notifyObservers(new GameMessage(MessageType.SHAKE, "" + rand, null, true));
             explosionSound = true;
         }
 

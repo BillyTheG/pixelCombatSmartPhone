@@ -7,7 +7,6 @@ import android.util.Log;
 import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.GameObject;
 import com.example.pixelcombat.core.message.GameMessage;
-import com.example.pixelcombat.core.sound.SoundManager;
 import com.example.pixelcombat.exception.PixelCombatException;
 import com.example.pixelcombat.math.BoundingRectangle;
 import com.example.pixelcombat.math.Vector2d;
@@ -39,7 +38,7 @@ public class Projectile implements GameObject, Observable {
     private Map<String, ArrayList<ArrayList<BoundingRectangle>>> boxes;
     private boolean isRight;
     private boolean canHit = true;
-    private Observer observer;
+    private ArrayList<Observer> observer = new ArrayList<>();
 
 
     public Projectile(Vector2d pos, boolean isRight, Map<String, ArrayList<ArrayList<BoundingRectangle>>> boxes, Map<String, ArrayList<LocatedBitmap>> images,
@@ -103,24 +102,30 @@ public class Projectile implements GameObject, Observable {
         else return -1.0f;
     }
 
-    public Projectile register(SoundManager soundManager) {
-        addObserver(soundManager);
+    public Projectile register(Observer observer) {
+        addObserver(observer);
         return this;
     }
 
     @Override
     public void addObserver(Observer o) {
-        this.observer = o;
+        observer.add(o);
     }
 
     @Override
     public void removeObserver(Observer o) {
-        this.observer = null;
+        observer.remove(o);
     }
 
     @Override
     public void notifyObservers(GameMessage message) throws PixelCombatException {
-        observer.processMessage(message);
+        observer.forEach(x -> {
+            try {
+                x.processMessage(message);
+            } catch (PixelCombatException e) {
+                Log.e("Error", "Error while processing Message of Projectile: " + e.getMessage());
+            }
+        });
     }
 
 }

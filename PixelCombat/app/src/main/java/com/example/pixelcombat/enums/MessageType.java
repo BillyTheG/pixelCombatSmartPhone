@@ -6,5 +6,6 @@ public enum MessageType {
     DUST_CREATION,
     SPARK_CREATION,
     SOUND,
+    SHAKE
 
 }
