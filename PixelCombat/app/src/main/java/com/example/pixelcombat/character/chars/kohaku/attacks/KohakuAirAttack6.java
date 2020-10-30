@@ -52,7 +52,7 @@ public class KohakuAirAttack6 extends Attack {
     public void checkContent() {
         character.getHitManager().setHitDelay(true);
 
-        float yPush = 50;
+        float yPush = 100;
         float xPush = 5;
 
         try {

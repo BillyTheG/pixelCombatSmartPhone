@@ -84,12 +84,12 @@ public class KohakuAirAttack3 extends Attack {
         if (!enemy.getStatusManager().isKnockbacked()) {
             // getUser().enemy.timeManager.getDisableTime().setY(Float.valueOf(0.0F));
             enemy.getHitManager().setKnockBackHeight(-27.0F);
-            enemy.getHitManager().setKnockBackRange(15.0F);
+            enemy.getHitManager().setKnockBackRange(35.0F);
             enemy.getHitManager().checkOnAir();
             enemy.getStatusManager().setActionStatus(ActionStatus.STAND);
             enemy.getStatusManager().setGlobalStatus(GlobalStatus.KNOCKBACK);
         } else {
-            enemy.getHitManager().comboTouch(-27.0F, 15.0F);
+            enemy.getHitManager().comboTouch(-27.0F, 35.0F);
         }
 
     }

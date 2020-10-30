@@ -6,12 +6,14 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ImageButton;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.example.pixelcombat.GamePanel;
 import com.example.pixelcombat.R;
 import com.example.pixelcombat.character.status.AttackStatus;
+import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.utils.DoubleClickListener;
 
 import javax.inject.Inject;
@@ -22,31 +24,32 @@ import static android.view.MotionEvent.ACTION_UP;
 public class GameButtonManager implements View.OnClickListener, View.OnTouchListener {
 
     private GamePanel gamePanel;
-    private ImageButton up;
 
-    private ImageButton down;
+    private ImageView up;
 
-    private ImageButton left;
+    private ImageView down;
 
-    private ImageButton right;
+    private ImageView left;
 
-    private ImageButton attack1;
+    private ImageView right;
 
-    private ImageButton attack2;
+    private ImageView attack1;
 
-    private ImageButton dash;
+    private ImageView attack2;
 
-    private ImageButton defend;
+    private ImageView jump;
 
-    private ImageButton start;
+    private ImageView defend;
 
-    private ImageButton select;
+    private ImageView start;
+
+    private ImageView select;
 
     private DoubleClickListener doubleClickListener;
     private Context context;
 
     @Inject
-    public GameButtonManager(Context context, GamePanel gamePanel){
+    public GameButtonManager(Context context, GamePanel gamePanel) {
         this.context = context;
         this.gamePanel = gamePanel;
         init();
@@ -58,10 +61,10 @@ public class GameButtonManager implements View.OnClickListener, View.OnTouchList
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inPreferredConfig = Bitmap.Config.RGB_565;
 
-        Bitmap up_bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.button_up, options);
-        Bitmap down_bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.button_down, options);
-        Bitmap left_bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.button_left, options);
-        Bitmap right_bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.button_right, options);
+        Bitmap up_bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.ps_button_up, options);
+        Bitmap down_bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.ps_button_down, options);
+        Bitmap left_bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.ps_button_left, options);
+        Bitmap right_bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.ps_button_right, options);
 
         Bitmap attack1_bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.button_attack1, options);
         Bitmap attack2_bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.button_attack2, options);
@@ -71,19 +74,28 @@ public class GameButtonManager implements View.OnClickListener, View.OnTouchList
         Bitmap start_bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.button_start, options);
         Bitmap select_bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.button_select, options);
 
+        int size = (int) (ScreenProperty.OFFSET_X / 2.25);
+        int yOffSet = ScreenProperty.SCREEN_HEIGHT - ScreenProperty.OFFSET_Y + size / 6;
+        int xOffSet = ScreenProperty.SCREEN_WIDTH - ScreenProperty.OFFSET_X;
 
-        up = setUpButton(0, 150, 1.15f, 150, 650, up_bitmap);
-        down = setUpButton(1, 150, 1.15f, 150, 800, down_bitmap);
-        left = setUpButton(2, 150, 1.15f, 0, 725, left_bitmap);
-        right = setUpButton(3, 150, 1.15f, 300, 725, right_bitmap);
+        left = setUpButton(2, size, 1f, 0, (int) (yOffSet), left_bitmap, false);
+        right = setUpButton(3, size, 1f, (int) (2 * size), (int) (yOffSet), right_bitmap, false);
+        up = setUpButton(0, size, 1f, (int) (size * 1), yOffSet - size / 2, up_bitmap, false);
+        down = setUpButton(1, size, 1f, (int) (size * 1), yOffSet + size / 2, down_bitmap, false);
 
-        attack1 = setUpButton(4, 250, 0.6f, 1400, 675, attack1_bitmap);
-        attack2 = setUpButton(5, 250, 0.6f, 1575, 675, attack2_bitmap);
-        dash = setUpButton(6, 250, 0.6f, 1750, 675, defend_bitmap);
-        defend = setUpButton(7, 250, 0.6f, 1925, 675, dash_bitmap);
+        size = (int) (ScreenProperty.OFFSET_X / 2);
+        yOffSet -= size;
+        attack1 = setUpButton(4, size, 1f, xOffSet, yOffSet, attack1_bitmap, false);
+        attack2 = setUpButton(5, size, 1f, xOffSet + size, (int) (yOffSet), attack2_bitmap, false);
+        jump = setUpButton(6, size, 1f, xOffSet + size, yOffSet + size, defend_bitmap, false);
+        defend = setUpButton(7, size, 1f, xOffSet, (int) (yOffSet + size), dash_bitmap, false);
 
-        select = setUpButton(8, 150, 0.6f, 800, 700, select_bitmap);
-        start = setUpButton(9, 150, 0.6f, 1000, 700, start_bitmap);
+        size = (int) (ScreenProperty.OFFSET_X / 2);
+        yOffSet = ScreenProperty.SCREEN_HEIGHT - ScreenProperty.OFFSET_Y + size / 3;
+        xOffSet = ScreenProperty.SCREEN_WIDTH / 2 - size;
+
+        select = setUpButton(8, size, 0.6f, xOffSet, yOffSet, select_bitmap, true);
+        start = setUpButton(9, size, 0.6f, xOffSet + size + size / 3, yOffSet, start_bitmap, true);
 
         doubleClickListener = new DoubleClickListener(this, 300) {
             @Override
@@ -99,22 +111,24 @@ public class GameButtonManager implements View.OnClickListener, View.OnTouchList
 
     }
 
-    public ImageButton setUpButton(int id,int size, float scale, int x, int y, Bitmap bitmap){
-        ImageButton button = new ImageButton(context);
+    public ImageView setUpButton(int id, int size, float scale, int x, int y, Bitmap bitmap, boolean ratio) {
+        ImageView button = new ImageView(context);
+        button.setImageBitmap(bitmap);
         button.setId(id);
         button.setBackgroundColor(0);
-        button.setMinimumHeight(size);
-        button.setMinimumWidth(size);
         button.setMaxWidth(size);
         button.setMaxHeight(size);
-
-
-
-        button.setScaleX(scale);
-        button.setScaleY(scale);
+        button.setPadding(0, 0, 0, 0);
+        button.setAdjustViewBounds(true);
+        ViewGroup.LayoutParams params;
+        if (ratio)
+            params = new ViewGroup.LayoutParams(size, (int) (((float) bitmap.getHeight() / bitmap.getWidth()) * size));
+        else
+            params = new ViewGroup.LayoutParams(size, size);
+        button.setLayoutParams(params);
+        button.setScaleType(ImageView.ScaleType.FIT_XY);
         button.setX(x);
         button.setY(y);
-        button.setImageBitmap(bitmap);
         return button;
     }
 
@@ -139,11 +153,11 @@ public class GameButtonManager implements View.OnClickListener, View.OnTouchList
 
         attack1.setOnClickListener(this);
         attack2.setOnClickListener(this);
-        dash.setOnClickListener(this);
+        jump.setOnClickListener(this);
         defend.setOnClickListener(this);
         GameButtons.addView(attack1);
         GameButtons.addView(attack2);
-        GameButtons.addView(dash);
+        GameButtons.addView(jump);
         GameButtons.addView(defend);
 
         start.setOnTouchListener(this);
@@ -190,7 +204,7 @@ public class GameButtonManager implements View.OnClickListener, View.OnTouchList
                     gamePanel.getPlayer1().getController().attack(AttackStatus.ATTACK4);
                 break;
             case 6:
-                gamePanel.getPlayer1().getController().dash();
+                gamePanel.getPlayer1().getController().jump(false, true);
                 break;
             case 7:
                 gamePanel.getComboActionManager().pressKey("player1", "" + view.getId());
@@ -230,6 +244,9 @@ public class GameButtonManager implements View.OnClickListener, View.OnTouchList
                 break;
             case 7:
                 gamePanel.getPlayer1().getController().defend(true, true);
+                break;
+            case 6:
+                gamePanel.getPlayer1().getController().jump(false, true);
                 break;
             case 8:
                 gamePanel.getPlayer2().getController().defend(true, false);

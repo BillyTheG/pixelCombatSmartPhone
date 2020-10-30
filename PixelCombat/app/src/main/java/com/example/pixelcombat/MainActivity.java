@@ -71,6 +71,9 @@ public class MainActivity extends AppCompatActivity {
             ScreenProperty.SCREEN_HEIGHT = dm.heightPixels;
             ScreenProperty.SCREEN_WIDTH = dm.widthPixels;
 
+            ScreenProperty.OFFSET_X = (int) (ScreenProperty.SCREEN_WIDTH * ScreenProperty.X_PORTION);
+            ScreenProperty.OFFSET_Y = (int) (ScreenProperty.SCREEN_HEIGHT * ScreenProperty.Y_PORTION);
+
             // GameButtons = new RelativeLayout(this);
             //  gameFrameLayout = new FrameLayout(this);
 
