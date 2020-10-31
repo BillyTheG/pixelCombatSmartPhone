@@ -83,7 +83,7 @@ public class KohakuDashManager extends DashManager {
                 break;
             case 3:
                 if (!switcher) {
-                    this.character.getPhysics().VY = -16f;
+                    this.character.getPhysics().VY = -22f;
                     switcher = true;
                 }
                 break;

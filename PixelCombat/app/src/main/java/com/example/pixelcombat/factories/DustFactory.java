@@ -38,12 +38,16 @@ public class DustFactory {
 
     public void init() {
         try {
-            CharacterParser dustParser = new CharacterParser(context);
+
             sparkNames.add("Kohaku_Special_Attack_Dust.xml");
             sparkNames.add("Kohaku_Special2_Attack_Dust.xml");
             sparkNames.add("Kohaku_Dash_Dust.xml");
+            sparkNames.add("Kohaku_Attack6_Dust.xml");
+            sparkNames.add("Dust_Hard_Land.xml");
+            sparkNames.add("Dust_Hard_Land_Side.xml");
 
             for (String spark : sparkNames) {
+                CharacterParser dustParser = new CharacterParser(context);
                 dustParser.parse(spark);
                 String sparkC = spark.replace(".xml", "");
 
@@ -65,6 +69,12 @@ public class DustFactory {
                 return new Dust(pictures.get("Kohaku_Special2_Attack_Dust"), times.get("Kohaku_Special2_Attack_Dust"), pos, right).register(soundManager);
             case DustConfig.KOHAKU_DASH_DUST:
                 return new Dust(pictures.get("Kohaku_Dash_Dust"), times.get("Kohaku_Dash_Dust"), pos, right).register(soundManager);
+            case DustConfig.KOHAKU_ATTACK6_DUST:
+                return new Dust(pictures.get("Kohaku_Attack6_Dust"), times.get("Kohaku_Attack6_Dust"), pos, right).register(soundManager);
+            case DustConfig.DUST_HARD_LAND:
+                return new Dust(pictures.get("Dust_Hard_Land"), times.get("Dust_Hard_Land"), pos, right).register(soundManager);
+            case DustConfig.DUST_HARD_LAND_SIDE:
+                return new Dust(pictures.get("Dust_Hard_Land_Side"), times.get("Dust_Hard_Land_Side"), pos, right).register(soundManager);
             default:
                 break;
         }

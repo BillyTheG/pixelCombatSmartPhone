@@ -100,8 +100,10 @@ public class PXMap implements GameObject {
     @Override
     public void update() throws PixelCombatException {
 
-        character1.update();
-        character2.update();
+        if (!character1.getStatusManager().isFreezed())
+            character1.update();
+        if (!character2.getStatusManager().isFreezed())
+            character2.update();
 
         boolean borders1 = checkHorizontalBorders(character1);
         boolean borders2 = checkHorizontalBorders(character2);
@@ -146,9 +148,14 @@ public class PXMap implements GameObject {
     private void checkReflect(GameCharacter character) {
         try {
             if (character.getStatusManager().isKnockbacked() || character.getStatusManager().isKnockBackFalling()) {
-                character.getStatusManager().swapDirections();
+
                 character.notifyObservers(new GameMessage(MessageType.SHAKE, "", null, true));
+                character.notifyObservers(new GameMessage(MessageType.DUST_CREATION, "Dust_Hard_Land_Side;" + character.getPlayer(),
+                        new Vector2d(character.getPos().x - character.getDirection() * BORDER_WIDTH, character.getPos().y - BORDER_WIDTH), character.getPhysics().VX > 0));
+                character.notifyObservers(new GameMessage(MessageType.SOUND, "hard_ground_hit", null, true));
+                character.getStatusManager().swapDirections();
                 character.getPhysics().VX = -character.getPhysics().VX;
+
             }
         } catch (Exception e) {
             Log.e("Error", "The Reflect could not be handled: " + e.getMessage());
@@ -215,4 +222,13 @@ public class PXMap implements GameObject {
     }
 
 
+    public void putFreezeOn(String owner, boolean state) {
+
+        if (owner.equals(character1.getPlayer())) {
+            character2.getStatusManager().setFreeze(state);
+        } else {
+            character1.getStatusManager().setFreeze(state);
+        }
+
+    }
 }

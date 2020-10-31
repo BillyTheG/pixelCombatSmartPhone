@@ -29,20 +29,28 @@ public class KohakuSpecialAttack1 extends Attack {
     public void process() {
         try {
             switch (character.getViewManager().getFrameIndex()) {
+
+                case 0:
+                    if (isSwitcher()) {
+                        character.notifyObservers(new GameMessage(MessageType.FREEZE, " ;" + character.getPlayer(), null, true));
+                        character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_special_attack", null, true));
+                        setSwitcher(false);
+                    }
+                    break;
                 case 2:
                     if (!isSwitcher()) {
                         character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_sword_out", null, true));
                         setSwitcher(true);
                     }
                     break;
-                case 0:
+                case 5:
                     if (isSwitcher()) {
-                        character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_special_attack", null, true));
+                        character.notifyObservers(new GameMessage(MessageType.FREEZE, " ;" + character.getPlayer(), null, false));
                         setSwitcher(false);
                     }
                     break;
                 case 6:
-                    if (isSwitcher()) {
+                    if (!isSwitcher()) {
                         character.notifyObservers(new GameMessage(MessageType.SPARK_CREATION, SparkConfig.KOHAKU_SPECIAL_ATTACK_SPARK + ";test;",
                                 new Vector2d(character.getPos().x, character.getPos().y), character.isRight()));
 
@@ -51,19 +59,19 @@ public class KohakuSpecialAttack1 extends Attack {
 
                         character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_sword_slash", null, true));
 
-                        setSwitcher(false);
-                    }
-                    break;
-                case 8:
-                    if (!isSwitcher()) {
-                        character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_special_attack_end", null, true));
                         setSwitcher(true);
                     }
                     break;
-                case 20:
+                case 8:
                     if (isSwitcher()) {
-                        character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_sword_back", null, true));
+                        character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_special_attack_end", null, true));
                         setSwitcher(false);
+                    }
+                    break;
+                case 20:
+                    if (!isSwitcher()) {
+                        character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_sword_back", null, true));
+                        setSwitcher(true);
                     }
                     break;
                 default:
@@ -97,12 +105,12 @@ public class KohakuSpecialAttack1 extends Attack {
         if (!enemy.getStatusManager().isKnockbacked()) {
             // getUser().enemy.timeManager.getDisableTime().setY(Float.valueOf(0.0F));
             enemy.getHitManager().setKnockBackHeight(-27.0F);
-            enemy.getHitManager().setKnockBackRange(10.0F);
+            enemy.getHitManager().setKnockBackRange(30.0F);
             enemy.getHitManager().checkOnAir();
             enemy.getStatusManager().setActionStatus(ActionStatus.STAND);
             enemy.getStatusManager().setGlobalStatus(GlobalStatus.KNOCKBACK);
         } else {
-            enemy.getHitManager().comboTouch(-20.0F, 10.0F);
+            enemy.getHitManager().comboTouch(-20.0F, 30.0F);
         }
 
     }

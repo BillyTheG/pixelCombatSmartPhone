@@ -7,6 +7,7 @@ import com.example.pixelcombat.core.message.GameMessage;
 import com.example.pixelcombat.enums.MessageType;
 import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.exception.PixelCombatException;
+import com.example.pixelcombat.math.Vector2d;
 
 public class KnockBackManager {
 
@@ -55,6 +56,8 @@ public class KnockBackManager {
             if (Math.abs(character.getPhysics().VY) > minimumVY) {
                 character.getPhysics().VY *= -0.5;
                 character.notifyObservers(new GameMessage(MessageType.SHAKE, "", null, false));
+                character.notifyObservers(new GameMessage(MessageType.DUST_CREATION, "Dust_Hard_Land;" + character.getPlayer(),
+                        new Vector2d(character.getPos().x, ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE + 30), false));
                 character.notifyObservers(new GameMessage(MessageType.SOUND, "hard_ground_hit", null, true));
                 return;
             }

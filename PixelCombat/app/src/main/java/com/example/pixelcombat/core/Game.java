@@ -138,19 +138,21 @@ public class Game implements Observer {
 
             String[] inputs = gameMessage.getGameObject().split(";");
             String gameObject = inputs[0];
-            boolean right = gameMessage.isRight();
+            boolean state = gameMessage.isRight();
             String owner = inputs[1];
 
-
             switch (type) {
+                case FREEZE:
+                    map.putFreezeOn(owner, state);
+                    break;
                 case PROJECTILE_CREATION:
-                    projectiles.add(projectileFactory.createProjectile(gameObject, gameMessage.getPos(), right, owner, screenScrollManager));
+                    projectiles.add(projectileFactory.createProjectile(gameObject, gameMessage.getPos(), state, owner, screenScrollManager));
                     break;
                 case DUST_CREATION:
-                    dusts.add(dustFactory.createDust(gameObject, gameMessage.getPos(), right));
+                    dusts.add(dustFactory.createDust(gameObject, gameMessage.getPos(), state));
                     break;
                 case SPARK_CREATION:
-                    sparks.add(sparkFactory.createSpark(gameObject, gameMessage.getPos(), right));
+                    sparks.add(sparkFactory.createSpark(gameObject, gameMessage.getPos(), state));
                     break;
                 default:
                     break;

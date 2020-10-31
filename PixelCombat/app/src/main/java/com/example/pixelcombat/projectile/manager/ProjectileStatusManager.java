@@ -18,7 +18,7 @@ public abstract class ProjectileStatusManager {
     private MovementStatus movementStatus = MovementStatus.RIGHT;
     private ProjectileActionStatus actionStatus = ProjectileActionStatus.CREATION;
     protected boolean dead = false;
-    protected float BASE_SPEED_VX = 50f;
+    protected float BASE_SPEED_VX = 60f;
     protected float BASE_SPEED_VY = 30f;
     private Observer observer;
 

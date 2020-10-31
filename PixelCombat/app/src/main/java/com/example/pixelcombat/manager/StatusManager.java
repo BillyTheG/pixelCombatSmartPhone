@@ -7,6 +7,8 @@ import com.example.pixelcombat.character.status.MovementStatus;
 import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.exception.PixelCombatException;
 
+import lombok.Setter;
+
 
 public class StatusManager {
 
@@ -14,12 +16,23 @@ public class StatusManager {
     private GlobalStatus globalStatus = GlobalStatus.ACTIVE;
     private MovementStatus movementStatus = MovementStatus.RIGHT;
     private ActionStatus actionStatus = ActionStatus.STAND;
+    @Setter
+    private boolean freeze = false;
+
+
     private final GameCharacter character;
 
     public StatusManager(GameCharacter character) {
         this.character = character;
     }
 
+    public boolean isNotControllable() {
+        return freeze || isIntroing() || isWinning();
+    }
+
+    public boolean isFreezed() {
+        return freeze;
+    }
 
     public boolean isStanding() {
         return actionStatus == ActionStatus.STAND;
@@ -230,6 +243,7 @@ public class StatusManager {
                 || isDisabled()
                 || isDisabledRecovering()
                 || isDashing()
+                || freeze
                 || isRetreating()
                 || isRetreatStopping();
 

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+    <type>AttackSpark1</type>
+    <sprites>
+        <sequence airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="20" key="0" x="0.010000229" y="-0.10000038">kohaku_spark_attack2_0.png</img>
+            <img duration="20" key="1" x="0.020000458" y="-0.069999695">kohaku_spark_attack2_1.png</img>
+            <img duration="20" key="2" x="-0.19000053" y="0.13000011">kohaku_spark_attack2_2.png</img>
+            <img duration="20" key="3" x="-0.37000084" y="0.07999992">kohaku_spark_attack2_3.png</img>
+            <img duration="20" key="4" x="-0.049999237" y="0.15999985">kohaku_spark_attack2_4.png</img>
+            <img duration="20" key="5" x="-0.059999466" y="0.13000011">kohaku_spark_attack2_5.png</img>
+            <img duration="30" key="6" x="-0.040000916" y="0.10000038">kohaku_spark_attack2_6.png</img>
+            <img duration="20" key="7" x="0.12999916" y="0.0">kohaku_spark_attack2_7.png</img>
+            <img duration="20" key="8" x="0.20000076" y="-0.069999695">kohaku_spark_attack2_8.png</img>
+            <img duration="20" key="9" x="-0.5300007" y="-0.13000011">kohaku_spark_attack2_9.png</img>
+            <img duration="20" key="10" x="-0.5699997" y="-0.22999954">kohaku_spark_attack2_10.png</img>
+            <img duration="20" key="11" x="-0.37000084" y="-0.09000015">kohaku_spark_attack2_11.png</img>
+        </sequence>
+    </sprites>
+</character>

@@ -48,7 +48,7 @@ public class KohakuSpecialAttack2 extends Attack {
 
                         character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_sword_slash", null, true));
 
-                        Vector2d pos = new Vector2d(getCharacter().getPos().x + getCharacter().getDirection() * 200, character.getPos().y);
+                        Vector2d pos = new Vector2d(getCharacter().getPos().x + getCharacter().getDirection() * 200, character.getPos().y + 25);
 
                         character.notifyObservers(new GameMessage(MessageType.PROJECTILE_CREATION, "Kohaku_Projectile_Horizontal;" + character.getPlayer() + ";",
                                 pos, character.isRight()));
@@ -100,12 +100,12 @@ public class KohakuSpecialAttack2 extends Attack {
         if (!enemy.getStatusManager().isKnockbacked()) {
             // getUser().enemy.timeManager.getDisableTime().setY(Float.valueOf(0.0F));
             enemy.getHitManager().setKnockBackHeight(-27.0F);
-            enemy.getHitManager().setKnockBackRange(10.0F);
+            enemy.getHitManager().setKnockBackRange(30.0F);
             enemy.getHitManager().checkOnAir();
             enemy.getStatusManager().setActionStatus(ActionStatus.STAND);
             enemy.getStatusManager().setGlobalStatus(GlobalStatus.KNOCKBACK);
         } else {
-            enemy.getHitManager().comboTouch(-20.0F, 10.0F);
+            enemy.getHitManager().comboTouch(-20.0F, 30.0F);
         }
 
     }
