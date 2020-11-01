@@ -75,8 +75,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
             bg = Bitmap.createScaledBitmap(bg, ((int) (ScreenProperty.SCREEN_WIDTH * 1.5f)), ((int) (ScreenProperty.SCREEN_HEIGHT * 1.4f)), false);
 
 
-            Kohaku ruffy = new Kohaku("player2", new Vector2d(500, ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE), context);
-            Kohaku kohaku = new Kohaku("player1", new Vector2d(1000, ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE), context);
+            Kohaku ruffy = new Kohaku("player2", new Vector2d(1000, ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE), context);
+            Kohaku kohaku = new Kohaku("player1", new Vector2d(500, ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE), context);
 
             if (ENEMY_CONFIG == EnemyConfig.VERSUS_AI)
                 ruffy.setAIManager(new KohakuAI(ruffy, kohaku, ruffy.getController()));
@@ -84,7 +84,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
             ruffy.getBoxManager().loadParsedBoxes();
             kohaku.getBoxManager().loadParsedBoxes();
-            kohaku.getStatusManager().setMovementStatus(MovementStatus.LEFT);
+            ruffy.getStatusManager().setMovementStatus(MovementStatus.LEFT);
 
             player1 = kohaku;
             player2 = ruffy;

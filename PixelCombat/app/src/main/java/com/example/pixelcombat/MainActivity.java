@@ -42,15 +42,6 @@ public class MainActivity extends AppCompatActivity {
     @Inject
     GamePanel gamePanel;
 
- /*   @Inject
-    DustFactory dustFactory;
-
-    @Inject
-    ProjectileFactory projectileFactory;
-
-    @Inject
-    SparkFactory sparkFactory;*/
-
     @Getter
     private PixelCombatAppComponent component;
 
@@ -74,16 +65,10 @@ public class MainActivity extends AppCompatActivity {
             ScreenProperty.OFFSET_X = (int) (ScreenProperty.SCREEN_WIDTH * ScreenProperty.X_PORTION);
             ScreenProperty.OFFSET_Y = (int) (ScreenProperty.SCREEN_HEIGHT * ScreenProperty.Y_PORTION);
 
-            // GameButtons = new RelativeLayout(this);
-            //  gameFrameLayout = new FrameLayout(this);
-
-
-            //gamePanel = new GamePanel(this);
         } catch (Exception e) {
             Log.e("Error", e.getMessage());
             e.printStackTrace();
         }
-        //     buttonManager = new GameButtonManager(this,gamePanel);
 
         RelativeLayout.LayoutParams b1 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         RelativeLayout.LayoutParams b2 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);

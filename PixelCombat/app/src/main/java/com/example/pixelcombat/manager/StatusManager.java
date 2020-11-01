@@ -18,9 +18,11 @@ public class StatusManager {
     private ActionStatus actionStatus = ActionStatus.STAND;
     @Setter
     private boolean freeze = false;
-
+    @Setter
+    private boolean effect = false;
 
     private final GameCharacter character;
+
 
     public StatusManager(GameCharacter character) {
         this.character = character;
@@ -344,5 +346,15 @@ public class StatusManager {
     public boolean nearGround() {
         return ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE - Y_ATTACK_FREE_ZONE < character.getPos().y &&
                 character.getPos().y <= ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE && (isJumping() || isJumpFalling());
+    }
+
+    public boolean makesEffect() {
+        return effect;
+    }
+
+    public void startEffect() {
+        this.character.getEnemy().getStatusManager().setEffect(false);
+        this.character.getEffectManager().reset();
+        this.effect = true;
     }
 }

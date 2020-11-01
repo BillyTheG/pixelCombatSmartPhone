@@ -13,16 +13,19 @@ import com.example.pixelcombat.character.chars.kohaku.manager.KohakuAttackManage
 import com.example.pixelcombat.character.chars.kohaku.manager.KohakuBoxManager;
 import com.example.pixelcombat.character.chars.kohaku.manager.KohakuDashManager;
 import com.example.pixelcombat.character.chars.kohaku.manager.KohakuDisabledManager;
+import com.example.pixelcombat.character.chars.kohaku.manager.KohakuEffectManager;
 import com.example.pixelcombat.character.chars.kohaku.manager.KohakuJumpManager;
 import com.example.pixelcombat.character.chars.kohaku.manager.KohakuMoveManager;
 import com.example.pixelcombat.character.chars.kohaku.manager.KohakuViewManager;
 import com.example.pixelcombat.character.controller.CharacterController;
 import com.example.pixelcombat.character.physics.PlayerPhysics;
+import com.example.pixelcombat.core.config.EffectConfig;
 import com.example.pixelcombat.core.config.ViewConfig;
 import com.example.pixelcombat.core.message.GameMessage;
 import com.example.pixelcombat.enums.DrawLevel;
 import com.example.pixelcombat.enums.MessageType;
 import com.example.pixelcombat.exception.PixelCombatException;
+import com.example.pixelcombat.factories.EffectFactory;
 import com.example.pixelcombat.manager.StatusManager;
 import com.example.pixelcombat.manager.actionManager.CrouchManager;
 import com.example.pixelcombat.manager.actionManager.DefendManager;
@@ -61,6 +64,7 @@ public class Kohaku implements GameCharacter, HasAI {
     private DefendManager defendManager;
     private MoveManager moveManager;
     private KohakuDashManager dashManager;
+    private KohakuEffectManager effectManager;
     private PlayerPhysics physics;
     private CharacterController controller;
     private Context context;
@@ -98,6 +102,11 @@ public class Kohaku implements GameCharacter, HasAI {
         attackManager.init();
     }
 
+    public void initEffects(EffectFactory effectFactory) {
+        effectManager = new KohakuEffectManager(this, effectFactory.createEffect(EffectConfig.AVATAR_COVER, new Vector2d(), true));
+        effectManager.init(effectFactory);
+    }
+
     @Override
     public void cry() throws PixelCombatException {
         int rand = new Random().nextInt(5) + 1;
@@ -119,6 +128,9 @@ public class Kohaku implements GameCharacter, HasAI {
     public void update() throws PixelCombatException {
         if (getAIManager() != null)
             kohakuAIManager.update();
+
+        if (getStatusManager().makesEffect())
+            getEffectManager().update();
 
         viewManager.update();
         physics.update();

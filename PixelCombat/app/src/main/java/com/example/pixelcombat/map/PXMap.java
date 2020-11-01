@@ -18,6 +18,7 @@ import com.example.pixelcombat.enums.DrawLevel;
 import com.example.pixelcombat.enums.MessageType;
 import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.exception.PixelCombatException;
+import com.example.pixelcombat.factories.EffectFactory;
 import com.example.pixelcombat.manager.ScreenScrollerManager;
 import com.example.pixelcombat.math.Vector2d;
 
@@ -62,6 +63,7 @@ public class PXMap implements GameObject {
         character1.initAttacks();
         character2.initAttacks();
 
+
         if (height > ScreenProperty.SCREEN_HEIGHT) {
             deltaY = height - ScreenProperty.SCREEN_HEIGHT;
         }
@@ -74,6 +76,11 @@ public class PXMap implements GameObject {
 
         Log.i("Info", "Created the map: " + this);
 
+    }
+
+    public void initEffects(EffectFactory effectFactory) {
+        character1.initEffects(effectFactory);
+        character2.initEffects(effectFactory);
     }
 
     @Override
@@ -105,6 +112,7 @@ public class PXMap implements GameObject {
         if (!character2.getStatusManager().isFreezed())
             character2.update();
 
+
         boolean borders1 = checkHorizontalBorders(character1);
         boolean borders2 = checkHorizontalBorders(character2);
 
@@ -114,6 +122,13 @@ public class PXMap implements GameObject {
     }
 
     private boolean checkHorizontalBorders(GameCharacter character) {
+
+        if (character.getStatusManager().makesEffect() || character.getEnemy().getStatusManager().makesEffect())
+            return false;
+
+        if (!screenScrollManager.nearTarget())
+            return false;
+
         if (character.getPos().x < BORDER_WIDTH) {
             character.getPos().x = BORDER_WIDTH;
             checkReflect(character);
@@ -230,5 +245,12 @@ public class PXMap implements GameObject {
             character1.getStatusManager().setFreeze(state);
         }
 
+    }
+
+    public void drawEffects(Canvas canvas) {
+        if (character1.getStatusManager().makesEffect())
+            character1.getEffectManager().draw(canvas, screenScrollManager.getScreenX(), screenScrollManager.getCX());
+        if (character2.getStatusManager().makesEffect())
+            character2.getEffectManager().draw(canvas, screenScrollManager.getScreenX(), screenScrollManager.getCX());
     }
 }

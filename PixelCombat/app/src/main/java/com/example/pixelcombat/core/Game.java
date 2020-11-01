@@ -14,6 +14,7 @@ import com.example.pixelcombat.exception.PixelCombatException;
 import com.example.pixelcombat.exception.general.PxNullPointerException;
 import com.example.pixelcombat.exception.parser.GameMessageParseException;
 import com.example.pixelcombat.factories.DustFactory;
+import com.example.pixelcombat.factories.EffectFactory;
 import com.example.pixelcombat.factories.ProjectileFactory;
 import com.example.pixelcombat.factories.SparkFactory;
 import com.example.pixelcombat.manager.ScreenScrollerManager;
@@ -29,6 +30,7 @@ import javax.inject.Inject;
 import lombok.Getter;
 
 public class Game implements Observer {
+
     @Getter
     private Context context;
     private ScreenScrollerManager screenScrollManager;
@@ -39,11 +41,12 @@ public class Game implements Observer {
     private DustFactory dustFactory;
     private ProjectileFactory projectileFactory;
     private SparkFactory sparkFactory;
+    private EffectFactory effectFactory;
     private ProjectileHitDetection projectileDetection;
 
     @Inject
     public Game(Context context, DustFactory dustFactory, SparkFactory sparkFactory,
-                ProjectileFactory projectileFactory) {
+                ProjectileFactory projectileFactory, EffectFactory effectFactory) {
         this.context = context;
         this.projectiles = new ArrayList<>();
         this.sparks = new ArrayList<>();
@@ -52,10 +55,12 @@ public class Game implements Observer {
         this.dustFactory = dustFactory;
         this.projectileFactory = projectileFactory;
         this.sparkFactory = sparkFactory;
+        this.effectFactory = effectFactory;
 
         this.sparkFactory.init();
         this.dustFactory.init();
         this.projectileFactory.init();
+        this.effectFactory.init();
     }
 
     public void init(PXMap map) {
@@ -63,6 +68,7 @@ public class Game implements Observer {
         this.screenScrollManager = map.getScreenScrollManager();
         this.projectileDetection = new ProjectileHitDetection(map.getCharacter1(), map.getCharacter2());
         this.map.registerGame(this);
+        this.map.initEffects(effectFactory);
     }
 
 
@@ -125,6 +131,9 @@ public class Game implements Observer {
         projectiles.forEach(x -> x.draw(canvas, screenX, screenY, map.getGameRect()));
         sparks.forEach(x -> x.draw(canvas, screenX, screenY, map.getGameRect()));
         dusts.forEach(x -> x.draw(canvas, screenX, screenY, map.getGameRect()));
+
+        map.drawEffects(canvas);
+
 
     }
 

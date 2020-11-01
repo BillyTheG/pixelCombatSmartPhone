@@ -24,6 +24,8 @@ public class ScreenScrollerManager implements Observer {
     private boolean shakeDirection = true;
     private float shake = 0f;
     private long shakeTimer = 0;
+    private float TOLERANT_DISTANCE = 50;
+
 
     @Getter
     private int CX;
@@ -58,11 +60,15 @@ public class ScreenScrollerManager implements Observer {
 
     public void update(GameCharacter player1, GameCharacter player2) {
         // helper variable for operations working with positions
-        Vector2d pos1 = player1.getPos();
-        Vector2d pos2 = player2.getPos();
 
-        float x = (pos1.x + pos2.x) / 2f + OFFSET_X;
-        float y = (pos1.y + pos2.y) / 2f - OFFSET_Y + GROUND_LINE;
+        Vector2d targetPos = checkPlayerState(player1, player2);
+
+        float targetPosX = targetPos.x;
+        float targetPosY = targetPos.y;
+
+
+        float x = targetPosX + OFFSET_X;
+        float y = targetPosY - OFFSET_Y + GROUND_LINE;
 
         if (target.x == 0f) {
             target.x = x;
@@ -127,6 +133,20 @@ public class ScreenScrollerManager implements Observer {
         lastFrame = System.currentTimeMillis();
     }
 
+    private Vector2d checkPlayerState(GameCharacter player1, GameCharacter player2) {
+        Vector2d pos1 = player1.getPos();
+        Vector2d pos2 = player2.getPos();
+
+        if (player1.getStatusManager().makesEffect() && player1.getPos().distance(player2.getPos()) < CX - OFFSET_X)
+            return new Vector2d(pos1.x, pos1.y);
+
+        if (player2.getStatusManager().makesEffect() && player1.getPos().distance(player2.getPos()) < CX - OFFSET_X)
+            return new Vector2d(pos2.x, pos2.y);
+
+
+        return new Vector2d((pos1.x + pos2.x) / 2f, (pos1.y + pos2.y) / 2f);
+    }
+
     private void updateVirtualScrollFactors() {
         // Virtuellen Bildverschiebung X
         // Cursor befindet sich in der ersten(linken) Bildschirmhaelfte
@@ -150,6 +170,10 @@ public class ScreenScrollerManager implements Observer {
         else {
             screenY = (int) target.y;
         }
+    }
+
+    public boolean nearTarget() {
+        return target.distance(pivot) < CX;
     }
 
 

@@ -34,6 +34,7 @@ public class KohakuSpecialAttack1 extends Attack {
                     if (isSwitcher()) {
                         character.notifyObservers(new GameMessage(MessageType.FREEZE, " ;" + character.getPlayer(), null, true));
                         character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_special_attack", null, true));
+                        character.getStatusManager().startEffect();
                         setSwitcher(false);
                     }
                     break;
@@ -46,6 +47,7 @@ public class KohakuSpecialAttack1 extends Attack {
                 case 5:
                     if (isSwitcher()) {
                         character.notifyObservers(new GameMessage(MessageType.FREEZE, " ;" + character.getPlayer(), null, false));
+                        character.getStatusManager().setEffect(false);
                         setSwitcher(false);
                     }
                     break;

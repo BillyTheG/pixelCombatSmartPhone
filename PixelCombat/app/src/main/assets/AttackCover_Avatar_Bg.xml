@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+    <type>AvatarBg</type>
+    <sprites>
+        <sequence airBool="false" airIndex="0" loopIndex="0" loops="true">
+            <img duration="20" key="0" x="-0.0066661835" y="-0.03999996">avatar_bg_effect_0.png</img>
+            <img duration="20" key="1" x="-0.010000229" y="-0.05000019">avatar_bg_effect_1.png</img>
+            <img duration="10" key="2" x="-0.030000687" y="-0.03999996">avatar_bg_effect_2.png</img>
+            <img duration="10" key="3" x="-0.040000916" y="-0.10999966">avatar_bg_effect_3.png</img>
+            <img duration="20" key="4" x="-0.020000458" y="-0.18999958">avatar_bg_effect_4.png</img>
+            <img duration="20" key="5" x="-0.010000229" y="-0.27000046">avatar_bg_effect_5.png</img>
+            <img duration="20" key="6" x="-0.030000687" y="-0.07999992">avatar_bg_effect_6.png</img>
+            <img duration="10" key="7" x="0.030000687" y="-0.069999695">avatar_bg_effect_7.png</img>
+            <img duration="20" key="8" x="0.049999237" y="-0.010000229">avatar_bg_effect_8.png</img>
+            <img duration="10" key="9" x="0.049999237" y="0.0">avatar_bg_effect_9.png</img>
+            <img duration="20" key="10" x="0.030000687" y="-0.05000019">avatar_bg_effect_10.png</img>
+            <img duration="20" key="11" x="-0.010000229" y="-0.05000019">avatar_bg_effect_11.png</img>
+            <img duration="10" key="12" x="-0.030000687" y="-0.03999996">avatar_bg_effect_12.png</img>
+            <img duration="10" key="13" x="-0.040000916" y="-0.10999966">avatar_bg_effect_13.png</img>
+            <img duration="20" key="14" x="-0.020000458" y="-0.18999958">avatar_bg_effect_14.png</img>
+            <img duration="20" key="15" x="-0.010000229" y="-0.27000046">avatar_bg_effect_15.png</img>
+            <img duration="20" key="16" x="-0.030000687" y="-0.07999992">avatar_bg_effect_16.png</img>
+            <img duration="10" key="17" x="0.030000687" y="-0.069999695">avatar_bg_effect_17.png</img>
+            <img duration="20" key="18" x="0.049999237" y="-0.010000229">avatar_bg_effect_18.png</img>
+            <img duration="10" key="19" x="0.049999237" y="0.0">avatar_bg_effect_19.png</img>
+            <img duration="20" key="20" x="0.030000687" y="-0.05000019">avatar_bg_effect_20.png</img>
+            <img duration="20" key="21" x="-0.010000229" y="-0.05000019">avatar_bg_effect_21.png</img>
+            <img duration="10" key="22" x="-0.030000687" y="-0.03999996">avatar_bg_effect_22.png</img>
+            <img duration="10" key="23" x="-0.040000916" y="-0.10999966">avatar_bg_effect_23.png</img>
+            <img duration="20" key="24" x="-0.020000458" y="-0.18999958">avatar_bg_effect_24.png</img>
+            <img duration="20" key="25" x="-0.010000229" y="-0.27000046">avatar_bg_effect_25.png</img>
+            <img duration="20" key="26" x="-0.030000687" y="-0.07999992">avatar_bg_effect_26.png</img>
+            <img duration="10" key="27" x="0.030000687" y="-0.069999695">avatar_bg_effect_27.png</img>
+            <img duration="20" key="28" x="0.049999237" y="-0.010000229">avatar_bg_effect_28.png</img>
+            <img duration="10" key="29" x="0.049999237" y="0.0">avatar_bg_effect_29.png</img>
+            <img duration="20" key="30" x="0.030000687" y="-0.05000019">avatar_bg_effect_30.png</img>
+            <img duration="20" key="31" x="-0.010000229" y="-0.05000019">avatar_bg_effect_31.png</img>
+            <img duration="10" key="32" x="-0.030000687" y="-0.03999996">avatar_bg_effect_32.png</img>
+            <img duration="10" key="33" x="-0.040000916" y="-0.10999966">avatar_bg_effect_33.png</img>
+            <img duration="20" key="34" x="-0.020000458" y="-0.18999958">avatar_bg_effect_34.png</img>
+            <img duration="20" key="35" x="-0.010000229" y="-0.27000046">avatar_bg_effect_35.png</img>
+            <img duration="20" key="36" x="-0.030000687" y="-0.07999992">avatar_bg_effect_36.png</img>
+            <img duration="10" key="37" x="0.030000687" y="-0.069999695">avatar_bg_effect_37.png</img>
+            <img duration="20" key="38" x="0.049999237" y="-0.010000229">avatar_bg_effect_38.png</img>
+            <img duration="10" key="39" x="0.049999237" y="0.0">avatar_bg_effect_39.png</img>
+            <img duration="20" key="40" x="0.030000687" y="-0.05000019">avatar_bg_effect_40.png</img>
+            <img duration="20" key="41" x="-0.010000229" y="-0.05000019">avatar_bg_effect_41.png</img>
+            <img duration="10" key="42" x="-0.030000687" y="-0.03999996">avatar_bg_effect_42.png</img>
+            <img duration="10" key="43" x="-0.040000916" y="-0.10999966">avatar_bg_effect_43.png</img>
+            <img duration="20" key="44" x="-0.020000458" y="-0.18999958">avatar_bg_effect_44.png</img>
+            <img duration="20" key="45" x="-0.010000229" y="-0.27000046">avatar_bg_effect_45.png</img>
+            <img duration="20" key="46" x="-0.030000687" y="-0.07999992">avatar_bg_effect_46.png</img>
+            <img duration="10" key="47" x="0.030000687" y="-0.069999695">avatar_bg_effect_47.png</img>
+            <img duration="20" key="48" x="0.049999237" y="-0.010000229">avatar_bg_effect_48.png</img>
+            <img duration="10" key="49" x="0.049999237" y="0.0">avatar_bg_effect_49.png</img>
+        </sequence>
+    </sprites>
+</character>

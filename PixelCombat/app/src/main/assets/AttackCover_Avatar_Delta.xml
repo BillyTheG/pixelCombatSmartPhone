@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+    <type>AvatarDelta</type>
+    <sprites>
+        <sequence airBool="false" airIndex="0" loopIndex="0" loops="true">
+            <img duration="20" key="0" x="-0.0066661835" y="-0.03999996">avatar_delta.png</img>
+        </sequence>
+    </sprites>
+</character>
