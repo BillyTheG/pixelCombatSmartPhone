@@ -98,17 +98,17 @@ public class DustFactory {
             case DustConfig.DUST_HARD_LAND_SIDE:
                 return new Dust(pictures.get("Dust_Hard_Land_Side"), times.get("Dust_Hard_Land_Side"), false, pos, right).register(soundManager);
             case DustConfig.KOHAKU_SAKURA1_DUST:
-                return new SakuraLeaf(pictures.get("Dust_Sakura1"), times.get("Dust_Sakura1"), pos, true, random.nextInt(21) + 5, 10).register(soundManager);
+                return new SakuraLeaf(pictures.get("Dust_Sakura1"), times.get("Dust_Sakura1"), pos, true, random.nextInt(21) + 5, 10, random.nextInt(5) + 1).register(soundManager);
             case DustConfig.KOHAKU_SAKURA2_DUST:
-                return new SakuraLeaf(pictures.get("Dust_Sakura2"), times.get("Dust_Sakura2"), pos, true, random.nextInt(21) + 5, 10).register(soundManager);
+                return new SakuraLeaf(pictures.get("Dust_Sakura2"), times.get("Dust_Sakura2"), pos, true, random.nextInt(21) + 5, 10, random.nextInt(5) + 1).register(soundManager);
             case DustConfig.KOHAKU_SAKURA3_DUST:
-                return new SakuraLeaf(pictures.get("Dust_Sakura3"), times.get("Dust_Sakura3"), pos, true, random.nextInt(21) + 5, 10).register(soundManager);
+                return new SakuraLeaf(pictures.get("Dust_Sakura3"), times.get("Dust_Sakura3"), pos, true, random.nextInt(21) + 5, 10, random.nextInt(5) + 1).register(soundManager);
             case DustConfig.KOHAKU_SAKURA4_DUST:
-                return new SakuraLeaf(pictures.get("Dust_Sakura4"), times.get("Dust_Sakura4"), pos, true, random.nextInt(21) + 5, 10).register(soundManager);
+                return new SakuraLeaf(pictures.get("Dust_Sakura4"), times.get("Dust_Sakura4"), pos, true, random.nextInt(21) + 5, 10, random.nextInt(5) + 1).register(soundManager);
             case DustConfig.KOHAKU_SAKURA5_DUST:
-                return new SakuraLeaf(pictures.get("Dust_Sakura5"), times.get("Dust_Sakura5"), pos, true, random.nextInt(21) + 5, 10).register(soundManager);
+                return new SakuraLeaf(pictures.get("Dust_Sakura5"), times.get("Dust_Sakura5"), pos, true, random.nextInt(21) + 5, 10, random.nextInt(5) + 1).register(soundManager);
             case DustConfig.KOHAKU_SAKURA6_DUST:
-                return new SakuraLeaf(pictures.get("Dust_Sakura6"), times.get("Dust_Sakura6"), pos, true, random.nextInt(21) + 5, 10).register(soundManager);
+                return new SakuraLeaf(pictures.get("Dust_Sakura6"), times.get("Dust_Sakura6"), pos, true, random.nextInt(21) + 5, 10, random.nextInt(5) + 1).register(soundManager);
             default:
                 break;
         }

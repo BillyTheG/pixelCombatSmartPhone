@@ -27,6 +27,7 @@ import com.example.pixelcombat.core.message.GameMessage;
 import com.example.pixelcombat.enums.DrawLevel;
 import com.example.pixelcombat.enums.EnemyConfig;
 import com.example.pixelcombat.enums.MessageType;
+import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.exception.PixelCombatException;
 import com.example.pixelcombat.factories.EffectFactory;
 import com.example.pixelcombat.manager.StatusManager;
@@ -181,6 +182,11 @@ public class Kohaku implements GameCharacter, HasAI {
     @Override
     public void setAIManager(AIManager aiManager) {
         this.kohakuAIManager = aiManager;
-
     }
+
+    @Override
+    public float getScaleFactor() {
+        return ScreenProperty.KOHAKU_SCALE;
+    }
+
 }

@@ -21,7 +21,7 @@ public class RuffyEffectManager extends EffectManager {
 
 
     @Override
-    protected Effect checkAttacks() {
+    public Effect checkAttacks() {
         switch (character.getAttackManager().getAttackStatus()) {
             case SPECIALATTACK1:
             default:

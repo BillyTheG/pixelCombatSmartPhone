@@ -18,10 +18,14 @@ public class Darkening {
         lastFrame = System.currentTimeMillis();
     }
 
-    public void update() {
-        alpha += GAINS;
+    public void update(int factor) {
+
+        alpha += factor * GAINS;
         if (alpha > 255) {
             alpha = 255;
+        }
+        if (alpha < 0) {
+            alpha = 0;
         }
     }
 

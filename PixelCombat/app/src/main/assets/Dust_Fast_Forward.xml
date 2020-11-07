@@ -3,15 +3,15 @@
     <type>FastForward</type>
     <sprites>
         <sequence airBool="false" airIndex="0" loopIndex="0" loops="false">
-            <img duration="30" key="0" x="-1.4799995" y="-1.2700005">dust_fast_forward_0.png</img>
-            <img duration="30" key="1" x="-1.5499992" y="-1.4899998">dust_fast_forward_1.png</img>
-            <img duration="20" key="2" x="-1.6499996" y="-1.5699997">dust_fast_forward_2.png</img>
-            <img duration="30" key="3" x="-1.6800003" y="-1.5">dust_fast_forward_3.png</img>
-            <img duration="30" key="4" x="-1.7800007" y="-1.4899998">dust_fast_forward_4.png</img>
-            <img duration="20" key="5" x="-1.9300003" y="-1.46">dust_fast_forward_5.png</img>
-            <img duration="20" key="6" x="-1.9699993" y="-1.3299999">dust_fast_forward_6.png</img>
-            <img duration="20" key="7" x="-1.9200001" y="-1.3699999">dust_fast_forward_7.png</img>
-            <img duration="20" key="8" x="-2.42" y="-0.5699997">dust_fast_forward_8.png</img>
+            <img duration="60" key="0" x="-1.4799995" y="-1.2700005">dust_fast_forward_0.png</img>
+            <img duration="60" key="1" x="-1.5499992" y="-1.4899998">dust_fast_forward_1.png</img>
+            <img duration="60" key="2" x="-1.6499996" y="-1.5699997">dust_fast_forward_2.png</img>
+            <img duration="60" key="3" x="-1.6800003" y="-1.5">dust_fast_forward_3.png</img>
+            <img duration="60" key="4" x="-1.7800007" y="-1.4899998">dust_fast_forward_4.png</img>
+            <img duration="60" key="5" x="-1.9300003" y="-1.46">dust_fast_forward_5.png</img>
+            <img duration="60" key="6" x="-1.9699993" y="-1.3299999">dust_fast_forward_6.png</img>
+            <img duration="60" key="7" x="-1.9200001" y="-1.3699999">dust_fast_forward_7.png</img>
+            <img duration="60" key="8" x="-2.42" y="-0.5699997">dust_fast_forward_8.png</img>
         </sequence>
     </sprites>
 </character>

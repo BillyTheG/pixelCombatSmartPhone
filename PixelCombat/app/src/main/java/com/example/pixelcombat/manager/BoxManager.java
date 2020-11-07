@@ -100,7 +100,7 @@ public abstract class BoxManager {
     }
 
     public void loadParsedBoxes() throws Exception {
-        parser = new BoxParser(character.getContext(), getFileName());
+        parser = new BoxParser(character.getContext(), getFileName(), character.getScaleFactor());
         parser.parseXMLData();
         boxes = parser.getBoxes();
         init();

@@ -1,9 +1,9 @@
 package com.example.pixelcombat.animation.util;
 
-import com.example.pixelcombat.GameObject;
+import com.example.pixelcombat.effects.Effect;
 
 public interface ICanZoom extends ICanChange {
 
-    void zoom(GameObject object);
+    void zoom(Effect effect);
 
 }

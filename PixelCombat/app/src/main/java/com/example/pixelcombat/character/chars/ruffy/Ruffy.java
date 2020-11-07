@@ -21,6 +21,7 @@ import com.example.pixelcombat.core.config.EffectConfig;
 import com.example.pixelcombat.core.config.ViewConfig;
 import com.example.pixelcombat.core.message.GameMessage;
 import com.example.pixelcombat.enums.DrawLevel;
+import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.exception.PixelCombatException;
 import com.example.pixelcombat.factories.EffectFactory;
 import com.example.pixelcombat.manager.StatusManager;
@@ -155,5 +156,10 @@ public class Ruffy implements GameCharacter {
         for (Observer obs : observer) {
             obs.processMessage(message);
         }
+    }
+
+    @Override
+    public float getScaleFactor() {
+        return ScreenProperty.GENERAL_SCALE;
     }
 }

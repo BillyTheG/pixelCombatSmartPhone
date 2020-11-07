@@ -6,6 +6,7 @@ import android.util.Log;
 import com.example.pixelcombat.core.config.EffectConfig;
 import com.example.pixelcombat.effects.Effect;
 import com.example.pixelcombat.effects.impl.AvatarBgEffect;
+import com.example.pixelcombat.effects.impl.BgArtworkEffect;
 import com.example.pixelcombat.effects.impl.ProfileEffect;
 import com.example.pixelcombat.math.Vector2d;
 import com.example.pixelcombat.utils.LocatedBitmap;
@@ -40,6 +41,7 @@ public class EffectFactory {
             sparkNames.add("AttackCover_Avatar_Bg.xml");
             sparkNames.add("AttackCover_Avatar_Delta.xml");
             sparkNames.add("AttackCover_Avatar_Profile1_Kohaku.xml");
+            sparkNames.add("AttackCover_Battu_Jutsu_Kohaku.xml");
 
 
             for (String spark : sparkNames) {
@@ -75,6 +77,8 @@ public class EffectFactory {
         switch (profileName) {
             case EffectConfig.AVATAR_COVER_PROFILE1_KOHAKU:
                 return new ProfileEffect(pictures.get(EffectConfig.AVATAR_COVER_PROFILE1_KOHAKU), times.get(EffectConfig.AVATAR_COVER_PROFILE1_KOHAKU), new Vector2d(-330, 0), true);
+            case EffectConfig.AVATAR_COVER_BATTU_JUTSU_KOHAKU:
+                return new BgArtworkEffect(pictures.get(EffectConfig.AVATAR_COVER_BATTU_JUTSU_KOHAKU), times.get(EffectConfig.AVATAR_COVER_BATTU_JUTSU_KOHAKU), new Vector2d(0, 0));
             default:
                 break;
         }

@@ -136,7 +136,7 @@ public class Game implements Observer {
         sparks.forEach(x -> x.draw(canvas, screenX, screenY, map.getGameRect()));
         dusts.forEach(x -> x.draw(canvas, screenX, screenY, map.getGameRect()));
 
-        map.drawEffects(canvas);
+        map.drawEffects(canvas, map.getGameRect(), false);
 
 
     }
@@ -169,9 +169,6 @@ public class Game implements Observer {
                     break;
                 case DARKENING:
                     map.setDarkeningActivated(gameMessage.isSwitcher());
-                    if (map.isDarkeningActivated()) {
-                        map.getDarkening().reset();
-                    }
                     break;
                 default:
                     break;

@@ -1,11 +1,11 @@
 package com.example.pixelcombat.effects;
 
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Rect;
 
 import com.example.pixelcombat.GameObject;
 import com.example.pixelcombat.effects.animation.EffectAnimation;
+import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.math.Vector2d;
 import com.example.pixelcombat.utils.LocatedBitmap;
 
@@ -17,10 +17,12 @@ public abstract class Effect implements GameObject {
     protected final boolean scale;
     protected float xStartPos = 0;
     protected float yStartPos = 0;
+    protected boolean artWork = false;
 
-    public Effect(ArrayList<LocatedBitmap> images, ArrayList<Float> times, Vector2d pos, boolean scale) {
-        this.animation = new EffectAnimation(images, times, false, 0, scale);
+    public Effect(ArrayList<LocatedBitmap> images, ArrayList<Float> times, Vector2d pos, boolean artWork, boolean scale) {
+        this.animation = new EffectAnimation(images, times, 0, scale);
         this.pos = pos;
+        this.artWork = artWork;
 
         if (scale) {
             pos.x *= animation.getScaleFactor();
@@ -34,10 +36,6 @@ public abstract class Effect implements GameObject {
 
     }
 
-    @Override
-    public void draw(Canvas canvas, int screenX, int screenY, Rect gameRect) {
-
-    }
 
     public void update() {
         animation.update();
@@ -75,8 +73,21 @@ public abstract class Effect implements GameObject {
         return 0;
     }
 
+    @Override
+    public float getScaleFactor() {
+        return ScreenProperty.GENERAL_SCALE;
+    }
 
-    public Bitmap getCurrentBitmap() {
-        return animation.getCurrentBitmap();
+
+    public void setScaleFactor(float scaleFactor) {
+        this.animation.setScaleFactor(scaleFactor);
+    }
+
+    public Bitmap getCurrentBitmap(Rect gameRect) {
+        return animation.getCurrentBitmap(gameRect);
+    }
+
+    public boolean isArtWork() {
+        return artWork;
     }
 }

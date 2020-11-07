@@ -90,6 +90,10 @@ public class SoundManager implements Observer {
         soundsIds.put("kohaku_demon_aura", soundPool.load(context, R.raw.kohaku_demon_aura, 1));
         soundsIds.put("kohaku_dash_sonic", soundPool.load(context, R.raw.kohaku_dash_sonic, 1));
         soundsIds.put("hard_ground_hit", soundPool.load(context, R.raw.hard_ground_hit, 1));
+        soundsIds.put("kohaku_batto_jutsu_laughter", soundPool.load(context, R.raw.kohaku_batto_jutsu_laughter, 1));
+        soundsIds.put("kohaku_batto_jutsu_start", soundPool.load(context, R.raw.kohaku_batto_jutsu_start, 1));
+        soundsIds.put("kohaku_batto_jutsu_ogi", soundPool.load(context, R.raw.kohaku_batto_jutsu_ogi, 1));
+        soundsIds.put("kohaku_batto_jutsu_dash", soundPool.load(context, R.raw.kohaku_batto_jutsu_dash, 1));
 
     }
 
