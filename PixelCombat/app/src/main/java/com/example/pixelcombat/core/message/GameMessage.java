@@ -16,7 +16,7 @@ public class GameMessage {
 
     private Vector2d pos;
 
-    private boolean isRight;
+    private boolean switcher;
 
 
 }

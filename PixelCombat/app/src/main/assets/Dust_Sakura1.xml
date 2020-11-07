@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+    <type>SparkTem</type>
+    <sprites>
+        <sequence airBool="false" airIndex="0" loopIndex="0" loops="true">
+            <img duration="30" key="0" x="0.049999237" y="0.0">dust_sakura5_0.png</img>
+            <img duration="30" key="1" x="0.010000229" y="-0.010000229">dust_sakura5_1.png</img>
+            <img duration="50" key="2" x="0.010000229" y="-0.020000458">dust_sakura5_2.png</img>
+            <img duration="30" key="3" x="0.030000687" y="-0.010000229">dust_sakura5_3.png</img>
+            <img duration="50" key="4" x="0.020000458" y="-0.006667137">dust_sakura5_4.png</img>
+            <img duration="30" key="5" x="0.010000229" y="-0.006667137">dust_sakura5_5.png</img>
+            <img duration="50" key="6" x="0.0066661835" y="-0.010000229">dust_sakura5_6.png</img>
+            <img duration="50" key="7" x="0.0066661835" y="-0.020000458">dust_sakura5_7.png</img>
+            <img duration="50" key="8" x="0.010000229" y="-0.03999996">dust_sakura5_8.png</img>
+            <img duration="50" key="9" x="0.020000458" y="-0.06000042">dust_sakura5_9.png</img>
+            <img duration="50" key="10" x="0.10000038" y="-0.069999695">dust_sakura5_10.png</img>
+        </sequence>
+    </sprites>
+</character>

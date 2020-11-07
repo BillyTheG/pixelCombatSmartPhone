@@ -44,6 +44,7 @@ public class Game implements Observer {
     private EffectFactory effectFactory;
     private ProjectileHitDetection projectileDetection;
 
+
     @Inject
     public Game(Context context, DustFactory dustFactory, SparkFactory sparkFactory,
                 ProjectileFactory projectileFactory, EffectFactory effectFactory) {
@@ -107,6 +108,7 @@ public class Game implements Observer {
         removeFinishedObjects(dusts);
 
         projectileDetection.interact(projectiles);
+
     }
 
 
@@ -128,6 +130,8 @@ public class Game implements Observer {
         int screenY = screenScrollManager.getScreenY() - screenScrollManager.getCY();
 
         map.draw(canvas, 0, 0, null);
+
+
         projectiles.forEach(x -> x.draw(canvas, screenX, screenY, map.getGameRect()));
         sparks.forEach(x -> x.draw(canvas, screenX, screenY, map.getGameRect()));
         dusts.forEach(x -> x.draw(canvas, screenX, screenY, map.getGameRect()));
@@ -147,7 +151,7 @@ public class Game implements Observer {
 
             String[] inputs = gameMessage.getGameObject().split(";");
             String gameObject = inputs[0];
-            boolean state = gameMessage.isRight();
+            boolean state = gameMessage.isSwitcher();
             String owner = inputs[1];
 
             switch (type) {
@@ -162,6 +166,12 @@ public class Game implements Observer {
                     break;
                 case SPARK_CREATION:
                     sparks.add(sparkFactory.createSpark(gameObject, gameMessage.getPos(), state));
+                    break;
+                case DARKENING:
+                    map.setDarkeningActivated(gameMessage.isSwitcher());
+                    if (map.isDarkeningActivated()) {
+                        map.getDarkening().reset();
+                    }
                     break;
                 default:
                     break;

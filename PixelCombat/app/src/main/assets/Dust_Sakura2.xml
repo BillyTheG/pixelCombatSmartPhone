@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+    <type>SparkTem</type>
+    <sprites>
+        <sequence airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="25" key="0" x="0.010000229" y="-0.020000458">dust_sakura8_0.png</img>
+            <img duration="25" key="1" x="0.010000229" y="0.010000229">dust_sakura8_1.png</img>
+            <img duration="25" key="2" x="-0.020000458" y="0.010000229">dust_sakura8_2.png</img>
+            <img duration="25" key="3" x="-0.010000229" y="-0.020000458">dust_sakura8_3.png</img>
+            <img duration="25" key="4" x="0.020000458" y="-0.010000229">dust_sakura8_4.png</img>
+            <img duration="35" key="5" x="0.049999237" y="0.0">dust_sakura8_5.png</img>
+            <img duration="25" key="6" x="0.0" y="-0.010000229">dust_sakura8_6.png</img>
+            <img duration="25" key="7" x="0.010000229" y="-0.013333321">dust_sakura8_7.png</img>
+            <img duration="25" key="8" x="0.013334274" y="-0.010000229">dust_sakura8_8.png</img>
+            <img duration="35" key="9" x="0.010000229" y="0.010000229">dust_sakura8_9.png</img>
+            <img duration="25" key="10" x="0.020000458" y="-0.010000229">dust_sakura8_10.png</img>
+            <img duration="25" key="11" x="0.020000458" y="-0.010000229">dust_sakura8_11.png</img>
+            <img duration="25" key="12" x="0.010000229" y="0.010000229">dust_sakura8_12.png</img>
+            <img duration="25" key="13" x="0.010000229" y="0.0">dust_sakura8_13.png</img>
+            <img duration="25" key="14" x="-0.010000229" y="-0.010000229">dust_sakura8_14.png</img>
+            <img duration="35" key="15" x="0.0" y="0.010000229">dust_sakura8_15.png</img>
+            <img duration="25" key="16" x="0.010000229" y="0.010000229">dust_sakura8_16.png</img>
+            <img duration="25" key="17" x="0.010000229" y="-0.010000229">dust_sakura8_17.png</img>
+            <img duration="25" key="18" x="0.020000458" y="0.0">dust_sakura8_18.png</img>
+            <img duration="35" key="19" x="0.010000229" y="-0.020000458">dust_sakura8_19.png</img>
+        </sequence>
+    </sprites>
+</character>

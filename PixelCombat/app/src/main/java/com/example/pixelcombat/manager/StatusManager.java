@@ -7,6 +7,7 @@ import com.example.pixelcombat.character.status.MovementStatus;
 import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.exception.PixelCombatException;
 
+import lombok.Getter;
 import lombok.Setter;
 
 
@@ -20,6 +21,10 @@ public class StatusManager {
     private boolean freeze = false;
     @Setter
     private boolean effect = false;
+
+    @Setter
+    @Getter
+    private boolean focused = false;
 
     private final GameCharacter character;
 
@@ -173,6 +178,9 @@ public class StatusManager {
             case DEFENDING:
                 character.getDefendManager().defend();
                 break;
+            case AIR_DEFENDING:
+                character.getDefendManager().stopAirDefend();
+                break;
             case DEFENDSTOP:
                 character.getDefendManager().stopDefend();
                 break;
@@ -214,8 +222,7 @@ public class StatusManager {
     }
 
     public boolean canNotDefend() {
-        return isOnAir() ||
-                notCombatReady();
+        return notCombatReady();
     }
 
     public boolean canNotDash() {

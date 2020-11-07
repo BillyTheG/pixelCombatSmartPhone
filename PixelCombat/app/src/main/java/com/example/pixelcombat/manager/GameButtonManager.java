@@ -13,6 +13,8 @@ import android.widget.RelativeLayout;
 import com.example.pixelcombat.GamePanel;
 import com.example.pixelcombat.R;
 import com.example.pixelcombat.character.status.AttackStatus;
+import com.example.pixelcombat.core.config.AIConfig;
+import com.example.pixelcombat.enums.EnemyConfig;
 import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.utils.DoubleClickListener;
 
@@ -212,10 +214,10 @@ public class GameButtonManager implements View.OnClickListener, View.OnTouchList
                     gamePanel.getPlayer1().getController().defend(false, true);
                 break;
             case 8:
-                gamePanel.getPlayer2().getController().defend(false, false);
+                AIConfig.ENEMY_CONFIG = EnemyConfig.VERSUS_IDLE;
                 break;
             case 9:
-                gamePanel.getPlayer2().getController().move(false, true);
+                AIConfig.ENEMY_CONFIG = EnemyConfig.VERSUS_AI;
                 break;
 
             default:
@@ -248,14 +250,6 @@ public class GameButtonManager implements View.OnClickListener, View.OnTouchList
             case 6:
                 gamePanel.getPlayer1().getController().jump(false, true);
                 break;
-            case 8:
-                gamePanel.getPlayer2().getController().defend(true, false);
-                break;
-            case 9:
-                gamePanel.getPlayer2().getController().move(true, true);
-                break;
-
-
             default:
                 break;
         }

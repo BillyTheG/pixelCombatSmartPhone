@@ -2,8 +2,8 @@ package com.example.pixelcombat.character.chars.kohaku.attacks;
 
 import android.util.Log;
 
-import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.character.attack.Attack;
+import com.example.pixelcombat.character.chars.kohaku.Kohaku;
 import com.example.pixelcombat.character.status.ActionStatus;
 import com.example.pixelcombat.character.status.GlobalStatus;
 import com.example.pixelcombat.core.config.DustConfig;
@@ -16,8 +16,11 @@ import com.example.pixelcombat.math.Vector2d;
 public class KohakuSpecialAttack2 extends Attack {
 
 
-    public KohakuSpecialAttack2(GameCharacter character, int id) {
+    private final Kohaku kohaku;
+
+    public KohakuSpecialAttack2(Kohaku character, int id) {
         super(character, id);
+        this.kohaku = character;
     }
 
     /**
@@ -29,20 +32,43 @@ public class KohakuSpecialAttack2 extends Attack {
     public void process() {
         try {
             switch (character.getViewManager().getFrameIndex()) {
+                case 0:
+                    if (isSwitcher()) {
+                        character.getStatusManager().setFocused(true);
+                        character.notifyObservers(new GameMessage(MessageType.FREEZE, " ;" + character.getPlayer(), null, true));
+                        character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_special_attack_signal", null, true));
+                        character.notifyObservers(new GameMessage(MessageType.DARKENING, "test;1", null, true));
+                        setSwitcher(false);
+                    }
+                    break;
                 case 2:
                     if (!isSwitcher()) {
+                        character.getStatusManager().startEffect();
+                        kohaku.getSakuraFactory().generate();
                         character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_sword_out", null, true));
                         setSwitcher(true);
                     }
                     break;
-                case 0:
+                case 3:
                     if (isSwitcher()) {
-                        character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_special_attack", null, true));
+                        character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_demon_aura", null, true));
+                        character.notifyObservers(new GameMessage(MessageType.DUST_CREATION, DustConfig.KOHAKU_SPECIAL_ATTACK2_AURA + ";test;",
+                                new Vector2d(character.getPos().x, character.getPos().y), character.isRight()));
                         setSwitcher(false);
+                    }
+                    break;
+                case 4:
+                    if (!isSwitcher()) {
+                        character.getStatusManager().setEffect(false);
+                        character.getStatusManager().setFocused(false);
+                        character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_special_attack2", null, true));
+                        setSwitcher(true);
                     }
                     break;
                 case 6:
                     if (isSwitcher()) {
+                        character.notifyObservers(new GameMessage(MessageType.DARKENING, "test;1", null, false));
+                        character.notifyObservers(new GameMessage(MessageType.FREEZE, " ;" + character.getPlayer(), null, false));
                         character.notifyObservers(new GameMessage(MessageType.DUST_CREATION, DustConfig.KOHAKU_SPECIAL_ATTACK_SPARK + ";test;",
                                 new Vector2d(character.getPos().x - getCharacter().getDirection() * 100, character.getPos().y), character.isRight()));
 

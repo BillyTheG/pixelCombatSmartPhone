@@ -110,12 +110,12 @@ public class HitManager {
 
     public boolean canDefend(GameCharacter attacker, Attack attack) throws PixelCombatException {
         if ((!isNotHittable()) && (attacker.isRight())) {
-            if ((!character.isRight()) && (character.getStatusManager().isDefending())) {
+            if ((!character.isRight()) && (character.getStatusManager().isDefending() || character.getStatusManager().isAirDefending())) {
                 return defend(attacker, attack);
             }
         }
         if ((!isNotHittable()) && (!attacker.isRight())) {
-            if ((character.isRight()) && (character.getStatusManager().isDefending())) {
+            if ((character.isRight()) && (character.getStatusManager().isDefending() || character.getStatusManager().isAirDefending())) {
                 return defend(attacker, attack);
             }
         }

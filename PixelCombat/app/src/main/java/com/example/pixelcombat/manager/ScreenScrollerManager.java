@@ -8,6 +8,7 @@ import com.example.pixelcombat.math.Vector2d;
 import com.example.pixelcombat.observer.Observer;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import static com.example.pixelcombat.enums.ScreenProperty.GROUND_LINE;
 import static com.example.pixelcombat.enums.ScreenProperty.OFFSET_X;
@@ -24,7 +25,7 @@ public class ScreenScrollerManager implements Observer {
     private boolean shakeDirection = true;
     private float shake = 0f;
     private long shakeTimer = 0;
-    private float TOLERANT_DISTANCE = 50;
+    private float TOLERANT_DISTANCE = 30;
 
 
     @Getter
@@ -39,10 +40,15 @@ public class ScreenScrollerManager implements Observer {
     private Vector2d pivot;
     @Getter
     private Vector2d target;
+    @Getter
+    private Vector2d lastTarget;
     private PXMap map;
     private int levelMaxX;
     private int levelMaxY;
     private long lastFrame;
+    @Getter
+    @Setter
+    private boolean oneCharacterWasFocused = false;
 
 
     public void init(PXMap map) {
@@ -53,6 +59,7 @@ public class ScreenScrollerManager implements Observer {
         levelMaxX = map.getLength();
         levelMaxY = -map.getDeltaY();
         target = new Vector2d();
+        lastTarget = new Vector2d();
         pivot = new Vector2d();
         lastFrame = System.currentTimeMillis();
     }
@@ -84,6 +91,8 @@ public class ScreenScrollerManager implements Observer {
             return;
         }
 
+        int factor = (oneCharacterWasFocused) ? 2 : 1;
+
         float dir_x = Math.signum(x - target.x);
         // Bringe den Cursor auf die Mitte falls Target schon erreicht
         // (Juristierung)
@@ -91,7 +100,7 @@ public class ScreenScrollerManager implements Observer {
             target.x = x;
         } else { // Bewege den Cursor zur neuen Mitte des Bildschirs
             if ((target.x >= x && dir_x < 0f) || (target.x <= x && dir_x > 0f)) {
-                target.x += dir_x * CAMERA_X_SPEED;
+                target.x += dir_x * CAMERA_X_SPEED * factor;
             }
             if (dir_x < 0f && target.x <= x)
                 target.x = x;
@@ -112,7 +121,7 @@ public class ScreenScrollerManager implements Observer {
             target.y = y;
         } else {  // Bewege den Cursor zur neuen Mitte des Bildschirs
             if ((target.y >= y && dir_y < 0f) || (target.y <= y && dir_y > 0f)) {
-                target.y += dir_y * CAMERA_Y_SPEED;
+                target.y += dir_y * CAMERA_Y_SPEED * factor;
                 if (dir_y < 0f && target.y <= y)
                     target.y = y;
                 if (dir_y > 0f && target.y >= y)
@@ -137,14 +146,63 @@ public class ScreenScrollerManager implements Observer {
         Vector2d pos1 = player1.getPos();
         Vector2d pos2 = player2.getPos();
 
-        if (player1.getStatusManager().makesEffect() && player1.getPos().distance(player2.getPos()) < CX - OFFSET_X)
+        Vector2d middlePoint = new Vector2d((pos1.x + pos2.x) / 2f, (pos1.y + pos2.y) / 2f);
+
+
+        if (player1.getStatusManager().isFocused()) {
+            if (!oneCharacterWasFocused) {
+
+                lastTarget.x = middlePoint.x;
+                lastTarget.y = middlePoint.y;
+
+                if (lastTarget.x < CX - OFFSET_X)
+                    lastTarget.x = CX - OFFSET_X;
+                if (lastTarget.x > levelMaxX - CX - OFFSET_X)
+                    lastTarget.x = levelMaxX - CX - OFFSET_X;
+
+                if (lastTarget.y < -map.getDeltaY() + CY)
+                    lastTarget.y = -map.getDeltaY() + CY;
+                if (lastTarget.y > SCREEN_HEIGHT - GROUND_LINE - CY)
+                    lastTarget.y = SCREEN_HEIGHT - GROUND_LINE;
+
+
+            }
+            oneCharacterWasFocused = true;
             return new Vector2d(pos1.x, pos1.y);
+        }
 
-        if (player2.getStatusManager().makesEffect() && player1.getPos().distance(player2.getPos()) < CX - OFFSET_X)
+        if (player2.getStatusManager().isFocused()) {
+            if (!oneCharacterWasFocused) {
+
+                lastTarget.x = middlePoint.x;
+                lastTarget.y = middlePoint.y;
+
+                if (lastTarget.x < CX - OFFSET_X)
+                    lastTarget.x = CX - OFFSET_X;
+                if (lastTarget.x > levelMaxX - CX - OFFSET_X)
+                    lastTarget.x = levelMaxX - CX - OFFSET_X;
+
+                if (lastTarget.y < -map.getDeltaY() + CY)
+                    lastTarget.y = -map.getDeltaY() + CY;
+                if (lastTarget.y > SCREEN_HEIGHT - GROUND_LINE - CY)
+                    lastTarget.y = SCREEN_HEIGHT - GROUND_LINE;
+
+            }
+
+            oneCharacterWasFocused = true;
             return new Vector2d(pos2.x, pos2.y);
+        }
+
+        Vector2d targetN = new Vector2d(target.x - OFFSET_X, target.y + OFFSET_Y + GROUND_LINE);
+
+        if (oneCharacterWasFocused && targetN.distance(lastTarget) > TOLERANT_DISTANCE) {
+            return lastTarget;
+        } else {
+            oneCharacterWasFocused = false;
+        }
 
 
-        return new Vector2d((pos1.x + pos2.x) / 2f, (pos1.y + pos2.y) / 2f);
+        return middlePoint;
     }
 
     private void updateVirtualScrollFactors() {
@@ -172,9 +230,6 @@ public class ScreenScrollerManager implements Observer {
         }
     }
 
-    public boolean nearTarget() {
-        return target.distance(pivot) < CX;
-    }
 
 
     // Shaker

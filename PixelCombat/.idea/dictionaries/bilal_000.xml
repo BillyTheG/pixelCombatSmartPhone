@@ -2,6 +2,8 @@
   <dictionary name="bilal_000">
     <words>
       <w>airattack</w>
+      <w>airdefend</w>
+      <w>battto</w>
       <w>bools</w>
       <w>decrouch</w>
       <w>decrouching</w>
@@ -15,6 +17,7 @@
       <w>jumpfall</w>
       <w>jumprecover</w>
       <w>jumpstart</w>
+      <w>jutsu</w>
       <w>knockback</w>
       <w>knockbacked</w>
       <w>knockbackfall</w>
@@ -26,6 +29,7 @@
       <w>onground</w>
       <w>retreatstop</w>
       <w>ruffy</w>
+      <w>sakura</w>
       <w>specialattack</w>
     </words>
   </dictionary>

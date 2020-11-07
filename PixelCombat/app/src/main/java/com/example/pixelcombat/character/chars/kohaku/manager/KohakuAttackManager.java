@@ -20,8 +20,11 @@ import com.example.pixelcombat.manager.actionManager.AttackManager;
 
 public class KohakuAttackManager extends AttackManager {
 
+    private Kohaku kohaku;
+
     public KohakuAttackManager(Kohaku character) {
         super(character);
+        this.kohaku = character;
     }
 
 
@@ -29,7 +32,7 @@ public class KohakuAttackManager extends AttackManager {
     public void init() {
         this.getAttacks().put("attack1", new KohakuAttack1(getCharacter(), 0));
         this.getAttacks().put("specialAttack1", new KohakuSpecialAttack1(getCharacter(), 1));
-        this.getAttacks().put("specialAttack2", new KohakuSpecialAttack2(getCharacter(), 2));
+        this.getAttacks().put("specialAttack2", new KohakuSpecialAttack2(kohaku, 2));
         this.getAttacks().put("specialAttack3", new KohakuSpecialAttack3(getCharacter(), 3));
         this.getAttacks().put("attack2", new KohakuAttack2(getCharacter(), 4));
         this.getAttacks().put("attack3", new KohakuAttack3(getCharacter(), 5));

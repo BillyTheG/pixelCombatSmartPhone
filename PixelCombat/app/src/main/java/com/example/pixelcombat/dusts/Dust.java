@@ -22,8 +22,8 @@ public class Dust implements GameObject, IsFinishable, Observable {
     private boolean isRight;
     private Observer observer;
 
-    public Dust(ArrayList<LocatedBitmap> images, ArrayList<Float> times, Vector2d pos, boolean isRight) {
-        this.animation = new Animation(images, times, false, 0);
+    public Dust(ArrayList<LocatedBitmap> images, ArrayList<Float> times, boolean loops, Vector2d pos, boolean isRight) {
+        this.animation = new Animation(images, times, loops, 0);
         this.pos = pos;
         this.animation.play();
         this.isRight = isRight;

@@ -58,6 +58,8 @@ public abstract class BoxManager {
     public final int AIRATTACK5 = 35;
     public final int AIRATTACK6 = 36;
 
+    public final int AIRDEFEND = 37;
+
     public int currentAnimation;
     public BoundingRectangle currentColBox;
     @Getter
@@ -124,7 +126,7 @@ public abstract class BoxManager {
                 updateBoxSeq(MOVE, "move");
                 break;
             case MOVESWITCH:
-                updateBoxSeq(MOVE, "moveSwitch");
+                updateBoxSeq(MOVESWITCH, "moveSwitch");
                 break;
             case JUMPSTART:
                 updateBoxSeq(JUMPING, "jumpStart");
@@ -218,6 +220,9 @@ public abstract class BoxManager {
                 break;
             case RETREAT:
                 updateBoxSeq(RETREAT, "retreat");
+                break;
+            case AIRDEFEND:
+                updateBoxSeq(AIRDEFEND, "airDefend");
                 break;
             case RETREATSTOP:
                 updateBoxSeq(RETREATSTOP, "retreatStop");

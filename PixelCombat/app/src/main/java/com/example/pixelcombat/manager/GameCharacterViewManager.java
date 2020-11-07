@@ -60,6 +60,8 @@ public abstract class GameCharacterViewManager extends ObjectViewManager<GameCha
     public final int AIRATTACK4 = 34;
     public final int AIRATTACK5 = 35;
     public final int AIRATTACK6 = 36;
+    public final int AIRDEFEND = 37;
+
 
     public final int DEAD = 99;
     @Getter
@@ -119,6 +121,7 @@ public abstract class GameCharacterViewManager extends ObjectViewManager<GameCha
         animations.add(new Animation(images.get("airAttack4"), times.get(AIRATTACK4), loop.get(AIRATTACK4), loopIndices.get(AIRATTACK4)));
         animations.add(new Animation(images.get("airAttack5"), times.get(AIRATTACK5), loop.get(AIRATTACK5), loopIndices.get(AIRATTACK5)));
         animations.add(new Animation(images.get("airAttack6"), times.get(AIRATTACK6), loop.get(AIRATTACK6), loopIndices.get(AIRATTACK6)));
+        animations.add(new Animation(images.get("airDefend"), times.get(AIRDEFEND), loop.get(AIRDEFEND), loopIndices.get(AIRDEFEND)));
 
         loadMoreImages(animations);
 
@@ -228,6 +231,8 @@ public abstract class GameCharacterViewManager extends ObjectViewManager<GameCha
                         return DECROUCH;
                     case DEFENDING:
                         return DEFEND;
+                    case AIR_DEFENDING:
+                        return AIRDEFEND;
                     case DEFENDSTOP:
                         return DEFENDSTOP;
                     case RETREATING:

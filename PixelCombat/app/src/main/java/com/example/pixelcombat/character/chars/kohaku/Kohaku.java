@@ -17,12 +17,15 @@ import com.example.pixelcombat.character.chars.kohaku.manager.KohakuEffectManage
 import com.example.pixelcombat.character.chars.kohaku.manager.KohakuJumpManager;
 import com.example.pixelcombat.character.chars.kohaku.manager.KohakuMoveManager;
 import com.example.pixelcombat.character.chars.kohaku.manager.KohakuViewManager;
+import com.example.pixelcombat.character.chars.kohaku.special.SakuraFactory;
 import com.example.pixelcombat.character.controller.CharacterController;
 import com.example.pixelcombat.character.physics.PlayerPhysics;
+import com.example.pixelcombat.core.config.AIConfig;
 import com.example.pixelcombat.core.config.EffectConfig;
 import com.example.pixelcombat.core.config.ViewConfig;
 import com.example.pixelcombat.core.message.GameMessage;
 import com.example.pixelcombat.enums.DrawLevel;
+import com.example.pixelcombat.enums.EnemyConfig;
 import com.example.pixelcombat.enums.MessageType;
 import com.example.pixelcombat.exception.PixelCombatException;
 import com.example.pixelcombat.factories.EffectFactory;
@@ -71,6 +74,7 @@ public class Kohaku implements GameCharacter, HasAI {
     private JumpManager jumpManager;
     private ArrayList<Observer> observer;
     private GameCharacter enemy;
+    private SakuraFactory sakuraFactory;
 
     public Kohaku(String player, Vector2d pos, Context context) throws Exception {
         this.context = context;
@@ -95,6 +99,7 @@ public class Kohaku implements GameCharacter, HasAI {
         disabledManager = new KohakuDisabledManager(this);
         knockBackManager = new KnockBackManager(this);
         dashManager = new KohakuDashManager(this);
+        sakuraFactory = new SakuraFactory(this);
         observer = new ArrayList<>();
     }
 
@@ -126,7 +131,7 @@ public class Kohaku implements GameCharacter, HasAI {
 
     @Override
     public void update() throws PixelCombatException {
-        if (getAIManager() != null)
+        if (getAIManager() != null && AIConfig.ENEMY_CONFIG == EnemyConfig.VERSUS_AI)
             kohakuAIManager.update();
 
         if (getStatusManager().makesEffect())

@@ -33,8 +33,10 @@ public class KohakuSpecialAttack1 extends Attack {
                 case 0:
                     if (isSwitcher()) {
                         character.notifyObservers(new GameMessage(MessageType.FREEZE, " ;" + character.getPlayer(), null, true));
-                        character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_special_attack", null, true));
-                        character.getStatusManager().startEffect();
+                        character.notifyObservers(new GameMessage(MessageType.DUST_CREATION, DustConfig.KOHAKU_SPECIAL_ATTACK_EFFECT + ";test;",
+                                new Vector2d(character.getPos().x, character.getPos().y), character.isRight()));
+                        character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_special_attack_signal", null, true));
+                        character.notifyObservers(new GameMessage(MessageType.SHAKE, "" + "test", null, true));
                         setSwitcher(false);
                     }
                     break;
@@ -46,8 +48,8 @@ public class KohakuSpecialAttack1 extends Attack {
                     break;
                 case 5:
                     if (isSwitcher()) {
+                        character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_special_attack", null, true));
                         character.notifyObservers(new GameMessage(MessageType.FREEZE, " ;" + character.getPlayer(), null, false));
-                        character.getStatusManager().setEffect(false);
                         setSwitcher(false);
                     }
                     break;

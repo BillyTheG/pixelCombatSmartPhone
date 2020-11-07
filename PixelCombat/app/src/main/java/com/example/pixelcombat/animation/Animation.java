@@ -6,12 +6,8 @@ import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.util.Log;
 
-import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.GameObject;
-import com.example.pixelcombat.animation.util.ShadowCreator;
-import com.example.pixelcombat.core.config.ViewConfig;
 import com.example.pixelcombat.enums.ScreenProperty;
-import com.example.pixelcombat.enums.ShadowLevel;
 import com.example.pixelcombat.utils.LocatedBitmap;
 
 import java.util.ArrayList;
@@ -93,8 +89,8 @@ public class Animation {
 
         int distanceToGround = (int) Math.abs(ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE - object.getPos().y);
 
-        if (object instanceof GameCharacter && ViewConfig.SHADOW_LEVEL == ShadowLevel.REAL)
-            ShadowCreator.drawCharacterShadow(canvas, bitmap, object.isRight(), desRect, distanceToGround);
+      /*  if (object instanceof GameCharacter && ViewConfig.SHADOW_LEVEL == ShadowLevel.REAL)
+            ShadowCreator.drawCharacterShadow(canvas, bitmap, object.isRight(), desRect, distanceToGround);*/
 
         canvas.drawBitmap(bitmap, null, desRect, null);
     }

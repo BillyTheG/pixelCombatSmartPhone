@@ -14,6 +14,7 @@ import com.example.pixelcombat.core.Game;
 import com.example.pixelcombat.core.config.ViewConfig;
 import com.example.pixelcombat.core.message.GameMessage;
 import com.example.pixelcombat.core.sound.SoundManager;
+import com.example.pixelcombat.effects.attackCover.Darkening;
 import com.example.pixelcombat.enums.DrawLevel;
 import com.example.pixelcombat.enums.MessageType;
 import com.example.pixelcombat.enums.ScreenProperty;
@@ -25,6 +26,7 @@ import com.example.pixelcombat.math.Vector2d;
 import org.jetbrains.annotations.NotNull;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import static com.example.pixelcombat.enums.GamePlayView.BORDER_HEIGHT;
 import static com.example.pixelcombat.enums.GamePlayView.BORDER_WIDTH;
@@ -47,6 +49,9 @@ public class PXMap implements GameObject {
     private GameCharacter character1;
     private GameCharacter character2;
     private float aFloat;
+    private Darkening darkening = new Darkening();
+    @Setter
+    private boolean darkeningActivated = false;
 
     public PXMap(String name, Bitmap bg, Context context, GameCharacter character1, GameCharacter character2) {
         this.bg = bg;
@@ -89,6 +94,10 @@ public class PXMap implements GameObject {
                 deltaY + screenScrollManager.getScreenY() - screenScrollManager.getCY());
 
         canvas.drawBitmap(bg, sourceRect, this.gameRect, null);
+
+        if (darkeningActivated)
+            darkening.draw(canvas);
+
         character1.draw(canvas, screenScrollManager.getScreenX() - screenScrollManager.getCX(), screenScrollManager.getScreenY() - screenScrollManager.getCY(), this.gameRect);
         character2.draw(canvas, screenScrollManager.getScreenX() - screenScrollManager.getCX(), screenScrollManager.getScreenY() - screenScrollManager.getCY(), this.gameRect);
 
@@ -107,6 +116,9 @@ public class PXMap implements GameObject {
     @Override
     public void update() throws PixelCombatException {
 
+        if (darkeningActivated)
+            darkening.update();
+
         if (!character1.getStatusManager().isFreezed())
             character1.update();
         if (!character2.getStatusManager().isFreezed())
@@ -123,10 +135,10 @@ public class PXMap implements GameObject {
 
     private boolean checkHorizontalBorders(GameCharacter character) {
 
-        if (character.getStatusManager().makesEffect() || character.getEnemy().getStatusManager().makesEffect())
+        if (character.getStatusManager().isFocused() || character.getEnemy().getStatusManager().isFocused())
             return false;
 
-        if (!screenScrollManager.nearTarget())
+        if (screenScrollManager.isOneCharacterWasFocused())
             return false;
 
         if (character.getPos().x < BORDER_WIDTH) {
@@ -154,10 +166,7 @@ public class PXMap implements GameObject {
                 return true;
             }
         }
-
-
         return false;
-
     }
 
     private void checkReflect(GameCharacter character) {
