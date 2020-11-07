@@ -1111,7 +1111,7 @@
             </box_list>
             <box_list picture="10">
                 <box height="1.0799999" hurts="false" id="0" width="1.4266663" x="0.52666664" y="-0.5799999" />
-                <box height="1.9500008" hurts="true" id="1" width="1.7999992" x="1.289999" y="-1.1599998" />
+                <box height="3.6800003" hurts="true" id="1" width="6.0200005" x="0.069999695" y="-1.7600002" />
             </box_list>
             <box_list picture="11">
                 <box height="1.0799999" hurts="false" id="0" width="1.4266663" x="0.46666718" y="-0.5533333" />

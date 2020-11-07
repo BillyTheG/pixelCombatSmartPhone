@@ -71,11 +71,11 @@ public class Animation {
             return;
         }
 
-        int width = (int) (images.get(frameIndex).image.getWidth() * ScreenProperty.SCALE);
-        int height = (int) (images.get(frameIndex).image.getHeight() * ScreenProperty.SCALE);
+        int width = (int) (images.get(frameIndex).image.getWidth() * object.getScaleFactor());
+        int height = (int) (images.get(frameIndex).image.getHeight() * object.getScaleFactor());
 
-        int x = (int) (object.getPos().x + object.getDirection() * images.get(frameIndex).pos.x * ScreenProperty.SCALE - screenX);
-        int y = (int) (object.getPos().y + images.get(frameIndex).pos.y * ScreenProperty.SCALE - screenY);
+        int x = (int) (object.getPos().x + object.getDirection() * images.get(frameIndex).pos.x * object.getScaleFactor() - screenX);
+        int y = (int) (object.getPos().y + images.get(frameIndex).pos.y * object.getScaleFactor() - screenY);
 
         Rect sourceRect = new Rect((int) (x - width / 2),
                 (int) (y - height / 2), x + width / 2,
@@ -84,18 +84,18 @@ public class Animation {
         Rect desRect = new Rect(sourceRect.left + ScreenProperty.OFFSET_X, sourceRect.top - ScreenProperty.OFFSET_Y, sourceRect.right + ScreenProperty.OFFSET_X,
                 sourceRect.bottom - ScreenProperty.OFFSET_Y);
 
-        Bitmap bitmap = cropBitmap(desRect, gameRect, object.isRight());
+        Bitmap bitmap = cropBitmap(desRect, gameRect, object);
         if (bitmap == null) return;
 
-        int distanceToGround = (int) Math.abs(ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE - object.getPos().y);
+       /* int distanceToGround = (int) Math.abs(ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE - object.getPos().y);
 
-      /*  if (object instanceof GameCharacter && ViewConfig.SHADOW_LEVEL == ShadowLevel.REAL)
+        if (object instanceof GameCharacter && ViewConfig.SHADOW_LEVEL == ShadowLevel.REAL)
             ShadowCreator.drawCharacterShadow(canvas, bitmap, object.isRight(), desRect, distanceToGround);*/
 
         canvas.drawBitmap(bitmap, null, desRect, null);
     }
 
-    private Bitmap cropBitmap(Rect desRect, Rect gameRect, boolean objectIsRight) {
+    private Bitmap cropBitmap(Rect desRect, Rect gameRect, GameObject gameObject) {
 
         int top_old = desRect.top;
         int bottom_old = desRect.bottom;
@@ -106,8 +106,8 @@ public class Animation {
         if (!desRect.intersect(gameRect))
             return null;
         else {
-            Bitmap bitmap = getScaledBitmap(images.get(frameIndex).image);
-            if (!objectIsRight)
+            Bitmap bitmap = getScaledBitmap(images.get(frameIndex).image, gameObject.getScaleFactor());
+            if (!gameObject.isRight())
                 bitmap = createFlippedBitmap(bitmap, true, false);
 
             int new_right = (right_old - (ScreenProperty.SCREEN_WIDTH - ScreenProperty.OFFSET_X));
@@ -174,8 +174,8 @@ public class Animation {
         return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
     }
 
-    private Bitmap getScaledBitmap(Bitmap bitmap) {
-        return Bitmap.createScaledBitmap(bitmap, ((int) (bitmap.getWidth() * ScreenProperty.SCALE)), ((int) (bitmap.getHeight() * ScreenProperty.SCALE)), false);
+    private Bitmap getScaledBitmap(Bitmap bitmap, float scaleFactor) {
+        return Bitmap.createScaledBitmap(bitmap, ((int) (bitmap.getWidth() * scaleFactor)), ((int) (bitmap.getHeight() * scaleFactor)), false);
     }
 
     public synchronized void resetFrameIndexTo(int newFrameIndex) {

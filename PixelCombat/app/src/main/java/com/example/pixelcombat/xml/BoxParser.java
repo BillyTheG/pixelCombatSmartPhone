@@ -35,9 +35,11 @@ public class BoxParser {
     private int picture = 0;
     private Context context;
     private XmlPullParser parser;
+    private float scaleFactor;
 
-    public BoxParser(Context context, String fileName) throws Exception {
+    public BoxParser(Context context, String fileName, float scaleFactor) throws Exception {
         this.context = context;
+        this.scaleFactor = scaleFactor;
         XmlPullParserFactory parserFactory;
         try {
             parserFactory = XmlPullParserFactory.newInstance();
@@ -51,8 +53,9 @@ public class BoxParser {
 
     }
 
-    public BoxParser(Context context) throws Exception {
+    public BoxParser(Context context, float scaleFactor) throws Exception {
         this.context = context;
+        this.scaleFactor = scaleFactor;
         XmlPullParserFactory parserFactory;
         parserFactory = XmlPullParserFactory.newInstance();
         parser = parserFactory.newPullParser();
@@ -102,7 +105,7 @@ public class BoxParser {
                                 float width = Float.parseFloat(parser.getAttributeValue(null, "width")) * GamePlayView.FIELD_SIZE;
                                 boolean hurts = Boolean.parseBoolean(parser.getAttributeValue(null, "hurts"));
 
-                                BoundingRectangle newBox = new BoundingRectangle(height, new Vector2d(x, y), width);
+                                BoundingRectangle newBox = new BoundingRectangle(height, new Vector2d(x, y), width, scaleFactor);
                                 newBox.setHurts(hurts);
                                 Objects.requireNonNull(boxes.get(animation)).get(picture).add(newBox);
 

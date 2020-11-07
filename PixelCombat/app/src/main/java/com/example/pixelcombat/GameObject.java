@@ -20,4 +20,6 @@ public interface GameObject {
 
     int getRank();
 
+    float getScaleFactor();
+
 }

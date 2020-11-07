@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 
 import com.example.pixelcombat.GameObject;
+import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.math.Vector2d;
 
 public class Weather implements GameObject {
@@ -37,5 +38,10 @@ public class Weather implements GameObject {
     @Override
     public int getRank() {
         return 0;
+    }
+
+    @Override
+    public float getScaleFactor() {
+        return ScreenProperty.GENERAL_SCALE;
     }
 }

@@ -11,9 +11,11 @@ import java.util.ArrayList;
 public class SakuraLeaf extends Dust {
 
     private ImageMover dustMover;
+    private float scaleFactor;
 
-    public SakuraLeaf(ArrayList<LocatedBitmap> images, ArrayList<Float> times, Vector2d pos, boolean isRight, float VX, float VY) {
+    public SakuraLeaf(ArrayList<LocatedBitmap> images, ArrayList<Float> times, Vector2d pos, boolean isRight, float VX, float VY, float scaleFactor) {
         super(images, times, true, pos, isRight);
+        this.scaleFactor = scaleFactor;
         dustMover = new ImageMover(VX, VY);
     }
 
@@ -27,5 +29,10 @@ public class SakuraLeaf extends Dust {
     @Override
     public boolean isFinished() {
         return this.getPos().y >= ScreenProperty.SCREEN_HEIGHT;
+    }
+
+    @Override
+    public float getScaleFactor() {
+        return scaleFactor;
     }
 }

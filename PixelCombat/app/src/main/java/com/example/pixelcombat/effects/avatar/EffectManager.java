@@ -6,6 +6,7 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
 
 import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.effects.Effect;
@@ -47,13 +48,19 @@ public abstract class EffectManager {
 
     }
 
-    public void draw(Canvas canvas, int screenX, int CX) {
+    public void draw(Canvas canvas, int screenX, int CX, Rect gameRect) {
 
         Effect profileEffect = checkAttacks();
+
+        if (profileEffect.isArtWork()) {
+            profileEffect.draw(canvas, screenX, 0, gameRect);
+            return;
+        }
+
         profileEffect.update();
 
-        Bitmap sourceImage = profileEffect.getCurrentBitmap();
-        Bitmap result = attackBgEffect.getCurrentBitmap();
+        Bitmap sourceImage = profileEffect.getCurrentBitmap(gameRect);
+        Bitmap result = attackBgEffect.getCurrentBitmap(gameRect);
 
         float panelWidth = ScreenProperty.SCREEN_WIDTH - 2 * ScreenProperty.OFFSET_X;
 
@@ -81,7 +88,7 @@ public abstract class EffectManager {
         }
     }
 
-    protected abstract Effect checkAttacks();
+    public abstract Effect checkAttacks();
 
 
 }

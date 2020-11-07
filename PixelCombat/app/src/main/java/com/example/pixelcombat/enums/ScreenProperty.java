@@ -9,5 +9,10 @@ public class ScreenProperty {
     public static int OFFSET_Y = 350;
     public static int GROUND_LINE = 50;
 
-    public static float SCALE = 3.5f;
+    public static float GENERAL_SCALE = 3.5f;
+
+    //Character-based Scale Factors
+    public static float KOHAKU_SCALE = 3.5f;
+
+
 }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+    <type>AttackSpark1</type>
+    <sprites>
+        <sequence airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="50" key="0" x="-4.26" y="-1.9400005">spark_batto_jutsu_slash_0.png</img>
+            <img duration="40" key="1" x="-1.5400009" y="-1.6400003">spark_batto_jutsu_slash_1.png</img>
+            <img duration="30" key="2" x="-1.5400009" y="-1.5">spark_batto_jutsu_slash_2.png</img>
+            <img duration="30" key="3" x="-1.5200005" y="-1.5">spark_batto_jutsu_slash_3.png</img>
+            <img duration="30" key="4" x="-1.4400005" y="-1.5">spark_batto_jutsu_slash_4.png</img>
+        </sequence>
+    </sprites>
+</character>

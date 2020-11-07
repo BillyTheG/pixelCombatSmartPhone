@@ -7,6 +7,7 @@ import android.util.Log;
 import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.GameObject;
 import com.example.pixelcombat.core.message.GameMessage;
+import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.exception.PixelCombatException;
 import com.example.pixelcombat.math.BoundingRectangle;
 import com.example.pixelcombat.math.Vector2d;
@@ -100,6 +101,11 @@ public class Projectile implements GameObject, Observable {
         if (isRight())
             return 1.0f;
         else return -1.0f;
+    }
+
+    @Override
+    public float getScaleFactor() {
+        return ScreenProperty.GENERAL_SCALE;
     }
 
     public Projectile register(Observer observer) {

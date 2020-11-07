@@ -8,6 +8,7 @@ import com.example.pixelcombat.animation.Animation;
 import com.example.pixelcombat.core.IsFinishable;
 import com.example.pixelcombat.core.message.GameMessage;
 import com.example.pixelcombat.core.sound.SoundManager;
+import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.exception.PixelCombatException;
 import com.example.pixelcombat.math.Vector2d;
 import com.example.pixelcombat.observer.Observable;
@@ -61,6 +62,11 @@ public class Dust implements GameObject, IsFinishable, Observable {
     @Override
     public int getRank() {
         return 0;
+    }
+
+    @Override
+    public float getScaleFactor() {
+        return ScreenProperty.GENERAL_SCALE;
     }
 
 

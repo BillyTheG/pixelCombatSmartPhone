@@ -11,5 +11,5 @@ public class SparkConfig {
     //KOHAKU
     public static final String KOHAKU_SPECIAL_ATTACK_SPARK = "Kohaku_Special_Attack_Spark";
     public static final String KOHAKU_SPECIAL_ATTACK2_SPARK = "Kohaku_Special_Attack2_Spark";
-
+    public static final String KOHAKU_BATTO_JUTSU_SLASH_SPARK = "Kohaku_Batto_Jutsu_Slash_Spark";
 }

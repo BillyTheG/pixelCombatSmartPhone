@@ -3,7 +3,6 @@ package com.example.pixelcombat.environment.interactor;
 import android.util.Log;
 
 import com.example.pixelcombat.GameCharacter;
-import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.environment.EnvironmentInteract;
 import com.example.pixelcombat.math.BoundingRectangle;
 import com.example.pixelcombat.math.GeometryUtils;
@@ -196,7 +195,7 @@ public class CollisionDetection implements EnvironmentInteract {
                                     float out_height = yMax - yMin;
                                     player1.getBoxManager().currentColBox = ownBox;
                                     player2.getBoxManager().currentColBox = enemyBox;
-                                    return new BoundingRectangle(out_height / ScreenProperty.SCALE, new Vector2d(out_x, out_y), out_width / ScreenProperty.SCALE);
+                                    return new BoundingRectangle(out_height, new Vector2d(out_x, out_y), out_width, 0, 0);
                                 }
                             }
                         }
@@ -217,7 +216,7 @@ public class CollisionDetection implements EnvironmentInteract {
             float y1 = player1.getPos().y + ownBoxes.get(currentOwnAnimation).get(i).getPos().y;
             float width1 = ownBoxes.get(currentOwnAnimation).get(i).getWidth();
             float height1 = ownBoxes.get(currentOwnAnimation).get(i).getHeight();
-            BoundingRectangle ownBox = new BoundingRectangle(height1, new Vector2d(x1, y1), width1);
+            BoundingRectangle ownBox = new BoundingRectangle(height1, new Vector2d(x1, y1), width1, 0, 0);
             if (GeometryUtils.isCollision(ownBox, box1)) {
                 x1 = ownBox.getUpperLeft().x;
                 y1 = ownBox.getUpperLeft().y;
@@ -240,7 +239,7 @@ public class CollisionDetection implements EnvironmentInteract {
                         float out_width = xMax - xMin;
                         float out_height = yMax - yMin;
                         this.currentColBox = ownBox;
-                        return new BoundingRectangle(out_height, new Vector2d(out_x, out_y), out_width);
+                        return new BoundingRectangle(out_height, new Vector2d(out_x, out_y), out_width, 0, 0);
 
                     }
                 }

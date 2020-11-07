@@ -155,6 +155,13 @@ public class KohakuSpecialAttack2 extends Attack {
 
     @Override
     public void resetStats() {
-        setSwitcher(true);
+        try {
+            setSwitcher(true);
+            character.getStatusManager().setEffect(false);
+            character.getStatusManager().setFocused(false);
+            character.notifyObservers(new GameMessage(MessageType.DARKENING, "test;1", null, false));
+        } catch (Exception e) {
+            Log.e("Error", "SpecialAttack2 of Kohaku could not be resetted: " + e.getMessage());
+        }
     }
 }

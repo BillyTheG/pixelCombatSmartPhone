@@ -95,8 +95,9 @@ public class PXMap implements GameObject {
 
         canvas.drawBitmap(bg, sourceRect, this.gameRect, null);
 
-        if (darkeningActivated)
-            darkening.draw(canvas);
+        darkening.draw(canvas);
+
+        drawEffects(canvas, this.gameRect, true);
 
         character1.draw(canvas, screenScrollManager.getScreenX() - screenScrollManager.getCX(), screenScrollManager.getScreenY() - screenScrollManager.getCY(), this.gameRect);
         character2.draw(canvas, screenScrollManager.getScreenX() - screenScrollManager.getCX(), screenScrollManager.getScreenY() - screenScrollManager.getCY(), this.gameRect);
@@ -116,8 +117,9 @@ public class PXMap implements GameObject {
     @Override
     public void update() throws PixelCombatException {
 
-        if (darkeningActivated)
-            darkening.update();
+        int factor = (darkeningActivated) ? 1 : -1;
+
+        darkening.update(factor);
 
         if (!character1.getStatusManager().isFreezed())
             character1.update();
@@ -223,6 +225,11 @@ public class PXMap implements GameObject {
         return 0;
     }
 
+    @Override
+    public float getScaleFactor() {
+        return ScreenProperty.GENERAL_SCALE;
+    }
+
     @NotNull
     @Override
     public String toString() {
@@ -256,10 +263,10 @@ public class PXMap implements GameObject {
 
     }
 
-    public void drawEffects(Canvas canvas) {
-        if (character1.getStatusManager().makesEffect())
-            character1.getEffectManager().draw(canvas, screenScrollManager.getScreenX(), screenScrollManager.getCX());
-        if (character2.getStatusManager().makesEffect())
-            character2.getEffectManager().draw(canvas, screenScrollManager.getScreenX(), screenScrollManager.getCX());
+    public void drawEffects(Canvas canvas, Rect gameRect, boolean back) {
+        if (character1.getStatusManager().makesEffect() && character1.getEffectManager().checkAttacks().isArtWork() == back)
+            character1.getEffectManager().draw(canvas, screenScrollManager.getScreenX(), screenScrollManager.getCX(), gameRect);
+        if (character2.getStatusManager().makesEffect() && character1.getEffectManager().checkAttacks().isArtWork() == back)
+            character2.getEffectManager().draw(canvas, screenScrollManager.getScreenX(), screenScrollManager.getCX(), gameRect);
     }
 }
