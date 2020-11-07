@@ -16,7 +16,10 @@ public enum AttackStatus {
     AIRATTACK6,
     SPECIALATTACK1,
     SPECIALATTACK2,
-    SPECIALATTACK3
+    SPECIALATTACK3,
+
+    //Kohaku
+    BATTO_JUTSU_OGI,
 
 
 }

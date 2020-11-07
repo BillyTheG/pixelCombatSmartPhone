@@ -206,7 +206,9 @@ public class GameButtonManager implements View.OnClickListener, View.OnTouchList
                     gamePanel.getPlayer1().getController().attack(AttackStatus.ATTACK4);
                 break;
             case 6:
-                gamePanel.getPlayer1().getController().jump(false, true);
+                gamePanel.getComboActionManager().pressKey("player1", "" + view.getId());
+                if (!gamePanel.getComboActionManager().checkComboActivation())
+                    gamePanel.getPlayer1().getController().jump(false, true);
                 break;
             case 7:
                 gamePanel.getComboActionManager().pressKey("player1", "" + view.getId());

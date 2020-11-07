@@ -13,6 +13,7 @@ import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.factories.EffectFactory;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public abstract class EffectManager {
 
@@ -35,7 +36,7 @@ public abstract class EffectManager {
 
     public void reset() {
         for (String effectName : effects.keySet()) {
-            effects.get(effectName).reset();
+            Objects.requireNonNull(effects.get(effectName)).reset();
         }
     }
 
@@ -72,7 +73,7 @@ public abstract class EffectManager {
         paint.setXfermode(new PorterDuffXfermode(mode));
         mcanvas.drawBitmap(sourceImage, (int) profileEffect.getPos().x, profileEffect.getPos().y, paint);
 
-        if (character.getPos().x - screenX + CX < (ScreenProperty.SCREEN_WIDTH - ScreenProperty.OFFSET_X) / 2) {
+        if (character.getPos().x - screenX + CX < (ScreenProperty.SCREEN_WIDTH - ScreenProperty.OFFSET_X) / 2f) {
             canvas.drawBitmap(result, ScreenProperty.SCREEN_WIDTH - ScreenProperty.OFFSET_X - ((int) (panelWidth / 10)) - result.getWidth() + 1, 0, null);
         } else {
             result = createFlippedBitmap(result, true, false);

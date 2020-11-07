@@ -66,7 +66,7 @@ public abstract class BoxManager {
     public List<ArrayList<BoundingRectangle>> currentBox;
     public Map<String, ArrayList<ArrayList<BoundingRectangle>>> boxes;
     public BoxParser parser;
-    private GameCharacter character;
+    protected GameCharacter character;
     @Getter
     @Setter
     private boolean collidingX = false;

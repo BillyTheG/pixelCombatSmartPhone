@@ -1,21 +1,22 @@
 package com.example.pixelcombat.effects;
 
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Rect;
 
+import com.example.pixelcombat.GameObject;
 import com.example.pixelcombat.effects.animation.EffectAnimation;
 import com.example.pixelcombat.math.Vector2d;
 import com.example.pixelcombat.utils.LocatedBitmap;
 
 import java.util.ArrayList;
 
-public class Effect {
-    private final EffectAnimation animation;
-    private final Vector2d pos;
-    private final boolean scale;
-    private float VX = 5;
-    private float VY = 0;
-    private float xStartPos = 0;
-    private float yStartPos = 0;
+public abstract class Effect implements GameObject {
+    protected final EffectAnimation animation;
+    protected final Vector2d pos;
+    protected final boolean scale;
+    protected float xStartPos = 0;
+    protected float yStartPos = 0;
 
     public Effect(ArrayList<LocatedBitmap> images, ArrayList<Float> times, Vector2d pos, boolean scale) {
         this.animation = new EffectAnimation(images, times, false, 0, scale);
@@ -33,17 +34,26 @@ public class Effect {
 
     }
 
+    @Override
+    public void draw(Canvas canvas, int screenX, int screenY, Rect gameRect) {
+
+    }
+
     public void update() {
         animation.update();
-        pos.x += VX;
-        pos.y += VY;
+        updateChanger();
     }
+
+    protected abstract void updateChanger();
 
     public void reset() {
         animation.play();
         pos.x = xStartPos;
         pos.y = yStartPos;
+        resetChanger();
     }
+
+    protected abstract void resetChanger();
 
 
     public Vector2d getPos() {
@@ -53,6 +63,16 @@ public class Effect {
 
     public boolean isRight() {
         return scale;
+    }
+
+    @Override
+    public float getDirection() {
+        return 1;
+    }
+
+    @Override
+    public int getRank() {
+        return 0;
     }
 
 

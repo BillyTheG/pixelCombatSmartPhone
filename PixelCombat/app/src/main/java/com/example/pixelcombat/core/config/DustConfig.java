@@ -4,6 +4,7 @@ public class DustConfig {
     //GENERIC
     public static final String DUST_HARD_LAND = "Dust_Hard_Land";
     public static final String DUST_HARD_LAND_SIDE = "Dust_Hard_Land_Side";
+    public static final String DUST_FAST_FORWARD = "Dust_Fast_Forward";
 
     //KOHAKU
     public static final String KOHAKU_SPECIAL_ATTACK_SPARK = "Kohaku_Special_Attack_Dust";

@@ -15,6 +15,7 @@ import androidx.annotation.RequiresApi;
 
 import com.example.pixelcombat.ai.KohakuAI;
 import com.example.pixelcombat.character.chars.kohaku.Kohaku;
+import com.example.pixelcombat.character.chars.kohaku.manager.KohakuComboManager;
 import com.example.pixelcombat.character.status.MovementStatus;
 import com.example.pixelcombat.core.Game;
 import com.example.pixelcombat.core.sound.SoundManager;
@@ -94,7 +95,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
             collisionDetection = new CollisionDetection(player1, player2);
 
             testMap.registerSoundManager(soundManager);
-            comboActionManager = new ComboActionManager(player1);
+            comboActionManager = new KohakuComboManager(player1);
             comboActionManager.init();
             game.init(testMap);
             Log.i("Info", "Game was created successfully");

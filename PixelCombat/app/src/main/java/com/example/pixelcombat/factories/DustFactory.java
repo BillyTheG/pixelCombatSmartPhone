@@ -51,6 +51,7 @@ public class DustFactory {
             dustNames.add("Dust_Hard_Land_Side.xml");
             dustNames.add("Kohaku_Special_Attack_Effect.xml");
             dustNames.add("Kohaku_Special_Attack2_Aura.xml");
+            dustNames.add("Dust_Fast_Forward.xml");
 
 
             dustNames.add("Dust_Sakura1.xml");
@@ -92,6 +93,8 @@ public class DustFactory {
                 return new Dust(pictures.get("Kohaku_Attack6_Dust"), times.get("Kohaku_Attack6_Dust"), false, pos, right).register(soundManager);
             case DustConfig.DUST_HARD_LAND:
                 return new Dust(pictures.get("Dust_Hard_Land"), times.get("Dust_Hard_Land"), false, pos, right).register(soundManager);
+            case DustConfig.DUST_FAST_FORWARD:
+                return new Dust(pictures.get("Dust_Fast_Forward"), times.get("Dust_Fast_Forward"), false, pos, right).register(soundManager);
             case DustConfig.DUST_HARD_LAND_SIDE:
                 return new Dust(pictures.get("Dust_Hard_Land_Side"), times.get("Dust_Hard_Land_Side"), false, pos, right).register(soundManager);
             case DustConfig.KOHAKU_SAKURA1_DUST:

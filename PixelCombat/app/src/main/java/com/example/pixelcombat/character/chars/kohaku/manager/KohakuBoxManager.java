@@ -6,6 +6,8 @@ import com.example.pixelcombat.manager.BoxManager;
 public class KohakuBoxManager extends BoxManager {
 
 
+    public final int BATTOJUTSUOGI = 38;
+
     public KohakuBoxManager(Kohaku character) {
         super(character);
     }
@@ -19,6 +21,14 @@ public class KohakuBoxManager extends BoxManager {
     @Override
     public void loadFurtherBoxes(int currentAnimation2) {
 
+        switch (character.getViewManager().getAnimation()) {
+            case BATTOJUTSUOGI:
+                updateBoxSeq(BATTOJUTSUOGI, "battoJutsu");
+                break;
+            default:
+                updateBoxSeq(STAND, "stand");
+                break;
+        }
     }
 
 
