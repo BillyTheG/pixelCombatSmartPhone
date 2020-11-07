@@ -4,15 +4,15 @@
     <sprites>
         <sequence airBool="false" airIndex="0" loopIndex="0" loops="false">
             <img duration="50" key="0" x="0.12000084" y="-0.18999958">dust_kohaku_dash_0.png</img>
-            <img duration="50" key="1" x="0.26000023" y="-0.40999985">dust_kohaku_dash_1.png</img>
-            <img duration="50" key="2" x="0.22999954" y="-0.5699997">dust_kohaku_dash_2.png</img>
-            <img duration="50" key="3" x="0.12999916" y="-0.75">dust_kohaku_dash_3.png</img>
-            <img duration="50" key="4" x="0.11000061" y="-0.78999996">dust_kohaku_dash_4.png</img>
-            <img duration="5" key="5" x="0.010000229" y="-0.8699999">dust_kohaku_dash_5.png</img>
+            <img duration="40" key="1" x="0.26000023" y="-0.40999985">dust_kohaku_dash_1.png</img>
+            <img duration="40" key="2" x="0.22999954" y="-0.5699997">dust_kohaku_dash_2.png</img>
+            <img duration="40" key="3" x="0.12999916" y="-0.75">dust_kohaku_dash_3.png</img>
+            <img duration="40" key="4" x="0.11000061" y="-0.78999996">dust_kohaku_dash_4.png</img>
+            <img duration="50" key="5" x="0.010000229" y="-0.8699999">dust_kohaku_dash_5.png</img>
             <img duration="50" key="6" x="-0.030000687" y="-0.873333">dust_kohaku_dash_6.png</img>
             <img duration="50" key="7" x="0.010000229" y="-0.8699999">dust_kohaku_dash_7.png</img>
-            <img duration="110" key="8" x="0.049999237" y="-0.8500004">dust_kohaku_dash_8.png</img>
-            <img duration="110" key="9" x="0.069999695" y="-0.5500002">dust_kohaku_dash_9.png</img>
+            <img duration="30" key="8" x="0.049999237" y="-0.8500004">dust_kohaku_dash_8.png</img>
+            <img duration="30" key="9" x="0.069999695" y="-0.5500002">dust_kohaku_dash_9.png</img>
         </sequence>
     </sprites>
 </character>

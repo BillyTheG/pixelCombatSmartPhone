@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+    <type>KohakuSpecialAttackEffect</type>
+    <sprites>
+        <sequence airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="800" key="0" x="-0.040000916" y="-0.9499998">kohaku_special_attack_effect.png</img>
+        </sequence>
+    </sprites>
+</character>

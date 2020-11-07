@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+    <type>KohakuProfile</type>
+    <sprites>
+        <sequence airBool="false" airIndex="0" loopIndex="0" loops="true">
+            <img duration="10" key="0" x="0.049999237" y="0.0">kohaku_profile_1.png</img>
+        </sequence>
+    </sprites>
+</character>

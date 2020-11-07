@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+    <type>KohakuSpecialAttackEffect</type>
+    <sprites>
+        <sequence airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="30" key="0" x="0.030000687" y="-1.1599998">kohaku_special_attack2_pump_0.png</img>
+            <img duration="30" key="1" x="0.010000229" y="-0.8199997">kohaku_special_attack2_pump_1.png</img>
+            <img duration="30" key="2" x="-0.09000015" y="-1.0200005">kohaku_special_attack2_pump_2.png</img>
+            <img duration="30" key="3" x="0.15999985" y="-1.0799999">kohaku_special_attack2_pump_3.png</img>
+            <img duration="30" key="4" x="0.22999954" y="-1.2399998">kohaku_special_attack2_pump_4.png</img>
+            <img duration="30" key="5" x="-0.020000458" y="-0.97000027">kohaku_special_attack2_pump_5.png</img>
+            <img duration="30" key="6" x="-0.049999237" y="-1.1400003">kohaku_special_attack2_pump_6.png</img>
+            <img duration="30" key="7" x="0.09000015" y="-1.1099997">kohaku_special_attack2_pump_7.png</img>
+            <img duration="30" key="8" x="0.049999237" y="-1.25">kohaku_special_attack2_pump_8.png</img>
+            <img duration="30" key="9" x="-0.20000076" y="-1.1900005">kohaku_special_attack2_pump_9.png</img>
+            <img duration="30" key="10" x="-0.049999237" y="-1.25">kohaku_special_attack2_pump_10.png</img>
+            <img duration="30" key="11" x="0.059999466" y="-1.25">kohaku_special_attack2_pump_11.png</img>
+            <img duration="30" key="12" x="-0.020000458" y="-1.0900002">kohaku_special_attack2_pump_12.png</img>
+            <img duration="30" key="13" x="0.09000015" y="-1.1900005">kohaku_special_attack2_pump_13.png</img>
+            <img duration="30" key="14" x="-0.010000229" y="-0.9899998">kohaku_special_attack2_pump_14.png</img>
+            <img duration="30" key="15" x="-0.19000053" y="-0.97000027">kohaku_special_attack2_pump_15.png</img>
+            <img duration="30" key="16" x="-0.15999985" y="-0.96000004">kohaku_special_attack2_pump_16.png</img>
+            <img duration="30" key="17" x="0.030000687" y="-0.8500004">kohaku_special_attack2_pump_17.png</img>
+        </sequence>
+    </sprites>
+</character>

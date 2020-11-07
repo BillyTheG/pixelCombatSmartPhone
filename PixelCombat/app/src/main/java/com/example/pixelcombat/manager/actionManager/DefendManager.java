@@ -23,6 +23,12 @@ public class DefendManager {
         }
     }
 
+
+    public void stopAirDefend() {
+
+    }
+
+
     public void damageDefendPoints(int damage) {
         this.defendPoints -= damage;
         if (defendPoints <= 0) {

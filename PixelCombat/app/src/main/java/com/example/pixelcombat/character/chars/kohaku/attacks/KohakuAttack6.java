@@ -6,6 +6,7 @@ import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.character.attack.Attack;
 import com.example.pixelcombat.character.status.ActionStatus;
 import com.example.pixelcombat.character.status.GlobalStatus;
+import com.example.pixelcombat.core.config.DustConfig;
 import com.example.pixelcombat.core.config.SparkConfig;
 import com.example.pixelcombat.core.message.GameMessage;
 import com.example.pixelcombat.enums.MessageType;
@@ -43,6 +44,8 @@ public class KohakuAttack6 extends Attack {
                 case 3:
                     character.getPhysics().VX = character.getDirection() * 80f;
                     if (isSwitcher()) {
+                        character.notifyObservers(new GameMessage(MessageType.DUST_CREATION, DustConfig.KOHAKU_ATTACK6_DUST + ";test;",
+                                new Vector2d(character.getPos().x, character.getPos().y), character.isRight()));
 
                         setSwitcher(false);
                     }
@@ -51,6 +54,9 @@ public class KohakuAttack6 extends Attack {
                 case 12:
                     character.getPhysics().VX = 0;
                     if (isSwitcher()) {
+                        character.notifyObservers(new GameMessage(MessageType.DUST_CREATION, DustConfig.KOHAKU_ATTACK6_DUST + ";test;",
+                                new Vector2d(character.getPos().x, character.getPos().y), character.isRight()));
+
                         character.getHitManager().setHitDelay(false);
                         setSwitcher(false);
                     }
@@ -88,7 +94,7 @@ public class KohakuAttack6 extends Attack {
         try {
 
             BoundingRectangle box = character.getBoxManager().getIntersectionBox();
-            character.notifyObservers(new GameMessage(MessageType.SPARK_CREATION, SparkConfig.ATTACK_SPARK + ";test;",
+            character.notifyObservers(new GameMessage(MessageType.SPARK_CREATION, SparkConfig.ATTACK2_SPARK + ";test;",
                     new Vector2d(box.getPos().x, box.getPos().y), true));
             character.notifyObservers(new GameMessage(MessageType.SHAKE, "", null, false));
 

@@ -37,12 +37,12 @@ public class HorizontalSlash extends ProjectileStatusManager {
         if (!defender.getStatusManager().isKnockbacked()) {
             // getUser().enemy.timeManager.getDisableTime().setY(Float.valueOf(0.0F));
             defender.getHitManager().setKnockBackHeight(-27.0F);
-            defender.getHitManager().setKnockBackRange(10.0F);
+            defender.getHitManager().setKnockBackRange(30.0F);
             defender.getHitManager().checkOnAir();
             defender.getStatusManager().setActionStatus(ActionStatus.STAND);
             defender.getStatusManager().setGlobalStatus(GlobalStatus.KNOCKBACK);
         } else {
-            defender.getHitManager().comboTouch(-20.0F, 10.0F);
+            defender.getHitManager().comboTouch(-20.0F, 40.0F);
         }
 
 

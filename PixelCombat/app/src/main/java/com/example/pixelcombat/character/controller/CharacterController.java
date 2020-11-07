@@ -92,15 +92,27 @@ public class CharacterController {
     }
 
     public boolean defend(boolean hold, boolean right) {
-        if (character.getStatusManager().canNotDefend())
-            return false;
 
+        if (character.getStatusManager().canNotDefend()) {
+            if (character.getStatusManager().isAirDefending())
+                character.getStatusManager().setActionStatus(ActionStatus.JUMPFALL);
+            return false;
+        }
+        if (character.getStatusManager().isOnAir()) {
+            if (!hold) {
+                character.getStatusManager().setActionStatus(ActionStatus.JUMPFALL);
+            } else {
+                character.getStatusManager().setActionStatus(ActionStatus.AIR_DEFENDING);
+            }
+            return true;
+        }
 
         if (!hold) {
             character.getStatusManager().setActionStatus(ActionStatus.DEFENDSTOP);
         } else {
             character.getStatusManager().setActionStatus(ActionStatus.DEFENDING);
         }
+
 
         return true;
     }

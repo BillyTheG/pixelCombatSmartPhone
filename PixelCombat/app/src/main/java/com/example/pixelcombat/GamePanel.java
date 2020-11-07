@@ -15,6 +15,7 @@ import androidx.annotation.RequiresApi;
 
 import com.example.pixelcombat.ai.KohakuAI;
 import com.example.pixelcombat.character.chars.kohaku.Kohaku;
+import com.example.pixelcombat.character.chars.kohaku.manager.KohakuComboManager;
 import com.example.pixelcombat.character.status.MovementStatus;
 import com.example.pixelcombat.core.Game;
 import com.example.pixelcombat.core.sound.SoundManager;
@@ -75,8 +76,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
             bg = Bitmap.createScaledBitmap(bg, ((int) (ScreenProperty.SCREEN_WIDTH * 1.5f)), ((int) (ScreenProperty.SCREEN_HEIGHT * 1.4f)), false);
 
 
-            Kohaku ruffy = new Kohaku("player2", new Vector2d(500, ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE), context);
-            Kohaku kohaku = new Kohaku("player1", new Vector2d(1000, ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE), context);
+            Kohaku ruffy = new Kohaku("player2", new Vector2d(1000, ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE), context);
+            Kohaku kohaku = new Kohaku("player1", new Vector2d(500, ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE), context);
 
             if (ENEMY_CONFIG == EnemyConfig.VERSUS_AI)
                 ruffy.setAIManager(new KohakuAI(ruffy, kohaku, ruffy.getController()));
@@ -84,7 +85,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
             ruffy.getBoxManager().loadParsedBoxes();
             kohaku.getBoxManager().loadParsedBoxes();
-            kohaku.getStatusManager().setMovementStatus(MovementStatus.LEFT);
+            ruffy.getStatusManager().setMovementStatus(MovementStatus.LEFT);
 
             player1 = kohaku;
             player2 = ruffy;
@@ -94,7 +95,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
             collisionDetection = new CollisionDetection(player1, player2);
 
             testMap.registerSoundManager(soundManager);
-            comboActionManager = new ComboActionManager(player1);
+            comboActionManager = new KohakuComboManager(player1);
             comboActionManager.init();
             game.init(testMap);
             Log.i("Info", "Game was created successfully");

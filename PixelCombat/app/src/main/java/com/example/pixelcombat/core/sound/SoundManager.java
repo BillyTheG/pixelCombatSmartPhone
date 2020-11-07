@@ -74,6 +74,8 @@ public class SoundManager implements Observer {
         soundsIds.put("kohaku_bottle_explosion_hit", soundPool.load(context, R.raw.kohaku_bottle_explosion_hit, 1));
         soundsIds.put("kohaku_special_attack3", soundPool.load(context, R.raw.kohaku_special_attack3, 1));
         soundsIds.put("kohaku_special_attack3_laughter", soundPool.load(context, R.raw.kohaku_special_attack3_laughter, 1));
+        soundsIds.put("kohaku_special_attack2", soundPool.load(context, R.raw.kohaku_special_attack2, 1));
+        soundsIds.put("kohaku_special_attack_signal", soundPool.load(context, R.raw.kohaku_special_attack_signal, 1));
         soundsIds.put("kohaku_special_attack3_rise", soundPool.load(context, R.raw.kohaku_special_attack3_rise, 1));
         soundsIds.put("kohaku_bottle_break", soundPool.load(context, R.raw.kohaku_bottle_break, 1));
         soundsIds.put("kohaku_cry3", soundPool.load(context, R.raw.kohaku_cry3, 1));
@@ -85,8 +87,13 @@ public class SoundManager implements Observer {
         soundsIds.put("kohaku_step2", soundPool.load(context, R.raw.kohaku_step2, 1));
         soundsIds.put("defend", soundPool.load(context, R.raw.defend, 1));
         soundsIds.put("kohaku_dash", soundPool.load(context, R.raw.kohaku_dash, 1));
+        soundsIds.put("kohaku_demon_aura", soundPool.load(context, R.raw.kohaku_demon_aura, 1));
         soundsIds.put("kohaku_dash_sonic", soundPool.load(context, R.raw.kohaku_dash_sonic, 1));
         soundsIds.put("hard_ground_hit", soundPool.load(context, R.raw.hard_ground_hit, 1));
+        soundsIds.put("kohaku_batto_jutsu_laughter", soundPool.load(context, R.raw.kohaku_batto_jutsu_laughter, 1));
+        soundsIds.put("kohaku_batto_jutsu_start", soundPool.load(context, R.raw.kohaku_batto_jutsu_start, 1));
+        soundsIds.put("kohaku_batto_jutsu_ogi", soundPool.load(context, R.raw.kohaku_batto_jutsu_ogi, 1));
+        soundsIds.put("kohaku_batto_jutsu_dash", soundPool.load(context, R.raw.kohaku_batto_jutsu_dash, 1));
 
     }
 

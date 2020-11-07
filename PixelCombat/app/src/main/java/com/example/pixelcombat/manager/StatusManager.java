@@ -7,6 +7,9 @@ import com.example.pixelcombat.character.status.MovementStatus;
 import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.exception.PixelCombatException;
 
+import lombok.Getter;
+import lombok.Setter;
+
 
 public class StatusManager {
 
@@ -14,12 +17,29 @@ public class StatusManager {
     private GlobalStatus globalStatus = GlobalStatus.ACTIVE;
     private MovementStatus movementStatus = MovementStatus.RIGHT;
     private ActionStatus actionStatus = ActionStatus.STAND;
+    @Setter
+    private boolean freeze = false;
+    @Setter
+    private boolean effect = false;
+
+    @Setter
+    @Getter
+    private boolean focused = false;
+
     private final GameCharacter character;
+
 
     public StatusManager(GameCharacter character) {
         this.character = character;
     }
 
+    public boolean isNotControllable() {
+        return freeze || isIntroing() || isWinning();
+    }
+
+    public boolean isFreezed() {
+        return freeze;
+    }
 
     public boolean isStanding() {
         return actionStatus == ActionStatus.STAND;
@@ -158,6 +178,9 @@ public class StatusManager {
             case DEFENDING:
                 character.getDefendManager().defend();
                 break;
+            case AIR_DEFENDING:
+                character.getDefendManager().stopAirDefend();
+                break;
             case DEFENDSTOP:
                 character.getDefendManager().stopDefend();
                 break;
@@ -199,8 +222,7 @@ public class StatusManager {
     }
 
     public boolean canNotDefend() {
-        return isOnAir() ||
-                notCombatReady();
+        return notCombatReady();
     }
 
     public boolean canNotDash() {
@@ -230,6 +252,7 @@ public class StatusManager {
                 || isDisabled()
                 || isDisabledRecovering()
                 || isDashing()
+                || freeze
                 || isRetreating()
                 || isRetreatStopping();
 
@@ -330,5 +353,15 @@ public class StatusManager {
     public boolean nearGround() {
         return ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE - Y_ATTACK_FREE_ZONE < character.getPos().y &&
                 character.getPos().y <= ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE && (isJumping() || isJumpFalling());
+    }
+
+    public boolean makesEffect() {
+        return effect;
+    }
+
+    public void startEffect() {
+        this.character.getEnemy().getStatusManager().setEffect(false);
+        this.character.getEffectManager().reset();
+        this.effect = true;
     }
 }

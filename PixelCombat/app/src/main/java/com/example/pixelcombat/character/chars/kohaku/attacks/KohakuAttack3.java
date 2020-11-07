@@ -73,7 +73,7 @@ public class KohakuAttack3 extends Attack {
         try {
 
             BoundingRectangle box = character.getBoxManager().getIntersectionBox();
-            character.notifyObservers(new GameMessage(MessageType.SPARK_CREATION, SparkConfig.ATTACK_SPARK + ";test;",
+            character.notifyObservers(new GameMessage(MessageType.SPARK_CREATION, SparkConfig.ATTACK2_SPARK + ";test;",
                     new Vector2d(box.getPos().x, box.getPos().y), true));
 
             character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_attack3_hit", null, true));

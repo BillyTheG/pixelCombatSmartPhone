@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+    <type>KohakuAttack6Dust</type>
+    <sprites>
+        <sequence airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="30" key="0" x="-1.7000008" y="-0.39000034">kohaku_dust_attack6_0.png</img>
+            <img duration="20" key="1" x="-2.290001" y="-0.47000027">kohaku_dust_attack6_1.png</img>
+            <img duration="20" key="2" x="-2.3899994" y="-0.48999977">kohaku_dust_attack6_2.png</img>
+            <img duration="30" key="3" x="-2.4500008" y="-0.46000004">kohaku_dust_attack6_3.png</img>
+            <img duration="30" key="4" x="-2.5100002" y="-0.43999958">kohaku_dust_attack6_4.png</img>
+            <img duration="30" key="5" x="-2.67" y="-0.43999958">kohaku_dust_attack6_5.png</img>
+            <img duration="20" key="6" x="-2.7399998" y="-0.4300003">kohaku_dust_attack6_6.png</img>
+            <img duration="20" key="7" x="-2.8400002" y="-0.40999985">kohaku_dust_attack6_7.png</img>
+            <img duration="30" key="8" x="-2.869999" y="-0.42000008">kohaku_dust_attack6_8.png</img>
+            <img duration="20" key="9" x="-2.9400005" y="-0.3800001">kohaku_dust_attack6_9.png</img>
+            <img duration="30" key="10" x="-2.83" y="-0.39999962">kohaku_dust_attack6_10.png</img>
+            <img duration="20" key="11" x="-2.8500004" y="-0.3699999">kohaku_dust_attack6_11.png</img>
+            <img duration="30" key="12" x="-2.67" y="-0.35000038">kohaku_dust_attack6_12.png</img>
+        </sequence>
+    </sprites>
+</character>

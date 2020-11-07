@@ -58,13 +58,15 @@ public abstract class BoxManager {
     public final int AIRATTACK5 = 35;
     public final int AIRATTACK6 = 36;
 
+    public final int AIRDEFEND = 37;
+
     public int currentAnimation;
     public BoundingRectangle currentColBox;
     @Getter
     public List<ArrayList<BoundingRectangle>> currentBox;
     public Map<String, ArrayList<ArrayList<BoundingRectangle>>> boxes;
     public BoxParser parser;
-    private GameCharacter character;
+    protected GameCharacter character;
     @Getter
     @Setter
     private boolean collidingX = false;
@@ -98,7 +100,7 @@ public abstract class BoxManager {
     }
 
     public void loadParsedBoxes() throws Exception {
-        parser = new BoxParser(character.getContext(), getFileName());
+        parser = new BoxParser(character.getContext(), getFileName(), character.getScaleFactor());
         parser.parseXMLData();
         boxes = parser.getBoxes();
         init();
@@ -124,7 +126,7 @@ public abstract class BoxManager {
                 updateBoxSeq(MOVE, "move");
                 break;
             case MOVESWITCH:
-                updateBoxSeq(MOVE, "moveSwitch");
+                updateBoxSeq(MOVESWITCH, "moveSwitch");
                 break;
             case JUMPSTART:
                 updateBoxSeq(JUMPING, "jumpStart");
@@ -218,6 +220,9 @@ public abstract class BoxManager {
                 break;
             case RETREAT:
                 updateBoxSeq(RETREAT, "retreat");
+                break;
+            case AIRDEFEND:
+                updateBoxSeq(AIRDEFEND, "airDefend");
                 break;
             case RETREATSTOP:
                 updateBoxSeq(RETREATSTOP, "retreatStop");

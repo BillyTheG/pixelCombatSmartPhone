@@ -13,16 +13,23 @@ import com.example.pixelcombat.character.chars.kohaku.manager.KohakuAttackManage
 import com.example.pixelcombat.character.chars.kohaku.manager.KohakuBoxManager;
 import com.example.pixelcombat.character.chars.kohaku.manager.KohakuDashManager;
 import com.example.pixelcombat.character.chars.kohaku.manager.KohakuDisabledManager;
+import com.example.pixelcombat.character.chars.kohaku.manager.KohakuEffectManager;
 import com.example.pixelcombat.character.chars.kohaku.manager.KohakuJumpManager;
 import com.example.pixelcombat.character.chars.kohaku.manager.KohakuMoveManager;
 import com.example.pixelcombat.character.chars.kohaku.manager.KohakuViewManager;
+import com.example.pixelcombat.character.chars.kohaku.special.SakuraFactory;
 import com.example.pixelcombat.character.controller.CharacterController;
 import com.example.pixelcombat.character.physics.PlayerPhysics;
+import com.example.pixelcombat.core.config.AIConfig;
+import com.example.pixelcombat.core.config.EffectConfig;
 import com.example.pixelcombat.core.config.ViewConfig;
 import com.example.pixelcombat.core.message.GameMessage;
 import com.example.pixelcombat.enums.DrawLevel;
+import com.example.pixelcombat.enums.EnemyConfig;
 import com.example.pixelcombat.enums.MessageType;
+import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.exception.PixelCombatException;
+import com.example.pixelcombat.factories.EffectFactory;
 import com.example.pixelcombat.manager.StatusManager;
 import com.example.pixelcombat.manager.actionManager.CrouchManager;
 import com.example.pixelcombat.manager.actionManager.DefendManager;
@@ -61,12 +68,14 @@ public class Kohaku implements GameCharacter, HasAI {
     private DefendManager defendManager;
     private MoveManager moveManager;
     private KohakuDashManager dashManager;
+    private KohakuEffectManager effectManager;
     private PlayerPhysics physics;
     private CharacterController controller;
     private Context context;
     private JumpManager jumpManager;
     private ArrayList<Observer> observer;
     private GameCharacter enemy;
+    private SakuraFactory sakuraFactory;
 
     public Kohaku(String player, Vector2d pos, Context context) throws Exception {
         this.context = context;
@@ -91,11 +100,17 @@ public class Kohaku implements GameCharacter, HasAI {
         disabledManager = new KohakuDisabledManager(this);
         knockBackManager = new KnockBackManager(this);
         dashManager = new KohakuDashManager(this);
+        sakuraFactory = new SakuraFactory(this);
         observer = new ArrayList<>();
     }
 
     public void initAttacks() {
         attackManager.init();
+    }
+
+    public void initEffects(EffectFactory effectFactory) {
+        effectManager = new KohakuEffectManager(this, effectFactory.createEffect(EffectConfig.AVATAR_COVER, new Vector2d(), true));
+        effectManager.init(effectFactory);
     }
 
     @Override
@@ -117,8 +132,11 @@ public class Kohaku implements GameCharacter, HasAI {
 
     @Override
     public void update() throws PixelCombatException {
-        if (getAIManager() != null)
+        if (getAIManager() != null && AIConfig.ENEMY_CONFIG == EnemyConfig.VERSUS_AI)
             kohakuAIManager.update();
+
+        if (getStatusManager().makesEffect())
+            getEffectManager().update();
 
         viewManager.update();
         physics.update();
@@ -164,6 +182,11 @@ public class Kohaku implements GameCharacter, HasAI {
     @Override
     public void setAIManager(AIManager aiManager) {
         this.kohakuAIManager = aiManager;
-
     }
+
+    @Override
+    public float getScaleFactor() {
+        return ScreenProperty.KOHAKU_SCALE;
+    }
+
 }

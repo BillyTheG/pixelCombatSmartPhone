@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+    <type>DustHardLand</type>
+    <sprites>
+        <sequence airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="50" key="0" x="-0.4699993" y="0.020000458">dust_hard_land_side_0.png</img>
+            <img duration="30" key="1" x="-0.7900009" y="0.05000019">dust_hard_land_side_1.png</img>
+            <img duration="30" key="2" x="-1.7199993" y="0.10999966">dust_hard_land_side_2.png</img>
+            <img duration="30" key="3" x="-1.9699993" y="0.22999954">dust_hard_land_side_3.png</img>
+            <img duration="30" key="4" x="-1.8700008" y="-0.13000011">dust_hard_land_side_4.png</img>
+            <img duration="30" key="5" x="-1.6800003" y="-0.10999966">dust_hard_land_side_5.png</img>
+            <img duration="30" key="6" x="-1.4699993" y="-0.010000229">dust_hard_land_side_6.png</img>
+            <img duration="50" key="7" x="-1.4099998" y="0.18999958">dust_hard_land_side_7.png</img>
+            <img duration="50" key="8" x="-1.3500004" y="0.09000015">dust_hard_land_side_8.png</img>
+            <img duration="30" key="9" x="-1.2900009" y="0.069999695">dust_hard_land_side_9.png</img>
+            <img duration="30" key="10" x="-1.2800007" y="0.07999992">dust_hard_land_side_10.png</img>
+            <img duration="30" key="11" x="-1.4699993" y="0.07999992">dust_hard_land_side_11.png</img>
+            <img duration="50" key="12" x="-1.5200005" y="0.09000015">dust_hard_land_side_12.png</img>
+        </sequence>
+    </sprites>
+</character>

@@ -41,6 +41,10 @@ public class SparkFactory {
         switch (type) {
             case SparkConfig.ATTACK_SPARK:
                 return new Attack1Spark(pictures.get("Attack1_Spark"), times.get("Attack1_Spark"), pos).register(soundManager);
+            case SparkConfig.ATTACK2_SPARK:
+                return new Attack1Spark(pictures.get("Attack2_Spark"), times.get("Attack2_Spark"), pos).register(soundManager);
+            case SparkConfig.KOHAKU_BATTO_JUTSU_SLASH_SPARK:
+                return new Attack1Spark(pictures.get("Kohaku_Batto_Jutsu_Slash_Spark"), times.get("Kohaku_Batto_Jutsu_Slash_Spark"), pos, right).register(soundManager);
             case SparkConfig.KOHAKU_SPECIAL_ATTACK_SPARK:
                 return new Attack1Spark(pictures.get("Kohaku_Special_Attack1_Spark"), times.get("Kohaku_Special_Attack1_Spark"), pos, right).register(soundManager);
             case SparkConfig.BLOOD_SPLASH_SPARK:
@@ -59,12 +63,16 @@ public class SparkFactory {
         try {
             CharacterParser dustParser = new CharacterParser(context);
             sparkNames.add("Attack1_Spark.xml");
+            sparkNames.add("Attack2_Spark.xml");
             sparkNames.add("Kohaku_Special_Attack1_Spark.xml");
             sparkNames.add("Kohaku_Special2_Attack_Spark.xml");
             sparkNames.add("Blood_Splash_Spark.xml");
             sparkNames.add("Defend_Spark.xml");
+            sparkNames.add("Kohaku_Batto_Jutsu_Slash_Spark.xml");
+
 
             for (String spark : sparkNames) {
+                dustParser = new CharacterParser(context);
                 dustParser.parse(spark);
                 String sparkC = spark.replace(".xml", "");
 

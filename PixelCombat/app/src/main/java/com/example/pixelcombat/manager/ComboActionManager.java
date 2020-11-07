@@ -18,16 +18,16 @@ import static com.example.pixelcombat.core.config.ComboAttacksConfig.FORWARD_RIG
 import static com.example.pixelcombat.core.config.ComboAttacksConfig.FORWARD_RIGHT_SPECIAL_ATTACK2;
 import static com.example.pixelcombat.core.config.ComboAttacksConfig.UP_SPECIAL_ATTACK3;
 
-public class ComboActionManager {
+public abstract class ComboActionManager {
 
-    private final GameCharacter player1;
+    protected final GameCharacter player1;
     private String pressedKeysP1 = "";
     private int MAXIMUM_KEY_LISTENING_SIZE = 10;
     private long lastFrame = 0;
     private Long[] timesP1 = new Long[MAXIMUM_KEY_LISTENING_SIZE];
 
-    private SortedSet<String> combos = new TreeSet<>();
-    private String bonus = "";
+    protected SortedSet<String> combos = new TreeSet<>();
+    protected String bonus = "";
 
     public ComboActionManager(GameCharacter player1) {
         this.player1 = player1;
@@ -47,7 +47,10 @@ public class ComboActionManager {
         combos.add(ComboAttacksConfig.FORWARD_LEFT_SPECIAL_ATTACK2);
         combos.add(ComboAttacksConfig.FORWARD_RIGHT_SPECIAL_ATTACK2);
         combos.add(ComboAttacksConfig.UP_SPECIAL_ATTACK3);
+        loadMoreCombos();
     }
+
+    protected abstract void loadMoreCombos();
 
     public synchronized void pressKey(String player1, String key) {
 
@@ -150,12 +153,13 @@ public class ComboActionManager {
                 bonus = "";
                 return activated;
             default:
+                activated = doAnotherSpecialAttack(combo);
                 bonus = "";
-                break;
+                return activated;
         }
-
-        return false;
     }
+
+    protected abstract boolean doAnotherSpecialAttack(String combo);
 
 
 }

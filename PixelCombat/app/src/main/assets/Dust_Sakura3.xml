@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+    <type>DustSakura3</type>
+    <sprites>
+        <sequence airBool="false" airIndex="0" loopIndex="0" loops="true">
+            <img duration="80" key="0" x="0.20999908" y="-0.10999966">dust_sakura3_0.png</img>
+            <img duration="80" key="1" x="0.21999931" y="-0.069999695">dust_sakura3_1.png</img>
+            <img duration="80" key="2" x="0.23999977" y="-0.010000229">dust_sakura3_2.png</img>
+            <img duration="80" key="3" x="0.20999908" y="0.06000042">dust_sakura3_3.png</img>
+            <img duration="80" key="4" x="0.069999695" y="0.22999954">dust_sakura3_4.png</img>
+            <img duration="50" key="5" x="-0.09000015" y="0.14999962">dust_sakura3_5.png</img>
+            <img duration="80" key="6" x="-0.21999931" y="0.10000038">dust_sakura3_6.png</img>
+            <img duration="80" key="7" x="-0.25" y="0.06000042">dust_sakura3_7.png</img>
+            <img duration="80" key="8" x="-0.19000053" y="-0.13000011">dust_sakura3_8.png</img>
+            <img duration="50" key="9" x="0.0" y="-0.31000042">dust_sakura3_9.png</img>
+            <img duration="80" key="10" x="0.17000008" y="-0.17000008">dust_sakura3_10.png</img>
+        </sequence>
+    </sprites>
+</character>

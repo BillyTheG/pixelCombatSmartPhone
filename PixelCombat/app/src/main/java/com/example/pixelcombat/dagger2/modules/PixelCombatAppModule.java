@@ -8,6 +8,7 @@ import com.example.pixelcombat.GamePanel;
 import com.example.pixelcombat.core.Game;
 import com.example.pixelcombat.core.sound.SoundManager;
 import com.example.pixelcombat.factories.DustFactory;
+import com.example.pixelcombat.factories.EffectFactory;
 import com.example.pixelcombat.factories.ProjectileFactory;
 import com.example.pixelcombat.factories.SparkFactory;
 import com.example.pixelcombat.manager.GameButtonManager;
@@ -68,6 +69,12 @@ public class PixelCombatAppModule {
 
     @Singleton
     @Provides
+    public EffectFactory providesEffectFactory(Context context) {
+        return new EffectFactory(context);
+    }
+
+    @Singleton
+    @Provides
     public SparkFactory providesSparkFactory(Context context, SoundManager soundManager) {
         return new SparkFactory(context, soundManager);
     }
@@ -81,8 +88,8 @@ public class PixelCombatAppModule {
     @Singleton
     @Provides
     public Game providesGame(Context context, DustFactory dustFactory, SparkFactory sparkFactory,
-                             ProjectileFactory projectileFactory) {
-        return new Game(context, dustFactory, sparkFactory, projectileFactory);
+                             ProjectileFactory projectileFactory, EffectFactory effectFactory) {
+        return new Game(context, dustFactory, sparkFactory, projectileFactory, effectFactory);
     }
 
 }

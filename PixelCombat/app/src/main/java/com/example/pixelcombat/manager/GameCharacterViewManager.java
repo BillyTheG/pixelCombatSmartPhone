@@ -6,6 +6,7 @@ import android.graphics.Rect;
 import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.animation.Animation;
 import com.example.pixelcombat.animation.AnimationManager;
+import com.example.pixelcombat.character.status.AttackStatus;
 import com.example.pixelcombat.exception.parser.XmlParseErrorException;
 import com.example.pixelcombat.utils.LocatedBitmap;
 import com.example.pixelcombat.xml.CharacterParser;
@@ -60,6 +61,8 @@ public abstract class GameCharacterViewManager extends ObjectViewManager<GameCha
     public final int AIRATTACK4 = 34;
     public final int AIRATTACK5 = 35;
     public final int AIRATTACK6 = 36;
+    public final int AIRDEFEND = 37;
+
 
     public final int DEAD = 99;
     @Getter
@@ -119,8 +122,9 @@ public abstract class GameCharacterViewManager extends ObjectViewManager<GameCha
         animations.add(new Animation(images.get("airAttack4"), times.get(AIRATTACK4), loop.get(AIRATTACK4), loopIndices.get(AIRATTACK4)));
         animations.add(new Animation(images.get("airAttack5"), times.get(AIRATTACK5), loop.get(AIRATTACK5), loopIndices.get(AIRATTACK5)));
         animations.add(new Animation(images.get("airAttack6"), times.get(AIRATTACK6), loop.get(AIRATTACK6), loopIndices.get(AIRATTACK6)));
+        animations.add(new Animation(images.get("airDefend"), times.get(AIRDEFEND), loop.get(AIRDEFEND), loopIndices.get(AIRDEFEND)));
 
-        loadMoreImages(animations);
+        animations = loadMoreImages(animations, images, times, loop, loopIndices);
 
         Animation[] array = new Animation[animations.size()];
         animations.toArray(array); // fill the array
@@ -128,7 +132,7 @@ public abstract class GameCharacterViewManager extends ObjectViewManager<GameCha
         animManager = new AnimationManager<>(this, array, character);
     }
 
-    protected abstract void loadMoreImages(ArrayList<Animation> animations);
+    protected abstract ArrayList<Animation> loadMoreImages(ArrayList<Animation> animations, Map<String, ArrayList<LocatedBitmap>> images, ArrayList<ArrayList<Float>> times, ArrayList<Boolean> loop, ArrayList<Integer> loopIndices);
 
     public void setUpLoaderThread() {
 
@@ -194,11 +198,8 @@ public abstract class GameCharacterViewManager extends ObjectViewManager<GameCha
                     case SPECIALATTACK3:
                         return SPECIALATTACK3;
                     default:
-                        // changeFurtherImages(character.attackLogic.getAttackStatus());
-                        break;
+                        return changeFurtherImages(character.getAttackManager().getAttackStatus());
                 }
-                // Bildreihe gewechselt
-                return 0;
             } else {
 
                 switch (character.getStatusManager().getActionStatus()) {
@@ -228,6 +229,8 @@ public abstract class GameCharacterViewManager extends ObjectViewManager<GameCha
                         return DECROUCH;
                     case DEFENDING:
                         return DEFEND;
+                    case AIR_DEFENDING:
+                        return AIRDEFEND;
                     case DEFENDSTOP:
                         return DEFENDSTOP;
                     case RETREATING:
@@ -262,6 +265,9 @@ public abstract class GameCharacterViewManager extends ObjectViewManager<GameCha
         }
         return STAND;
     }
+
+    protected abstract int changeFurtherImages(AttackStatus attackStatus);
+
     public synchronized void updateAnimation() {
         animManager.playAnim();
         character.getBoxManager().update();

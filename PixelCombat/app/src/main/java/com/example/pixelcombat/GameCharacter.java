@@ -4,7 +4,9 @@ import android.content.Context;
 
 import com.example.pixelcombat.character.controller.CharacterController;
 import com.example.pixelcombat.character.physics.PlayerPhysics;
+import com.example.pixelcombat.effects.avatar.EffectManager;
 import com.example.pixelcombat.exception.PixelCombatException;
+import com.example.pixelcombat.factories.EffectFactory;
 import com.example.pixelcombat.manager.BoxManager;
 import com.example.pixelcombat.manager.GameCharacterViewManager;
 import com.example.pixelcombat.manager.StatusManager;
@@ -37,6 +39,8 @@ public interface GameCharacter extends GameObject, Observable {
 
     AttackManager getAttackManager();
 
+    EffectManager getEffectManager();
+
     DashManager getDashManager();
 
     HitManager getHitManager();
@@ -60,6 +64,8 @@ public interface GameCharacter extends GameObject, Observable {
     void setEnemy(GameCharacter enemy);
 
     void initAttacks();
+
+    void initEffects(EffectFactory effectFactory);
 
     void cry() throws PixelCombatException;
 

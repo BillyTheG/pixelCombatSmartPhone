@@ -2,10 +2,13 @@ package com.example.pixelcombat.character.chars.ruffy.manager;
 
 import com.example.pixelcombat.animation.Animation;
 import com.example.pixelcombat.character.chars.ruffy.Ruffy;
+import com.example.pixelcombat.character.status.AttackStatus;
 import com.example.pixelcombat.manager.GameCharacterViewManager;
+import com.example.pixelcombat.utils.LocatedBitmap;
 import com.example.pixelcombat.xml.CharacterParser;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class RuffyViewManager extends GameCharacterViewManager {
 
@@ -14,8 +17,9 @@ public class RuffyViewManager extends GameCharacterViewManager {
     }
 
     @Override
-    protected void loadMoreImages(ArrayList<Animation> animations) {
+    protected ArrayList<Animation> loadMoreImages(ArrayList<Animation> animations, Map<String, ArrayList<LocatedBitmap>> images, ArrayList<ArrayList<Float>> times, ArrayList<Boolean> loop, ArrayList<Integer> loopIndices) {
 
+        return animations;
     }
 
     @Override
@@ -27,6 +31,10 @@ public class RuffyViewManager extends GameCharacterViewManager {
         thread.start();
     }
 
+    @Override
+    protected int changeFurtherImages(AttackStatus attackStatus) {
+        return 0;
+    }
 
 
 }

@@ -92,7 +92,7 @@ public abstract class AttackManager {
                     Objects.requireNonNull(attacks.get("specialAttack3")).check();
                     break;
                 default:
-                    updateFurtherAttacks();
+                    updateFurtherAttacks(attackStatus);
             }
 
             if (isAirAttacking() && character.getStatusManager().isJumpFalling()) {
@@ -105,7 +105,7 @@ public abstract class AttackManager {
         }
     }
 
-    public abstract void updateFurtherAttacks();
+    public abstract void updateFurtherAttacks(AttackStatus attackStatus) throws PixelCombatException;
 
     public void setAttackStatus(AttackStatus attackStatus) {
         this.attackStatus = attackStatus;

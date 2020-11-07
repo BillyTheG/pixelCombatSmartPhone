@@ -11,15 +11,19 @@ import com.example.pixelcombat.character.chars.ruffy.manager.RuffyAttackManager;
 import com.example.pixelcombat.character.chars.ruffy.manager.RuffyBoxManager;
 import com.example.pixelcombat.character.chars.ruffy.manager.RuffyDashManager;
 import com.example.pixelcombat.character.chars.ruffy.manager.RuffyDisabledManager;
+import com.example.pixelcombat.character.chars.ruffy.manager.RuffyEffectManager;
 import com.example.pixelcombat.character.chars.ruffy.manager.RuffyJumpManager;
 import com.example.pixelcombat.character.chars.ruffy.manager.RuffyMoveManager;
 import com.example.pixelcombat.character.chars.ruffy.manager.RuffyViewManager;
 import com.example.pixelcombat.character.controller.CharacterController;
 import com.example.pixelcombat.character.physics.PlayerPhysics;
+import com.example.pixelcombat.core.config.EffectConfig;
 import com.example.pixelcombat.core.config.ViewConfig;
 import com.example.pixelcombat.core.message.GameMessage;
 import com.example.pixelcombat.enums.DrawLevel;
+import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.exception.PixelCombatException;
+import com.example.pixelcombat.factories.EffectFactory;
 import com.example.pixelcombat.manager.StatusManager;
 import com.example.pixelcombat.manager.actionManager.CrouchManager;
 import com.example.pixelcombat.manager.actionManager.DashManager;
@@ -59,6 +63,7 @@ public class Ruffy implements GameCharacter {
     private CharacterController controller;
     private Context context;
     private JumpManager jumpManager;
+    private RuffyEffectManager effectManager;
     private ArrayList<Observer> observer;
     private GameCharacter enemy;
     private String player;
@@ -93,6 +98,11 @@ public class Ruffy implements GameCharacter {
         attackManager.init();
     }
 
+    public void initEffects(EffectFactory effectFactory) {
+        effectManager = new RuffyEffectManager(this, effectFactory.createEffect(EffectConfig.AVATAR_COVER, new Vector2d(), true));
+        effectManager.init(effectFactory);
+    }
+
     @Override
     public void cry() {
 
@@ -111,6 +121,9 @@ public class Ruffy implements GameCharacter {
 
     @Override
     public void update() throws PixelCombatException {
+        if (getStatusManager().makesEffect())
+            getEffectManager().update();
+
         viewManager.update();
         physics.update();
         statusManager.update();
@@ -143,5 +156,10 @@ public class Ruffy implements GameCharacter {
         for (Observer obs : observer) {
             obs.processMessage(message);
         }
+    }
+
+    @Override
+    public float getScaleFactor() {
+        return ScreenProperty.GENERAL_SCALE;
     }
 }

@@ -69,11 +69,11 @@ public class BoundingRectangle implements BoundingBoxInterface {
      * @param pos,    the middle point of the whole Rectangle Volume
      * @param width,  width of the Rect
      */
-    public BoundingRectangle(float height, Vector2d pos, float width) {
+    public BoundingRectangle(float height, Vector2d pos, float width, float scaleFactor) {
 
-        this.pos = new Vector2d(pos.x * ScreenProperty.SCALE, pos.y * ScreenProperty.SCALE);
-        this.width = ScreenProperty.SCALE * width;
-        this.height = ScreenProperty.SCALE * height;
+        this.pos = new Vector2d(pos.x * scaleFactor, pos.y * scaleFactor);
+        this.width = scaleFactor * width;
+        this.height = scaleFactor * height;
 
         this.upperLeft = new Vector2d(pos.x - this.width / 2f, pos.y - this.height / 2f);
         this.lowerRight = new Vector2d(pos.x + this.width / 2f, pos.y + this.height / 2f);

@@ -14,16 +14,19 @@ import com.example.pixelcombat.core.Game;
 import com.example.pixelcombat.core.config.ViewConfig;
 import com.example.pixelcombat.core.message.GameMessage;
 import com.example.pixelcombat.core.sound.SoundManager;
+import com.example.pixelcombat.effects.attackCover.Darkening;
 import com.example.pixelcombat.enums.DrawLevel;
 import com.example.pixelcombat.enums.MessageType;
 import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.exception.PixelCombatException;
+import com.example.pixelcombat.factories.EffectFactory;
 import com.example.pixelcombat.manager.ScreenScrollerManager;
 import com.example.pixelcombat.math.Vector2d;
 
 import org.jetbrains.annotations.NotNull;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import static com.example.pixelcombat.enums.GamePlayView.BORDER_HEIGHT;
 import static com.example.pixelcombat.enums.GamePlayView.BORDER_WIDTH;
@@ -46,6 +49,9 @@ public class PXMap implements GameObject {
     private GameCharacter character1;
     private GameCharacter character2;
     private float aFloat;
+    private Darkening darkening = new Darkening();
+    @Setter
+    private boolean darkeningActivated = false;
 
     public PXMap(String name, Bitmap bg, Context context, GameCharacter character1, GameCharacter character2) {
         this.bg = bg;
@@ -62,6 +68,7 @@ public class PXMap implements GameObject {
         character1.initAttacks();
         character2.initAttacks();
 
+
         if (height > ScreenProperty.SCREEN_HEIGHT) {
             deltaY = height - ScreenProperty.SCREEN_HEIGHT;
         }
@@ -76,12 +83,22 @@ public class PXMap implements GameObject {
 
     }
 
+    public void initEffects(EffectFactory effectFactory) {
+        character1.initEffects(effectFactory);
+        character2.initEffects(effectFactory);
+    }
+
     @Override
     public void draw(Canvas canvas, int screenX, int screenY, Rect gameRect) {
         sourceRect.offsetTo(screenScrollManager.getScreenX() - screenScrollManager.getCX(),
                 deltaY + screenScrollManager.getScreenY() - screenScrollManager.getCY());
 
         canvas.drawBitmap(bg, sourceRect, this.gameRect, null);
+
+        darkening.draw(canvas);
+
+        drawEffects(canvas, this.gameRect, true);
+
         character1.draw(canvas, screenScrollManager.getScreenX() - screenScrollManager.getCX(), screenScrollManager.getScreenY() - screenScrollManager.getCY(), this.gameRect);
         character2.draw(canvas, screenScrollManager.getScreenX() - screenScrollManager.getCX(), screenScrollManager.getScreenY() - screenScrollManager.getCY(), this.gameRect);
 
@@ -100,8 +117,15 @@ public class PXMap implements GameObject {
     @Override
     public void update() throws PixelCombatException {
 
-        character1.update();
-        character2.update();
+        int factor = (darkeningActivated) ? 1 : -1;
+
+        darkening.update(factor);
+
+        if (!character1.getStatusManager().isFreezed())
+            character1.update();
+        if (!character2.getStatusManager().isFreezed())
+            character2.update();
+
 
         boolean borders1 = checkHorizontalBorders(character1);
         boolean borders2 = checkHorizontalBorders(character2);
@@ -112,6 +136,13 @@ public class PXMap implements GameObject {
     }
 
     private boolean checkHorizontalBorders(GameCharacter character) {
+
+        if (character.getStatusManager().isFocused() || character.getEnemy().getStatusManager().isFocused())
+            return false;
+
+        if (screenScrollManager.isOneCharacterWasFocused())
+            return false;
+
         if (character.getPos().x < BORDER_WIDTH) {
             character.getPos().x = BORDER_WIDTH;
             checkReflect(character);
@@ -137,18 +168,20 @@ public class PXMap implements GameObject {
                 return true;
             }
         }
-
-
         return false;
-
     }
 
     private void checkReflect(GameCharacter character) {
         try {
             if (character.getStatusManager().isKnockbacked() || character.getStatusManager().isKnockBackFalling()) {
-                character.getStatusManager().swapDirections();
+
                 character.notifyObservers(new GameMessage(MessageType.SHAKE, "", null, true));
+                character.notifyObservers(new GameMessage(MessageType.DUST_CREATION, "Dust_Hard_Land_Side;" + character.getPlayer(),
+                        new Vector2d(character.getPos().x - character.getDirection() * BORDER_WIDTH, character.getPos().y - BORDER_WIDTH), character.getPhysics().VX > 0));
+                character.notifyObservers(new GameMessage(MessageType.SOUND, "hard_ground_hit", null, true));
+                character.getStatusManager().swapDirections();
                 character.getPhysics().VX = -character.getPhysics().VX;
+
             }
         } catch (Exception e) {
             Log.e("Error", "The Reflect could not be handled: " + e.getMessage());
@@ -192,6 +225,11 @@ public class PXMap implements GameObject {
         return 0;
     }
 
+    @Override
+    public float getScaleFactor() {
+        return ScreenProperty.GENERAL_SCALE;
+    }
+
     @NotNull
     @Override
     public String toString() {
@@ -215,4 +253,20 @@ public class PXMap implements GameObject {
     }
 
 
+    public void putFreezeOn(String owner, boolean state) {
+
+        if (owner.equals(character1.getPlayer())) {
+            character2.getStatusManager().setFreeze(state);
+        } else {
+            character1.getStatusManager().setFreeze(state);
+        }
+
+    }
+
+    public void drawEffects(Canvas canvas, Rect gameRect, boolean back) {
+        if (character1.getStatusManager().makesEffect() && character1.getEffectManager().checkAttacks().isArtWork() == back)
+            character1.getEffectManager().draw(canvas, screenScrollManager.getScreenX(), screenScrollManager.getCX(), gameRect);
+        if (character2.getStatusManager().makesEffect() && character1.getEffectManager().checkAttacks().isArtWork() == back)
+            character2.getEffectManager().draw(canvas, screenScrollManager.getScreenX(), screenScrollManager.getCX(), gameRect);
+    }
 }

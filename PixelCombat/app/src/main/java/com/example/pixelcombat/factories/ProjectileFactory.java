@@ -7,6 +7,7 @@ import com.example.pixelcombat.character.chars.kohaku.projectiles.FireBottle;
 import com.example.pixelcombat.character.chars.kohaku.projectiles.HorizontalSlash;
 import com.example.pixelcombat.core.config.ProjectileConfig;
 import com.example.pixelcombat.core.sound.SoundManager;
+import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.manager.ScreenScrollerManager;
 import com.example.pixelcombat.math.BoundingRectangle;
 import com.example.pixelcombat.math.Vector2d;
@@ -82,7 +83,7 @@ public class ProjectileFactory {
 
             for (String projectile : projectileNames) {
                 CharacterParser projectileParser = new CharacterParser(context);
-                BoxParser boxParser = new BoxParser(context);
+                BoxParser boxParser = new BoxParser(context, checkScaleFactor(projectile.split("_")[0]));
                 //  projectileParser.setTrim(true);
                 projectileParser.parse(projectile + "_Images.xml");
                 boxParser.parse(projectile + "_Boxes.xml");
@@ -111,6 +112,17 @@ public class ProjectileFactory {
         } catch (Exception e) {
             Log.e("Error", "Beim Erstellen der ProjectileFactory gab es einen Fehler. " + e.getMessage());
         }
+    }
+
+    private float checkScaleFactor(String s) {
+        switch (s) {
+            case "Kohaku":
+                return ScreenProperty.KOHAKU_SCALE;
+            default:
+                return ScreenProperty.GENERAL_SCALE;
+        }
+
+
     }
 
 }

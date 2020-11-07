@@ -44,16 +44,14 @@ public class FireBottle extends ProjectileStatusManager {
         }
         if (!defender.getStatusManager().isKnockbacked()) {
             // getUser().enemy.timeManager.getDisableTime().setY(Float.valueOf(0.0F));
-            defender.getHitManager().setKnockBackHeight(-27.0F);
-            defender.getHitManager().setKnockBackRange(10.0F);
+            defender.getHitManager().setKnockBackHeight(-37.0F);
+            defender.getHitManager().setKnockBackRange(15.0F);
             defender.getHitManager().checkOnAir();
             defender.getStatusManager().setActionStatus(ActionStatus.STAND);
             defender.getStatusManager().setGlobalStatus(GlobalStatus.KNOCKBACK);
         } else {
-            defender.getHitManager().comboTouch(-20.0F, 10.0F);
+            defender.getHitManager().comboTouch(-35.0F, 15.0F);
         }
-
-
     }
 
     @Override
