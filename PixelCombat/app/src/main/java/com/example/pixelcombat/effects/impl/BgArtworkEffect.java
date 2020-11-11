@@ -60,6 +60,11 @@ public class BgArtworkEffect extends Effect {
     }
 
     @Override
+    public boolean isHorizontal() {
+        return false;
+    }
+
+    @Override
     public float getScaleFactor() {
         return 1f;
     }

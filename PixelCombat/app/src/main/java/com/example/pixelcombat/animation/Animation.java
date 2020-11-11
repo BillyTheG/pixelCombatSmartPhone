@@ -24,6 +24,8 @@ public class Animation {
     private int frameIndex;
     private boolean isPlaying;
     private long lastFrame;
+    private long currentTime;
+    private long delta;
 
     public boolean isPlaying() {
         return isPlaying;
@@ -114,6 +116,8 @@ public class Animation {
             int new_left = ScreenProperty.OFFSET_X - left_old;
 
             if (desRect.bottom < bottom_old) {
+                if (new_left > 0 && new_right > 0)
+                    return Bitmap.createBitmap(bitmap, new_left, 0, bitmap.getWidth() - new_left - new_right, Math.abs(desRect.top - desRect.bottom));
                 if (new_left > 0)
                     return Bitmap.createBitmap(bitmap, new_left, 0, bitmap.getWidth() - new_left, Math.abs(desRect.top - desRect.bottom));
                 else if (new_right > 0)
@@ -123,6 +127,8 @@ public class Animation {
 
             } else {
                 int new_height = desRect.top - desRect.bottom;
+                if (new_left > 0 && new_right > 0)
+                    return Bitmap.createBitmap(bitmap, new_left, desRect.top - top_old, bitmap.getWidth() - new_left - new_right, Math.abs(desRect.top - desRect.bottom));
                 if (new_left > 0)
                     return Bitmap.createBitmap(bitmap, new_left, desRect.top - top_old, bitmap.getWidth() - new_left, Math.abs(new_height));
                 else if (new_right > 0)
@@ -163,7 +169,8 @@ public class Animation {
             frameIndex = frameIndex >= frames.size() ? loopPoint : frameIndex;
             lastFrame = System.currentTimeMillis();
         }
-
+        delta = System.currentTimeMillis() - currentTime;
+        currentTime = System.currentTimeMillis();
 
     }
 
@@ -194,7 +201,9 @@ public class Animation {
     }
 
     public synchronized boolean animationSequenceAlmostFinished(long restTime) {
-        return System.currentTimeMillis() - lastFrame > frames.get(frameIndex).getEndTime() - restTime;
+        // return System.currentTimeMillis() - lastFrame > frames.get(frameIndex).getEndTime() - restTime;
+
+        return lastFrame + (long) frames.get(frameIndex).getEndTime() - restTime <= currentTime;
     }
 
 }

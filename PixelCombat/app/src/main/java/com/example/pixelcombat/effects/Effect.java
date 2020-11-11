@@ -11,7 +11,10 @@ import com.example.pixelcombat.utils.LocatedBitmap;
 
 import java.util.ArrayList;
 
+import lombok.Getter;
+
 public abstract class Effect implements GameObject {
+    @Getter
     protected final EffectAnimation animation;
     protected final Vector2d pos;
     protected final boolean scale;
@@ -20,20 +23,32 @@ public abstract class Effect implements GameObject {
     protected boolean artWork = false;
 
     public Effect(ArrayList<LocatedBitmap> images, ArrayList<Float> times, Vector2d pos, boolean artWork, boolean scale) {
-        this.animation = new EffectAnimation(images, times, 0, scale);
         this.pos = pos;
         this.artWork = artWork;
+        this.animation = new EffectAnimation(images, times, 0, scale, isHorizontal());
+        repositionate(pos, scale);
+        this.animation.play();
+        this.scale = scale;
 
+    }
+
+    public Effect(ArrayList<LocatedBitmap> images, ArrayList<Float> times, Vector2d pos, boolean artWork, boolean scale, int loopPoint) {
+        this.pos = pos;
+        this.artWork = artWork;
+        this.animation = new EffectAnimation(images, times, loopPoint, scale, isHorizontal());
+        repositionate(pos, scale);
+        this.animation.play();
+        this.scale = scale;
+
+    }
+
+    private void repositionate(Vector2d pos, boolean scale) {
         if (scale) {
             pos.x *= animation.getScaleFactor();
             pos.y *= animation.getScaleFactor();
             xStartPos = pos.x;
             yStartPos = pos.y;
         }
-
-        this.animation.play();
-        this.scale = scale;
-
     }
 
 
@@ -53,6 +68,7 @@ public abstract class Effect implements GameObject {
 
     protected abstract void resetChanger();
 
+    public abstract boolean isHorizontal();
 
     public Vector2d getPos() {
         return pos;

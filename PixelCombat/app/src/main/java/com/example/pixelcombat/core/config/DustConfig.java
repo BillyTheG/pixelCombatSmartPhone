@@ -5,12 +5,14 @@ public class DustConfig {
     public static final String DUST_HARD_LAND = "Dust_Hard_Land";
     public static final String DUST_HARD_LAND_SIDE = "Dust_Hard_Land_Side";
     public static final String DUST_FAST_FORWARD = "Dust_Fast_Forward";
+    public static final String DUST_RUN_WALK = "Dust_Run_Walk";
 
     //KOHAKU
     public static final String KOHAKU_SPECIAL_ATTACK_SPARK = "Kohaku_Special_Attack_Dust";
     public static final String KOHAKU_SPECIAL_ATTACK2_AURA = "Kohaku_Special_Attack2_Aura";
     public static final String KOHAKU_SPECIAL_ATTACK_EFFECT = "Kohaku_Special_Attack_Effect";
     public static final String KOHAKU_ATTACK6_DUST = "Kohaku_Attack6_Dust";
+    public static final String KOHAKU_AIR_ATTACK6_DUST = "Kohaku_Air_Attack6_Dust";
     public static final String KOHAKU_SPECIAL_ATTACK2_SPARK = "Kohaku_Special2_Attack_Dust";
     public static final String KOHAKU_DASH_DUST = "Kohaku_Dash_Dust";
     public static final String KOHAKU_SAKURA1_DUST = "Dust_Sakura1";

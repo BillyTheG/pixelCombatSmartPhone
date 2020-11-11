@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+    <type>MaidenCall</type>
+    <sprites>
+        <sequence airBool="false" airIndex="0" loopIndex="0" loops="true">
+            <img duration="50" key="0" x="0.10000038" y="-0.39999962">kohaku_maiden_call_artwork.png</img>
+        </sequence>
+    </sprites>
+</character>

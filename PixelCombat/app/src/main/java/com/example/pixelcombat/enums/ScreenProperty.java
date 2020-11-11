@@ -12,7 +12,8 @@ public class ScreenProperty {
     public static float GENERAL_SCALE = 3.5f;
 
     //Character-based Scale Factors
-    public static float KOHAKU_SCALE = 3.5f;
+    public static float KOHAKU_SCALE = 3.75f;
 
 
+    public static float SHANA_SCALE = 1.2f;
 }

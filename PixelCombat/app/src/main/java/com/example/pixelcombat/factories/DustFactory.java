@@ -60,6 +60,8 @@ public class DustFactory {
             dustNames.add("Dust_Sakura4.xml");
             dustNames.add("Dust_Sakura5.xml");
             dustNames.add("Dust_Sakura6.xml");
+            dustNames.add("Kohaku_Air_Attack6_Dust.xml");
+            dustNames.add("Dust_Run_Walk.xml");
 
 
             for (String spark : dustNames) {
@@ -91,10 +93,14 @@ public class DustFactory {
                 return new Dust(pictures.get("Kohaku_Dash_Dust"), times.get("Kohaku_Dash_Dust"), false, pos, right).register(soundManager);
             case DustConfig.KOHAKU_ATTACK6_DUST:
                 return new Dust(pictures.get("Kohaku_Attack6_Dust"), times.get("Kohaku_Attack6_Dust"), false, pos, right).register(soundManager);
+            case DustConfig.KOHAKU_AIR_ATTACK6_DUST:
+                return new Dust(pictures.get("Kohaku_Air_Attack6_Dust"), times.get("Kohaku_Air_Attack6_Dust"), false, pos, right, 4).register(soundManager);
             case DustConfig.DUST_HARD_LAND:
                 return new Dust(pictures.get("Dust_Hard_Land"), times.get("Dust_Hard_Land"), false, pos, right).register(soundManager);
             case DustConfig.DUST_FAST_FORWARD:
                 return new Dust(pictures.get("Dust_Fast_Forward"), times.get("Dust_Fast_Forward"), false, pos, right).register(soundManager);
+            case DustConfig.DUST_RUN_WALK:
+                return new Dust(pictures.get("Dust_Run_Walk"), times.get("Dust_Run_Walk"), false, pos, right).register(soundManager);
             case DustConfig.DUST_HARD_LAND_SIDE:
                 return new Dust(pictures.get("Dust_Hard_Land_Side"), times.get("Dust_Hard_Land_Side"), false, pos, right).register(soundManager);
             case DustConfig.KOHAKU_SAKURA1_DUST:

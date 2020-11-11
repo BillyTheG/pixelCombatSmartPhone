@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+    <type>KohakuAirAttack6Dust</type>
+    <sprites>
+        <sequence airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="40" key="0" x="0.17000008" y="-1.1499996">kohaku_air_attack_6_dust_0.png</img>
+            <img duration="40" key="1" x="0.17000008" y="-1.1400003">kohaku_air_attack_6_dust_1.png</img>
+            <img duration="40" key="2" x="0.20999908" y="-1.0699997">kohaku_air_attack_6_dust_2.png</img>
+        </sequence>
+    </sprites>
+</character>

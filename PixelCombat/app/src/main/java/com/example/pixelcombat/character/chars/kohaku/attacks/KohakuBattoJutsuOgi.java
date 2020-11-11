@@ -76,6 +76,7 @@ public class KohakuBattoJutsuOgi extends Attack {
 
                         character.notifyObservers(new GameMessage(MessageType.DUST_CREATION, DustConfig.KOHAKU_SPECIAL_ATTACK_SPARK + ";test;",
                                 new Vector2d(character.getPos().x, character.getPos().y), character.isRight()));
+                        character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_wind", null, true));
 
                         character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_sword_slash", null, true));
 
@@ -106,6 +107,7 @@ public class KohakuBattoJutsuOgi extends Attack {
                 case 11:
                     if (isSwitcher()) {
                         if (enemyWasHit) {
+                            character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_batto_jutsu_finish", null, true));
                             kohaku.getSakuraFactory().generate();
                             character.getStatusManager().startEffect();
                         }
@@ -163,7 +165,7 @@ public class KohakuBattoJutsuOgi extends Attack {
                     new Vector2d(box.getPos().x, box.getPos().y), character.isRight()));
             character.notifyObservers(new GameMessage(MessageType.FREEZE, " ;" + character.getPlayer(), null, false));
             character.notifyObservers(new GameMessage(MessageType.SHAKE, "" + "test", null, true));
-            character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_sword_hit", null, true));
+            character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_batto_jutsu_hit", null, true));
             enemyWasHit = true;
         } catch (Exception e) {
             Log.e("Error", "The spark could not be created: " + e.getMessage());

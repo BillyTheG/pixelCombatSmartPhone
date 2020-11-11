@@ -3,7 +3,7 @@
     <type>KohakuProfile</type>
     <sprites>
         <sequence airBool="false" airIndex="0" loopIndex="0" loops="true">
-            <img duration="10" key="0" x="0.049999237" y="0.0">kohaku_return_1.png</img>
+            <img duration="50" key="0" x="0.10000038" y="-0.39999962">kohaku_return_1.png</img>
         </sequence>
     </sprites>
 </character>

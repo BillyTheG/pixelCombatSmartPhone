@@ -108,8 +108,8 @@ public class Kohaku implements GameCharacter, HasAI {
         attackManager.init();
     }
 
-    public void initEffects(EffectFactory effectFactory) {
-        effectManager = new KohakuEffectManager(this, effectFactory.createEffect(EffectConfig.AVATAR_COVER, new Vector2d(), true));
+    public void initEffects(Context context, EffectFactory effectFactory) {
+        effectManager = new KohakuEffectManager(context, this, effectFactory.createEffect(EffectConfig.AVATAR_COVER, new Vector2d(), true));
         effectManager.init(effectFactory);
     }
 

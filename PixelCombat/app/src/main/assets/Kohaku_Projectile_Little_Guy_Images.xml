@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+    <type>Kohaku_Projectile_Bottle</type>
+    <sprites>
+        <creation airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="50" key="0" x="-0.010000229" y="-0.40999985">kohaku_projectile_lttile_guy_0.png</img>
+            <img duration="50" key="1" x="0.0" y="-0.40999985">kohaku_projectile_lttile_guy_1.png</img>
+            <img duration="50" key="2" x="-0.010000229" y="-0.39999962">kohaku_projectile_lttile_guy_2.png</img>
+        </creation>
+        <move airBool="true" airIndex="0" loopIndex="0" loops="true">
+            <img duration="50" key="0" x="-0.010000229" y="-0.40999985">kohaku_projectile_lttile_guy_0.png</img>
+            <img duration="50" key="1" x="0.0" y="-0.40999985">kohaku_projectile_lttile_guy_1.png</img>
+            <img duration="50" key="2" x="-0.010000229" y="-0.39999962">kohaku_projectile_lttile_guy_2.png</img>
+        </move>
+        <explosion airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="50" key="0" x="-0.010000229" y="-0.40999985">kohaku_projectile_lttile_guy_0.png</img>
+            <img duration="50" key="1" x="0.0" y="-0.40999985">kohaku_projectile_lttile_guy_1.png</img>
+            <img duration="50" key="2" x="-0.010000229" y="-0.39999962">kohaku_projectile_lttile_guy_2.png</img>
+        </explosion>
+    </sprites>
+</character>

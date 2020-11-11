@@ -31,6 +31,11 @@ public class AvatarBgEffect extends Effect {
     }
 
     @Override
+    public boolean isHorizontal() {
+        return false;
+    }
+
+    @Override
     public void draw(Canvas canvas, int screenX, int screenY, Rect gameRect) {
 
     }

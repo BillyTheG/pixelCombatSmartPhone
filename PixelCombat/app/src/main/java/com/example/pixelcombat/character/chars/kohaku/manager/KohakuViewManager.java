@@ -13,7 +13,7 @@ import java.util.Map;
 public class KohakuViewManager extends GameCharacterViewManager {
 
     public final int BATTOJUTSUOGI = 38;
-
+    public final int MAIDENCALL = 39;
 
     public KohakuViewManager(Kohaku character) throws Exception {
         super(character);
@@ -23,6 +23,7 @@ public class KohakuViewManager extends GameCharacterViewManager {
     protected ArrayList<Animation> loadMoreImages(ArrayList<Animation> animations, Map<String, ArrayList<LocatedBitmap>> images, ArrayList<ArrayList<Float>> times, ArrayList<Boolean> loop, ArrayList<Integer> loopIndices) {
         //specialAttack1 and specialAttack2 have same animations
         animations.add(new Animation(images.get("battoJutsu"), times.get(BATTOJUTSUOGI), loop.get(BATTOJUTSUOGI), loopIndices.get(BATTOJUTSUOGI)));
+        animations.add(new Animation(images.get("maidenCall"), times.get(MAIDENCALL), loop.get(MAIDENCALL), loopIndices.get(MAIDENCALL)));
 
 
         return animations;
@@ -42,6 +43,8 @@ public class KohakuViewManager extends GameCharacterViewManager {
         switch (attackStatus) {
             case BATTO_JUTSU_OGI:
                 return BATTOJUTSUOGI;
+            case MAIDEN_CALL:
+                return MAIDENCALL;
             default:
                 break;
         }

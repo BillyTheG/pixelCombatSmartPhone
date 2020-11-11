@@ -143,6 +143,9 @@ public class CharacterController {
     public boolean specialAttack(AttackStatus attackStates) {
         if (character.getStatusManager().isOnAir()) {
             attackStates = mapStandToJumpAttack(attackStates);
+
+            if (character.getAttackManager().cannotUseOnAir(attackStates))
+                return true;
         }
 
         if (character.getStatusManager().notCombatReady()) {

@@ -19,6 +19,6 @@ public class ComboAttacksConfig {
     // Kohaku Combos
     public final static String LEFT_BATTO_JUTSU = "77226";
     public final static String RIGHT_BATTO_JUTSU = "77336";
-
+    public final static String MAIDEN_CALL = "77116";
 
 }

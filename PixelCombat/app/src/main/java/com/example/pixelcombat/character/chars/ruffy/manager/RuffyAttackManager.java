@@ -21,4 +21,9 @@ public class RuffyAttackManager extends AttackManager {
     public void updateFurtherAttacks(AttackStatus attackStatus) {
 
     }
+
+    @Override
+    public boolean cannotUseOnAir(AttackStatus attackStates) {
+        return true;
+    }
 }

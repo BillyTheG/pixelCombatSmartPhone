@@ -187,4 +187,5 @@ public abstract class AttackManager {
         return attackStatus == AttackStatus.SPECIALATTACK3;
     }
 
+    public abstract boolean cannotUseOnAir(AttackStatus attackStates);
 }

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+    <type>Kohaku_Projectile_Bottle</type>
+    <boxes>
+        <explosion>
+            <box_list picture="0">
+                <box height="0.8600006" hurts="true" id="0" width="0.8066673" x="0.023332596" y="-0.41666698" />
+            </box_list>
+            <box_list picture="1">
+                <box height="0.7900009" hurts="true" id="0" width="0.8066673" x="0.026666641" y="-0.37666702" />
+            </box_list>
+            <box_list picture="2">
+                <box height="0.7900009" hurts="true" id="0" width="0.8100014" x="0.0099983215" y="-0.39999962" />
+            </box_list>
+        </explosion>
+        <move>
+            <box_list picture="0">
+                <box height="0.8600006" hurts="true" id="0" width="0.8066673" x="0.023332596" y="-0.41666698" />
+            </box_list>
+            <box_list picture="1">
+                <box height="0.7900009" hurts="true" id="0" width="0.8066673" x="0.026666641" y="-0.37666702" />
+            </box_list>
+            <box_list picture="2">
+                <box height="0.7900009" hurts="true" id="0" width="0.8100014" x="0.0099983215" y="-0.39999962" />
+            </box_list>
+        </move>
+        <creation>
+            <box_list picture="0">
+                <box height="0.8600006" hurts="true" id="0" width="0.8066673" x="0.023332596" y="-0.41666698" />
+            </box_list>
+            <box_list picture="1">
+                <box height="0.7900009" hurts="true" id="0" width="0.8066673" x="0.026666641" y="-0.37666702" />
+            </box_list>
+            <box_list picture="2">
+                <box height="0.7900009" hurts="true" id="0" width="0.8100014" x="0.0099983215" y="-0.39999962" />
+            </box_list>
+        </creation>
+    </boxes>
+</character>

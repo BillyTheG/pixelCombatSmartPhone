@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+    <type>AttackCoverWitchKohaku</type>
+    <sprites>
+        <sequence airBool="false" airIndex="0" loopIndex="19" loops="false">
+            <img duration="50" key="0" x="0.0" y="0.0">attackcover_witch_kohaku_0.png</img>
+            <img duration="50" key="1" x="0.0" y="0.0">attackcover_witch_kohaku_1.png</img>
+            <img duration="50" key="2" x="0.0" y="0.0">attackcover_witch_kohaku_2.png</img>
+            <img duration="30" key="3" x="0.0" y="0.0">attackcover_witch_kohaku_3.png</img>
+            <img duration="50" key="4" x="0.0" y="0.0">attackcover_witch_kohaku_4.png</img>
+            <img duration="30" key="5" x="0.0" y="0.0">attackcover_witch_kohaku_5.png</img>
+            <img duration="50" key="6" x="0.0" y="0.0">attackcover_witch_kohaku_6.png</img>
+            <img duration="30" key="7" x="0.0" y="0.0">attackcover_witch_kohaku_7.png</img>
+            <img duration="50" key="8" x="0.0" y="0.0">attackcover_witch_kohaku_8.png</img>
+            <img duration="30" key="9" x="0.0" y="0.0">attackcover_witch_kohaku_9.png</img>
+            <img duration="50" key="10" x="0.0" y="0.0">attackcover_witch_kohaku_10.png</img>
+            <img duration="50" key="11" x="0.0" y="0.0">attackcover_witch_kohaku_11.png</img>
+            <img duration="50" key="12" x="0.0" y="0.0">attackcover_witch_kohaku_12.png</img>
+            <img duration="50" key="13" x="0.0" y="0.0">attackcover_witch_kohaku_13.png</img>
+            <img duration="50" key="14" x="0.0" y="0.0">attackcover_witch_kohaku_14.png</img>
+            <img duration="30" key="15" x="0.0" y="0.0">attackcover_witch_kohaku_15.png</img>
+            <img duration="50" key="16" x="0.0" y="0.0">attackcover_witch_kohaku_16.png</img>
+            <img duration="50" key="17" x="0.0" y="0.0">attackcover_witch_kohaku_17.png</img>
+            <img duration="30" key="18" x="0.0" y="0.0">attackcover_witch_kohaku_18.png</img>
+            <img duration="30" key="19" x="0.0" y="0.0">attackcover_witch_kohaku_19.png</img>
+        </sequence>
+    </sprites>
+</character>

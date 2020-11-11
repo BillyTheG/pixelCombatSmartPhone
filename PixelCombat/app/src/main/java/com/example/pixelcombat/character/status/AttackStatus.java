@@ -20,6 +20,7 @@ public enum AttackStatus {
 
     //Kohaku
     BATTO_JUTSU_OGI,
+    MAIDEN_CALL,
 
 
 }

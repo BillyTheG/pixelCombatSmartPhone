@@ -65,7 +65,7 @@ public interface GameCharacter extends GameObject, Observable {
 
     void initAttacks();
 
-    void initEffects(EffectFactory effectFactory);
+    void initEffects(Context context, EffectFactory effectFactory);
 
     void cry() throws PixelCombatException;
 

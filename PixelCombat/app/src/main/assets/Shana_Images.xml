@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+    <type>Shana</type>
+    <sprites>
+        <stand airBool="false" airIndex="0" loopIndex="0" loops="true">
+            <img duration="40" key="0" x="0.2800007" y="-3.1599998">shana_blue_stand_0.png</img>
+            <img duration="40" key="1" x="0.14999962" y="-3.1800003">shana_blue_stand_1.png</img>
+            <img duration="40" key="2" x="0.059999466" y="-3.19">shana_blue_stand_2.png</img>
+            <img duration="40" key="3" x="-0.069999695" y="-3.21">shana_blue_stand_3.png</img>
+            <img duration="40" key="4" x="0.21999931" y="-3.17">shana_blue_stand_4.png</img>
+            <img duration="40" key="5" x="0.35000038" y="-3.1400003">shana_blue_stand_5.png</img>
+            <img duration="40" key="6" x="0.3899994" y="-3.1599998">shana_blue_stand_6.png</img>
+        </stand>
+        <move airBool="false" airIndex="0" loopIndex="0" loops="true">
+            <img duration="30" key="0" x="-0.6000004" y="-3.21">shana_blue_move_0.png</img>
+            <img duration="30" key="1" x="-0.5799999" y="-3.31">shana_blue_move_1.png</img>
+            <img duration="30" key="2" x="-0.6399994" y="-3.2799997">shana_blue_move_2.png</img>
+            <img duration="30" key="3" x="-0.7900009" y="-3.2799997">shana_blue_move_3.png</img>
+            <img duration="30" key="4" x="-0.55999947" y="-3.2799997">shana_blue_move_4.png</img>
+            <img duration="30" key="5" x="-0.54999924" y="-3.2799997">shana_blue_move_5.png</img>
+        </move>
+        <jump airBool="true" airIndex="4" loopIndex="4" loops="true">
+            <img duration="20" key="0" x="0.7399998" y="-3.5">shana_blue_jump_0.png</img>
+            <img duration="50" key="1" x="-0.10000038" y="-4.14">shana_blue_jump_1.png</img>
+            <img duration="50" key="2" x="-0.5400009" y="-4.64">shana_blue_jump_2.png</img>
+            <img duration="50" key="3" x="-0.5799999" y="-4.36">shana_blue_jump_3.png</img>
+            <img duration="50" key="4" x="-0.29999924" y="-4.1">shana_blue_jump_4.png</img>
+        </jump>
+        <jumpFall airBool="true" airIndex="0" loopIndex="0" loops="true">
+            <img duration="20" key="0" x="-0.10000038" y="-3.6">shana_blue_jump_fall_0.png</img>
+            <img duration="30" key="1" x="-0.15999985" y="-3.7399998">shana_blue_jump_fall_1.png</img>
+        </jumpFall>
+        <jumpRecover airBool="false" airIndex="1" loopIndex="1" loops="false">
+            <img duration="30" key="0" x="0.0" y="-2.2799997">shana_blue_jump_recover_0.png</img>
+            <img duration="50" key="1" x="0.10000038" y="-2.6999998">shana_blue_jump_recover_1.png</img>
+            <img duration="50" key="2" x="0.26000023" y="-3.08">shana_blue_jump_recover_2.png</img>
+        </jumpRecover>
+        <crouch airBool="true" airIndex="2" loopIndex="2" loops="true">
+            <img duration="30" key="0" x="0.20000076" y="-3.1400003">shana_blue_crouch_0.png</img>
+            <img duration="50" key="1" x="0.10000038" y="-2.6599998">shana_blue_crouch_1.png</img>
+            <img duration="50" key="2" x="-0.059999466" y="-2.1599998">shana_blue_crouch_2.png</img>
+        </crouch>
+        <decrouch airBool="false" airIndex="1" loopIndex="1" loops="false">
+            <img duration="30" key="0" x="-0.059999466" y="-2.1599998">shana_blue_decrouch_0.png</img>
+            <img duration="50" key="1" x="0.020000458" y="-2.6599998">shana_blue_decrouch_1.png</img>
+            <img duration="50" key="2" x="0.20000076" y="-3.1400003">shana_blue_decrouch_2.png</img>
+        </decrouch>
+        <attack1 airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="40" key="0" x="0.10000038" y="-3.42">shana_blue_attack1_0.png</img>
+            <img duration="20" key="1" x="-1.1200008" y="-3.2799997">shana_blue_attack1_1.png</img>
+            <img duration="40" key="2" x="-0.26000023" y="-3.1999998">shana_blue_attack1_2.png</img>
+            <img duration="40" key="3" x="0.7600002" y="-3.2600002">shana_blue_attack1_3.png</img>
+            <img duration="80" key="4" x="0.3199997" y="-3.2600002">shana_blue_attack1_4.png</img>
+            <img duration="240" key="5" x="0.70000076" y="-3.2200003">shana_blue_attack1_5.png</img>
+            <img duration="40" key="6" x="0.07999992" y="-3.1800003">shana_blue_attack1_6.png</img>
+            <img duration="30" key="7" x="-0.15999985" y="-3.12">shana_blue_attack1_7.png</img>
+        </attack1>
+        <disabled airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="60" key="0" x="0.2800007" y="-3.1599998">shana_blue_stand_0.png</img>
+        </disabled>
+        <disabledRecover airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="50" key="0" x="-0.15999985" y="-0.8000002">kohaku_disabled_recover_0.png</img>
+        </disabledRecover>
+        <knockBack airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="30" key="0" x="-0.11000061" y="-1.0299997">kohaku_knockback_0.png</img>
+        </knockBack>
+        <knockBackFall airBool="true" airIndex="0" loopIndex="0" loops="true">
+            <img duration="30" key="0" x="-0.15999985" y="-1.0200005">kohaku_knockback_fall_0.png</img>
+        </knockBackFall>
+        <knockBackRecover airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="50" key="0" x="-0.15999985" y="-1.0200005">kohaku_knockback_recover_0.png</img>
+        </knockBackRecover>
+        <onGround airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="50" key="0" x="0.049999237" y="-0.59000015">kohaku_invincible_0.png</img>
+        </onGround>
+        <specialAttack1 airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="800" key="0" x="-0.09000015" y="-0.9300003">kohaku_special_attack_0.png</img>
+        </specialAttack1>
+        <dash airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="00" key="0" x="0.6399994" y="-2.5">shana_blue_dash_0.png</img>
+            <img duration="35" key="1" x="0.65999985" y="-2.4400005">shana_blue_dash_1.png</img>
+            <img duration="25" key="2" x="0.65999985" y="-2.4799995">shana_blue_dash_2.png</img>
+            <img duration="25" key="3" x="-1.5400009" y="-2.5599995">shana_blue_dash_3.png</img>
+            <img duration="25" key="4" x="-0.45999908" y="-2.8199997">shana_blue_dash_4.png</img>
+        </dash>
+        <specialAttack3 airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="800" key="0" x="-0.09000015" y="-0.9300003">kohaku_special_attack_0.png</img>
+        </specialAttack3>
+        <attack2 airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="800" key="0" x="-0.09000015" y="-0.9300003">kohaku_special_attack_0.png</img>
+        </attack2>
+        <attack3 airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="800" key="0" x="-0.09000015" y="-0.9300003">kohaku_special_attack_0.png</img>
+        </attack3>
+        <defend airBool="true" airIndex="2" loopIndex="2" loops="true">
+            <img duration="00" key="0" x="0.55999947" y="-3.2399998">shana_blue_defend_0.png</img>
+            <img duration="40" key="1" x="1.0200005" y="-3.2200003">shana_blue_defend_1.png</img>
+            <img duration="40" key="2" x="0.0" y="-3.2799997">shana_blue_defend_2.png</img>
+        </defend>
+        <defendStop airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="00" key="0" x="1.0200005" y="-3.2200003">shana_blue_defend_stop_0.png</img>
+            <img duration="50" key="1" x="0.55999947" y="-3.2399998">shana_blue_defend_stop_1.png</img>
+        </defendStop>
+        <moveSwitch airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="30" key="0" x="0.15999985" y="-3.3199997">shana_blue_move_switch_0.png</img>
+            <img duration="20" key="1" x="-0.040000916" y="-3.1999998">shana_blue_move_switch_1.png</img>
+        </moveSwitch>
+        <moveStart airBool="true" airIndex="0" loopIndex="0" loops="false">
+            <img duration="60" key="0" x="-0.6000004" y="-3.21">shana_blue_move_0.png</img>
+            <img duration="60" key="1" x="-0.5799999" y="-3.31">shana_blue_move_1.png</img>
+            <img duration="60" key="2" x="-0.6399994" y="-3.2799997">shana_blue_move_2.png</img>
+            <img duration="60" key="3" x="-0.7900009" y="-3.2799997">shana_blue_move_3.png</img>
+            <img duration="60" key="4" x="-0.55999947" y="-3.2799997">shana_blue_move_4.png</img>
+            <img duration="60" key="5" x="-0.54999924" y="-3.2799997">shana_blue_move_5.png</img>
+        </moveStart>
+        <moveEnd airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="30" key="0" x="0.20000076" y="-3.2200003">shana_blue_stand_0.png</img>
+        </moveEnd>
+        <jumpStart airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="50" key="0" x="0.15999985" y="-3.12">shana_blue_jump_start_0.png</img>
+            <img duration="20" key="1" x="0.020000458" y="-2.6400003">shana_blue_jump_start_1.png</img>
+        </jumpStart>
+        <retreat airBool="true" airIndex="4" loopIndex="4" loops="true">
+            <img duration="50" key="0" x="0.21999931" y="-3.06">shana_blue_retreat_0.png</img>
+            <img duration="50" key="1" x="0.21999931" y="-2.2399998">shana_blue_retreat_1.png</img>
+            <img duration="50" key="2" x="0.39999962" y="-1.8999996">shana_blue_retreat_2.png</img>
+            <img duration="50" key="3" x="0.65999985" y="-3.08">shana_blue_retreat_3.png</img>
+            <img duration="50" key="4" x="0.10000038" y="-3.5">shana_blue_retreat_4.png</img>
+        </retreat>
+        <retreatStop airBool="false" airIndex="5" loopIndex="5" loops="false">
+            <img duration="50" key="0" x="0.07999992" y="-2.6800003">shana_blue_retreat_stop_0.png</img>
+            <img duration="50" key="1" x="0.20000076" y="-3.1400003">shana_blue_retreat_stop_1.png</img>
+        </retreatStop>
+        <attack4 airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="800" key="0" x="-0.09000015" y="-0.9300003">kohaku_special_attack_0.png</img>
+        </attack4>
+        <attack5 airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="800" key="0" x="-0.09000015" y="-0.9300003">kohaku_special_attack_0.png</img>
+        </attack5>
+        <attack6 airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="800" key="0" x="-0.09000015" y="-0.9300003">kohaku_special_attack_0.png</img>
+        </attack6>
+        <specialAttack2 airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="800" key="0" x="-0.09000015" y="-0.9300003">kohaku_special_attack_0.png</img>
+        </specialAttack2>
+        <airAttack1 airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="800" key="0" x="-0.09000015" y="-0.9300003">kohaku_special_attack_0.png</img>
+        </airAttack1>
+        <airAttack2 airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="800" key="0" x="-0.09000015" y="-0.9300003">kohaku_special_attack_0.png</img>
+        </airAttack2>
+        <airAttack3 airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="800" key="0" x="-0.09000015" y="-0.9300003">kohaku_special_attack_0.png</img>
+        </airAttack3>
+        <airAttack4 airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="800" key="0" x="-0.09000015" y="-0.9300003">kohaku_special_attack_0.png</img>
+        </airAttack4>
+        <airAttack5 airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="800" key="0" x="-0.09000015" y="-0.9300003">kohaku_special_attack_0.png</img>
+        </airAttack5>
+        <airAttack6 airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="800" key="0" x="-0.09000015" y="-0.9300003">kohaku_special_attack_0.png</img>
+        </airAttack6>
+        <airDefend airBool="false" airIndex="5" loopIndex="5" loops="false">
+            <img duration="50" key="0" x="-0.07999992" y="-3.94">shana_blue_air_defend_0.png</img>
+            <img duration="50" key="1" x="-1.1000004" y="-5.02">shana_blue_air_defend_1.png</img>
+        </airDefend>
+    </sprites>
+</character>

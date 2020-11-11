@@ -5,6 +5,7 @@ import android.util.Log;
 import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.character.attack.Attack;
 import com.example.pixelcombat.character.status.ActionStatus;
+import com.example.pixelcombat.core.config.DustConfig;
 import com.example.pixelcombat.core.message.GameMessage;
 import com.example.pixelcombat.enums.MessageType;
 import com.example.pixelcombat.math.Vector2d;
@@ -47,9 +48,16 @@ public class KohakuSpecialAttack3 extends Attack {
             switch (character.getViewManager().getFrameIndex()) {
                 case 0:
                     if (isSwitcher()) {
+                        character.getStatusManager().setFocused(true);
+                        character.notifyObservers(new GameMessage(MessageType.FREEZE, " ;" + character.getPlayer(), null, true));
+                        character.getStatusManager().startEffect();
 
                         character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_special_attack3",
                                 null, character.isRight()));
+                        character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_demon_aura", null, true));
+                        character.notifyObservers(new GameMessage(MessageType.DUST_CREATION, DustConfig.KOHAKU_SPECIAL_ATTACK2_AURA + ";test;",
+                                new Vector2d(character.getPos().x, character.getPos().y), character.isRight()));
+
                         setSwitcher(false);
                     }
                     break;
@@ -67,6 +75,11 @@ public class KohakuSpecialAttack3 extends Attack {
                     character.getPhysics().VY = 0f;
                     break;
                 case 3:
+                    if (character.getViewManager().getAnimManager().animationAlmostFinished(30l)) {
+                        character.getStatusManager().setEffect(false);
+                    }
+                    character.getPhysics().VY = 0f;
+                    break;
                 case 4:
                 case 5:
                 case 6:
@@ -75,7 +88,7 @@ public class KohakuSpecialAttack3 extends Attack {
                     break;
                 case 8:
                     character.getPhysics().VY -= FLY_SPEED_Y;
-                    if (Math.abs(character.getPos().y - startLevel) < MIN_DISTANCE_Y && character.getViewManager().getAnimManager().animationAlmostFinished(30)) {
+                    if (Math.abs(character.getPos().y - startLevel) < MIN_DISTANCE_Y && character.getViewManager().getAnimManager().animationAlmostFinished(30l)) {
                         character.getViewManager().resetFrameIndexTo(4);
                     }
                     break;
@@ -84,6 +97,8 @@ public class KohakuSpecialAttack3 extends Attack {
                         startLevel = character.getPos().x;
                         buffer = startLevel;
                         flytowardsDone = true;
+                        character.getStatusManager().setFocused(false);
+                        character.notifyObservers(new GameMessage(MessageType.FREEZE, " ;" + character.getPlayer(), null, false));
                         character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_special_attack3_laughter", null, character.isRight()));
                     }
 
@@ -95,7 +110,6 @@ public class KohakuSpecialAttack3 extends Attack {
                         Vector2d pos = new Vector2d(getCharacter().getPos().x + getCharacter().getDirection() * 50, character.getPos().y);
                         character.notifyObservers(new GameMessage(MessageType.PROJECTILE_CREATION, KOHAKU_SPECIAL_ATTACK_PROJECTILE_BOTTLE + ";" + character.getPlayer() + ";",
                                 pos, character.isRight()));
-
                         setSwitcher(false);
                     }
 
@@ -173,6 +187,7 @@ public class KohakuSpecialAttack3 extends Attack {
     @Override
     public void resetStats() {
         setSwitcher(true);
+        buffer = 0f;
         flytowardsDone = false;
         firstJumpDone = false;
     }

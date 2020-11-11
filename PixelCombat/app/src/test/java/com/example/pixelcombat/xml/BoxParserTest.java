@@ -25,7 +25,7 @@ public class BoxParserTest {
     @Before
     public void setUp() throws Exception {
         context = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        parser = new BoxParser(context, "Ruffy_Boxes.xml");
+        parser = new BoxParser(context, "Ruffy_Boxes.xml", 2);
     }
 
 

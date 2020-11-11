@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+    <type>Shana</type>
+    <boxes>
+        <stand>
+            <box_list picture="0">
+                <box height="5.7199993" hurts="false" id="0" width="1.9199982" x="0.099998474" y="-3.2600002" />
+            </box_list>
+            <box_list picture="1">
+                <box height="5.7199993" hurts="false" id="0" width="1.9199982" x="0.059999466" y="-3.38" />
+            </box_list>
+            <box_list picture="2">
+                <box height="5.7199993" hurts="false" id="0" width="1.9199982" x="0.21999931" y="-3.2600002" />
+            </box_list>
+            <box_list picture="3">
+                <box height="5.7200003" hurts="false" id="0" width="1.9199982" x="0.059999466" y="-3.2800002" />
+            </box_list>
+            <box_list picture="4">
+                <box height="5.7199993" hurts="false" id="0" width="1.9199982" x="0.1799984" y="-3.3000002" />
+            </box_list>
+            <box_list picture="5">
+                <box height="5.7199993" hurts="false" id="0" width="1.9199982" x="0.19999886" y="-3.2799997" />
+            </box_list>
+            <box_list picture="6">
+                <box height="5.7200003" hurts="false" id="0" width="1.9199982" x="0.13999939" y="-3.2800002" />
+            </box_list>
+        </stand>
+        <moveStart>
+            <box_list picture="0">
+                <box height="5.92" hurts="false" id="0" width="1.4199982" x="0.39999962" y="-3.1599998" />
+            </box_list>
+            <box_list picture="1">
+                <box height="6.3200006" hurts="false" id="0" width="1.6300011" x="0.3599987" y="-3.2199998" />
+            </box_list>
+            <box_list picture="2">
+                <box height="6.3200016" hurts="false" id="0" width="1.6300011" x="0.45999908" y="-3.2600002" />
+            </box_list>
+            <box_list picture="3">
+                <box height="6.3200006" hurts="false" id="0" width="1.6300011" x="0.23999977" y="-3.3600001" />
+            </box_list>
+            <box_list picture="4">
+                <box height="6.3200006" hurts="false" id="0" width="1.6300011" x="0.3599987" y="-3.2800002" />
+            </box_list>
+            <box_list picture="5">
+                <box height="6.3200016" hurts="false" id="0" width="1.6300011" x="0.34000015" y="-3.1999998" />
+            </box_list>
+        </moveStart>
+        <move>
+            <box_list picture="0">
+                <box height="5.92" hurts="false" id="0" width="1.4199982" x="0.39999962" y="-3.1599998" />
+            </box_list>
+            <box_list picture="1">
+                <box height="6.3200006" hurts="false" id="0" width="1.6300011" x="0.3599987" y="-3.2199998" />
+            </box_list>
+            <box_list picture="2">
+                <box height="6.3200016" hurts="false" id="0" width="1.6300011" x="0.45999908" y="-3.2600002" />
+            </box_list>
+            <box_list picture="3">
+                <box height="6.3200006" hurts="false" id="0" width="1.6300011" x="0.23999977" y="-3.3600001" />
+            </box_list>
+            <box_list picture="4">
+                <box height="6.3200006" hurts="false" id="0" width="1.6300011" x="0.3599987" y="-3.2800002" />
+            </box_list>
+            <box_list picture="5">
+                <box height="6.3200016" hurts="false" id="0" width="1.6300011" x="0.34000015" y="-3.1999998" />
+            </box_list>
+        </move>
+        <jumpFall>
+            <box_list picture="0">
+                <box height="6.4000006" hurts="false" id="0" width="1.8199997" x="-0.040000916" y="-3.48" />
+            </box_list>
+            <box_list picture="1">
+                <box height="6.3999996" hurts="false" id="0" width="1.8199997" x="-0.10000038" y="-3.54" />
+            </box_list>
+        </jumpFall>
+        <crouch>
+            <box_list picture="0">
+                <box height="5.8199997" hurts="false" id="0" width="1.7900009" x="0.3199997" y="-3.0900002" />
+            </box_list>
+            <box_list picture="1">
+                <box height="4.84" hurts="false" id="0" width="2.3100014" x="-0.0700016" y="-2.5200005" />
+            </box_list>
+            <box_list picture="2">
+                <box height="4.039999" hurts="false" id="0" width="2.2200012" x="-0.0700016" y="-2.1400003" />
+            </box_list>
+        </crouch>
+        <moveSwitch>
+            <box_list picture="0">
+                <box height="6.0300016" hurts="false" id="0" width="1.75" x="0.27999878" y="-3.3600001" />
+            </box_list>
+            <box_list picture="1">
+                <box height="6.0300026" hurts="false" id="0" width="1.75" x="0.23999977" y="-3.2399998" />
+            </box_list>
+        </moveSwitch>
+        <defend>
+            <box_list picture="0">
+                <box height="6.0299997" hurts="false" id="0" width="1.75" x="0.3199997" y="-3.2199998" />
+            </box_list>
+            <box_list picture="1">
+                <box height="6.0300007" hurts="false" id="0" width="1.75" x="0.5799999" y="-3.1799994" />
+            </box_list>
+            <box_list picture="2">
+                <box height="6.029999" hurts="false" id="0" width="1.75" x="0.37999916" y="-3.1800003" />
+            </box_list>
+        </defend>
+        <attack1>
+            <box_list picture="0">
+                <box height="6.58" hurts="false" id="0" width="2.2200012" x="0.059999466" y="-3.37" />
+            </box_list>
+            <box_list picture="1">
+                <box height="6.449999" hurts="false" id="0" width="1.8899994" x="-0.0700016" y="-3.54" />
+            </box_list>
+            <box_list picture="2">
+                <box height="6.25" hurts="false" id="0" width="2.0699997" x="0.26999855" y="-3.08" />
+            </box_list>
+            <box_list picture="3">
+                <box height="6.1500006" hurts="false" id="0" width="2.3499985" x="0.21999931" y="-3.23" />
+            </box_list>
+            <box_list picture="4">
+                <box height="6.119998" hurts="false" id="0" width="1.7400017" x="0.059999466" y="-3.2199998" />
+                <box height="3.6599998" hurts="true" id="1" width="6.720001" x="2.8400002" y="-3.8899994" />
+            </box_list>
+            <box_list picture="5">
+                <box height="6.25" hurts="false" id="0" width="2.1100006" x="0.4299984" y="-3.1100006" />
+            </box_list>
+            <box_list picture="6">
+                <box height="6.17" hurts="false" id="0" width="2.0499992" x="0.34999847" y="-3.2200003" />
+            </box_list>
+            <box_list picture="7">
+                <box height="6.0499997" hurts="false" id="0" width="2.3100014" x="0.15999985" y="-3.0900002" />
+            </box_list>
+        </attack1>
+        <jumpStart>
+            <box_list picture="0">
+                <box height="6.0300007" hurts="false" id="0" width="1.75" x="0.23999977" y="-3.08" />
+            </box_list>
+            <box_list picture="1">
+                <box height="4.84" hurts="false" id="0" width="1.5600014" x="-0.12000084" y="-2.58" />
+            </box_list>
+        </jumpStart>
+        <jump>
+            <box_list picture="0">
+                <box height="6.4000006" hurts="false" id="0" width="1.8199997" x="0.02999878" y="-3.48" />
+            </box_list>
+            <box_list picture="1">
+                <box height="5.3999996" hurts="false" id="0" width="2.4099998" x="-0.21000099" y="-4.12" />
+            </box_list>
+            <box_list picture="2">
+                <box height="4.5600004" hurts="false" id="0" width="1.9900017" x="-0.38000107" y="-4.48" />
+            </box_list>
+            <box_list picture="3">
+                <box height="5.2799997" hurts="false" id="0" width="2.209999" x="-0.40999985" y="-4.1" />
+            </box_list>
+            <box_list picture="4">
+                <box height="5.74" hurts="false" id="0" width="1.9300003" x="-0.25" y="-3.9299994" />
+            </box_list>
+        </jump>
+        <defendStop>
+            <box_list picture="0">
+                <box height="6.0300007" hurts="false" id="0" width="1.75" x="0.39999962" y="-3.1599998" />
+            </box_list>
+            <box_list picture="1">
+                <box height="6.0300007" hurts="false" id="0" width="1.75" x="0.27999878" y="-3.1799994" />
+            </box_list>
+        </defendStop>
+        <jumpFall>
+            <box_list picture="0">
+                <box height="6.4000006" hurts="false" id="0" width="1.8199997" x="-0.040000916" y="-3.48" />
+            </box_list>
+            <box_list picture="1">
+                <box height="6.3999996" hurts="false" id="0" width="1.8199997" x="-0.10000038" y="-3.54" />
+            </box_list>
+        </jumpFall>
+        <decrouch>
+            <box_list picture="0">
+                <box height="4.039999" hurts="false" id="0" width="2.2200012" x="-0.1400013" y="-2.08" />
+            </box_list>
+            <box_list picture="1">
+                <box height="5.0599995" hurts="false" id="0" width="2.2200012" x="-0.1400013" y="-2.6499996" />
+            </box_list>
+            <box_list picture="2">
+                <box height="5.9300003" hurts="false" id="0" width="2.2200012" x="0.13999939" y="-3.0900002" />
+            </box_list>
+        </decrouch>
+        <crouch>
+            <box_list picture="0">
+                <box height="5.8199997" hurts="false" id="0" width="1.7900009" x="0.3199997" y="-3.0900002" />
+            </box_list>
+            <box_list picture="1">
+                <box height="4.84" hurts="false" id="0" width="2.3100014" x="-0.0700016" y="-2.5200005" />
+            </box_list>
+            <box_list picture="2">
+                <box height="4.039999" hurts="false" id="0" width="2.2200012" x="-0.0700016" y="-2.1400003" />
+            </box_list>
+        </crouch>
+        <retreat>
+            <box_list picture="0">
+                <box height="6.0199995" hurts="false" id="0" width="1.8400002" x="-0.060001373" y="-3.0300002" />
+            </box_list>
+            <box_list picture="1" />
+            <box_list picture="2" />
+            <box_list picture="3" />
+            <box_list picture="4" />
+        </retreat>
+        <moveSwitch>
+            <box_list picture="0">
+                <box height="6.0300016" hurts="false" id="0" width="1.75" x="0.27999878" y="-3.3600001" />
+            </box_list>
+            <box_list picture="1">
+                <box height="6.0300026" hurts="false" id="0" width="1.75" x="0.23999977" y="-3.2399998" />
+            </box_list>
+        </moveSwitch>
+        <moveEnd>
+            <box_list picture="0">
+                <box height="6.030002" hurts="false" id="0" width="1.75" x="0.07999992" y="-3.3400002" />
+            </box_list>
+        </moveEnd>
+        <defend>
+            <box_list picture="0">
+                <box height="6.0299997" hurts="false" id="0" width="1.75" x="0.3199997" y="-3.2199998" />
+            </box_list>
+            <box_list picture="1">
+                <box height="6.0300007" hurts="false" id="0" width="1.75" x="0.5799999" y="-3.1799994" />
+            </box_list>
+            <box_list picture="2">
+                <box height="6.029999" hurts="false" id="0" width="1.75" x="0.37999916" y="-3.1800003" />
+            </box_list>
+        </defend>
+        <retreatStop>
+            <box_list picture="0">
+                <box height="5.16" hurts="false" id="0" width="1.9199982" x="0.01999855" y="-2.7600002" />
+            </box_list>
+            <box_list picture="1">
+                <box height="5.9800005" hurts="false" id="0" width="2.0800018" x="0.34000015" y="-3.15" />
+            </box_list>
+        </retreatStop>
+        <attack1>
+            <box_list picture="0">
+                <box height="6.58" hurts="false" id="0" width="2.2200012" x="0.059999466" y="-3.37" />
+            </box_list>
+            <box_list picture="1">
+                <box height="6.449999" hurts="false" id="0" width="1.8899994" x="-0.0700016" y="-3.54" />
+            </box_list>
+            <box_list picture="2">
+                <box height="6.25" hurts="false" id="0" width="2.0699997" x="0.26999855" y="-3.08" />
+            </box_list>
+            <box_list picture="3">
+                <box height="6.1500006" hurts="false" id="0" width="2.3499985" x="0.21999931" y="-3.23" />
+            </box_list>
+            <box_list picture="4">
+                <box height="6.119998" hurts="false" id="0" width="1.7400017" x="0.059999466" y="-3.2199998" />
+                <box height="3.6599998" hurts="true" id="1" width="6.720001" x="2.8400002" y="-3.8899994" />
+            </box_list>
+            <box_list picture="5">
+                <box height="6.25" hurts="false" id="0" width="2.1100006" x="0.4299984" y="-3.1100006" />
+            </box_list>
+            <box_list picture="6">
+                <box height="6.17" hurts="false" id="0" width="2.0499992" x="0.34999847" y="-3.2200003" />
+            </box_list>
+            <box_list picture="7">
+                <box height="6.0499997" hurts="false" id="0" width="2.3100014" x="0.15999985" y="-3.0900002" />
+            </box_list>
+        </attack1>
+        <airDefend>
+            <box_list picture="0">
+                <box height="6.5700006" hurts="false" id="0" width="1.6599998" x="0.069999695" y="-3.52" />
+            </box_list>
+            <box_list picture="1">
+                <box height="5.95" hurts="false" id="0" width="1.6399994" x="0.099998474" y="-3.6399999" />
+            </box_list>
+        </airDefend>
+        <jumpStart>
+            <box_list picture="0">
+                <box height="6.0300007" hurts="false" id="0" width="1.75" x="0.23999977" y="-3.08" />
+            </box_list>
+            <box_list picture="1">
+                <box height="4.84" hurts="false" id="0" width="1.5600014" x="-0.12000084" y="-2.58" />
+            </box_list>
+        </jumpStart>
+        <dash>
+            <box_list picture="0" />
+            <box_list picture="1" />
+            <box_list picture="2" />
+            <box_list picture="3" />
+            <box_list picture="4">
+                <box height="5.4500003" hurts="false" id="0" width="2.3899994" x="-0.3200016" y="-2.83" />
+            </box_list>
+        </dash>
+        <jump>
+            <box_list picture="0">
+                <box height="6.4000006" hurts="false" id="0" width="1.8199997" x="0.02999878" y="-3.48" />
+            </box_list>
+            <box_list picture="1">
+                <box height="5.3999996" hurts="false" id="0" width="2.4099998" x="-0.21000099" y="-4.12" />
+            </box_list>
+            <box_list picture="2">
+                <box height="4.5600004" hurts="false" id="0" width="1.9900017" x="-0.38000107" y="-4.48" />
+            </box_list>
+            <box_list picture="3">
+                <box height="5.2799997" hurts="false" id="0" width="2.209999" x="-0.40999985" y="-4.1" />
+            </box_list>
+            <box_list picture="4">
+                <box height="5.74" hurts="false" id="0" width="1.9300003" x="-0.25" y="-3.9299994" />
+            </box_list>
+        </jump>
+        <jumpRecover>
+            <box_list picture="0">
+                <box height="4.039999" hurts="false" id="0" width="1.8199997" x="-0.12000084" y="-2.1999998" />
+            </box_list>
+            <box_list picture="1">
+                <box height="4.879999" hurts="false" id="0" width="1.9900017" x="-0.020000458" y="-2.6400003" />
+            </box_list>
+            <box_list picture="2" />
+        </jumpRecover>
+
+        <knockBackFall>
+            <box_list picture="0" />
+        </knockBackFall>
+        <onGround>
+            <box_list picture="0" />
+        </onGround>
+        <knockBack>
+            <box_list picture="0" />
+        </knockBack>
+        <disabled>
+            <box_list picture="0" />
+        </disabled>
+        <knockBackRecover>
+            <box_list picture="0" />
+        </knockBackRecover>
+        <disabledRecover>
+            <box_list picture="0" />
+        </disabledRecover>
+        <attack2>
+            <box_list picture="0" />
+        </attack2>
+        <attack3>
+            <box_list picture="0" />
+        </attack3>
+        <attack6>
+            <box_list picture="0" />
+        </attack6>
+        <attack4>
+            <box_list picture="0" />
+        </attack4>
+        <attack5>
+            <box_list picture="0" />
+        </attack5>
+        <specialAttack1>
+            <box_list picture="0" />
+        </specialAttack1>
+        <specialAttack2>
+            <box_list picture="0" />
+        </specialAttack2>
+        <specialAttack3>
+            <box_list picture="0" />
+        </specialAttack3>
+        <airAttack1>
+            <box_list picture="0" />
+        </airAttack1>
+        <airAttack2>
+            <box_list picture="0" />
+        </airAttack2>
+        <airAttack3>
+            <box_list picture="0" />
+        </airAttack3>
+        <airAttack4>
+            <box_list picture="0" />
+        </airAttack4>
+        <airAttack5>
+            <box_list picture="0" />
+        </airAttack5>
+        <airAttack6>
+            <box_list picture="0" />
+        </airAttack6>
+    </boxes>
+</character>

@@ -159,7 +159,7 @@ public class Game implements Observer {
                     map.putFreezeOn(owner, state);
                     break;
                 case PROJECTILE_CREATION:
-                    projectiles.add(projectileFactory.createProjectile(gameObject, gameMessage.getPos(), state, owner, screenScrollManager));
+                    projectiles.add(projectileFactory.createProjectile(gameObject, gameMessage.getPos(), state, owner, screenScrollManager, this));
                     break;
                 case DUST_CREATION:
                     dusts.add(dustFactory.createDust(gameObject, gameMessage.getPos(), state));

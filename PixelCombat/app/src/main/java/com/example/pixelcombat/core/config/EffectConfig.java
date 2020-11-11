@@ -9,5 +9,6 @@ public class EffectConfig {
     //Kohaku
     public static final String AVATAR_COVER_PROFILE1_KOHAKU = "AttackCover_Avatar_Profile1_Kohaku";
     public static final String AVATAR_COVER_BATTU_JUTSU_KOHAKU = "AttackCover_Battu_Jutsu_Kohaku";
-
+    public static final String AVATAR_COVER_WITCH_KOHAKU = "AttackCover_Witch_Kohaku";
+    public static final String AVATAR_COVER_MAIDEN_CALL = "AttackCover_Maiden_Call_Kohaku";
 }

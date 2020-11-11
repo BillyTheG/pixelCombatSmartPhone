@@ -6,6 +6,7 @@ import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.character.status.ActionStatus;
 import com.example.pixelcombat.character.status.GlobalStatus;
 import com.example.pixelcombat.character.status.MovementStatus;
+import com.example.pixelcombat.character.status.ProjectileActionStatus;
 import com.example.pixelcombat.core.config.SparkConfig;
 import com.example.pixelcombat.core.message.GameMessage;
 import com.example.pixelcombat.enums.MessageType;
@@ -47,4 +48,15 @@ public class HorizontalSlash extends ProjectileStatusManager {
 
 
     }
+
+    @Override
+    public void move() {
+
+        projectile.getPos().x += projectile.getDirection() * BASE_SPEED_VX;
+
+        if (!projectile.getViewManager().isPlaying()) {
+            setActionStatus(ProjectileActionStatus.EXPLOSION);
+        }
+    }
+
 }

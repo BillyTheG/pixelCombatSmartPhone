@@ -5,6 +5,9 @@ import android.util.Log;
 
 import com.example.pixelcombat.character.chars.kohaku.projectiles.FireBottle;
 import com.example.pixelcombat.character.chars.kohaku.projectiles.HorizontalSlash;
+import com.example.pixelcombat.character.chars.kohaku.projectiles.LittleGuy;
+import com.example.pixelcombat.character.chars.kohaku.projectiles.Maiden;
+import com.example.pixelcombat.core.Game;
 import com.example.pixelcombat.core.config.ProjectileConfig;
 import com.example.pixelcombat.core.sound.SoundManager;
 import com.example.pixelcombat.enums.ScreenProperty;
@@ -42,7 +45,7 @@ public class ProjectileFactory {
         this.context = context;
     }
 
-    public Projectile createProjectile(String type, Vector2d pos, boolean right, String owner, ScreenScrollerManager screenScrollerManager) {
+    public Projectile createProjectile(String type, Vector2d pos, boolean right, String owner, ScreenScrollerManager screenScrollerManager, Game game) {
 
         ConcurrentHashMap<String, ArrayList<LocatedBitmap>> imagesP = pictures.get(type);
         ConcurrentHashMap<String, ArrayList<ArrayList<BoundingRectangle>>> boxesP = boxes.get(type);
@@ -52,9 +55,13 @@ public class ProjectileFactory {
 
         switch (type) {
             case ProjectileConfig.KOHAKU_SPECIAL_ATTACK_PROJECTILE_HORIZONTAL:
-                return new Projectile(pos, right, boxesP, imagesP, timesP, loopVariabelsP, loopBoolsP, new HorizontalSlash(), owner).register(soundManager).register(screenScrollerManager);
+                return new Projectile(new Vector2d(pos.x, pos.y), right, boxesP, imagesP, timesP, loopVariabelsP, loopBoolsP, new HorizontalSlash(), owner).register(soundManager).register(screenScrollerManager);
+            case ProjectileConfig.KOHAKU_SPECIAL_ATTACK_PROJECTILE_MAIDEN:
+                return new Projectile(new Vector2d(pos.x, pos.y), right, boxesP, imagesP, timesP, loopVariabelsP, loopBoolsP, new Maiden(new Vector2d(pos.x, pos.y)), owner).register(soundManager).register(screenScrollerManager).register(game);
+            case ProjectileConfig.KOHAKU_SPECIAL_ATTACK_PROJECTILE_LITTLE_GUY:
+                return new Projectile(new Vector2d(pos.x, pos.y), right, boxesP, imagesP, timesP, loopVariabelsP, loopBoolsP, new LittleGuy(new Vector2d(pos.x, pos.y)), owner).register(soundManager).register(screenScrollerManager).register(game);
             case ProjectileConfig.KOHAKU_SPECIAL_ATTACK_PROJECTILE_BOTTLE:
-                return new Projectile(pos, right, boxesP, imagesP, timesP, loopVariabelsP, loopBoolsP, new FireBottle(), owner).register(soundManager).register(screenScrollerManager);
+                return new Projectile(new Vector2d(pos.x, pos.y), right, boxesP, imagesP, timesP, loopVariabelsP, loopBoolsP, new FireBottle(), owner).register(soundManager).register(screenScrollerManager);
 
             default:
                 return null;
@@ -80,6 +87,8 @@ public class ProjectileFactory {
 
             projectileNames.add("Kohaku_Projectile_Horizontal");
             projectileNames.add("Kohaku_Projectile_Bottle");
+            projectileNames.add("Kohaku_Projectile_Maiden");
+            projectileNames.add("Kohaku_Projectile_Little_Guy");
 
             for (String projectile : projectileNames) {
                 CharacterParser projectileParser = new CharacterParser(context);

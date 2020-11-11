@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+    <type>RunwalkDust</type>
+    <sprites>
+        <sequence airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="50" key="0" x="-0.030000687" y="-0.22000027">dust_run_walk_dust_0.png</img>
+            <img duration="50" key="1" x="-0.010000229" y="-0.23999977">dust_run_walk_dust_1.png</img>
+            <img duration="50" key="2" x="-0.010000229" y="-0.25">dust_run_walk_dust_2.png</img>
+            <img duration="50" key="3" x="0.049999237" y="-0.26000023">dust_run_walk_dust_3.png</img>
+            <img duration="50" key="4" x="0.040000916" y="-0.27000046">dust_run_walk_dust_4.png</img>
+            <img duration="50" key="5" x="0.11000061" y="-0.23999977">dust_run_walk_dust_5.png</img>
+            <img duration="50" key="6" x="0.13999939" y="-0.25">dust_run_walk_dust_6.png</img>
+            <img duration="50" key="7" x="0.12999916" y="-0.23999977">dust_run_walk_dust_7.png</img>
+        </sequence>
+    </sprites>
+</character>

@@ -172,8 +172,8 @@
         <specialAttack3 airBool="false" airIndex="0" loopIndex="0" loops="false">
             <img duration="105" key="0" x="-0.35000038" y="-0.9899998">kohkau_specialattack2_0.png</img>
             <img duration="105" key="1" x="0.010000229" y="-1.0">kohkau_specialattack2_1.png</img>
-            <img duration="105" key="2" x="0.040000916" y="-0.9300003">kohkau_specialattack2_2.png</img>
-            <img duration="75" key="3" x="0.049999237" y="-1.0799999">kohkau_specialattack2_3.png</img>
+            <img duration="75" key="2" x="0.040000916" y="-0.9300003">kohkau_specialattack2_2.png</img>
+            <img duration="600" key="3" x="0.049999237" y="-1.0799999">kohkau_specialattack2_3.png</img>
             <img duration="75" key="4" x="0.14999962" y="-1.1300001">kohkau_specialattack2_4.png</img>
             <img duration="75" key="5" x="0.15999985" y="-1.1300001">kohkau_specialattack2_5.png</img>
             <img duration="75" key="6" x="0.17000008" y="-1.1199999">kohkau_specialattack2_6.png</img>
@@ -446,5 +446,16 @@
             <img duration="85" key="34" x="-0.12999916" y="-1.0100002">kohaku_battto_jutsu_ogi_34.png</img>
             <img duration="85" key="35" x="-0.09000015" y="-1.0">kohaku_battto_jutsu_ogi_35.png</img>
         </battoJutsu>
+        <maidenCall airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="100" key="0" x="-0.19000053" y="-1.0299997">kohaku_maiden_call_0.png</img>
+            <img duration="85" key="1" x="-0.12999916" y="-1.0599995">kohaku_maiden_call_1.png</img>
+            <img duration="1085" key="2" x="-0.12000084" y="-1.0699997">kohaku_maiden_call_2.png</img>
+            <img duration="345" key="3" x="-0.13999939" y="-1.0666666">kohaku_maiden_call_3.png</img>
+            <img duration="545" key="4" x="-0.030000687" y="-1.0699997">kohaku_maiden_call_4.png</img>
+            <img duration="45" key="5" x="-0.030000687" y="-1.0900002">kohaku_maiden_call_5.png</img>
+            <img duration="845" key="6" x="-0.069999695" y="-1.1000004">kohaku_maiden_call_6.png</img>
+            <img duration="255" key="7" x="-0.3899994" y="-1.0100002">kohaku_maiden_call_7.png</img>
+            <img duration="165" key="8" x="-0.20000076" y="-0.9899998">kohaku_maiden_call_8.png</img>
+        </maidenCall>
     </sprites>
 </character>

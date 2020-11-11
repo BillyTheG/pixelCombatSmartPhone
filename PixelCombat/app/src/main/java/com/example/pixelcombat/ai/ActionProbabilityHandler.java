@@ -33,7 +33,7 @@ public class ActionProbabilityHandler {
 
 	public static int computeActionLinearId(ArrayList<Integer> action_priorities) {
 
-		float[] probabilites = new float[AIManager.MAXACTIONS];
+		float[] probabilites = new float[action_priorities.size()];
 
 		int sum = 0;
 		for (Integer actionProb : action_priorities)

@@ -11,13 +11,13 @@ import com.example.pixelcombat.utils.LocatedBitmap;
 
 import java.util.ArrayList;
 
-public class ProfileEffect extends Effect {
+public class ProfileHorizontalEffect extends Effect {
 
     private ImageMover imageMover;
 
-    public ProfileEffect(ArrayList<LocatedBitmap> images, ArrayList<Float> times, Vector2d pos, boolean scale) {
-        super(images, times, pos, false, scale);
-        this.imageMover = new ImageMover(5, 0);
+    public ProfileHorizontalEffect(ArrayList<LocatedBitmap> images, ArrayList<Float> times, Vector2d pos, boolean scale) {
+        super(images, times, pos, false, scale, images.size() - 1);
+        this.imageMover = new ImageMover(0, 0);
     }
 
     @Override
@@ -33,6 +33,11 @@ public class ProfileEffect extends Effect {
     @Override
     public void draw(Canvas canvas, int screenX, int screenY, Rect gameRect) {
 
+    }
+
+    @Override
+    public boolean isHorizontal() {
+        return true;
     }
 }
 

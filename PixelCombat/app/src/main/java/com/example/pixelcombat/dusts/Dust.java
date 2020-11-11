@@ -22,6 +22,7 @@ public class Dust implements GameObject, IsFinishable, Observable {
     private Vector2d pos;
     private boolean isRight;
     private Observer observer;
+    private float scaleFactor = ScreenProperty.GENERAL_SCALE;
 
     public Dust(ArrayList<LocatedBitmap> images, ArrayList<Float> times, boolean loops, Vector2d pos, boolean isRight) {
         this.animation = new Animation(images, times, loops, 0);
@@ -29,6 +30,11 @@ public class Dust implements GameObject, IsFinishable, Observable {
         this.animation.play();
         this.isRight = isRight;
 
+    }
+
+    public Dust(ArrayList<LocatedBitmap> images, ArrayList<Float> times, boolean loops, Vector2d pos, boolean isRight, float scaleFactor) {
+        this(images, times, loops, pos, isRight);
+        this.scaleFactor = scaleFactor;
     }
 
     @Override
@@ -66,7 +72,7 @@ public class Dust implements GameObject, IsFinishable, Observable {
 
     @Override
     public float getScaleFactor() {
-        return ScreenProperty.GENERAL_SCALE;
+        return scaleFactor;
     }
 
 

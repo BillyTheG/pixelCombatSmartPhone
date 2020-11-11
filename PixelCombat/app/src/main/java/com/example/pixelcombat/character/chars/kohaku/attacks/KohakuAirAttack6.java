@@ -6,6 +6,7 @@ import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.character.attack.Attack;
 import com.example.pixelcombat.character.status.ActionStatus;
 import com.example.pixelcombat.character.status.GlobalStatus;
+import com.example.pixelcombat.core.config.DustConfig;
 import com.example.pixelcombat.core.config.SparkConfig;
 import com.example.pixelcombat.core.message.GameMessage;
 import com.example.pixelcombat.enums.MessageType;
@@ -31,6 +32,15 @@ public class KohakuAirAttack6 extends Attack {
                     if (isSwitcher()) {
                         character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_attack6", null, true));
                         setSwitcher(false);
+                    }
+                    break;
+                case 3:
+                    if (!isSwitcher()) {
+                        character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_air_attack6_sonic", null, true));
+                        character.notifyObservers(new GameMessage(MessageType.DUST_CREATION, DustConfig.KOHAKU_AIR_ATTACK6_DUST + ";test;",
+                                new Vector2d(character.getPos().x, character.getPos().y), character.isRight()));
+
+                        setSwitcher(true);
                     }
                     break;
                 default:

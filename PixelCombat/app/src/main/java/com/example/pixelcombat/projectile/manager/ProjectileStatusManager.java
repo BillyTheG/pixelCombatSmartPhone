@@ -59,16 +59,9 @@ public abstract class ProjectileStatusManager {
         }
     }
 
-    protected void move() throws PixelCombatException {
+    protected abstract void move() throws PixelCombatException;
 
-        projectile.getPos().x += projectile.getDirection() * BASE_SPEED_VX;
-
-        if (!projectile.getViewManager().isPlaying()) {
-            setActionStatus(ProjectileActionStatus.EXPLOSION);
-        }
-    }
-
-    protected void create() {
+    protected void create() throws PixelCombatException {
 
         if (!projectile.getViewManager().isPlaying()) {
             setActionStatus(ProjectileActionStatus.MOVE);

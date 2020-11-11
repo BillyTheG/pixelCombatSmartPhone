@@ -1,5 +1,7 @@
 package com.example.pixelcombat.character.chars.ruffy.manager;
 
+import android.content.Context;
+
 import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.effects.Effect;
 import com.example.pixelcombat.effects.avatar.EffectManager;
@@ -10,8 +12,8 @@ import static com.example.pixelcombat.core.config.EffectConfig.AVATAR_COVER_PROF
 public class RuffyEffectManager extends EffectManager {
 
 
-    public RuffyEffectManager(GameCharacter character, Effect attackBgEffect) {
-        super(character, attackBgEffect);
+    public RuffyEffectManager(Context context, GameCharacter character, Effect attackBgEffect) {
+        super(context, character, attackBgEffect);
     }
 
     @Override

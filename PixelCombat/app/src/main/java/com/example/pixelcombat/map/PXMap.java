@@ -84,8 +84,8 @@ public class PXMap implements GameObject {
     }
 
     public void initEffects(EffectFactory effectFactory) {
-        character1.initEffects(effectFactory);
-        character2.initEffects(effectFactory);
+        character1.initEffects(context, effectFactory);
+        character2.initEffects(context, effectFactory);
     }
 
     @Override
@@ -266,7 +266,7 @@ public class PXMap implements GameObject {
     public void drawEffects(Canvas canvas, Rect gameRect, boolean back) {
         if (character1.getStatusManager().makesEffect() && character1.getEffectManager().checkAttacks().isArtWork() == back)
             character1.getEffectManager().draw(canvas, screenScrollManager.getScreenX(), screenScrollManager.getCX(), gameRect);
-        if (character2.getStatusManager().makesEffect() && character1.getEffectManager().checkAttacks().isArtWork() == back)
+        if (character2.getStatusManager().makesEffect() && character2.getEffectManager().checkAttacks().isArtWork() == back)
             character2.getEffectManager().draw(canvas, screenScrollManager.getScreenX(), screenScrollManager.getCX(), gameRect);
     }
 }

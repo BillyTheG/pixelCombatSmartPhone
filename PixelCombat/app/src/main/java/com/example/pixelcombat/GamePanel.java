@@ -16,6 +16,7 @@ import androidx.annotation.RequiresApi;
 import com.example.pixelcombat.ai.KohakuAI;
 import com.example.pixelcombat.character.chars.kohaku.Kohaku;
 import com.example.pixelcombat.character.chars.kohaku.manager.KohakuComboManager;
+import com.example.pixelcombat.character.chars.shana.Shana;
 import com.example.pixelcombat.character.status.MovementStatus;
 import com.example.pixelcombat.core.Game;
 import com.example.pixelcombat.core.sound.SoundManager;
@@ -77,7 +78,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
 
             Kohaku ruffy = new Kohaku("player2", new Vector2d(1000, ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE), context);
-            Kohaku kohaku = new Kohaku("player1", new Vector2d(500, ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE), context);
+            Shana kohaku = new Shana("player1", new Vector2d(500, ScreenProperty.SCREEN_HEIGHT - ScreenProperty.GROUND_LINE), context);
 
             if (ENEMY_CONFIG == EnemyConfig.VERSUS_AI)
                 ruffy.setAIManager(new KohakuAI(ruffy, kohaku, ruffy.getController()));

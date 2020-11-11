@@ -10,10 +10,14 @@ import com.example.pixelcombat.utils.LocatedBitmap;
 import java.util.ArrayList;
 
 import lombok.Getter;
+import lombok.Setter;
 
 public class EffectAnimation {
     private final int loopPoint;
     private final boolean scale;
+    @Getter
+    @Setter
+    private boolean horizontal;
     protected ArrayList<AnimFrame> frames;
     protected ArrayList<LocatedBitmap> images;
     @Getter
@@ -24,13 +28,19 @@ public class EffectAnimation {
     private boolean isPlaying;
     private long lastFrame;
 
-    public EffectAnimation(ArrayList<LocatedBitmap> images, ArrayList<Float> times, int loopPoint, boolean scale) {
+    public EffectAnimation(ArrayList<LocatedBitmap> images, ArrayList<Float> times, int loopPoint, boolean scale, boolean horizontal) {
         this.images = images;
         this.loopPoint = loopPoint;
-        frameIndex = 0;
+        this.horizontal = horizontal;
+        this.frameIndex = 0;
         this.scale = scale;
-        if (scale)
-            scaleUntilScreenHeight();
+
+        if (scale) {
+            if (horizontal)
+                scaleUntilScreenWidth();
+            else
+                scaleUntilScreenHeight();
+        }
         frames = new ArrayList<>();
         lastFrame = System.currentTimeMillis();
         loadFrames(images, times);
@@ -103,7 +113,14 @@ public class EffectAnimation {
         setScaleFactor(ratio);
     }
 
+    public void scaleUntilScreenWidth() {
+        int widthPic = images.get(frameIndex).image.getWidth();
+        float ratio = (ScreenProperty.SCREEN_WIDTH - (float) 2 * ScreenProperty.OFFSET_X) / (float) widthPic;
+        setScaleFactor(ratio);
+    }
+
     private Bitmap getScaledBitmap(Bitmap bitmap, float scaleFactor) {
+
         if ((int) (bitmap.getHeight() * scaleFactor) > ScreenProperty.SCREEN_HEIGHT - ScreenProperty.OFFSET_Y) {
             scaleUntilScreenHeight();
             scaleFactor = this.scaleFactor;
@@ -153,7 +170,7 @@ public class EffectAnimation {
             } else {
                 int new_height = desRect.top - desRect.bottom;
                 if (new_left > 0 && new_right > 0)
-                    return Bitmap.createBitmap(bitmap, new_left, 0, bitmap.getWidth() - new_left - new_right, Math.abs(desRect.top - desRect.bottom));
+                    return Bitmap.createBitmap(bitmap, new_left, desRect.top - top_old, bitmap.getWidth() - new_left - new_right, Math.abs(desRect.top - desRect.bottom));
                 if (new_left > 0)
                     return Bitmap.createBitmap(bitmap, new_left, desRect.top - top_old, bitmap.getWidth() - new_left, Math.abs(new_height));
                 else if (new_right > 0)

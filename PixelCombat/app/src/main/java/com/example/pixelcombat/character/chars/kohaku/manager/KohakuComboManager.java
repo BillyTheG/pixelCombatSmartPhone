@@ -6,6 +6,7 @@ import com.example.pixelcombat.core.config.ComboAttacksConfig;
 import com.example.pixelcombat.manager.ComboActionManager;
 
 import static com.example.pixelcombat.core.config.ComboAttacksConfig.LEFT_BATTO_JUTSU;
+import static com.example.pixelcombat.core.config.ComboAttacksConfig.MAIDEN_CALL;
 import static com.example.pixelcombat.core.config.ComboAttacksConfig.RIGHT_BATTO_JUTSU;
 
 public class KohakuComboManager extends ComboActionManager {
@@ -19,6 +20,7 @@ public class KohakuComboManager extends ComboActionManager {
     protected void loadMoreCombos() {
         combos.add(ComboAttacksConfig.LEFT_BATTO_JUTSU);
         combos.add(ComboAttacksConfig.RIGHT_BATTO_JUTSU);
+        combos.add(MAIDEN_CALL);
     }
 
     @Override
@@ -28,6 +30,10 @@ public class KohakuComboManager extends ComboActionManager {
             case RIGHT_BATTO_JUTSU:
             case LEFT_BATTO_JUTSU:
                 activated = player1.getController().specialAttack(AttackStatus.BATTO_JUTSU_OGI);
+                bonus = "";
+                return activated;
+            case MAIDEN_CALL:
+                activated = player1.getController().specialAttack(AttackStatus.MAIDEN_CALL);
                 bonus = "";
                 return activated;
         }

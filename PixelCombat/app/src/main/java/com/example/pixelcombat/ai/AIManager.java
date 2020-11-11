@@ -12,20 +12,24 @@ import java.util.Random;
 public abstract class AIManager {
 
     public static final float RECOMMENDENERGY = 50;
-    public static final float RECOMMENDMAXDISTANCE = 300f;
+    public static final float RECOMMENDMAXDISTANCE = 250f;
     public static final int STAND = 0;
     public static final int MOVE = 1;
     public static final int JUMPING = 2;
     public static final int DASHING = 3;
     public static final int DEFENDING = 4;
-    public static final int BASICATTACK = 5;
-    public static final int BASICATTACK1 = 6;
-    public static final int BASICATTACK21 = 7;
-    public static final int BASICATTACK22 = 8;
-    public static final int BASICATTACK23 = 9;
-    public static final int JUMPATTACK = 10;
-    public static final int MAXACTIONS = 8;
-    private static final long maxPossiibleDelayTime = 200l;
+    public static final int ATTACK1 = 5;
+    public static final int ATTACK2 = 6;
+    public static final int ATTACK3 = 7;
+    public static final int ATTACK4 = 8;
+    public static final int ATTACK5 = 9;
+    public static final int ATTACK6 = 10;
+    public static final int SPECIALATTACK1 = 11;
+    public static final int SPECIALATTACK2 = 12;
+    public static final int SPECIALATTACK3 = 13;
+    private static final long maxPossibleDelayTime = 200l;
+    protected int MAX_ACTIONS = 13;
+
     protected final GameCharacter enemy;
     protected CharacterController controller;
     protected GameCharacter character;
@@ -41,12 +45,12 @@ public abstract class AIManager {
         this.character = character;
         this.enemy = enemy;
         this.controller = controller;
-        initPrio();
+
     }
 
-    private void initPrio() {
+    protected void initPrio() {
         this.priorities = new ArrayList<>();
-        for (int i = 0; i < MAXACTIONS; i++)
+        for (int i = 0; i <= MAX_ACTIONS; i++)
             priorities.add(1);
 
         lastFrame = System.currentTimeMillis();
@@ -71,7 +75,7 @@ public abstract class AIManager {
             actionId = ActionProbabilityHandler.computeActionSquareId(priorities);
             long randomOffset = random.nextLong() * 500l;
 
-            actionDelay = (actionDelay + randomOffset) % maxPossiibleDelayTime;
+            actionDelay = (actionDelay + randomOffset) % maxPossibleDelayTime;
             doAction();
 
         }
@@ -104,14 +108,32 @@ public abstract class AIManager {
             case DEFENDING:
                 defend();
                 break;
-            case BASICATTACK:
+            case ATTACK1:
                 attack(AttackStatus.ATTACK1);
                 break;
-            case BASICATTACK1:
+            case ATTACK2:
                 attack(AttackStatus.ATTACK2);
                 break;
-            case BASICATTACK21:
+            case ATTACK3:
                 attack(AttackStatus.ATTACK3);
+                break;
+            case ATTACK4:
+                attack(AttackStatus.ATTACK4);
+                break;
+            case ATTACK5:
+                attack(AttackStatus.ATTACK5);
+                break;
+            case ATTACK6:
+                attack(AttackStatus.ATTACK6);
+                break;
+            case SPECIALATTACK1:
+                specialAttack(AttackStatus.SPECIALATTACK1);
+                break;
+            case SPECIALATTACK2:
+                specialAttack(AttackStatus.SPECIALATTACK2);
+                break;
+            case SPECIALATTACK3:
+                specialAttack(AttackStatus.SPECIALATTACK3);
                 break;
             default:
                 checkMoreCases();
@@ -133,10 +155,18 @@ public abstract class AIManager {
 
     }
 
-    protected void specialAttack(AttackStatus attackState, String attackStateString) {
+    protected void specialAttack(AttackStatus attackState) {
+        if (!character.getStatusManager().isActive())
+            return;
+
         if (!character.getAttackManager().isAttacking() && !character.getStatusManager().isDashing()) {
             faceToEnemy();
         }
+
+
+        if (character.getStatusManager().isMoving())
+            character.getController().move(false, character.isRight());
+
         controller.specialAttack(attackState);
     }
 
@@ -260,9 +290,12 @@ public abstract class AIManager {
         {
             int factor = 0;
             priorities.set(MOVE, 1);
-            priorities.set(BASICATTACK, priorities.get(BASICATTACK) + (10 + factor));
-            priorities.set(BASICATTACK1, priorities.get(BASICATTACK1) + (10 + factor));
-            priorities.set(BASICATTACK21, priorities.get(BASICATTACK21) + (10 + factor));
+            priorities.set(ATTACK1, priorities.get(ATTACK1) + (10 + factor));
+            priorities.set(ATTACK2, priorities.get(ATTACK2) + (10 + factor));
+            priorities.set(ATTACK3, priorities.get(ATTACK3) + (10 + factor));
+            priorities.set(ATTACK4, priorities.get(ATTACK4) + (10 + factor));
+            priorities.set(ATTACK5, priorities.get(ATTACK5) + (10 + factor));
+            priorities.set(ATTACK6, priorities.get(ATTACK6) + (10 + factor));
         }
 
 

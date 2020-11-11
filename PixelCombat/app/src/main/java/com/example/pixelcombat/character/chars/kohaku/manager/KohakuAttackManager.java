@@ -14,6 +14,7 @@ import com.example.pixelcombat.character.chars.kohaku.attacks.KohakuAttack4;
 import com.example.pixelcombat.character.chars.kohaku.attacks.KohakuAttack5;
 import com.example.pixelcombat.character.chars.kohaku.attacks.KohakuAttack6;
 import com.example.pixelcombat.character.chars.kohaku.attacks.KohakuBattoJutsuOgi;
+import com.example.pixelcombat.character.chars.kohaku.attacks.KohakuMaidenCall;
 import com.example.pixelcombat.character.chars.kohaku.attacks.KohakuSpecialAttack1;
 import com.example.pixelcombat.character.chars.kohaku.attacks.KohakuSpecialAttack2;
 import com.example.pixelcombat.character.chars.kohaku.attacks.KohakuSpecialAttack3;
@@ -51,6 +52,7 @@ public class KohakuAttackManager extends AttackManager {
         this.getAttacks().put("airAttack5", new KohakuAirAttack5(getCharacter(), 9));
         this.getAttacks().put("airAttack6", new KohakuAirAttack6(getCharacter(), 9));
         this.getAttacks().put("battoJutsu", new KohakuBattoJutsuOgi(kohaku, 9));
+        this.getAttacks().put("maidenCall", new KohakuMaidenCall(kohaku, 9));
     }
 
     @Override
@@ -60,13 +62,26 @@ public class KohakuAttackManager extends AttackManager {
                 Objects.requireNonNull(this.getAttacks().get("battoJutsu")).process();
                 Objects.requireNonNull(this.getAttacks().get("battoJutsu")).check();
                 break;
+            case MAIDEN_CALL:
+                Objects.requireNonNull(this.getAttacks().get("maidenCall")).process();
+                Objects.requireNonNull(this.getAttacks().get("maidenCall")).check();
+                break;
             default:
                 break;
         }
     }
 
+    @Override
+    public boolean cannotUseOnAir(AttackStatus attackStates) {
+        return true;
+    }
+
 
     public boolean isBattoJutsuOgiIng() {
         return getAttackStatus() == AttackStatus.BATTO_JUTSU_OGI;
+    }
+
+    public boolean isMaidenCalling() {
+        return getAttackStatus() == AttackStatus.MAIDEN_CALL;
     }
 }

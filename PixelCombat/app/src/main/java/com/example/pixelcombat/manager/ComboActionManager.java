@@ -120,22 +120,22 @@ public abstract class ComboActionManager {
         switch (combo) {
             case ATTACK1_SECOND:
                 //     Log.i("Info", "The following combo was activated: "+combo);
-                activated = player1.getController().specialAttack(AttackStatus.ATTACK2);
+                activated = player1.getController().attack(AttackStatus.ATTACK2);
                 bonus = "X";
                 return activated;
             case ATTACK1_THIRD:
                 //   Log.i("Info", "The following combo was activated: "+combo);
-                activated = player1.getController().specialAttack(AttackStatus.ATTACK3);
+                activated = player1.getController().attack(AttackStatus.ATTACK3);
                 bonus = "";
                 return activated;
             case ATTACK2_SECOND:
                 //     Log.i("Info", "The following combo was activated: "+combo);
-                activated = player1.getController().specialAttack(AttackStatus.ATTACK5);
+                activated = player1.getController().attack(AttackStatus.ATTACK5);
                 bonus = "Y";
                 return activated;
             case ATTACK2_THIRD:
                 //   Log.i("Info", "The following combo was activated: "+combo);
-                activated = player1.getController().specialAttack(AttackStatus.ATTACK6);
+                activated = player1.getController().attack(AttackStatus.ATTACK6);
                 bonus = "";
                 return activated;
             case FORWARD_RIGHT_SPECIAL_ATTACK:
