@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+    <type>Kohaku_Projectile_Bottle</type>
+    <sprites>
+        <creation airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="10" key="0" x="-0.75" y="-1.7700005">projectile_shana_fire_blast_0.png</img>
+        </creation>
+        <move airBool="true" airIndex="0" loopIndex="0" loops="true">
+            <img duration="50" key="0" x="-0.75" y="-1.7700005">projectile_shana_fire_blast_0.png</img>
+            <img duration="50" key="1" x="-0.7099991" y="-1.6999998">projectile_shana_fire_blast_1.png</img>
+            <img duration="50" key="2" x="-0.6700001" y="-1.6300001">projectile_shana_fire_blast_2.png</img>
+            <img duration="50" key="3" x="-0.6700001" y="-1.4899998">projectile_shana_fire_blast_3.png</img>
+        </move>
+        <explosion airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="5" key="0" x="-0.75" y="-1.7700005">projectile_shana_fire_blast_0.png</img>
+            <img duration="5" key="1" x="-0.7099991" y="-1.6999998">projectile_shana_fire_blast_1.png</img>
+            <img duration="5" key="2" x="-0.6700001" y="-1.6300001">projectile_shana_fire_blast_2.png</img>
+            <img duration="5" key="3" x="-0.6700001" y="-1.4899998">projectile_shana_fire_blast_3.png</img>
+        </explosion>
+    </sprites>
+</character>

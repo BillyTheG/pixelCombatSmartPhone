@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+    <type>ShanaBlueFireGround</type>
+    <sprites>
+        <sequence airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="5" key="0" x="-0.3899994" y="-0.8800001">dust_shana_fire_blast_smoke_0.png</img>
+            <img duration="5" key="1" x="-0.23999977" y="-0.97000027">dust_shana_fire_blast_smoke_1.png</img>
+            <img duration="5" key="2" x="-0.21999931" y="-0.9899998">dust_shana_fire_blast_smoke_2.png</img>
+            <img duration="5" key="3" x="-0.11000061" y="-0.8299999">dust_shana_fire_blast_smoke_3.png</img>
+            <img duration="5" key="4" x="-0.52000046" y="-0.40999985">dust_shana_fire_blast_smoke_4.png</img>
+            <img duration="5" key="5" x="-0.5400009" y="-0.78999996">dust_shana_fire_blast_smoke_5.png</img>
+            <img duration="5" key="6" x="-0.54999924" y="-0.97999954">dust_shana_fire_blast_smoke_6.png</img>
+            <img duration="5" key="7" x="-0.5100002" y="-1.0">dust_shana_fire_blast_smoke_7.png</img>
+            <img duration="5" key="8" x="-0.4300003" y="-1.0699997">dust_shana_fire_blast_smoke_8.png</img>
+            <img duration="5" key="9" x="-0.30999947" y="-1.1599998">dust_shana_fire_blast_smoke_9.png</img>
+            <img duration="5" key="10" x="-0.45999908" y="-1.4400005">dust_shana_fire_blast_smoke_10.png</img>
+            <img duration="5" key="11" x="-0.35000038" y="-1.7299995">dust_shana_fire_blast_smoke_11.png</img>
+            <img duration="5" key="12" x="-0.25" y="-1.9300003">dust_shana_fire_blast_smoke_12.png</img>
+            <img duration="5" key="13" x="-0.22999954" y="-2.21">dust_shana_fire_blast_smoke_13.png</img>
+            <img duration="5" key="14" x="-0.20999908" y="-2.4799995">dust_shana_fire_blast_smoke_14.png</img>
+            <img duration="5" key="15" x="-0.12000084" y="-2.8599997">dust_shana_fire_blast_smoke_15.png</img>
+            <img duration="5" key="16" x="-0.12000084" y="-2.87">dust_shana_fire_blast_smoke_16.png</img>
+            <img duration="5" key="17" x="-0.29000092" y="-2.5699997">dust_shana_fire_blast_smoke_17.png</img>
+            <img duration="5" key="18" x="-0.29000092" y="-2.4899998">dust_shana_fire_blast_smoke_18.png</img>
+            <img duration="5" key="19" x="-0.29000092" y="-2.83">dust_shana_fire_blast_smoke_19.png</img>
+            <img duration="5" key="20" x="-0.13999939" y="-2.87">dust_shana_fire_blast_smoke_20.png</img>
+            <img duration="5" key="21" x="-0.010000229" y="-2.83">dust_shana_fire_blast_smoke_21.png</img>
+            <img duration="5" key="22" x="0.25" y="-3.06">dust_shana_fire_blast_smoke_22.png</img>
+            <img duration="5" key="23" x="0.030000687" y="-3.21">dust_shana_fire_blast_smoke_23.png</img>
+            <img duration="5" key="24" x="-0.12999916" y="-3.2799997">dust_shana_fire_blast_smoke_24.png</img>
+            <img duration="5" key="25" x="0.020000458" y="-3.23">dust_shana_fire_blast_smoke_25.png</img>
+            <img duration="5" key="26" x="-0.030000687" y="-3.33">dust_shana_fire_blast_smoke_26.png</img>
+            <img duration="5" key="27" x="-0.29999924" y="-3.3199997">dust_shana_fire_blast_smoke_27.png</img>
+            <img duration="5" key="28" x="-0.4699993" y="-3.1999998">dust_shana_fire_blast_smoke_28.png</img>
+            <img duration="5" key="29" x="-0.32999992" y="-3.12">dust_shana_fire_blast_smoke_29.png</img>
+            <img duration="5" key="30" x="-0.3600006" y="-3.21">dust_shana_fire_blast_smoke_30.png</img>
+            <img duration="5" key="31" x="0.10000038" y="-2.3999996">dust_shana_fire_blast_smoke_31.png</img>
+            <img duration="5" key="32" x="-0.069999695" y="-2.1999998">dust_shana_fire_blast_smoke_32.png</img>
+        </sequence>
+    </sprites>
+</character>

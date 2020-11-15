@@ -22,7 +22,7 @@ import java.util.Random;
 public class Maiden extends ProjectileStatusManager {
 
     private final Vector2d startPos;
-    private final float leastDistance = 500;
+    private final float leastDistance = 250;
     private float buffer = 0;
     private Random random = new Random();
 

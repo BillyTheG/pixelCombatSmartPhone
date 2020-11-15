@@ -2,6 +2,7 @@ package com.example.pixelcombat.character.chars.shana.manager;
 
 import com.example.pixelcombat.character.chars.shana.Shana;
 import com.example.pixelcombat.character.chars.shana.attacks.ShanaAttack1;
+import com.example.pixelcombat.character.chars.shana.attacks.ShanaAttack4;
 import com.example.pixelcombat.character.status.AttackStatus;
 import com.example.pixelcombat.manager.actionManager.AttackManager;
 
@@ -18,6 +19,7 @@ public class ShanaAttackManager extends AttackManager {
     @Override
     public void init() {
         this.getAttacks().put("attack1", new ShanaAttack1(getCharacter(), 0));
+        this.getAttacks().put("attack4", new ShanaAttack4(getCharacter(), 0));
     }
 
     @Override

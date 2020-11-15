@@ -14,4 +14,9 @@ public class Attack1Spark extends Spark {
     public Attack1Spark(ArrayList<LocatedBitmap> images, ArrayList<Float> times, Vector2d pos, boolean isRight) {
         super(images, times, pos, isRight);
     }
+
+    public Attack1Spark(ArrayList<LocatedBitmap> images, ArrayList<Float> times, Vector2d pos, boolean isRight, float scale) {
+        super(images, times, pos, isRight);
+        this.scaleFactor = scale;
+    }
 }

@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+      //      getWindow().setFlags(WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
             requestWindowFeature(Window.FEATURE_NO_TITLE);
             setVolumeControlStream(AudioManager.STREAM_MUSIC);
@@ -105,6 +106,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
     }
+
+   /* @Override
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+       // getWindow().setFormat(PixelFormat.RGB_565);
+    }*/
 
     @Override
     protected void onDestroy() {

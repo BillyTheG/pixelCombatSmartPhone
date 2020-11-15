@@ -13,6 +13,7 @@ import com.example.pixelcombat.utils.LocatedBitmap;
 import java.util.ArrayList;
 
 import lombok.Getter;
+import lombok.Setter;
 
 public class Animation {
     private boolean loops;
@@ -26,6 +27,9 @@ public class Animation {
     private long lastFrame;
     private long currentTime;
     private long delta;
+    @Setter
+    private boolean preScaled = false;
+
 
     public boolean isPlaying() {
         return isPlaying;
@@ -73,8 +77,13 @@ public class Animation {
             return;
         }
 
-        int width = (int) (images.get(frameIndex).image.getWidth() * object.getScaleFactor());
-        int height = (int) (images.get(frameIndex).image.getHeight() * object.getScaleFactor());
+        int width = (int) (images.get(frameIndex).image.getWidth());
+        int height = (int) (images.get(frameIndex).image.getHeight());
+
+        if (!preScaled) {
+            width = (int) (width * object.getScaleFactor());
+            height = (int) (height * object.getScaleFactor());
+        }
 
         int x = (int) (object.getPos().x + object.getDirection() * images.get(frameIndex).pos.x * object.getScaleFactor() - screenX);
         int y = (int) (object.getPos().y + images.get(frameIndex).pos.y * object.getScaleFactor() - screenY);
@@ -108,9 +117,14 @@ public class Animation {
         if (!desRect.intersect(gameRect))
             return null;
         else {
-            Bitmap bitmap = getScaledBitmap(images.get(frameIndex).image, gameObject.getScaleFactor());
+            Bitmap bitmap = null;
             if (!gameObject.isRight())
-                bitmap = createFlippedBitmap(bitmap, true, false);
+                bitmap = createFlippedBitmap(images.get(frameIndex).image, true, false);
+            else
+                bitmap = images.get(frameIndex).image;
+
+            if (!preScaled)
+                bitmap = getScaledBitmap(bitmap, gameObject.getScaleFactor());
 
             int new_right = (right_old - (ScreenProperty.SCREEN_WIDTH - ScreenProperty.OFFSET_X));
             int new_left = ScreenProperty.OFFSET_X - left_old;

@@ -76,17 +76,17 @@ public class Game implements Observer {
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void update() {
 
-        ArrayList<Thread> threads = new ArrayList<>();
-
-        Thread projectileThread = new Thread(() -> projectiles.forEach(Projectile::update));
-        Thread sparkThread = new Thread(() -> sparks.forEach(IsFinishable::update));
-        Thread dustThread = new Thread(() -> dusts.forEach(IsFinishable::update));
-
-        threads.add(projectileThread);
-        threads.add(sparkThread);
-        threads.add(dustThread);
-
         try {
+
+            ArrayList<Thread> threads = new ArrayList<>();
+
+            projectiles.forEach(Projectile::update);
+            Thread sparkThread = new Thread(() -> sparks.forEach(IsFinishable::update));
+            Thread dustThread = new Thread(() -> dusts.forEach(IsFinishable::update));
+
+            threads.add(sparkThread);
+            threads.add(dustThread);
+
             map.update();
             threads.forEach(Thread::start);
             for (Thread thread : threads) {
@@ -129,12 +129,31 @@ public class Game implements Observer {
         int screenX = screenScrollManager.getScreenX() - screenScrollManager.getCX();
         int screenY = screenScrollManager.getScreenY() - screenScrollManager.getCY();
 
-        map.draw(canvas, 0, 0, null);
+
+        try {
+            map.draw(canvas, 0, 0, null);
 
 
-        projectiles.forEach(x -> x.draw(canvas, screenX, screenY, map.getGameRect()));
-        sparks.forEach(x -> x.draw(canvas, screenX, screenY, map.getGameRect()));
-        dusts.forEach(x -> x.draw(canvas, screenX, screenY, map.getGameRect()));
+            projectiles.forEach(x -> x.draw(canvas, screenX, screenY, map.getGameRect()));
+  /*                sparks.forEach(x -> x.draw(canvas, screenX, screenY, map.getGameRect()));
+                     dusts.forEach(x -> x.draw(canvas, screenX, screenY, map.getGameRect()));*/
+            ArrayList<Thread> threads = new ArrayList<>();
+            Thread dustThread = new Thread(() -> dusts.forEach(x -> x.draw(canvas, screenX, screenY, map.getGameRect())));
+            Thread sparkThread = new Thread(() -> sparks.forEach(x -> x.draw(canvas, screenX, screenY, map.getGameRect())));
+
+            threads.add(sparkThread);
+            threads.add(dustThread);
+
+            threads.forEach(Thread::start);
+            for (Thread thread : threads) {
+                thread.join();
+            }
+
+
+        } catch (Exception e) {
+            Log.e("Error", "Error during drawing objects: " + e.getMessage());
+        }
+
 
         map.drawEffects(canvas, map.getGameRect(), false);
 
@@ -153,19 +172,20 @@ public class Game implements Observer {
             String gameObject = inputs[0];
             boolean state = gameMessage.isSwitcher();
             String owner = inputs[1];
+            float scaleFactor = gameMessage.getScaleFactor();
 
             switch (type) {
                 case FREEZE:
                     map.putFreezeOn(owner, state);
                     break;
                 case PROJECTILE_CREATION:
-                    projectiles.add(projectileFactory.createProjectile(gameObject, gameMessage.getPos(), state, owner, screenScrollManager, this));
+                    projectiles.add(projectileFactory.createProjectile(gameObject, gameMessage.getPos(), state, owner, screenScrollManager, this, scaleFactor));
                     break;
                 case DUST_CREATION:
-                    dusts.add(dustFactory.createDust(gameObject, gameMessage.getPos(), state));
+                    dusts.add(dustFactory.createDust(gameObject, gameMessage.getPos(), state, scaleFactor));
                     break;
                 case SPARK_CREATION:
-                    sparks.add(sparkFactory.createSpark(gameObject, gameMessage.getPos(), state));
+                    sparks.add(sparkFactory.createSpark(gameObject, gameMessage.getPos(), state, scaleFactor));
                     break;
                 case DARKENING:
                     map.setDarkeningActivated(gameMessage.isSwitcher());

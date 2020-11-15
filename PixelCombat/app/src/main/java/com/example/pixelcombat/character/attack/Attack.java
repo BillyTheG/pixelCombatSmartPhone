@@ -79,15 +79,19 @@ public abstract class Attack {
             checkContent();
         }
         if (!character.getViewManager().isPlaying() && isAttacking()) {
-            checkFinished();
-            character.getAttackManager().setAttackStatus(AttackStatus.NOT_ATTACKING);
-            if (character.getStatusManager().isOnAir()) {
-                character.getStatusManager().setActionStatus(ActionStatus.JUMPFALL);
-            }
-            character.getHitManager().setHitDelay(false);
-            switcher = true;
-            attackOnAir = false;
+            finish();
         }
+    }
+
+    protected void finish() {
+        checkFinished();
+        character.getAttackManager().setAttackStatus(AttackStatus.NOT_ATTACKING);
+        if (character.getStatusManager().isOnAir()) {
+            character.getStatusManager().setActionStatus(ActionStatus.JUMPFALL);
+        }
+        character.getHitManager().setHitDelay(false);
+        switcher = true;
+        attackOnAir = false;
     }
 
 

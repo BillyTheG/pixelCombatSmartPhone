@@ -40,11 +40,38 @@ public class Projectile implements GameObject, Observable {
     private boolean isRight;
     private boolean canHit = true;
     private ArrayList<Observer> observer = new ArrayList<>();
+    private float scaleFactor = ScreenProperty.GENERAL_SCALE;
+    private boolean preScaled = false;
 
 
     public Projectile(Vector2d pos, boolean isRight, Map<String, ArrayList<ArrayList<BoundingRectangle>>> boxes, Map<String, ArrayList<LocatedBitmap>> images,
                       ArrayList<ArrayList<Float>> times, ArrayList<Integer> loopIndices, ArrayList<Boolean> loopBools,
                       ProjectileStatusManager statusManager, String owner) {
+        this.pos = pos;
+        this.boxes = boxes;
+        this.images = images;
+        this.times = times;
+        this.loopIndizes = loopIndices;
+        this.loopBools = loopBools;
+        this.isRight = isRight;
+        this.owner = owner;
+
+        this.statusManager = statusManager;
+        this.statusManager.init(this);
+        init();
+    }
+
+    public Projectile(Vector2d pos, boolean isRight, Map<String, ArrayList<ArrayList<BoundingRectangle>>> boxes, Map<String, ArrayList<LocatedBitmap>> images,
+                      ArrayList<ArrayList<Float>> times, ArrayList<Integer> loopIndices, ArrayList<Boolean> loopBools,
+                      ProjectileStatusManager statusManager, String owner, float scale) {
+        this(pos, isRight, boxes, images, times, loopIndices, loopBools, statusManager, owner);
+        this.scaleFactor = scale;
+    }
+
+    public Projectile(Vector2d pos, boolean isRight, Map<String, ArrayList<ArrayList<BoundingRectangle>>> boxes, Map<String, ArrayList<LocatedBitmap>> images,
+                      ArrayList<ArrayList<Float>> times, ArrayList<Integer> loopIndices, ArrayList<Boolean> loopBools,
+                      ProjectileStatusManager statusManager, String owner, boolean preScaled) {
+        this.preScaled = preScaled;
         this.pos = pos;
         this.boxes = boxes;
         this.images = images;
@@ -105,7 +132,7 @@ public class Projectile implements GameObject, Observable {
 
     @Override
     public float getScaleFactor() {
-        return ScreenProperty.GENERAL_SCALE;
+        return scaleFactor;
     }
 
     public Projectile register(Observer observer) {
@@ -134,4 +161,7 @@ public class Projectile implements GameObject, Observable {
         });
     }
 
+    public boolean getPreSacled() {
+        return preScaled;
+    }
 }

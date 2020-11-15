@@ -4,11 +4,10 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 
 import com.example.pixelcombat.GameObject;
-import com.example.pixelcombat.animation.Animation;
+import com.example.pixelcombat.animation.DustAnimation;
 import com.example.pixelcombat.core.IsFinishable;
 import com.example.pixelcombat.core.message.GameMessage;
 import com.example.pixelcombat.core.sound.SoundManager;
-import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.exception.PixelCombatException;
 import com.example.pixelcombat.math.Vector2d;
 import com.example.pixelcombat.observer.Observable;
@@ -17,15 +16,19 @@ import com.example.pixelcombat.utils.LocatedBitmap;
 
 import java.util.ArrayList;
 
+import lombok.Getter;
+
 public class Dust implements GameObject, IsFinishable, Observable {
-    private Animation animation;
+    @Getter
+    protected DustAnimation animation;
     private Vector2d pos;
     private boolean isRight;
     private Observer observer;
-    private float scaleFactor = ScreenProperty.GENERAL_SCALE;
+    private float scaleFactor = 1f;
+
 
     public Dust(ArrayList<LocatedBitmap> images, ArrayList<Float> times, boolean loops, Vector2d pos, boolean isRight) {
-        this.animation = new Animation(images, times, loops, 0);
+        this.animation = new DustAnimation(images, times, loops, 0);
         this.pos = pos;
         this.animation.play();
         this.isRight = isRight;
@@ -37,9 +40,27 @@ public class Dust implements GameObject, IsFinishable, Observable {
         this.scaleFactor = scaleFactor;
     }
 
+    public Dust(ArrayList<LocatedBitmap> images, ArrayList<Float> times, boolean loops, Vector2d pos, boolean isRight, float scaleFactor, int alpha) {
+        this.animation = new DustAnimation(images, times, loops, 0, alpha);
+        this.pos = pos;
+        this.animation.play();
+        this.isRight = isRight;
+        this.scaleFactor = scaleFactor;
+    }
+
     @Override
     public void draw(Canvas canvas, int screenX, int screenY, Rect gameRect) {
         animation.draw(canvas, this, screenX, screenY, gameRect);
+     /*   if(animation.getCurrentPaint().getAlpha() != 0){
+            canvas.drawBitmap(animation.getCurrentBitmap(), null, animation.getCurrentDesRect(), animation.getCurrentPaint());
+        }
+        else
+            canvas.drawBitmap(animation.getCurrentBitmap(), null, animation.getCurrentDesRect(), null);*/
+
+    }
+
+    public void draw(int screenX, int screenY, Rect gameRect) {
+        animation.draw(null, this, screenX, screenY, gameRect);
     }
 
     @Override

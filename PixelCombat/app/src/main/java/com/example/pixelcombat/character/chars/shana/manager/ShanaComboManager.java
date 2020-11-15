@@ -12,6 +12,7 @@ public class ShanaComboManager extends ComboActionManager {
 
     @Override
     protected void loadMoreCombos() {
+        this.combos.clear();
     }
 
     @Override

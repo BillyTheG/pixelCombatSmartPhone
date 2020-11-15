@@ -19,7 +19,14 @@ public class DustConfig {
     public static final String KOHAKU_SAKURA2_DUST = "Dust_Sakura2";
     public static final String KOHAKU_SAKURA3_DUST = "Dust_Sakura3";
     public static final String KOHAKU_SAKURA4_DUST = "Dust_Sakura4";
-
     public static final String KOHAKU_SAKURA5_DUST = "Dust_Sakura5";
     public static final String KOHAKU_SAKURA6_DUST = "Dust_Sakura6";
+
+    //Shana
+    public static final String SHANA_KICK_WAVE = "Dust_Shana_Kick_Wave";
+    public static final String SHANA_BLUE_FIRE_GROUND = "Dust_Shana_Blue_Fire_Ground";
+    public static final String SHANA_BLUE_FIRE_SMOKE = "Dust_Shana_Blue_Fire_Smoke";
+    public static final String SHANA_GREAT_WAVE = "Dust_Shana_Great_Wave";
+    public static final String SHANA_FRONTAL_WAVE = "Dust_Shana_Frontal_Wave";
+    public static final String SHANA_SWORD_AURA = "Dust_Shana_Sword_Aura";
 }

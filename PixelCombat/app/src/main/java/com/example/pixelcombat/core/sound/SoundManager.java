@@ -104,6 +104,20 @@ public class SoundManager implements Observer {
         soundsIds.put("kohaku_maiden_call_creature_sound", soundPool.load(context, R.raw.kohaku_maiden_call_creature_sound, 1));
         soundsIds.put("kohaku_maiden_call_maid_sound", soundPool.load(context, R.raw.kohaku_maiden_call_maid_sound, 1));
 
+        //Shana
+        soundsIds.put("shana_attack1", soundPool.load(context, R.raw.shana_attack1, 1));
+        soundsIds.put("shana_attack2", soundPool.load(context, R.raw.shana_attack2, 1));
+        soundsIds.put("shana_attack3", soundPool.load(context, R.raw.shana_attack3, 1));
+        soundsIds.put("shana_attack4", soundPool.load(context, R.raw.shana_attack4, 1));
+        soundsIds.put("shana_kick_sonic", soundPool.load(context, R.raw.shana_kick_sonic, 1));
+        soundsIds.put("shana_frontal_wave_sound", soundPool.load(context, R.raw.shana_frontal_wave_sound, 1));
+        soundsIds.put("shana_frontal_wave_sound_2", soundPool.load(context, R.raw.shana_frontal_wave_sound_2, 1));
+        soundsIds.put("shana_frontal_wave_sound_3", soundPool.load(context, R.raw.shana_frontal_wave_sound_3, 1));
+        soundsIds.put("shana_frontal_wave_sound_hit", soundPool.load(context, R.raw.shana_frontal_wave_sound_hit, 1));
+        soundsIds.put("shana_sword_aura", soundPool.load(context, R.raw.shana_sword_aura, 1));
+
+        soundsIds.put("shana_fire_blast", soundPool.load(context, R.raw.shana_fire_blast, 1));
+
     }
 
 

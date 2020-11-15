@@ -18,5 +18,14 @@ public class GameMessage {
 
     private boolean switcher;
 
+    private float scaleFactor;
+
+
+    public GameMessage(MessageType messageType, String gameObject, Vector2d pos, boolean switcher) {
+        this.messageType = messageType;
+        this.gameObject = gameObject;
+        this.pos = pos;
+        this.switcher = switcher;
+    }
 
 }

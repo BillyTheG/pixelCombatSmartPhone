@@ -7,6 +7,7 @@ import com.example.pixelcombat.character.chars.kohaku.projectiles.FireBottle;
 import com.example.pixelcombat.character.chars.kohaku.projectiles.HorizontalSlash;
 import com.example.pixelcombat.character.chars.kohaku.projectiles.LittleGuy;
 import com.example.pixelcombat.character.chars.kohaku.projectiles.Maiden;
+import com.example.pixelcombat.character.chars.shana.projectiles.FireBlast;
 import com.example.pixelcombat.core.Game;
 import com.example.pixelcombat.core.config.ProjectileConfig;
 import com.example.pixelcombat.core.sound.SoundManager;
@@ -45,7 +46,7 @@ public class ProjectileFactory {
         this.context = context;
     }
 
-    public Projectile createProjectile(String type, Vector2d pos, boolean right, String owner, ScreenScrollerManager screenScrollerManager, Game game) {
+    public Projectile createProjectile(String type, Vector2d pos, boolean right, String owner, ScreenScrollerManager screenScrollerManager, Game game, float scaleFactor) {
 
         ConcurrentHashMap<String, ArrayList<LocatedBitmap>> imagesP = pictures.get(type);
         ConcurrentHashMap<String, ArrayList<ArrayList<BoundingRectangle>>> boxesP = boxes.get(type);
@@ -55,13 +56,15 @@ public class ProjectileFactory {
 
         switch (type) {
             case ProjectileConfig.KOHAKU_SPECIAL_ATTACK_PROJECTILE_HORIZONTAL:
-                return new Projectile(new Vector2d(pos.x, pos.y), right, boxesP, imagesP, timesP, loopVariabelsP, loopBoolsP, new HorizontalSlash(), owner).register(soundManager).register(screenScrollerManager);
+                return new Projectile(new Vector2d(pos.x, pos.y), right, boxesP, imagesP, timesP, loopVariabelsP, loopBoolsP, new HorizontalSlash(), owner, true).register(soundManager).register(screenScrollerManager);
             case ProjectileConfig.KOHAKU_SPECIAL_ATTACK_PROJECTILE_MAIDEN:
-                return new Projectile(new Vector2d(pos.x, pos.y), right, boxesP, imagesP, timesP, loopVariabelsP, loopBoolsP, new Maiden(new Vector2d(pos.x, pos.y)), owner).register(soundManager).register(screenScrollerManager).register(game);
+                return new Projectile(new Vector2d(pos.x, pos.y), right, boxesP, imagesP, timesP, loopVariabelsP, loopBoolsP, new Maiden(new Vector2d(pos.x, pos.y)), owner, true).register(soundManager).register(screenScrollerManager).register(game);
             case ProjectileConfig.KOHAKU_SPECIAL_ATTACK_PROJECTILE_LITTLE_GUY:
-                return new Projectile(new Vector2d(pos.x, pos.y), right, boxesP, imagesP, timesP, loopVariabelsP, loopBoolsP, new LittleGuy(new Vector2d(pos.x, pos.y)), owner).register(soundManager).register(screenScrollerManager).register(game);
+                return new Projectile(new Vector2d(pos.x, pos.y), right, boxesP, imagesP, timesP, loopVariabelsP, loopBoolsP, new LittleGuy(new Vector2d(pos.x, pos.y)), owner, true).register(soundManager).register(screenScrollerManager).register(game);
             case ProjectileConfig.KOHAKU_SPECIAL_ATTACK_PROJECTILE_BOTTLE:
-                return new Projectile(new Vector2d(pos.x, pos.y), right, boxesP, imagesP, timesP, loopVariabelsP, loopBoolsP, new FireBottle(), owner).register(soundManager).register(screenScrollerManager);
+                return new Projectile(new Vector2d(pos.x, pos.y), right, boxesP, imagesP, timesP, loopVariabelsP, loopBoolsP, new FireBottle(), owner, true).register(soundManager).register(screenScrollerManager);
+            case ProjectileConfig.SHANA_BLUE_FIRE_BLAST:
+                return new Projectile(new Vector2d(pos.x, pos.y), right, boxesP, imagesP, timesP, loopVariabelsP, loopBoolsP, new FireBlast(new Vector2d(pos.x, pos.y)), owner, true).register(soundManager).register(screenScrollerManager).register(game);
 
             default:
                 return null;
@@ -89,10 +92,11 @@ public class ProjectileFactory {
             projectileNames.add("Kohaku_Projectile_Bottle");
             projectileNames.add("Kohaku_Projectile_Maiden");
             projectileNames.add("Kohaku_Projectile_Little_Guy");
+            projectileNames.add("Shana_Fire_Blast");
 
             for (String projectile : projectileNames) {
-                CharacterParser projectileParser = new CharacterParser(context);
-                BoxParser boxParser = new BoxParser(context, checkScaleFactor(projectile.split("_")[0]));
+                CharacterParser projectileParser = new CharacterParser(context, checkScaleFactor(projectile));
+                BoxParser boxParser = new BoxParser(context, checkScaleFactor(projectile));
                 //  projectileParser.setTrim(true);
                 projectileParser.parse(projectile + "_Images.xml");
                 boxParser.parse(projectile + "_Boxes.xml");
@@ -125,13 +129,19 @@ public class ProjectileFactory {
 
     private float checkScaleFactor(String s) {
         switch (s) {
-            case "Kohaku":
+            case "Kohaku_Projectile_Horizontal":
+            case "Kohaku_Projectile_Bottle":
+            case "Kohaku_Projectile_Maiden":
+            case "Kohaku_Projectile_Little_Guy":
                 return ScreenProperty.KOHAKU_SCALE;
+            case "Shana_Fire_Blast":
+                return ScreenProperty.SHANA_BLUE_FIRE_BLAST;
             default:
-                return ScreenProperty.GENERAL_SCALE;
+                return 1f;
         }
 
 
     }
+
 
 }

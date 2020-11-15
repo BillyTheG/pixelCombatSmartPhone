@@ -9,4 +9,7 @@ public class ProjectileConfig {
     public static final String KOHAKU_SPECIAL_ATTACK_PROJECTILE_BOTTLE = "Kohaku_Projectile_Bottle";
     public static final String KOHAKU_SPECIAL_ATTACK_PROJECTILE_MAIDEN = "Kohaku_Projectile_Maiden";
     public static final String KOHAKU_SPECIAL_ATTACK_PROJECTILE_LITTLE_GUY = "Kohaku_Projectile_Little_Guy";
+
+    //Shana
+    public static final String SHANA_BLUE_FIRE_BLAST = "Shana_Fire_Blast";
 }

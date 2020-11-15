@@ -5,9 +5,11 @@ import android.util.Log;
 
 import com.example.pixelcombat.core.config.SparkConfig;
 import com.example.pixelcombat.core.sound.SoundManager;
+import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.math.Vector2d;
 import com.example.pixelcombat.sparks.Spark;
 import com.example.pixelcombat.sparks.attack.Attack1Spark;
+import com.example.pixelcombat.sparks.subType.PreScaledSpark;
 import com.example.pixelcombat.utils.LocatedBitmap;
 import com.example.pixelcombat.xml.CharacterParser;
 
@@ -37,12 +39,16 @@ public class SparkFactory {
     }
 
 
-    public Spark createSpark(String type, Vector2d pos, boolean right) {
+    public Spark createSpark(String type, Vector2d pos, boolean right, float scaleFactor) {
         switch (type) {
             case SparkConfig.ATTACK_SPARK:
                 return new Attack1Spark(pictures.get("Attack1_Spark"), times.get("Attack1_Spark"), pos).register(soundManager);
             case SparkConfig.ATTACK2_SPARK:
                 return new Attack1Spark(pictures.get("Attack2_Spark"), times.get("Attack2_Spark"), pos).register(soundManager);
+            case SparkConfig.SHANA_KICK_HIT:
+                return new PreScaledSpark(pictures.get("Spark_Shana_Kick_Hit"), times.get("Spark_Shana_Kick_Hit"), pos, right, ScreenProperty.SHANA_KICK_HIT).register(soundManager);
+            case SparkConfig.SHANA_BLUE_FIRE_HIT:
+                return new PreScaledSpark(pictures.get("Spark_Shana_Blue_Fire_Hit"), times.get("Spark_Shana_Blue_Fire_Hit"), pos, right, ScreenProperty.SHANA_BLUE_FIRE_HIT).register(soundManager);
             case SparkConfig.KOHAKU_BATTO_JUTSU_SLASH_SPARK:
                 return new Attack1Spark(pictures.get("Kohaku_Batto_Jutsu_Slash_Spark"), times.get("Kohaku_Batto_Jutsu_Slash_Spark"), pos, right).register(soundManager);
             case SparkConfig.KOHAKU_SPECIAL_ATTACK_SPARK:
@@ -69,10 +75,11 @@ public class SparkFactory {
             sparkNames.add("Blood_Splash_Spark.xml");
             sparkNames.add("Defend_Spark.xml");
             sparkNames.add("Kohaku_Batto_Jutsu_Slash_Spark.xml");
-
+            sparkNames.add("Spark_Shana_Kick_Hit.xml");
+            sparkNames.add("Spark_Shana_Blue_Fire_Hit.xml");
 
             for (String spark : sparkNames) {
-                dustParser = new CharacterParser(context);
+                dustParser = new CharacterParser(context, checkScaleFactor(spark.replace(".xml", "")));
                 dustParser.parse(spark);
                 String sparkC = spark.replace(".xml", "");
 
@@ -86,5 +93,19 @@ public class SparkFactory {
         }
     }
 
+    private float checkScaleFactor(String sparkName) {
+
+        switch (sparkName) {
+            case SparkConfig.SHANA_BLUE_FIRE_HIT:
+                return ScreenProperty.SHANA_BLUE_FIRE_HIT;
+            case SparkConfig.SHANA_KICK_HIT:
+                return ScreenProperty.SHANA_KICK_HIT;
+            default:
+                break;
+        }
+
+
+        return 1f;
+    }
 
 }

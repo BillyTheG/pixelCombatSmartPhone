@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+    <type>BlueFireHit</type>
+    <sprites>
+        <sequence airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="5" key="0" x="-0.17000008" y="-0.029999733">dust_shana_fire_hit_0.png</img>
+            <img duration="5" key="1" x="-0.26000023" y="0.069999695">dust_shana_fire_hit_1.png</img>
+            <img duration="5" key="2" x="-0.3899994" y="0.010000229">dust_shana_fire_hit_2.png</img>
+            <img duration="5" key="3" x="-0.5400009" y="-0.010000229">dust_shana_fire_hit_3.png</img>
+            <img duration="5" key="4" x="-0.62000084" y="-0.14999962">dust_shana_fire_hit_4.png</img>
+            <img duration="5" key="5" x="-0.6499996" y="-0.19999981">dust_shana_fire_hit_5.png</img>
+            <img duration="5" key="6" x="-0.6800003" y="-0.27000046">dust_shana_fire_hit_6.png</img>
+            <img duration="5" key="7" x="-0.7099991" y="-0.25">dust_shana_fire_hit_7.png</img>
+            <img duration="5" key="8" x="-0.69000053" y="-0.23999977">dust_shana_fire_hit_8.png</img>
+            <img duration="5" key="9" x="-0.6700001" y="-0.19999981">dust_shana_fire_hit_9.png</img>
+            <img duration="5" key="10" x="-0.6700001" y="-0.14999962">dust_shana_fire_hit_10.png</img>
+            <img duration="5" key="11" x="-0.69000053" y="-0.14999962">dust_shana_fire_hit_11.png</img>
+            <img duration="5" key="12" x="-0.70000076" y="-0.13000011">dust_shana_fire_hit_12.png</img>
+            <img duration="5" key="13" x="-0.6800003" y="-0.09000015">dust_shana_fire_hit_13.png</img>
+            <img duration="5" key="14" x="-0.7099991" y="-0.09000015">dust_shana_fire_hit_14.png</img>
+            <img duration="5" key="15" x="-0.6800003" y="-0.069999695">dust_shana_fire_hit_15.png</img>
+            <img duration="5" key="16" x="-0.70000076" y="-0.10999966">dust_shana_fire_hit_16.png</img>
+            <img duration="5" key="17" x="-0.72999954" y="-0.09000015">dust_shana_fire_hit_17.png</img>
+            <img duration="5" key="18" x="-0.77000046" y="-0.10999966">dust_shana_fire_hit_18.png</img>
+            <img duration="5" key="19" x="-0.72999954" y="-0.13000011">dust_shana_fire_hit_19.png</img>
+            <img duration="5" key="20" x="-0.77000046" y="-0.15999985">dust_shana_fire_hit_20.png</img>
+            <img duration="5" key="21" x="-0.9200001" y="-0.14999962">dust_shana_fire_hit_21.png</img>
+            <img duration="5" key="22" x="-0.9300003" y="-0.119999886">dust_shana_fire_hit_22.png</img>
+            <img duration="5" key="23" x="-0.9699993" y="-0.10000038">dust_shana_fire_hit_23.png</img>
+            <img duration="5" key="24" x="-1.0300007" y="-0.10000038">dust_shana_fire_hit_24.png</img>
+            <img duration="5" key="25" x="-1.0900002" y="-0.09000015">dust_shana_fire_hit_25.png</img>
+            <img duration="5" key="26" x="-1.1399994" y="-0.07999992">dust_shana_fire_hit_26.png</img>
+            <img duration="5" key="27" x="-1.2099991" y="-0.14000034">dust_shana_fire_hit_27.png</img>
+            <img duration="5" key="28" x="-1.2199993" y="-0.14999962">dust_shana_fire_hit_28.png</img>
+            <img duration="5" key="29" x="-1.2099991" y="-0.22999954">dust_shana_fire_hit_29.png</img>
+            <img duration="5" key="30" x="-1.206667" y="-0.25">dust_shana_fire_hit_30.png</img>
+            <img duration="5" key="31" x="-1.2099991" y="-0.27000046">dust_shana_fire_hit_31.png</img>
+            <img duration="5" key="32" x="-1.1499996" y="-0.25">dust_shana_fire_hit_32.png</img>
+            <img duration="5" key="33" x="-1.1299992" y="-0.32999992">dust_shana_fire_hit_33.png</img>
+            <img duration="5" key="34" x="-0.7800007" y="-0.35000038">dust_shana_fire_hit_34.png</img>
+            <img duration="5" key="35" x="-0.90999985" y="-0.39000034">dust_shana_fire_hit_35.png</img>
+            <img duration="5" key="36" x="-1.1499996" y="-0.42000008">dust_shana_fire_hit_36.png</img>
+            <img duration="5" key="37" x="-0.77000046" y="-0.4499998">dust_shana_fire_hit_37.png</img>
+            <img duration="5" key="38" x="-0.8500004" y="-0.42000008">dust_shana_fire_hit_38.png</img>
+            <img duration="5" key="39" x="-0.80999947" y="-0.47000027">dust_shana_fire_hit_39.png</img>
+        </sequence>
+    </sprites>
+</character>

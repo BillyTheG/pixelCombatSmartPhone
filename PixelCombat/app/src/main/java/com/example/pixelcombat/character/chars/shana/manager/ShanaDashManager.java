@@ -75,21 +75,19 @@ public class ShanaDashManager extends DashManager {
         switch (character.getViewManager().getFrameIndex()) {
             case 0:
                 if (switcher) {
+                    this.character.getPhysics().VY = -32f;
                     character.getStatusManager().swapDirections();
                     character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_jump", null, true));
                     character.notifyObservers(new GameMessage(MessageType.SOUND, "ruffy_jump", null, true));
                     switcher = false;
                 }
-                break;
+            case 1:
+            case 2:
             case 3:
-                if (!switcher) {
-                    this.character.getPhysics().VY = -22f;
-                    switcher = true;
-                }
+                this.character.getPhysics().VX = -character.getDirection() * 1.25f * DASH_SPEED;
+                distance += Math.abs(DASH_SPEED);
                 break;
             case 4:
-            case 5:
-            case 6:
                 this.character.getPhysics().VX = -character.getDirection() * 1.25f * DASH_SPEED;
                 distance += Math.abs(DASH_SPEED);
                 if (distance > 1.5 * MAX_DISTANCE || character.getStatusManager().landed()) {

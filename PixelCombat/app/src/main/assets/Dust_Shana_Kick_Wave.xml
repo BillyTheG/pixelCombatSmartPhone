@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+    <type>FastForward</type>
+    <sprites>
+        <sequence airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="18" key="0" x="-0.4300003" y="-0.4499998">dust_shana_blue_kick_wave_0.png</img>
+            <img duration="18" key="1" x="0.40999985" y="-0.28999996">dust_shana_blue_kick_wave_1.png</img>
+            <img duration="18" key="2" x="1.0900002" y="-0.5100002">dust_shana_blue_kick_wave_2.png</img>
+            <img duration="18" key="3" x="1.3500004" y="-0.6700001">dust_shana_blue_kick_wave_3.png</img>
+            <img duration="18" key="4" x="1.4400005" y="-0.8299999">dust_shana_blue_kick_wave_4.png</img>
+            <img duration="18" key="5" x="2.0300007" y="-0.78999996">dust_shana_blue_kick_wave_5.png</img>
+            <img duration="18" key="6" x="1.9200001" y="-1.1999998">dust_shana_blue_kick_wave_6.png</img>
+            <img duration="18" key="7" x="2.9899998" y="-1.29">dust_shana_blue_kick_wave_7.png</img>
+            <img duration="18" key="8" x="3.1000004" y="-1.8099995">dust_shana_blue_kick_wave_8.png</img>
+            <img duration="18" key="9" x="2.8600006" y="-1.7299995">dust_shana_blue_kick_wave_9.png</img>
+            <img duration="18" key="10" x="2.709999" y="-2.04">dust_shana_blue_kick_wave_10.png</img>
+            <img duration="18" key="11" x="2.8500004" y="-2.0900002">dust_shana_blue_kick_wave_11.png</img>
+        </sequence>
+    </sprites>
+</character>

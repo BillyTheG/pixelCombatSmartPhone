@@ -30,6 +30,7 @@ import static com.example.pixelcombat.enums.GamePlayView.FIELD_SIZE;
 @Getter
 public class CharacterParser {
 
+    private float scaleFactor = 1f;
     private ConcurrentHashMap<String, ArrayList<LocatedBitmap>> character = new ConcurrentHashMap<>();
     private ArrayList<ArrayList<Float>> times = new ArrayList<>();
     private ArrayList<Float> time = new ArrayList<>();
@@ -67,6 +68,12 @@ public class CharacterParser {
         XmlPullParserFactory parserFactory;
         parserFactory = XmlPullParserFactory.newInstance();
         parser = parserFactory.newPullParser();
+
+    }
+
+    public CharacterParser(Context context, float scaleFactor) throws Exception {
+        this(context);
+        this.scaleFactor = scaleFactor;
 
     }
 
@@ -132,6 +139,10 @@ public class CharacterParser {
                                     options.inPreferredConfig = Bitmap.Config.RGB_565;
 
                                     Bitmap bitmap = BitmapFactory.decodeResourceStream(context.getResources(), null, is, null, options);
+                                    if (scaleFactor != 1f) {
+                                        bitmap = getScaledBitmap(bitmap, scaleFactor);
+                                    }
+
                                     Vector2d pos = new Vector2d(x * FIELD_SIZE, y * FIELD_SIZE);
                                     if (trim) {
                                         assert bitmap != null;
@@ -169,5 +180,12 @@ public class CharacterParser {
         }
     }
 
+    private Bitmap getScaledBitmap(Bitmap bitmap, float scaleFactor) {
 
+        if (scaleFactor == 1f) {
+            return bitmap;
+        }
+
+        return Bitmap.createScaledBitmap(bitmap, ((int) (bitmap.getWidth() * scaleFactor)), ((int) (bitmap.getHeight() * scaleFactor)), false);
+    }
 }

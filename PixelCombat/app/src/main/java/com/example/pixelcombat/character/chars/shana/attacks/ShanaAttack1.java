@@ -4,9 +4,11 @@ import android.util.Log;
 
 import com.example.pixelcombat.GameCharacter;
 import com.example.pixelcombat.character.attack.Attack;
+import com.example.pixelcombat.core.config.DustConfig;
 import com.example.pixelcombat.core.config.SparkConfig;
 import com.example.pixelcombat.core.message.GameMessage;
 import com.example.pixelcombat.enums.MessageType;
+import com.example.pixelcombat.enums.ScreenProperty;
 import com.example.pixelcombat.math.BoundingRectangle;
 import com.example.pixelcombat.math.Vector2d;
 
@@ -30,15 +32,26 @@ public class ShanaAttack1 extends Attack {
             switch (character.getViewManager().getFrameIndex()) {
                 case 0:
                     if (isSwitcher()) {
-                        int rand = new Random().nextInt(2) + 1;
-                        character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_attack" + rand, null, true));
+                        int rand = new Random().nextInt(4) + 1;
+                        character.notifyObservers(new GameMessage(MessageType.SOUND, "shana_attack" + rand, null, true));
                         setSwitcher(false);
                     }
                     break;
-                case 1:
+                case 4:
                     if (!isSwitcher()) {
-                        character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_attack1_sonic", null, true));
+
+                        float offSetX = -character.getDirection() * 75 * ScreenProperty.SHANA_SCALE;
+                        float offSetY = -100 * ScreenProperty.SHANA_SCALE;
+
+                        character.notifyObservers(new GameMessage(MessageType.DUST_CREATION, DustConfig.SHANA_KICK_WAVE + ";test;",
+                                new Vector2d(character.getPos().x + offSetX, character.getPos().y + offSetY), character.isRight()));
                         setSwitcher(true);
+                    }
+                    break;
+                case 5:
+                    if (isSwitcher()) {
+                        character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_attack1_sonic", null, true));
+                        setSwitcher(false);
                     }
                     break;
                 default:
@@ -64,12 +77,14 @@ public class ShanaAttack1 extends Attack {
         character.getHitManager().setHitDelay(true);
         try {
 
+            character.notifyObservers(new GameMessage(MessageType.SHAKE, "" + "test", null, true));
+
             BoundingRectangle box = character.getBoxManager().getIntersectionBox();
-            character.notifyObservers(new GameMessage(MessageType.SPARK_CREATION, SparkConfig.ATTACK_SPARK + ";test;",
+            character.notifyObservers(new GameMessage(MessageType.SPARK_CREATION, SparkConfig.SHANA_KICK_HIT + ";test;",
                     new Vector2d(box.getPos().x, box.getPos().y), true));
 
             character.notifyObservers(new GameMessage(MessageType.SOUND, "kohaku_attack1_hit", null, true));
-
+            finish();
         } catch (Exception e) {
             Log.e("Error", "The spark could not be created: " + e.getMessage());
         }

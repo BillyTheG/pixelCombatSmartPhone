@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+    <type>ShanaBlueFireGround</type>
+    <sprites>
+        <sequence airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="15" key="0" x="0.07999992" y="-0.18999958">dust_shana_blue_fire_ground_0.png</img>
+            <img duration="15" key="1" x="0.23999977" y="-0.27000046">dust_shana_blue_fire_ground_1.png</img>
+            <img duration="15" key="2" x="0.09000015" y="-0.39000034">dust_shana_blue_fire_ground_2.png</img>
+            <img duration="15" key="3" x="0.26000023" y="-0.48999977">dust_shana_blue_fire_ground_3.png</img>
+            <img duration="15" key="4" x="0.62999916" y="-0.8699999">dust_shana_blue_fire_ground_4.png</img>
+            <img duration="15" key="5" x="0.65999985" y="-0.96000004">dust_shana_blue_fire_ground_5.png</img>
+            <img duration="15" key="6" x="0.69000053" y="-1.0500002">dust_shana_blue_fire_ground_6.png</img>
+            <img duration="15" key="7" x="0.7600002" y="-1.1199999">dust_shana_blue_fire_ground_7.png</img>
+            <img duration="15" key="8" x="0.5300007" y="-1.0799999">dust_shana_blue_fire_ground_8.png</img>
+            <img duration="15" key="9" x="0.6499996" y="-1.1400003">dust_shana_blue_fire_ground_9.png</img>
+            <img duration="15" key="10" x="0.7199993" y="-1.0">dust_shana_blue_fire_ground_10.png</img>
+            <img duration="15" key="11" x="0.5699997" y="-1.0500002">dust_shana_blue_fire_ground_11.png</img>
+            <img duration="15" key="12" x="0.30999947" y="-0.9899998">dust_shana_blue_fire_ground_12.png</img>
+            <img duration="15" key="13" x="0.5100002" y="-1.0900002">dust_shana_blue_fire_ground_13.png</img>
+            <img duration="15" key="14" x="0.87999916" y="-0.9499998">dust_shana_blue_fire_ground_14.png</img>
+            <img duration="15" key="15" x="0.90999985" y="-1.0">dust_shana_blue_fire_ground_15.png</img>
+            <img duration="15" key="16" x="0.9300003" y="-1.0799999">dust_shana_blue_fire_ground_16.png</img>
+            <img duration="15" key="17" x="0.8299999" y="-1.1900005">dust_shana_blue_fire_ground_17.png</img>
+            <img duration="15" key="18" x="0.75" y="-1.1499996">dust_shana_blue_fire_ground_18.png</img>
+            <img duration="15" key="19" x="0.8999996" y="-1.1900005">dust_shana_blue_fire_ground_19.png</img>
+            <img duration="15" key="20" x="0.95000076" y="-1.0200005">dust_shana_blue_fire_ground_20.png</img>
+            <img duration="15" key="21" x="0.87999916" y="-0.96000004">dust_shana_blue_fire_ground_21.png</img>
+            <img duration="15" key="22" x="0.5799999" y="-0.96000004">dust_shana_blue_fire_ground_22.png</img>
+            <img duration="15" key="23" x="0.5699997" y="-1.0699997">dust_shana_blue_fire_ground_23.png</img>
+            <img duration="15" key="24" x="0.59000015" y="-0.97000027">dust_shana_blue_fire_ground_24.png</img>
+            <img duration="15" key="25" x="0.42000008" y="-0.9300003">dust_shana_blue_fire_ground_25.png</img>
+            <img duration="15" key="26" x="0.12999916" y="-0.9499998">dust_shana_blue_fire_ground_26.png</img>
+            <img duration="15" key="27" x="0.40999985" y="-0.96000004">dust_shana_blue_fire_ground_27.png</img>
+            <img duration="15" key="28" x="0.48999977" y="-1.0500002">dust_shana_blue_fire_ground_28.png</img>
+            <img duration="15" key="29" x="0.49333382" y="-0.97000027">dust_shana_blue_fire_ground_29.png</img>
+        </sequence>
+    </sprites>
+</character>

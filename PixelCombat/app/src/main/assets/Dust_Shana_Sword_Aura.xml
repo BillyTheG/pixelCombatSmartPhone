@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+    <type>ShanaSwordAura</type>
+    <sprites>
+        <sequence airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="5" key="0" x="0.17000008" y="-0.07999992">dust_shana_sword_aura_0.png</img>
+            <img duration="5" key="1" x="0.09000015" y="-0.46000004">dust_shana_sword_aura_1.png</img>
+            <img duration="5" key="2" x="-0.19000053" y="-0.010000229">dust_shana_sword_aura_2.png</img>
+            <img duration="5" key="3" x="-0.12000084" y="0.10999966">dust_shana_sword_aura_3.png</img>
+            <img duration="5" key="4" x="-0.12000084" y="0.010000229">dust_shana_sword_aura_4.png</img>
+            <img duration="5" key="5" x="-0.059999466" y="0.27000046">dust_shana_sword_aura_5.png</img>
+            <img duration="5" key="6" x="0.09000015" y="0.4300003">dust_shana_sword_aura_6.png</img>
+            <img duration="5" key="7" x="-0.20999908" y="-0.029999733">dust_shana_sword_aura_7.png</img>
+            <img duration="5" key="8" x="-0.059999466" y="-0.06000042">dust_shana_sword_aura_8.png</img>
+            <img duration="5" key="9" x="0.11000061" y="-0.10999966">dust_shana_sword_aura_9.png</img>
+            <img duration="5" key="10" x="0.27000046" y="-0.14000034">dust_shana_sword_aura_10.png</img>
+            <img duration="5" key="11" x="0.29999924" y="0.22000027">dust_shana_sword_aura_11.png</img>
+            <img duration="5" key="12" x="0.1800003" y="0.17000008">dust_shana_sword_aura_12.png</img>
+            <img duration="5" key="13" x="0.15999985" y="-0.22000027">dust_shana_sword_aura_13.png</img>
+            <img duration="5" key="14" x="0.1800003" y="-0.25">dust_shana_sword_aura_14.png</img>
+            <img duration="5" key="15" x="-0.17000008" y="0.19999981">dust_shana_sword_aura_15.png</img>
+            <img duration="5" key="16" x="-0.059999466" y="-0.09000015">dust_shana_sword_aura_16.png</img>
+            <img duration="5" key="17" x="-0.8999996" y="0.14000034">dust_shana_sword_aura_17.png</img>
+            <img duration="5" key="18" x="-0.7399998" y="-0.27999973">dust_shana_sword_aura_18.png</img>
+            <img duration="5" key="19" x="-0.55999947" y="-0.27999973">dust_shana_sword_aura_19.png</img>
+            <img duration="5" key="20" x="0.07999992" y="-0.27000046">dust_shana_sword_aura_20.png</img>
+            <img duration="5" key="21" x="0.020000458" y="-0.27999973">dust_shana_sword_aura_21.png</img>
+            <img duration="5" key="22" x="-0.040000916" y="-0.28999996">dust_shana_sword_aura_22.png</img>
+            <img duration="5" key="23" x="0.12000084" y="-0.25">dust_shana_sword_aura_23.png</img>
+            <img duration="5" key="24" x="0.19000053" y="-0.119999886">dust_shana_sword_aura_24.png</img>
+        </sequence>
+    </sprites>
+</character>

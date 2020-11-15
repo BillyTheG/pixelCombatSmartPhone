@@ -52,6 +52,11 @@ public class ProjectileViewManager extends ObjectViewManager<Projectile> {
         Animation[] array = new Animation[animations.size()];
         animations.toArray(array);
 
+        for (Animation animation : animations) {
+            animation.setPreScaled(character.getPreSacled());
+        }
+
+
         this.animManager = new AnimationManager(this, array, character);
 
         animManager.playAnim();

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+    <type>FastForward</type>
+    <sprites>
+        <sequence airBool="false" airIndex="0" loopIndex="0" loops="false">
+            <img duration="80" key="0" x="1.2800007" y="-0.35999966">spark_shana_blue_kick_hit_0.png</img>
+            <img duration="60" key="1" x="1.2000008" y="0.1800003">spark_shana_blue_kick_hit_1.png</img>
+            <img duration="50" key="2" x="-0.1800003" y="-0.1800003">spark_shana_blue_kick_hit_2.png</img>
+        </sequence>
+    </sprites>
+</character>
